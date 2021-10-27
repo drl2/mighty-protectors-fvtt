@@ -1,0 +1,210 @@
+@import "./item-sheet.less";
+.mightyprotectors.sheet.character {
+    form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .rollable {
+          cursor: pointer;
+      }
+
+      .rollable:hover {
+        text-shadow: 0 0 8px red;
+      }
+
+    
+    /*  Sheet header */
+    .sheet-header {
+        flex: 0;
+        margin-bottom: 5px;
+
+        .charimage {
+            height: 100px;
+            width: 100px;
+        }
+
+        .item-subtitle {
+            margin-left: 8px;
+
+            .item-type {
+                font-size: 10px;
+                line-height: 14px;
+            }
+        }
+
+        .header-stats {
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-left: 12px;
+            display: grid;
+            grid-template-columns: 140px 140px 20px 140px 140px;
+            
+
+
+            input[type="number"] {
+                width: 30px;
+                text-align: center;
+              }
+        }
+    }
+
+    
+    /* sheet navigation */
+    .sheet-navigation {
+        height: 20px;
+        flex: 0;
+        margin-bottom: 10px;
+
+        .item {
+            height: 20px;
+            border-bottom: 3px solid #b5b3a4;
+        }
+
+        .item.active {
+            text-shadow: 0 0 10px #3a2aa6;
+            border-bottom: 3px solid #44191A;
+        }
+
+        a:hover {
+            text-shadow: 0 0 10px #3a2aa6;
+            border-bottom: 3px solid #44191A;
+        }
+
+        .tabs {
+            height: 50px;
+        }
+    }
+
+  /* sheet body */
+  .sheet-body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .tab {
+      height: 100%;
+    }
+
+    .stats {
+        .stat-outer-grid {
+            display: grid;
+            grid-template-columns: 190px auto;
+
+            .bc-grid {
+                display: grid;
+                grid-template-columns: 40px 30px 40px auto;
+                align-items: center;
+
+                input[type="number"] {
+                    width: 30px;
+                    text-align: center;
+                  }
+            }
+
+            .cp-grid {
+                display: grid;
+                grid-template-columns: 40px 110px;
+                align-items: center;
+
+                input[type="number"] {
+                    width: 30px;
+                    text-align: center;
+                  }
+
+                .divider-top {
+                    border-top: 1px solid black;
+                    margin-top: 1px;
+                    margin-bottom: 1px;
+                }
+            }
+
+            .item-header {
+                background-color: lightgray;
+            }
+
+
+            /* abilities */
+            .abilitycol1 {
+                flex: 0 0 50px;
+                align-items: center;
+            }
+
+            .abilitycol2 {
+                flex: 0 0 250px;
+                align-items: center;
+            }
+
+            .abilitycol3 {
+                flex: 0 0 100px;
+                align-items: center;
+            }
+
+            .abilitycol4 {
+                flex: 0 0 50px;
+                align-items: center;
+            }
+
+            .abilitycol5 {
+                flex: 0 0 auto;
+                align-items: center;
+            }
+
+            /* attacks */
+            .attackcol1 {
+                flex: 0 0 35px;
+                align-items: center;                
+            }
+
+            .attackcol2 {
+                flex: 0 0 150px;
+                align-items: center;
+            }
+
+            .attackcol3 {
+                flex: 0 0 50px;
+                align-items: center;
+            }
+
+            .attackcol4 {
+                flex: 0 0 90px;
+                align-items: center;
+            }
+
+            .attackcol5 {
+                flex: 0 0 90px;
+                align-items: center;
+            }
+
+            .attackcol6 {
+                flex: 0 0 50px;
+                align-items: center;
+            }
+
+            .attackcol7 {
+                flex: 0 0 auto;
+                align-items: center;
+            }
+
+
+
+            .divider-top {
+                border-top: 1px solid black;
+                margin-top: 1px;
+                margin-bottom: 1px;
+            }
+
+        }
+    }
+
+
+    .bio {
+        
+    }
+
+    .journal {
+        
+    }
+
+  }
+}

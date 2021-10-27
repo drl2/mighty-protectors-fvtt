@@ -1,0 +1,56 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+
+        <div class="header-details">
+            <h1 class="charname">
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'MP.Name'}}"/>
+            </h1>
+            <div class="item-subtitle">
+                <h4 class="item-type">
+                    {{itemType}}
+                </h4>
+            </div>
+        </div>  
+    </header>
+
+    <section class="sheet-body">
+        <div>
+            {{localize 'MP.Attribute'}}
+            <select name="data.attribute">
+                {{#select data.attribute}}
+                {{#each config.AttributeTypes as |name type|}}
+                <option value="{{type}}">{{localize name}}</option>
+                {{/each}}
+                {{/select}}
+            </select>
+        </div>
+        <div>
+            {{localize 'MP.ToHit'}}
+            <input name="data.tohit" type="number" value="{{data.tohit}}" data-dtype="Number" title="{{ localize 'MP.ToHit' }}" />
+        </div>
+
+        <div>
+            {{localize 'MP.DamageFormula'}}
+            <input name="data.dmgroll" type="text" value="{{data.dmgroll}}" />
+        </div>
+
+        <div>
+            {{localize 'MP.PowerCost'}}
+            <input name="data.powercost" type="text" value="{{data.powercost}}" />
+        </div>
+
+
+        <div>
+            {{localize 'MP.DamageType'}}
+            <input name="data.dmgtype" type="text" value="{{data.dmgtype}}" />
+        </div>
+
+        <div>
+            <label class="checkbox" title="{{ localize 'MP.KnockbackQ'}}">
+                <input type="checkbox" name="data.knockback" {{checked data.knockback}}>
+                {{ localize 'MP.KnockbackQ'}}
+            </label>
+        </div>
+    </section>
+</form>

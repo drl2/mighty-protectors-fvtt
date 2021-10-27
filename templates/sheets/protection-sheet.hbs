@@ -1,0 +1,54 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+
+        <div class="header-details">
+            <h1 class="charname">
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'MP.Name'}}"/>
+            </h1>
+            <div class="item-subtitle">
+                <h4 class="item-type">
+                    {{itemType}}
+                </h4>
+            </div>
+        </div>  
+    </header>
+
+    <section class="sheet-body">
+        <div>
+            {{localize 'MP.Kinetic'}}
+            <input name="data.kinetic" type="number" value="{{data.kinetic}}" data-dtype="Number" title="{{ localize 'MP.Kinetic' }}" />
+        </div>
+
+        <div>
+            {{localize 'MP.Energy'}}
+            <input name="data.energy" type="number" value="{{data.energy}}" data-dtype="Number" title="{{ localize 'MP.Energy' }}" />
+        </div>
+        
+        <div>
+            {{localize 'MP.Bio'}}
+            <input name="data.bio" type="number" value="{{data.bio}}" data-dtype="Number" title="{{ localize 'MP.Bio' }}" />
+        </div>
+        
+        <div>
+            {{localize 'MP.Entropy'}}
+            <input name="data.entropy" type="number" value="{{data.entropy}}" data-dtype="Number" title="{{ localize 'MP.Entropy' }}" />
+        </div>
+        
+        <div>
+            {{localize 'MP.Psychic'}}
+            <input name="data.psychic" type="number" value="{{data.psychic}}" data-dtype="Number" title="{{ localize 'MP.Psychic' }}" />
+        </div>
+
+        <div>
+            {{localize 'MP.Other'}}
+            <input name="data.other" type="number" value="{{data.other}}" data-dtype="Number" title="{{ localize 'MP.Other' }}" />
+        </div>     
+
+        <div>
+            {{localize 'MP.OtherDesc'}}
+            <input name="data.otherdesc" type="text" value="{{data.otherdesc}}" />
+        </div>
+
+    </section>
+</form>

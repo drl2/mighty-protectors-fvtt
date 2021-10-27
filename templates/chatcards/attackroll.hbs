@@ -1,0 +1,30 @@
+{{localize 'MP.Target'}}: <span style="font-weight: bold">{{target}}</span>
+
+<div class="dice-roll">
+    <div class="dice-result">
+        <div class="dice-formula">{{formula}}</div>
+        <div class="dice-tooltip">
+            <section class="tooltip-part">
+                <div class="dice">
+                    <header class="part-header flexrow">
+                        <span class="part-formula">{{dieFormula}}</span>
+                        
+                        <span class="part-total">{{dieRoll}}</span>
+                    </header>
+                    <ol class="dice-rolls">
+                        <li class="roll die d20">{{dieRoll}}</li>
+                    </ol>
+                </div>
+            </section>
+        </div>
+        <h4 class="dice-total">{{total}}</h4>
+    </div>
+</div>
+
+
+
+{{#if success}}
+    {{localize 'MP.SaveSuccess'}}!
+{{else}}
+    {{localize 'MP.SaveFailure'}}!
+{{/if}}

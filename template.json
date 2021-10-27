@@ -1,0 +1,124 @@
+{
+  "Actor": {
+    "types": ["character","vehicle"],
+    "templates": {
+      "base": {
+        "hitpts": {
+          "value": 10,
+          "max": 10
+        },
+        "power": {
+          "value": 5,
+          "max": 5
+        }
+      }
+    },
+    "character": {
+      "templates": ["base"],
+      "trueID": "",
+      "side": "",
+      "birthplace": "",
+      "species": "",
+      "culture": "",
+      "age": 0,
+      "gender": "",
+      "weight": 0,
+      "mass": "d4",
+      "story": "",
+      "motivation": "",
+      "wealth": "d4",
+      "origintype": "",
+      "legalstatus": "",
+      "basecharacteristics": {
+        "st": {
+          "cp": 10,
+          "value": 10
+        },
+        "en": {
+          "cp": 10,
+          "value": 10,
+          "save": 10
+        },
+        "ag": {
+          "cp": 10,
+          "value": 10,
+          "save": 10
+        },
+        "in": {
+          "cp": 10,
+          "value": 10,
+          "save": 10
+        },
+        "cl": {
+          "cp": 10,
+          "value": 10,
+          "save": 10
+        }
+      },
+      "base_cp": 50,
+      "earned_xp": 0,
+      "physicaldefense": 0,
+      "mentaldefense": 0,
+      "luck": 10,
+      "base_stats_cp": 50,
+      "abilities_cp": 0,
+      "total_cp": 50,
+      "spent_xp": 0,
+      "avail_ip": 0,
+      "used_ip": 0
+    }
+  },
+  "Item": {
+    "types": ["ability",
+		"attack",
+    "protection",
+    "movement",
+    "background"
+	],
+    "ability": {
+      "description": "",
+      "cpcost": 10,
+      "ipcost": 0,
+      "rules": "",
+      "stbonus": 0,
+      "enbonus": 0,
+      "agbonus": 0,
+      "inbonus": 0,
+      "clbonus": 0,
+      "tohitbonus": 0,
+      "physdefbonus": 0,
+      "mentdefbonus": 0,
+      "powerbonus": 0,
+      "hpbonus": 0,
+      "initbonus": 0,
+      "luckbonus": 0,
+      "usescharges": false,
+      "charges": 0,
+      "chargesused": 0,
+      "isgear": false
+    },
+    "attack": {
+      "tohit": 10,
+      "dmgroll": "1d4",
+      "dmgtype": "Blunt Kinetic",
+      "knockback": "Y",
+      "attribute": "AG",
+      "powercost": 0
+    },
+    "protection": {
+      "kinetic": 0,
+      "energy": 0,
+      "bio": 0,
+      "entropy": 0,
+      "psychic": 0,
+      "other": 0,
+      "otherdesc": ""
+    },
+    "movement": {
+      "moverate": 10,
+      "isconstant": true,
+      "accel": 0,
+      "top": 0
+    }
+  }
+}

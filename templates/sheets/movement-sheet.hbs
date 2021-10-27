@@ -1,0 +1,41 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+
+        <div class="header-details">
+            <h1 class="charname">
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'MP.Name'}}"/>
+            </h1>
+            <div class="item-subtitle">
+                <h4 class="item-type">
+                    {{itemType}}
+                </h4>
+            </div>
+        </div>  
+    </header>
+
+    <section class="sheet-body">
+        <div>
+            <label class="checkbox" title="{{ localize 'MP.IsConstant'}}">
+                <input type="checkbox" name="data.isconstant" {{checked data.isconstant}}>
+                {{ localize 'MP.IsConstant'}}
+            </label>
+        </div>
+        
+        <div>
+            {{localize 'MP.MoveRate'}}
+            <input name="data.moverate" type="number" value="{{data.moverate}}" data-dtype="Number" title="{{ localize 'MP.MoveRate' }}" />
+        </div>
+
+        <div>
+            {{localize 'MP.Acceleration'}}
+            <input name="data.accel" type="text" value="{{data.accel}}" title="{{ localize 'MP.Acceleration' }}" />
+        </div>
+
+        <div>
+            {{localize 'MP.TopSpeed'}}
+            <input name="data.top" type="text" value="{{data.top}}" title="{{ localize 'MP.TopSpeed' }}" />
+        </div>
+
+    </section>
+</form>
