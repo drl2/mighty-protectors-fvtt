@@ -1,13 +1,15 @@
 <form>
+    {{#if targetName}}
 	<div class="form-group">
         {{localize 'MP.Modifier'}}: <br>
         <input name="mod" type="number" data-dtype="Number" value="0">
     </div>
+    {{/if}}
 
     <div class="form-group">
         <label class="checkbox" title="{{ localize 'MP.Push'}}">
             <input type="checkbox" name="push">
-            {{ localize 'MP.Push'}} (+2)
+            {{localize 'MP.Push'}} (+2 {{ localize 'MP.damage' }}, -2 {{localize 'MP.power'}})
         </label>
     </div>
 

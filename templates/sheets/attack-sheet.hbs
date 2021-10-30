@@ -43,7 +43,18 @@
 
         <div>
             {{localize 'MP.DamageType'}}
-            <input name="data.dmgtype" type="text" value="{{data.dmgtype}}" />
+                <select name="data.dmgtype">
+                {{#select data.dmgtype}}
+                {{#each config.DamageTypes as |name type|}}
+                <option value="{{name}}">{{localize name}}</option>
+                {{/each}}
+                {{/select}}
+            </select>
+        </div>
+
+        <div>
+            {{localize 'MP.DamageSubtype'}}
+            <input name="data.dmgsubtype" type="text" value="{{data.dmgsubtype}}" />
         </div>
 
         <div>

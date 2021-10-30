@@ -1,30 +1,55 @@
-{{localize 'MP.Target'}}: <span style="font-weight: bold">{{target}}</span>
+<span style="font-weight: bold">{{actorName}}</span> {{localize 'MP.attacks'}} 
+<span style="font-weight: bold">{{target}}</span> {{localize 'MP.With'}}
+<span style="font-weight: bold">{{attackName}}</span>
 
 <div class="dice-roll">
     <div class="dice-result">
-        <div class="dice-formula">{{formula}}</div>
+        <div class="dice-formula">{{attackRoll.formula}}</div>
         <div class="dice-tooltip">
             <section class="tooltip-part">
                 <div class="dice">
                     <header class="part-header flexrow">
-                        <span class="part-formula">{{dieFormula}}</span>
+                        <span class="part-formula">{{attackRoll.dice.[0].formula}}</span>
                         
-                        <span class="part-total">{{dieRoll}}</span>
+                        <span class="part-total">{{attackRoll.dice.[0].total}}</span>
                     </header>
                     <ol class="dice-rolls">
-                        <li class="roll die d20">{{dieRoll}}</li>
+                        <li class="roll die d20 {{rollMinMax}}">{{attackRoll.dice.[0].total}}</li>
                     </ol>
                 </div>
             </section>
         </div>
-        <h4 class="dice-total">{{total}}</h4>
+        <h4 class="dice-total">{{attackRoll.total}}</h4>
     </div>
 </div>
 
-
-
 {{#if success}}
-    {{localize 'MP.SaveSuccess'}}!
+    {{localize 'MP.AttackHits'}}
 {{else}}
-    {{localize 'MP.SaveFailure'}}!
+    {{localize 'MP.AttackMisses'}}
 {{/if}}
+
+
+<div class="dice-roll">
+    <div class="dice-result">
+        <div class="dice-formula">{{dmgRoll.formula}}</div>
+        <div class="dice-tooltip">
+            {{#each dmgRoll.dice as |die id|}}
+            <section class="tooltip-part">
+                <div class="dice">
+                    <header class="part-header flexrow">
+                        <span class="part-formula">{{die.formula}}</span>
+                        
+                        <span class="part-total">{{die.total}}</span>
+                    </header>
+                    <ol class="dice-rolls">
+                        <li class="roll die d{{die.faces}}">{{die.total}}</li>
+                    </ol>
+                </div>
+            </section>
+            {{/each}}
+        </div>
+        <h4 class="dice-total">{{dmgRoll.total}}</h4>
+    </div>
+</div>
+

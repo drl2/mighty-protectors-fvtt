@@ -1,3 +1,6 @@
+import MPItem from "../mpitem.js";
+import { MP } from "../config.js";
+
 export default class MightyProtectorsCharacterSheet extends ActorSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
@@ -35,6 +38,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         html.find('.item-resetcharges').click(this._onItemResetCharges.bind(this));
         html.find('.attackroll').click(this._onRollAttack.bind(this));
     }
+
 
     _prepareItems(sheetData) {
         const abilities = [];
@@ -77,6 +81,10 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
 
     }
 
+    /**
+     * Roll a saving throw
+     * @param {*} event 
+     */
     async _onRollSave(event) {
         event.preventDefault();
         const element = event.currentTarget;
@@ -114,7 +122,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
                     modTarget += Number.parseInt(mod);
                 }
 
-                let roll = await new Roll(dataset.roll).evaluate({async:true});
+                let roll = await new Roll(dataset.roll).evaluate({ async: true });
 
                 let rollData = {
                     formula: roll._formula,
@@ -123,7 +131,8 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
                     success: roll.total <= modTarget,
                     // only one roll on a save so no need to for-each through rolls
                     dieFormula: roll.dice[0].formula,
-                    dieRoll: roll.dice[0].total
+                    dieRoll: roll.dice[0].total,
+                    rollMinMax: rollMinMax(roll.dice[0].total)
                 };
 
                 let cardContent = await renderTemplate("systems/mighty-protectors/templates/chatcards/savingthrow.hbs", rollData);
@@ -140,40 +149,54 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         };
     }
 
+    /**
+     * Add an item directly to a character sheet
+     * @param {*} event 
+     * @returns 
+     */
     async _onItemCreate(event) {
         event.preventDefault();
         let element = event.currentTarget;
         let itemName = '';
 
-        switch(element.dataset.type) {
+        switch (element.dataset.type) {
             case 'ability':
                 itemName = game.i18n.localize("MP.NewAbility");
                 break;
             case 'attack':
                 itemName = game.i18n.localize("MP.NewAttack");
                 break;
-            case 'movement': 
+            case 'movement':
                 itemName = game.i18n.localize("MP.NewMovement");
                 break;
-            case 'protection': 
+            case 'protection':
                 itemName = game.i18n.localize("MP.NewProtection");
                 break;
-            case 'background': 
+            case 'background':
                 itemName = game.i18n.localize("MP.NewBackground");
                 break;
-            default: 
+            default:
                 console.log('Add item with no item type defined')
                 break;
         }
-        
+
         let itemData = [{
             name: itemName,
-            type: element.dataset.type
+            type: element.dataset.type,
+            img: MP.ItemTypeImages[element.dataset.type]
         }];
 
-        return Item.create(itemData, {parent: this.actor});
+        // let newItem = 
+        // const img = MP.ItemTypeImages[itemdata.type];
+        // if (img) await newItem.data.update({ img });
+
+        return await MPItem.create(itemData, { parent: this.actor });
     }
 
+    /**
+     * Open item edit form from the character sheet
+     * @param {*} event 
+     */
     async _onItemEdit(event) {
         event.preventDefault();
         let element = event.currentTarget;
@@ -183,6 +206,11 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         item.sheet.render(true);
     }
 
+    /**
+     * Delete an item from the character sheet
+     * @param {*} event 
+     * @returns 
+     */
     async _onItemDelete(event) {
         event.preventDefault();
         let element = event.currentTarget;
@@ -192,6 +220,10 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
     }
 
 
+    /**
+     * Show "rules" value of an item in the chat.  Currently only useful for Ability type
+     * @param {*} event 
+     */
     _onItemInfo(event) {
         event.preventDefault();
         let element = event.currentTarget;
@@ -199,11 +231,11 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         let item = this.actor.items.get(itemId);
         let cardContent = '';
 
-        switch(element.dataset.type) {
+        switch (element.dataset.type) {
             case 'ability':
                 cardContent = item.data.data.rules;
                 break;
-            default: 
+            default:
                 cardContent = "";
                 break;
         }
@@ -215,10 +247,13 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
 
         ChatMessage.create(chatOptions);
     }
-    
 
-    
 
+
+    /**
+     * Post the item description to chat
+     * @param {*} event 
+     */
     _onItemChat(event) {
         event.preventDefault();
         let element = event.currentTarget;
@@ -226,11 +261,11 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         let item = this.actor.items.get(itemId);
         let cardContent = '';
 
-        switch(element.dataset.type) {
+        switch (element.dataset.type) {
             case 'ability':
                 cardContent = "<h3>" + item.name + "</h3><div>" + item.data.data.description + "</div>";
                 break;
-            default: 
+            default:
                 cardContent = "";
                 break;
         }
@@ -244,6 +279,11 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
     }
 
 
+    /**
+     * Decrement the remaining charges on an ability that uses charges
+     * @param {*} event 
+     * @returns 
+     */
     async _onItemUseCharge(event) {
         event.preventDefault();
         let element = event.currentTarget;
@@ -252,42 +292,59 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         let itemData = item.data;
 
         let used = itemData.data.chargesused;
-        if (used > 0) { used = used -1; }
+        if (used > 0) { used = used - 1; }
         itemData.data.chargesused = used;
-        return item.update({'data.chargesused': used});
+        return item.update({ 'data.chargesused': used });
     }
 
+    /**
+     * Reset charges on an item to full.  Reload!
+     * @param {*} event 
+     * @returns 
+     */
     async _onItemResetCharges(event) {
         event.preventDefault();
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
         let itemData = item.data;
-        return item.update({'data.chargesused': itemData.data.charges});
+        return item.update({ 'data.chargesused': itemData.data.charges });
     }
 
+    /**
+     * Roll an attack roll and its damage.  If a target is selected, use its stats to calculate hit or miss; if not, don't
+     * ask for modifiers or try to determine success; just roll d20.
+     * @param {*} event 
+     */
     async _onRollAttack(event) {
         event.preventDefault();
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
-        let item = this.actor.items.get(itemId);
-        let itemData = item.data;
         const actor = this.actor;
+        let item = actor.items.get(itemId);
+        let itemData = item.data;
         let target = null;
         let targetName = "";
+        let defense = 0;
+
 
         // get target info if selected
         if (game.user.targets.size > 0) {
             target = Array.from(game.user.targets)[0];
             targetName = target.name;
+            if (itemData.data.dmgtype == "Psychic") {
+                defense = target.data.data.mentaldefense;
+            }
+            else {
+                defense = target.actor.data.data.physicaldefense;
+            }
         }
 
         let dlgData = {
-            hasTarget: target != null,
             targetName: targetName
         }
 
-        console.log(target.actor.data.data);
+
 
         let dlgContent = await renderTemplate("systems/mighty-protectors/templates/dialogs/attackmods.hbs", dlgData);
 
@@ -312,36 +369,44 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
 
 
         async function rollAttackCallback(html) {
-            let modTarget = Number.parseInt(itemData.data.tohit);
-            let mod = html.find('[name="mod"]')[0].value.trim();
-            let push = html.find('[name="mod"]')[0].value;
+            let modToHit = Number.parseInt(itemData.data.tohit);
+            let mod = "";
+            let push = html.find('[name="push"]')[0].value;
+            let spendPower = html.find('[name="autodeduct"]')[0].value;
             let dmgFormula = itemData.data.dmgroll;
+            let powerCost = itemData.data.powercost;
+
+            if (targetName) {
+                mod = html.find('[name="mod"]')[0].value.trim();
+            }
 
             if (mod != "") {
-                modTarget += Number.parseInt(mod);
+                modToHit += (Number.parseInt(mod) - defense);
             }
 
             if (push) {
                 dmgFormula += " + 2";
+                powerCost += 2;
             }
 
-            let attackRoll = await new Roll("1d20").evaluate({async:true});
+            let attackRoll = await new Roll("1d20").evaluate({ async: true });
             attackRoll.dice[0].options.rollOrder = 1;
 
-            let dmgRoll = await new Roll(dmgFormula).evaluate({async:true});
+            let dmgRoll = await new Roll(dmgFormula).evaluate({ async: true });
             dmgRoll.dice[0].options.rollOrder = 2;
 
             const rolls = [attackRoll, dmgRoll];
             const pool = PoolTerm.fromRolls(rolls);
             let roll = Roll.fromTerms([pool]);
-            
+
             let rollData = {
-                attackFormula: attackRoll._formula,
-                attackTtotal: attackRoll.total,
-                target: modTarget,
-                success: attackRoll.total <= modTarget,
-                dieFormula: attackRoll.dice[0].formula,
-                dieRoll: attackRoll.dice[0].total
+                actorName: actor.name,
+                attackName: item.name,
+                targetName: targetName,
+                success: attackRoll.total <= modToHit,
+                attackRoll: attackRoll,
+                rollMinMax: rollMinMax(attackRoll.dice[0].total),
+                dmgRoll: dmgRoll
             };
 
             let cardContent = await renderTemplate("systems/mighty-protectors/templates/chatcards/attackroll.hbs", rollData);
@@ -354,9 +419,25 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
             }
 
             ChatMessage.create(chatOptions);
-            
+
+            if (spendPower) {
+                actor.data.data.power.value -= powerCost;
+            }
+
         }
 
     }
 }
 
+
+
+    /**
+     * Task checks in MP are all d20 based with lower = better.  Switch around the normal min/max where possible
+     * @param {*} dieRoll 
+     */
+    function rollMinMax(dieRoll) {
+        let result = "";
+        if (dieRoll == 20) result = "min";
+        if (dieRoll == 1) result = "max";
+        return result;
+    }

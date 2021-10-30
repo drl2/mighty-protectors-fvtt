@@ -1,9 +1,11 @@
+import MPItem from '../mpitem.js';
+
 export default class MightyProtectorsItemSheet extends ItemSheet {
 
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             height: 350,
-            classes: ["mightyprotectors", "sheet", "item"],
+            classes: ["mightyprotectors", "sheet", "MPItem"],
             tabs: [{ navSelector: ".sheet-navigation", contentSelector: ".sheet-body", initial: "description" }]
         })
     }
@@ -25,4 +27,6 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
 
         return sheetData;
     }
+
+
 }

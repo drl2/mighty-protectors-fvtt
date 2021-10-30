@@ -100,7 +100,8 @@
     "attack": {
       "tohit": 10,
       "dmgroll": "1d4",
-      "dmgtype": "Blunt Kinetic",
+      "dmgtype": "DAMAGE.BluntKinetic",
+      "dmgsubtype": "",
       "knockback": "Y",
       "attribute": "AG",
       "powercost": 0

@@ -213,8 +213,8 @@
                                 <h4 class="item-name attackcol2">{{item.name}}</h4>
                                 <div class="item-roll attackcol3">{{item.data.tohit}}</div>
                                 <div class="item-formula attackcol4">{{item.data.dmgroll}}</div>
-                                <div class="item-name attackcol5">{{item.data.dmgtype}}</div>
-                                <div class="item-roll attackcol6">{{item.data.knockback}}</div>
+                                <div class="item-name attackcol5">{{localize item.data.dmgtype}}</div>
+                                <div class="item-roll attackcol6">{{#if item.data.knockback}} Y {{else}} N {{/if}}</div>
                                 <div class="item-controls attackcol7">
                                     <a class="item-control item-edit" title="{{localize 'MP.EditItem'}}"><i class="fas fa-edit"></i></a>
                                     <a class="item-control item-delete" title="{{localize 'MP.DeleteItem'}}"><i class="fas fa-trash"></i></a>

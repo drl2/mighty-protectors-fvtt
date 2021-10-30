@@ -7,6 +7,15 @@
     "ITEM.TypeMovement": "Movement",
     "ITEM.TypeBackground": "Background",
 
+    "DAMAGE.Energy": "Energy",
+    "DAMAGE.Entropy": "Entropy",
+    "DAMAGE.SharpKinetic": "Sharp Kinetic",
+    "DAMAGE.BluntKinetic": "Blunt Kinetic",
+    "DAMAGE.Bio": "Bio",
+    "DAMAGE.Psychic": "Psychic",
+    "DAMAGE.Other": "Other",
+
+
     "MP.InventingPoints": "Inventing Points",
     "MP.InventingPointsAbbr": "IP",
     "MP.InventingPointsCost": "Cost in Inventing Points",
@@ -85,7 +94,7 @@
     "MP.Roll": "Roll",
     "MP.Cancel": "Cancel",
     "MP.Target": "Target",
-    "MP.SaveSuccess": "Success",
+    "MP.SaveSuccess": "Save successful",
     "MP.SaveFailure": "Save failed",
     "MP.DamageAbbr": "Dmg",
     "MP.KnockbackAbbr": "KB",
@@ -112,6 +121,7 @@
     "MP.ToHitAttribute": "To Hit Attribute",
     "MP.DamageFormula": "Damage Formula",
     "MP.DamageType": "Damage Type",
+    "MP.DamageSubtype": "Damage Sub-type",
     "MP.Kinetic": "Kinetic",
     "MP.Energy": "Energy",
     "MP.Entropy": "Entropy",
@@ -129,5 +139,11 @@
     "MP.TopSpeed": "Top Speed",
     "MP.Push": "Push",
     "MP.PowerCost": "Power Cost",
-    "MP.AutoDeductPower": "Auto deduct power cost"
+    "MP.AutoDeductPower": "Auto deduct power cost",
+    "MP.With": "with",
+    "MP.attacks": "attacks",
+    "MP.damage": "damage",
+    "MP.power": "power",
+    "MP.AttackHits": "Attack hits!",
+    "MP.AttackMisses": "Misses!"
 }
