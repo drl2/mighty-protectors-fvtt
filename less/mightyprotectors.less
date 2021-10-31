@@ -1,4 +1,4 @@
-@import "./item-sheet.less";
+@import "./variables.less";
 .mightyprotectors.sheet.character {
     form {
         display: flex;
@@ -38,14 +38,16 @@
             text-transform: uppercase;
             margin-left: 12px;
             display: grid;
-            grid-template-columns: 140px 140px 20px 140px 140px;
-            
-
-
+            grid-template-columns: 140px 140px 120px 120px 120px;
+ 
             input[type="number"] {
                 width: 30px;
                 text-align: center;
               }
+
+            .init-text {
+                width: 60px;
+            }
         }
     }
 
@@ -95,6 +97,7 @@
                 display: grid;
                 grid-template-columns: 40px 30px 40px auto;
                 align-items: center;
+                row-gap: 1px;
 
                 input[type="number"] {
                     width: 30px;
@@ -106,6 +109,7 @@
                 display: grid;
                 grid-template-columns: 40px 110px;
                 align-items: center;
+                row-gap: 1px;
 
                 input[type="number"] {
                     width: 30px;
@@ -119,10 +123,31 @@
                 }
             }
 
+            .other-grid {
+                display: grid;
+                grid-template-columns: 60px 90px;
+                padding-top: 20px;
+                align-items: center;
+                row-gap: 1px;
+
+                input[type="text"] {
+                    width: 60px;
+                    text-align: center;
+                  }
+
+                input[type="number"] {
+                    width: 40px;
+                    text-align: center;
+                  }
+            }
+
             .item-header {
                 background-color: lightgray;
             }
 
+            .item-list {
+                align-items: center;
+            }
 
             /* abilities */
             .abilitycol1 {

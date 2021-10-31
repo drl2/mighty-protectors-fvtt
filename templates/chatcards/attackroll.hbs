@@ -1,4 +1,4 @@
-<span style="font-weight: bold">{{actorName}}</span> {{localize 'MP.attacks'}} 
+<span style="font-weight: bold">{{actorName}}</span> {{localize 'MP.attacks'}}
 <span style="font-weight: bold">{{target}}</span> {{localize 'MP.With'}}
 <span style="font-weight: bold">{{attackName}}</span>
 
@@ -10,7 +10,7 @@
                 <div class="dice">
                     <header class="part-header flexrow">
                         <span class="part-formula">{{attackRoll.dice.[0].formula}}</span>
-                        
+
                         <span class="part-total">{{attackRoll.dice.[0].total}}</span>
                     </header>
                     <ol class="dice-rolls">
@@ -23,10 +23,14 @@
     </div>
 </div>
 
+{{#if targetName}}
 {{#if success}}
-    {{localize 'MP.AttackHits'}}
+{{localize 'MP.AttackHits'}}
 {{else}}
-    {{localize 'MP.AttackMisses'}}
+{{localize 'MP.AttackMisses'}}
+{{/if}}
+{{else}}
+{{localize 'MP.Damage'}}
 {{/if}}
 
 
@@ -39,7 +43,7 @@
                 <div class="dice">
                     <header class="part-header flexrow">
                         <span class="part-formula">{{die.formula}}</span>
-                        
+
                         <span class="part-total">{{die.total}}</span>
                     </header>
                     <ol class="dice-rolls">
@@ -53,3 +57,6 @@
     </div>
 </div>
 
+{{ localize "MP.DamageType" }}: <span style="font-weight: bold">{{ localize dmgType }} {{#if dmgSubtype}}
+    ({{dmgSubtype}}) {{/if}}</span>
+{{#if knockBack}} <br /><span style="font-weight: bold">{{localize 'MP.PossibleKnockback'}}</span>{{/if}}

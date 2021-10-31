@@ -43,101 +43,8 @@
 .flexcol .flex4 {
   flex: 4;
 }
-.mightyprotectors.sheet.item {
-  /*  Sheet header */
-  /* sheet navigation */
-  /* sheet body */
-}
-.mightyprotectors.sheet.item form {
-  display: flex;
-  flex-direction: column;
-}
-.mightyprotectors.sheet.item .sheet-header {
-  flex: 0;
-  margin-bottom: 5px;
-}
-.mightyprotectors.sheet.item .sheet-header .item-subtitle {
-  margin-left: 8px;
-}
-.mightyprotectors.sheet.item .sheet-header .item-subtitle .item-type {
-  font-size: 10px;
-  line-height: 14px;
-}
-.mightyprotectors.sheet.item .sheet-navigation {
-  height: 20px;
-  flex: 0;
-  margin-bottom: 10px;
-}
-.mightyprotectors.sheet.item .sheet-navigation .item {
-  height: 20px;
-  border-bottom: 3px solid #b5b3a4;
-}
-.mightyprotectors.sheet.item .sheet-navigation .item.active {
-  text-shadow: 0 0 10px #3a2aa6;
-  border-bottom: 3px solid #44191A;
-}
-.mightyprotectors.sheet.item .sheet-navigation a:hover {
-  text-shadow: 0 0 10px #3a2aa6;
-  border-bottom: 3px solid #44191A;
-}
-.mightyprotectors.sheet.item .sheet-navigation .tabs {
-  height: 50px;
-}
-.mightyprotectors.sheet.item .sheet-body {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.mightyprotectors.sheet.item .sheet-body .tab {
-  height: 100%;
-}
-.mightyprotectors.sheet.item .sheet-body .description .descgrid {
-  display: grid;
-  grid-template-columns: 50px auto;
-  align-items: center;
-}
-.mightyprotectors.sheet.item .sheet-body .description .descgrid .desccolumn {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-  height: 100%;
-}
-.mightyprotectors.sheet.item .sheet-body .description .descgrid .desctext {
-  min-height: 150px;
-  height: 85%;
-}
-.mightyprotectors.sheet.item .sheet-body .description .descgrid input[type="number"] {
-  width: 40px;
-}
-.mightyprotectors.sheet.item .sheet-body .details .detailgrid {
-  display: grid;
-  grid-template-columns: 60px 60px 80px 70px 80px auto;
-  align-items: center;
-}
-.mightyprotectors.sheet.item .sheet-body .details .detailgrid .separator {
-  margin-right: 8px;
-  border-right: 2px solid silver;
-}
-.mightyprotectors.sheet.item .sheet-body .details .detailgrid input[type="number"] {
-  width: 40px;
-  font-size: 11px;
-}
-.mightyprotectors.sheet.item .sheet-body .details .detailgrid .colheader1 {
-  grid-column: 1 / span 2;
-  align-items: center;
-  border-bottom: 1px solid gray;
-  margin-bottom: 3px;
-}
-.mightyprotectors.sheet.item .sheet-body .details .detailgrid .colheader2 {
-  grid-column: 3 / span 4;
-  align-items: center;
-  border-bottom: 1px solid gray;
-  margin-bottom: 3px;
-}
-.mightyprotectors.sheet.item .sheet-body .rules .ruletab {
-  height: 100%;
-}
-.mightyprotectors.sheet.item .sheet-body .rules .ruletab .editor {
-  height: 90%;
+.d20 {
+  background-image: url("./assets/icons/dice-twenty-faces-twenty.webp");
 }
 .mightyprotectors.sheet.character {
   /*  Sheet header */
@@ -174,11 +81,14 @@
   text-transform: uppercase;
   margin-left: 12px;
   display: grid;
-  grid-template-columns: 140px 140px 20px 140px 140px;
+  grid-template-columns: 140px 140px 120px 120px 120px;
 }
 .mightyprotectors.sheet.character .sheet-header .header-stats input[type="number"] {
   width: 30px;
   text-align: center;
+}
+.mightyprotectors.sheet.character .sheet-header .header-stats .init-text {
+  width: 60px;
 }
 .mightyprotectors.sheet.character .sheet-navigation {
   height: 20px;
@@ -218,6 +128,7 @@
   display: grid;
   grid-template-columns: 40px 30px 40px auto;
   align-items: center;
+  row-gap: 1px;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .bc-grid input[type="number"] {
   width: 30px;
@@ -227,6 +138,7 @@
   display: grid;
   grid-template-columns: 40px 110px;
   align-items: center;
+  row-gap: 1px;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .cp-grid input[type="number"] {
   width: 30px;
@@ -237,8 +149,26 @@
   margin-top: 1px;
   margin-bottom: 1px;
 }
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .other-grid {
+  display: grid;
+  grid-template-columns: 60px 90px;
+  padding-top: 20px;
+  align-items: center;
+  row-gap: 1px;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .other-grid input[type="text"] {
+  width: 60px;
+  text-align: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .other-grid input[type="number"] {
+  width: 40px;
+  text-align: center;
+}
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .item-header {
   background-color: lightgray;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .item-list {
+  align-items: center;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .abilitycol1 {
   flex: 0 0 50px;

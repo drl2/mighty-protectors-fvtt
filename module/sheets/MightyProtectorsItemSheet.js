@@ -5,7 +5,7 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             height: 350,
-            classes: ["mightyprotectors", "sheet", "MPItem"],
+            classes: ["mightyprotectors", "sheet", "item"],
             tabs: [{ navSelector: ".sheet-navigation", contentSelector: ".sheet-body", initial: "description" }]
         })
     }

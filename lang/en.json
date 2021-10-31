@@ -53,6 +53,7 @@
     "MP.HitPoints": "Hit Points",
     "MP.Power": "Power",
     "MP.Initiative": "Initiative",
+    "MP.InitiativeAbbr": "Init",
     "MP.Luck": "Luck",
     "MP.UsesChargesShort": "Charges?",
     "MP.UsesChargesDesc": "Uses charges instead of power",
@@ -143,7 +144,11 @@
     "MP.With": "with",
     "MP.attacks": "attacks",
     "MP.damage": "damage",
+    "MP.Damage": "Damage",
     "MP.power": "power",
     "MP.AttackHits": "Attack hits!",
-    "MP.AttackMisses": "Misses!"
+    "MP.AttackMisses": "Misses!",
+    "MP.PossibleKnockback": "Possible Knockback",
+    "MP.Carry": "Carry",
+    "MP.BaseHandToHandAbbr": "Base HtH"
 }

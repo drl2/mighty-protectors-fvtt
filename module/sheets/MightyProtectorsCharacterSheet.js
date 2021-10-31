@@ -399,11 +399,16 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
             const pool = PoolTerm.fromRolls(rolls);
             let roll = Roll.fromTerms([pool]);
 
+            let success = attackRoll.total <= modToHit;
+
             let rollData = {
                 actorName: actor.name,
                 attackName: item.name,
+                dmgType: itemData.data.dmgtype,
+                dmgSubtype: itemData.data.dmgsubtype,
+                knockBack: itemData.data.knockback,
                 targetName: targetName,
-                success: attackRoll.total <= modToHit,
+                success: success,
                 attackRoll: attackRoll,
                 rollMinMax: rollMinMax(attackRoll.dice[0].total),
                 dmgRoll: dmgRoll

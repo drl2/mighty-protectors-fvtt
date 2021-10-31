@@ -65,7 +65,11 @@
       "total_cp": 50,
       "spent_xp": 0,
       "avail_ip": 0,
-      "used_ip": 0
+      "used_ip": 0,
+      "healing": 1,
+      "initiative": "1d2",
+      "carry": 0,
+      "hth": "1d2"
     }
   },
   "Item": {
