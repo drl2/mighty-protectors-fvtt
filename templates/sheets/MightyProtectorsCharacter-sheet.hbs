@@ -12,30 +12,33 @@
                 <div>
                     {{localize 'MP.HitPts'}}
                     <input name="data.hitpts.value" type="number" value="{{data.hitpts.value}}" />/
-                    <input name="data.hitpts.max" type="number" value="{{data.hitpts.max}}" />
+                    <span class="important-stat">{{data.hitpts.max}}</span>
                 </div>
 
                 <div>
                     {{localize 'MP.Power'}}
                     <input name="data.power.value" type="number" value="{{data.power.value}}" />/
-                    <input name="data.power.max" type="number" value="{{data.power.max}}" />
-                </div>
-
-
-                <div>
-                    {{localize 'MP.PhysicalDefenseAbbr'}}
-                    <input name="data.physicaldefense" type="number" value="{{data.physicaldefense}}" />
+                    <span class="important-stat">{{data.power.max}}</span>
                 </div>
 
                 <div>
-                    {{localize 'MP.MentalDefenseAbbr'}}
-                    <input name="data.mentaldefense" type="number" value="{{data.mentaldefense}}" />
+                     {{localize 'MP.Defenses'}}:
                 </div>
 
                 <div>
-                    {{localize 'MP.InitiativeAbbr'}}
-                    <input name="data.initiative" class="init-text" type="text" value="{{data.initiative}}"
-                        title="{{localize 'MP.InitiativeAbbr'}}" />
+                    
+                    {{localize 'MP.Physical'}}
+                    <span class="important-stat">{{data.physicaldefense}}</span>
+                </div>
+
+                <div>
+                    {{localize 'MP.Mental'}}
+                    <span class="important-stat">{{data.mentaldefense}}</span>
+                </div>
+
+                <div>
+                    <span class="rollable initroll">{{localize 'MP.Initiative'}}</span>
+                    <span class="important-stat">{{data.initiative}}</span>
                 </div>
             </div>
         </div>
@@ -66,8 +69,7 @@
                         <div><input name="data.basecharacteristics.st.cp" type="number"
                                 value="{{data.basecharacteristics.st.cp}}" /></div>
                         <div>{{localize 'MP.BCStatsStrengthAbbr'}}</div>
-                        <div><input name="data.basecharacteristics.st.value" type="number"
-                                value="{{data.basecharacteristics.st.value}}" /></div>
+                        <div>{{data.basecharacteristics.st.value}}</div>
                         <div></div>
                         <!-- row end -->
 
@@ -78,10 +80,8 @@
                                 data-stat="{{localize 'MP.BCStatsEndurance'}}"
                                 data-target="{{data.basecharacteristics.en.save}}">{{localize
                                 'MP.BCStatsEnduranceAbbr'}}</span></div>
-                        <div><input name="data.basecharacteristics.en.value" type="number"
-                                value="{{data.basecharacteristics.en.value}}" /></div>
-                        <div><input name="data.basecharacteristics.en.save" type="number"
-                                value="{{data.basecharacteristics.en.save}}" />-</div>
+                        <div>{{data.basecharacteristics.en.value}}</div>
+                        <div>{{data.basecharacteristics.en.save}}-</div>
                         <!-- row end -->
 
                         <!-- row start -->
@@ -91,10 +91,8 @@
                                 data-stat="{{localize 'MP.BCStatsAgility'}}"
                                 data-target="{{data.basecharacteristics.ag.save}}">{{localize
                                 'MP.BCStatsAgilityAbbr'}}</span></div>
-                        <div><input name="data.basecharacteristics.ag.value" type="number"
-                                value="{{data.basecharacteristics.ag.value}}" /></div>
-                        <div><input name="data.basecharacteristics.ag.save" type="number"
-                                value="{{data.basecharacteristics.ag.save}}" />-</div>
+                        <div>{{data.basecharacteristics.ag.value}}</div>
+                        <div>{{data.basecharacteristics.ag.save}}-</div>
                         <!-- row end -->
 
                         <!-- row start -->
@@ -104,10 +102,8 @@
                                 data-stat="{{localize 'MP.BCStatsIntelligence'}}"
                                 data-target="{{data.basecharacteristics.in.save}}">{{localize
                                 'MP.BCStatsIntelligenceAbbr'}}</span></div>
-                        <div><input name="data.basecharacteristics.in.value" type="number"
-                                value="{{data.basecharacteristics.in.value}}" /></div>
-                        <div><input name="data.basecharacteristics.in.save" type="number"
-                                value="{{data.basecharacteristics.in.save}}" />-</div>
+                        <div>{{data.basecharacteristics.in.value}}</div>
+                        <div>{{data.basecharacteristics.in.save}}-</div>
                         <!-- row end -->
 
                         <!-- row start -->
@@ -117,10 +113,8 @@
                                 data-stat="{{localize 'MP.BCStatsCool'}}"
                                 data-target="{{data.basecharacteristics.cl.save}}">{{localize
                                 'MP.BCStatsCoolAbbr'}}</span></div>
-                        <div><input name="data.basecharacteristics.cl.value" type="number"
-                                value="{{data.basecharacteristics.cl.value}}" /></div>
-                        <div><input name="data.basecharacteristics.cl.save" type="number"
-                                value="{{data.basecharacteristics.cl.save}}" />-</div>
+                        <div>{{data.basecharacteristics.cl.value}}</div>
+                        <div>{{data.basecharacteristics.cl.save}}-</div>
                         <!-- row end -->
                     </div>
                     <div class="cp-grid">
@@ -132,10 +126,6 @@
                         <div>{{localize 'MP.BaseCP'}}</div>
                         <!-- row end -->
 
-                        <!-- row start -->
-                        <div><input name="data.spent_xp" type="number" value="{{data.spent_xp}}" /></div>
-                        <div>{{localize 'MP.SpentXP'}}</div>
-                        <!-- row end -->
 
                         <!-- row start -->
                         <div></div>
@@ -144,65 +134,64 @@
                         <!-- row end -->
 
                         <!-- row start -->
-                        <div><input name="data.base_stats_cp" type="number" value="{{data.base_stats_cp}}" /></div>
+                        <div><input name="data.spent_xp" type="number" value="{{data.spent_xp}}" /></div>
+                        <div>{{localize 'MP.SpentXP'}}</div>
+                        <!-- row end -->
+
+                        <!--
+                        <div>{{data.base_stats_cp}}</div>
                         <div>{{localize 'MP.Stats'}}</div>
-                        <!-- row end -->
 
-                        <!-- row start -->
-                        <div><input name="data.abilities_cp" type="number" value="{{data.abilities_cp}}" /></div>
+                        <div>{{data.abilities_cp}} /></div>
                         <div>{{localize 'MP.Abilities'}}</div>
-                        <!-- row end -->
+                        -->
 
                         <div class="divider-top"></div>
                         <div class="divider-top"></div>
 
                         <!-- row start -->
-                        <div><input name="data.total_cp" type="number" value="{{data.total_cp}}" /></div>
+                        <div class="totalcp">{{data.total_cp}}</div>
                         <div>{{localize 'MP.TotalCP'}}</div>
                         <!-- row end -->
                     </div>
                     <div class="other-grid">
-                        
                         <div>
                             {{localize 'MP.Carry'}}
                         </div>
                         <div>
-                            <input name="data.carry" type="number" value="{{data.carry}}" />
+                            {{data.carry}}
                         </div>
 
                         <div>
                             {{localize 'MP.BaseHandToHandAbbr'}}
                         </div>
                         <div>
-                            <input name="data.hth" type="text" value="{{data.hth}}" />
+                            {{data.hth}}
                         </div>
                         <div>
                             <span class="rollable">{{localize 'MP.Mass'}}</span>
                         </div>
                         <div>
-                            <input name="data.mass" type="text" value="{{data.mass}}" />
+                            {{data.mass}}
                         </div>
 
                         <div>
                             <span class="rollable">{{localize 'MP.Luck'}}</span>
                         </div>
                         <div>
-                            <input name="data.luck" type="number" value="{{data.luck}}" />
+                            {{data.luck}}
                         </div>
                     </div>
                 </div>
                 <div>
 
                     <!-- abilities list -->
-                    <div>
-                        {{localize 'MP.Abilities'}}
-                    </div>
                     <ol class="item-list">
                         <li class="item flexrow item-header">
-                            <div class="item-points abilitycol1">{{localize 'MP.CharacterPointsAbbr'}}</div>
-                            <div class="item-name abilitycol2">{{localize 'MP.Name'}}</div>
-                            <div class="item-name abilitycol3">{{localize 'MP.Charges'}}</div>
-                            <div class="item-points abilitycol4">{{localize 'MP.InventingPointsAbbr'}}</div>
+                            <div class="item-points abilitycol1 header-text">{{localize 'MP.CharacterPointsAbbr'}}</div>
+                            <div class="item-name abilitycol2 header-text">{{localize 'MP.Ability'}}</div>
+                            <div class="item-name abilitycol3 header-text">{{localize 'MP.Charges'}}</div>
+                            <div class="item-points abilitycol4 header-text">{{localize 'MP.InventingPointsAbbr'}}</div>
                             <div class="item-controls abilitycol5">
                                 <a class="item-control item-create" title="{{localize 'MP.CreateItem'}}"
                                     data-type="ability"><i class="fas fa-plus"></i> {{localize 'MP.AddButton'}}</a>
@@ -255,17 +244,14 @@
                     </ol>
 
                     <!-- attacks list -->
-                    <div>
-                        {{localize 'MP.Attacks'}}
-                    </div>
                     <ol class="item-list">
                         <li class="item flexrow item-header">
-                            <div class="item-image attackcol1"></div>
-                            <div class="item-name attackcol2">{{localize 'MP.Name'}}</div>
-                            <div class="item-roll attackcol3">{{localize 'MP.ToHit'}}</div>
-                            <div class="item-formula attackcol4">{{localize 'MP.DamageAbbr'}}</div>
-                            <div class="item-name attackcol5">{{localize "MP.DamageTypeAbbr"}}</div>
-                            <div class="item-roll attackcol6">{{localize "MP.KnockbackAbbr"}}</div>
+                            <div class="item-image attackcol1 header-text"></div>
+                            <div class="item-name attackcol2 header-text">{{localize 'ITEM.TypeAttack'}}</div>
+                            <div class="item-roll attackcol3 header-text">{{localize 'MP.ToHit'}}</div>
+                            <div class="item-formula attackcol4 header-text">{{localize 'MP.DamageAbbr'}}</div>
+                            <div class="item-name attackcol5 header-text">{{localize "MP.DamageTypeAbbr"}}</div>
+                            <div class="item-roll attackcol6 header-text">{{localize "MP.KnockbackAbbr"}}</div>
                             <div class="item-controls attackcol7">
                                 <a class="item-control item-create" title="{{localize 'MP.CreateItem'}}"
                                     data-type="attack"><i class="fas fa-plus"></i> {{localize 'MP.AddButton'}}</a>
@@ -296,14 +282,15 @@
 
 
                     <!-- protections list -->
-                    <div>
-                        {{localize 'ITEM.TypeProtection'}}
-                    </div>
                     <ol class="item-list">
                         <li class="item flexrow item-header">
-                            <div class="item-image"></div>
-                            <div class="item-name">Name</div>
-                            <div class="item-controls">
+                            <div class="item-name protectcol1 header-text">{{localize 'ITEM.TypeProtection'}}</div>
+                            <div class="item-name protectcol-middle header-text">{{localize 'MP.KineticAbbr'}}</div>
+                            <div class="item-name protectcol-middle header-text">{{localize 'MP.EnergyAbbr'}}</div>
+                            <div class="item-name protectcol-middle header-text">{{localize 'MP.BioAbbr'}}</div>
+                            <div class="item-name protectcol-middle header-text">{{localize 'MP.PsychicAbbr'}}</div>
+                            <div class="item-name protectcol-other header-text">{{localize 'MP.OtherAbbr'}}</div>
+                            <div class="item-controls protectcol-controls">
                                 <a class="item-control item-create" title="{{localize 'MP.CreateItem'}}"
                                     data-type="protection"><i class="fas fa-plus"></i> {{localize 'MP.AddButton'}}</a>
                             </div>
@@ -311,10 +298,16 @@
 
                         {{#each protections as |item id|}}
                         <li class="item flexrow" data-item-id="{{item._id}}">
-                            <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24"
-                                    height="24" /></div>
-                            <h4 class="item-name">{{item.name}}</h4>
-                            <div class="item-controls">
+                            <h4 class="item-name protectcol1">{{item.name}}</h4>
+                            <div class="item-name protectcol-middle">{{item.data.kinetic}}</div>
+                            <div class="item-name protectcol-middle">{{item.data.energy}}</div>
+                            <div class="item-name protectcol-middle">{{item.data.bio}}</div>
+                            <div class="item-name protectcol-middle">{{item.data.psychic}}</div>
+                            <div class="item-name protectcol-other">
+                                {{item.data.other}} 
+                                {{#if item.data.otherdesc}} ({{item.data.otherdesc}}) {{/if}}
+                            </div>
+                            <div class="item-controls protectcol-controls">
                                 <a class="item-control item-edit" title="{{localize 'MP.EditItem'}}"><i
                                         class="fas fa-edit"></i></a>
                                 <a class="item-control item-delete" title="{{localize 'MP.DeleteItem'}}"><i
@@ -326,14 +319,12 @@
 
 
                     <!-- movements list -->
-                    <div>
-                        {{localize 'ITEM.TypeMovement'}}
-                    </div>
                     <ol class="item-list">
                         <li class="item flexrow item-header">
-                            <div class="item-image"></div>
-                            <div class="item-name">Name</div>
-                            <div class="item-controls">
+                            <div class="item-name header-text">{{localize 'ITEM.TypeMovement'}} ({{localize 'MP.Inches'}})</div>
+                            <div class="item-name header-text">{{localize 'MP.Speed'}}</div>
+                            <div class="item-name header-text">{{localize 'MP.Accel'}}/{{localize 'MP.Max'}}</div>
+                            <div class="item-controls movementcol-controls">
                                 <a class="item-control item-create" title="{{localize 'MP.CreateItem'}}"
                                     data-type="movement"><i class="fas fa-plus"></i> {{localize 'MP.AddButton'}}</a>
                             </div>
@@ -341,10 +332,10 @@
 
                         {{#each movements as |item id|}}
                         <li class="item flexrow" data-item-id="{{item._id}}">
-                            <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24"
-                                    height="24" /></div>
                             <h4 class="item-name">{{item.name}}</h4>
-                            <div class="item-controls">
+                            <div class="item-name">{{#if item.data.isconstant}}{{item.data.moverate}}{{/if}}</div>
+                            <div class="item-name">{{#unless item.data.isconstant}}{{item.data.accel}}/{{item.data.top}}{{/unless}}</div>
+                            <div class="item-controls movementcol-controls">
                                 <a class="item-control item-edit" title="{{localize 'MP.EditItem'}}"><i
                                         class="fas fa-edit"></i></a>
                                 <a class="item-control item-delete" title="{{localize 'MP.DeleteItem'}}"><i
@@ -356,10 +347,18 @@
                 </div>
             </div>
 
-
-
+            <div class="caps-container">
+                <div class="caps">
+                    <div>{{localize 'MP.Caps'}}: {{localize 'MP.BCs'}}: {{data.caps.bcs}}</div>
+                    <div>{{localize 'MP.Ability'}}: {{data.caps.ability}} </div>
+                    <div>{{localize 'MP.Dmg'}}: {{data.caps.dmg}}</div>
+                    <div>{{localize 'MP.GEAR'}}: {{localize 'MP.Break'}}: {{data.gear.break}}</div>
+                    <div>{{localize 'MP.Take'}}: {{data.gear.take}}</div>
+                    <div>{{localize 'MP.Disarm'}}: {{data.gear.disarm}}</div>
+                    <div>{{localize 'MP.GBC'}}: {{data.gear.gbc}}</div>
+                </div>
+            </div>
         </div>
-
 
         {{!-- Bio Tab --}}
         <div class="tab bio" data-group="primary" data-tab="bio">

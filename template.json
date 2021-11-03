@@ -69,7 +69,18 @@
       "healing": 1,
       "initiative": "1d2",
       "carry": 0,
-      "hth": "1d2"
+      "hth": "1d2",
+      "caps": {
+        "bcs": 0,
+        "ability": 0,
+        "dmg": 0
+      },
+      "gear": {
+        "break": 0,
+        "take": 0,
+        "disarm": 0,
+        "gbc": 0
+      }
     }
   },
   "Item": {

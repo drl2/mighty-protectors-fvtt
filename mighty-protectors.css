@@ -43,9 +43,6 @@
 .flexcol .flex4 {
   flex: 4;
 }
-.d20 {
-  background-image: url("./assets/icons/dice-twenty-faces-twenty.webp");
-}
 .mightyprotectors.sheet.character {
   /*  Sheet header */
   /* sheet navigation */
@@ -57,9 +54,14 @@
 }
 .mightyprotectors.sheet.character .rollable {
   cursor: pointer;
+  text-shadow: 0 0 4px steelblue;
 }
 .mightyprotectors.sheet.character .rollable:hover {
   text-shadow: 0 0 8px red;
+  color: black;
+}
+.mightyprotectors.sheet.character .important-stat {
+  font-weight: bold;
 }
 .mightyprotectors.sheet.character .sheet-header {
   flex: 0;
@@ -78,10 +80,10 @@
 }
 .mightyprotectors.sheet.character .sheet-header .header-stats {
   font-size: 14px;
-  text-transform: uppercase;
   margin-left: 12px;
   display: grid;
-  grid-template-columns: 140px 140px 120px 120px 120px;
+  grid-template-columns: 110px 110px 70px 90px 100px 100px;
+  align-items: center;
 }
 .mightyprotectors.sheet.character .sheet-header .header-stats input[type="number"] {
   width: 30px;
@@ -123,6 +125,7 @@
   grid-template-columns: 190px auto;
   /* abilities */
   /* attacks */
+  /* protection */
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .bc-grid {
   display: grid;
@@ -149,9 +152,15 @@
   margin-top: 1px;
   margin-bottom: 1px;
 }
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .cp-grid .totalcp {
+  width: 28px;
+  text-align: center;
+  padding-left: 3px;
+  padding-right: 3px;
+}
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .other-grid {
   display: grid;
-  grid-template-columns: 60px 90px;
+  grid-template-columns: 70px 90px;
   padding-top: 20px;
   align-items: center;
   row-gap: 1px;
@@ -164,11 +173,18 @@
   width: 40px;
   text-align: center;
 }
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .header-text {
+  text-decoration: underline;
+}
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .item-header {
   background-color: lightgray;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .item-list {
   align-items: center;
+  border: solid;
+  border-radius: 5px;
+  padding: 2px 8px 2px 8px;
+  border-width: 1px;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .abilitycol1 {
   flex: 0 0 50px;
@@ -189,6 +205,7 @@
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .abilitycol5 {
   flex: 0 0 auto;
   align-items: center;
+  margin-left: auto;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .attackcol1 {
   flex: 0 0 35px;
@@ -217,9 +234,41 @@
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .attackcol7 {
   flex: 0 0 auto;
   align-items: center;
+  margin-left: auto;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .protectcol1 {
+  flex: 0 0 140px;
+  align-items: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .protectcol-middle {
+  flex: 0 0 55px;
+  align-items: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .protectcol-other {
+  flex: 0 0 140px;
+  align-items: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .protectcol-controls {
+  flex: 0 0 auto;
+  align-items: center;
+  margin-left: auto;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .movementcol-controls {
+  margin-left: auto;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .divider-top {
   border-top: 1px solid black;
   margin-top: 1px;
   margin-bottom: 1px;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .caps-container {
+  display: flex;
+  justify-content: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .caps-container .caps {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  /* position: absolute;
+                bottom: 0;    */
 }
