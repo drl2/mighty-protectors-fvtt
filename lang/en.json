@@ -1,20 +1,31 @@
 {
-    "ACTOR.TypeCharacter": "Character",
-    "ACTOR.TypeVehicle": "Vehicle",
-    "ITEM.TypeAbility": "Ability",
-    "ITEM.TypeAttack": "Attack",
-    "ITEM.TypeProtection": "Protection",
-    "ITEM.TypeMovement": "Movement",
-    "ITEM.TypeBackground": "Background",
+    "SETTINGS": {
+        "autoDecrementPowerOnAttack": {
+            "name": "Auto decrement power on attack",
+            "label": "When rolling an attack from an attack item, automatically remove the correct amount of power from the character's power stat"
+        }
+    },
 
-    "DAMAGE.Energy": "Energy",
-    "DAMAGE.Entropy": "Entropy",
-    "DAMAGE.SharpKinetic": "Sharp Kinetic",
-    "DAMAGE.BluntKinetic": "Blunt Kinetic",
-    "DAMAGE.Bio": "Bio",
-    "DAMAGE.Psychic": "Psychic",
-    "DAMAGE.Other": "Other",
-
+    "ACTOR": {
+        "TypeCharacter": "Character",
+        "TypeVehicle": "Vehicle"    
+    },
+    "ITEM": {
+        "TypeAbility": "Ability",
+        "TypeAttack": "Attack",
+        "TypeProtection": "Protection",
+        "TypeMovement": "Movement",
+        "TypeBackground": "Background"
+    },
+    "DAMAGE": {
+        "Energy": "Energy",
+        "Entropy": "Entropy",
+        "SharpKinetic": "Sharp Kinetic",
+        "BluntKinetic": "Blunt Kinetic",
+        "Bio": "Bio",
+        "Psychic": "Psychic",
+        "Other": "Other"
+    },
 
     "MP.InventingPoints": "Inventing Points",
     "MP.InventingPointsAbbr": "IP",
@@ -166,5 +177,8 @@
     "MP.Min": "Min",
     "MP.Inches": "Inches",
     "MP.Accel": "Accel",
-    "MP.Defenses": "Defenses"
+    "MP.Defenses": "Defenses",
+    "MP.Always": "Always",
+    "MP.Never": "Never",
+    "MP.Choose": "Choose"
 }

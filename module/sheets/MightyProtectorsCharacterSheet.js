@@ -125,6 +125,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
                 let roll = await new Roll(dataset.roll).evaluate({ async: true });
 
                 let rollData = {
+                    stat: dataset.stat,
                     formula: roll._formula,
                     total: roll.total,
                     target: modTarget,
@@ -318,131 +319,11 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
      */
     async _onRollAttack(event) {
         event.preventDefault();
-        let element = event.currentTarget;
-        let itemId = element.closest(".item").dataset.itemId;
-        const actor = this.actor;
-        let item = actor.items.get(itemId);
-        let itemData = item.data;
-        let target = null;
-        let targetName = "";
-        let defense = 0;
+        let itemId = event.currentTarget.closest(".item").dataset.itemId;
+        let item = this.actor.items.get(itemId);
 
-
-        // get target info if selected
-        if (game.user.targets.size > 0) {
-            target = Array.from(game.user.targets)[0];
-            targetName = target.name;
-            if (itemData.data.dmgtype == "Psychic") {
-                defense = target.data.data.mentaldefense;
-            }
-            else {
-                defense = target.actor.data.data.physicaldefense;
-            }
-        }
-
-        let dlgData = {
-            targetName: targetName
-        }
-
-
-
-        let dlgContent = await renderTemplate("systems/mighty-protectors/templates/dialogs/attackmods.hbs", dlgData);
-
-        let dlg = new Dialog({
-            title: game.i18n.localize("ITEM.TypeAttack") + ": " + itemData.name,
-            content: dlgContent,
-            buttons: {
-                rollAttack: {
-                    icon: "<i class='fas fa-dice-d20'></i>",
-                    label: game.i18n.localize("MP.Roll"),
-                    callback: (html) => rollAttackCallback(html)
-                },
-                cancel: {
-                    icon: "<i class='fas fa-times'></i>",
-                    label: game.i18n.localize("MP.Cancel")
-                }
-            },
-            default: "rollAttack"
-        })
-
-        dlg.render(true);
-
-
-        async function rollAttackCallback(html) {
-            let modToHit = Number.parseInt(itemData.data.tohit);
-            let mod = "";
-            let push = html.find('[name="push"]')[0].value;
-            let spendPower = html.find('[name="autodeduct"]')[0].value;
-            let dmgFormula = itemData.data.dmgroll;
-            let powerCost = itemData.data.powercost;
-
-            if (targetName) {
-                mod = html.find('[name="mod"]')[0].value.trim();
-            }
-
-            if (mod != "") {
-                modToHit += (Number.parseInt(mod) - defense);
-            }
-
-            if (push) {
-                dmgFormula += " + 2";
-                powerCost += 2;
-            }
-
-            let attackRoll = await new Roll("1d20").evaluate({ async: true });
-            attackRoll.dice[0].options.rollOrder = 1;
-
-            let dmgRoll = await new Roll(dmgFormula).evaluate({ async: true });
-            dmgRoll.dice[0].options.rollOrder = 2;
-
-            const rolls = [attackRoll, dmgRoll];
-            const pool = PoolTerm.fromRolls(rolls);
-            let roll = Roll.fromTerms([pool]);
-
-            let success = attackRoll.total <= modToHit;
-
-            let rollData = {
-                actorName: actor.name,
-                attackName: item.name,
-                dmgType: itemData.data.dmgtype,
-                dmgSubtype: itemData.data.dmgsubtype,
-                knockBack: itemData.data.knockback,
-                targetName: targetName,
-                success: success,
-                attackRoll: attackRoll,
-                rollMinMax: rollMinMax(attackRoll.dice[0].total),
-                dmgRoll: dmgRoll
-            };
-
-            let cardContent = await renderTemplate("systems/mighty-protectors/templates/chatcards/attackroll.hbs", rollData);
-
-            let chatOptions = {
-                type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-                roll: roll,
-                content: cardContent,
-                speaker: ChatMessage.getSpeaker({ actor: actor })
-            }
-
-            ChatMessage.create(chatOptions);
-
-            if (spendPower) {
-                actor.data.data.power.value -= powerCost;
-            }
-
-        }
-
+        item.roll();
     }
 }
 
 
-
-    /**
-     * Task checks in MP are all d20 based with lower = better.  Switch around the normal min/max where possible
-     * @param {*} dieRoll 
-     */
-    function rollMinMax(dieRoll) {
-        let result = "";
-        if (dieRoll == 20) result = "min";
-        if (dieRoll == 1) result = "max";
-        return result;
-    }

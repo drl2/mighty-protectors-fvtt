@@ -9,13 +9,8 @@ Hooks.once("init", function() {
 
     CONFIG.MP = MP;
 
-    game.settings.register("mighty-protectors", "dsnSettingInit", {
-        name: "Flag for Dice So Nice settings init",
-        scope: "world",
-        config: false,
-        type: Boolean,
-        default: false
-    });
+    checkDsNSetting();
+    registerSystemSettings();
 
     CONFIG.Item.documentClass = MPItem;
     CONFIG.Actor.documentClass = MPActor;
@@ -34,3 +29,30 @@ Hooks.once("ready", function() {
         game.settings.set("mighty-protectors", "dsnSettingInit",true);
     }
 });
+
+
+function checkDsNSetting() {
+    game.settings.register("mighty-protectors", "dsnSettingInit", {
+        name: "Flag for Dice So Nice settings init",
+        scope: "world",
+        config: false,
+        type: Boolean,
+        default: false
+    });
+}
+
+function registerSystemSettings() {
+    game.settings.register("mighty-protectors", "autoDecrementPowerOnAttack", {
+        config: true,
+        scope: "world",
+        name: "SETTINGS.autoDecrementPowerOnAttack.name",
+        hint: "SETTINGS.autoDecrementPowerOnAttack.label",
+        type: String,
+        choices: {
+            "always": "MP.Always",
+            "choose": "MP.Choose",
+            "never": "MP.Never"
+        },
+        default: "choose"
+    })
+}
