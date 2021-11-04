@@ -258,6 +258,7 @@
             }
 
             .movementcol-controls {
+                flex: 0 0 auto;
                 margin-left:auto;
             }
 
@@ -284,11 +285,62 @@
 
 
     .bio {
-        
+        display: grid;
+        grid-template-columns: 430px 250px;
+        row-gap: 1px;
+        column-gap: 10px;
+
+
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 80px 120px 20px 80px 120px;
+            align-items: center;
+            row-gap: 1px;
+ 
+            input[type="number"] {
+                width: 80px;
+              }
+
+        }
+
+        .backgrounds-grid {
+            display: grid;
+            row-gap: 1px;
+
+            .item-list {
+                align-items: center;
+                border: solid;
+                border-radius: 5px;
+                padding: 2px 8px 2px 8px;
+                border-width: 1px;
+            }
+
+            .header-text {
+                text-decoration: underline;
+            }
+
+            .item-header {
+                background-color: lightgray;
+            }
+
+            .background-col {
+                flex: 0 0 180px;
+                align-items: center;
+            }
+
+            .background-col-controls {
+                flex: 0 0 auto;
+                align-items: center;
+
+            }
+        }
+
     }
 
-    .journal {
-        
+    .story {
+        .editor {
+            height: 90%;         
+          }    
     }
 
   }

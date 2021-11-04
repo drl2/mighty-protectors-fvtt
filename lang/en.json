@@ -26,13 +26,54 @@
         "Psychic": "Psychic",
         "Other": "Other"
     },
+    "BC": {
+        "Strength" : {
+            "fullname": "Strength",
+            "abbr": "ST"
+        },
+        "Agility" : {
+            "fullname": "Agility",
+            "abbr": "AG"
+        },
+        "Endurance" : {
+            "fullname": "Endurance",
+            "abbr": "EN"
+        },
+        "Intelligence" : {
+            "fullname": "Intelligence",
+            "abbr": "IL"
+        },
+        "Cool" : {
+            "fullname": "Cool",
+            "abbr": "CL"
+        }
 
+    },
+    "MP": {
+        "Abbreviations": {
+            "InventingPoints": "IP",
+            "CharacterPoints": "CP",
+            "BaseCharacteristics": "BC",
+            "MentalDefense": "Ment Def",
+            "PhysicalDefense": "Phys Def",
+            "Damage": "Dmg",
+            "Knockback": "KB",
+            "Initiative": "Init",
+            "DamageType": "Type",
+            "Kinetic": "Kinetic",
+            "Energy": "Energy",
+            "Entropy": "Entropy",
+            "Psychic": "Psychic",
+            "Other": "Other",
+            "Bio": "Bio",
+            "BaseHandToHand": "Base HtH",
+            "Pounds": "lbs"
+        }
+    },
     "MP.InventingPoints": "Inventing Points",
-    "MP.InventingPointsAbbr": "IP",
     "MP.InventingPointsCost": "Cost in Inventing Points",
     "MP.CharacterPoints": "Character Points",
     "MP.CharacterPointsCost": "Cost in Character Points",
-    "MP.CharacterPointsAbbr": "CP",
     "MP.Description": "Description",
     "MP.Rules": "Rules"  ,
     "MP.Cost": "Cost",
@@ -40,33 +81,19 @@
     "MP.Name": "Name",
     "MP.Bonus": "Bonus",
     "MP.Bonuses": "Bonuses",
-    "MP.BCStatsStrength": "Strength",
-    "MP.BCStatsStrengthAbbr": "ST",
-    "MP.BCStatsAgility": "Agility",
-    "MP.BCStatsAgilityAbbr": "AG",
-    "MP.BCStatsEndurance": "Endurance",
-    "MP.BCStatsEnduranceAbbr": "EN",
-    "MP.BCStatsIntelligence": "Intelligence",
-    "MP.BCStatsIntelligenceAbbr": "IN",
-    "MP.BCStatsCool": "Cool",
-    "MP.BCStatsCoolAbbr": "CL",
     "MP.Adjustments": "Adjustments",
     "MP.BaseCharacteristic": "Base Characteristic",
     "MP.BaseCharacteristics": "Base Characteristics",
-    "MP.BaseCharacteristicsAbbr": "BC",
     "MP.Other": "Other",
     "MP.ToHit": "To Hit",
     "MP.ToHitDesc": "To Hit bonus on attacks",
     "MP.PhysicalDefense": "Physical Defense",
-    "MP.PhysicalDefenseAbbr": "Phys Def",
     "MP.Physical": "Physical",
     "MP.Mental": "Mental",
     "MP.MentalDefense": "Mental Defense",
-    "MP.MentalDefenseAbbr": "Ment Def",
     "MP.HitPoints": "Hit Points",
     "MP.Power": "Power",
     "MP.Initiative": "Initiative",
-    "MP.InitiativeAbbr": "Init",
     "MP.Luck": "Luck",
     "MP.UsesChargesShort": "Charges?",
     "MP.UsesChargesDesc": "Uses charges instead of power",
@@ -91,7 +118,6 @@
     "MP.Stats": "Stats",
     "MP.Actor.CharName": "Character Name",
     "MP.Bio": "Bio",
-    "MP.Journal": "Journal",
     "MP.HitPts": "Hit Pts",
     "MP.CPs": "CPs",
     "MP.Score": "Score",
@@ -110,10 +136,7 @@
     "MP.Target": "Target",
     "MP.SaveSuccess": "Save successful",
     "MP.SaveFailure": "Save failed",
-    "MP.DamageAbbr": "Dmg",
-    "MP.KnockbackAbbr": "KB",
     "MP.KnockbackQ": "Knockback?",
-    "MP.DamageTypeAbbr": "Type",
     "MP.NewAbility": "New Ability",
     "MP.NewAttack": "New Attack",
     "MP.NewMovement": "New Movement",
@@ -141,12 +164,6 @@
     "MP.Entropy": "Entropy",
     "MP.Psychic": "Psychic",
     "MP.OtherDesc": "Other Description",
-    "MP.KineticAbbr": "Kinetic",
-    "MP.EnergyAbbr": "Energy",
-    "MP.EntropyAbbr": "Entropy",
-    "MP.PsychicAbbr": "Psychic",
-    "MP.OtherAbbr": "Other",
-    "MP.BioAbbr": "Bio",
     "MP.IsConstant": "Is Constant?",
     "MP.MoveRate": "Movement Rate (Inches)",
     "MP.Acceleration": "Acceleration",
@@ -163,7 +180,6 @@
     "MP.AttackMisses": "Misses!",
     "MP.PossibleKnockback": "Possible Knockback",
     "MP.Carry": "Carry",
-    "MP.BaseHandToHandAbbr": "Base HtH",
     "MP.Caps": "CAPS",
     "MP.BCs": "BCs",
     "MP.Ability": "Ability",
@@ -180,5 +196,6 @@
     "MP.Defenses": "Defenses",
     "MP.Always": "Always",
     "MP.Never": "Never",
-    "MP.Choose": "Choose"
+    "MP.Choose": "Choose",
+    "MP.Wealth": "Wealth"
 }

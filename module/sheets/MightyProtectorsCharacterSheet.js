@@ -1,5 +1,6 @@
 import MPItem from "../mpitem.js";
 import { MP } from "../config.js";
+import { rollMinMax } from "../utility.js";
 
 export default class MightyProtectorsCharacterSheet extends ActorSheet {
     static get defaultOptions() {

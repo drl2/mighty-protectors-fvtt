@@ -1,11 +1,11 @@
 export const MP = {};
 
 MP.AttributeTypes = {
-    ST: "MP.BCStatsStrengthAbbr",
-    EN: "MP.BCStatsEnduranceAbbr",
-    AG: "MP.BCStatsAgilityAbbr",
-    IN: "MP.BCStatsIntelligenceAbbr",
-    CL: "MP.BCStatsCoolAbbr"
+    ST: "BC.Strength.fullname",
+    EN: "BC.Endurance.fullname",
+    AG: "BC.Agility.fullname",
+    IN: "BC.Intelligence.fullname",
+    CL: "BC.Cool.fullname"
 }
 
 MP.ItemTypeImages = {

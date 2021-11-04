@@ -1,16 +1,21 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
-        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64" />
 
         <div class="header-details">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'MP.Name'}}"/>
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'MP.Name'}}" />
             </h1>
             <div class="item-subtitle">
                 <h4 class="item-type">
                     {{itemType}}
                 </h4>
             </div>
-        </div>  
+        </div>
     </header>
+
+    <section class="sheet-body">
+        {{localize 'MP.Description'}}
+        <textarea class="desctext" name="data.description">{{data.description}}</textarea>
+    </section>
 </form>
