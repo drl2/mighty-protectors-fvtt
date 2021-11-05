@@ -38,6 +38,9 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         html.find('.item-usecharge').click(this._onItemUseCharge.bind(this));
         html.find('.item-resetcharges').click(this._onItemResetCharges.bind(this));
         html.find('.attackroll').click(this._onRollAttack.bind(this));
+        html.find('.initroll').click(this._onRollInitiative.bind(this));
+        html.find('.genericroll').click(this._onRollGeneric.bind(this));
+
     }
 
 
@@ -94,9 +97,11 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
 
         if (dataset.roll) {
             let dlgContent = await renderTemplate("systems/mighty-protectors/templates/dialogs/modifiers.hbs", dataset);
+            let title = game.i18n.localize("MP.SavingThrow");
+            if (dataset.rolltype) title = dataset.rolltype;
 
             let dlg = new Dialog({
-                title: game.i18n.localize("MP.SavingThrow") + ": " + dataset.stat,
+                title: title + ": " + dataset.stat,
                 content: dlgContent,
                 buttons: {
                     rollSave: {
@@ -134,7 +139,8 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
                     // only one roll on a save so no need to for-each through rolls
                     dieFormula: roll.dice[0].formula,
                     dieRoll: roll.dice[0].total,
-                    rollMinMax: rollMinMax(roll.dice[0].total)
+                    rollMinMax: rollMinMax(roll.dice[0].total),
+                    rolltype: dataset.rolltype
                 };
 
                 let cardContent = await renderTemplate("systems/mighty-protectors/templates/chatcards/savingthrow.hbs", rollData);
@@ -325,6 +331,28 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
 
         item.roll();
     }
+
+    async _onRollInitiative(event) {
+        event.preventDefault();
+        return this.actor.rollInitiative({ createCombatants: true });
+    }
+
+    async _onRollGeneric(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+        const dataset = element.dataset;
+
+        if (dataset.roll) {
+            let roll = new Roll(dataset.roll, this.actor.data.data);
+            let label = dataset.stat ? `Rolling ${dataset.stat}` : '';
+            await roll.toMessage({
+                speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+                flavor: label
+            });
+        }
+
+    }
+
 }
 
 

@@ -159,30 +159,32 @@
                             {{localize 'MP.Carry'}}
                         </div>
                         <div>
-                            {{data.carry}}
+                            {{data.carry}} {{localize "MP.Abbreviations.Pounds"}}
                         </div>
 
                         <div>
-                            {{localize 'MP.Abbreviations.BaseHandToHand'}}
+                            <span class="rollable genericroll" data-roll="{{data.hth}}" data-stat="{{localize 'MP.Abbreviations.BaseHandToHand'}}">{{localize 'MP.Abbreviations.BaseHandToHand'}}<span class="rollable genericroll" data-roll="{{data.mass}}" data-stat="{{localize 'MP.Mass'}}"></span>
                         </div>
                         <div>
                             {{data.hth}}
                         </div>
                         <div>
-                            <span class="rollable">{{localize 'MP.Mass'}}</span>
+                            <span class="rollable genericroll" data-roll="{{data.mass}}" data-stat="{{localize 'MP.Mass'}}">{{localize 'MP.Mass'}}</span>
                         </div>
                         <div>
                             {{data.mass}}
                         </div>
 
                         <div>
-                            <span class="rollable">{{localize 'MP.Luck'}}-</span>
+                            <span class="rollable saveroll" data-roll="d20"
+                                data-stat="{{localize 'MP.Luck'}}" data-rolltype="{{localize 'MP.Roll'}}"
+                                data-target="{{data.luck}}">{{localize 'MP.Luck'}}</span>
                         </div>
                         <div>
-                            {{data.luck}}
+                            {{data.luck}}-
                         </div>
                         <div>
-                            <span class="rollable">{{localize 'MP.Wealth'}}</span>
+                            <span class="rollable genericroll" data-roll="{{data.wealth}}" data-stat="{{localize 'MP.Wealth'}}">{{localize 'MP.Wealth'}}</span>
                         </div>
                         <div>
                             <input name="data.wealth" type="text" value="{{data.wealth}}" />

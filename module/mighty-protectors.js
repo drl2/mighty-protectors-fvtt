@@ -55,4 +55,58 @@ function registerSystemSettings() {
         },
         default: "choose"
     })
+
+    game.settings.register("mighty-protectors", "checkPowerOnAttack", {
+        config: true,
+        scope: "world",
+        name: "SETTINGS.checkPowerOnAttack.name",
+        hint: "SETTINGS.checkPowerOnAttack.label",
+        type: Boolean,
+        default: true
+    })
+
+    game.settings.register("mighty-protectors", "checkChargesOnAttack", {
+        config: true,
+        scope: "world",
+        name: "SETTINGS.checkChargesOnAttack.name",
+        hint: "SETTINGS.checkChargesOnAttack.label",
+        type: Boolean,
+        default: true
+    })
+
+    game.settings.register("mighty-protectors", "checkChargesOnAttack", {
+        config: true,
+        scope: "world",
+        name: "SETTINGS.checkChargesOnAttack.name",
+        hint: "SETTINGS.checkChargesOnAttack.label",
+        type: Boolean,
+        default: true
+    })
+
+    game.settings.register("mighty-protectors", "showSaveTargetNumbers", {
+        config: true,
+        scope: "world",
+        name: "SETTINGS.showSaveTargetNumbers.name",
+        hint: "SETTINGS.showSaveTargetNumbers.label",
+        type: Boolean,
+        default: true
+    })
+    
+    game.settings.register("mighty-protectors", "showAttackTargetNumbers", {
+        config: true,
+        scope: "world",
+        name: "SETTINGS.showAttackTargetNumbers.name",
+        hint: "SETTINGS.showAttackTargetNumbers.label",
+        type: Boolean,
+        default: true
+    })
+
+    game.settings.register("mighty-protectors", "showCanRollWith", {
+        config: true,
+        scope: "world",
+        name: "SETTINGS.showCanRollWith.name",
+        hint: "SETTINGS.showCanRollWith.label",
+        type: Boolean,
+        default: true
+    })
 }
