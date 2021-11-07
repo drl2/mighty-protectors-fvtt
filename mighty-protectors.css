@@ -52,6 +52,13 @@
   display: flex;
   flex-direction: column;
 }
+.mightyprotectors.sheet.item .rollable {
+  cursor: pointer;
+}
+.mightyprotectors.sheet.item .rollable:hover {
+  text-shadow: 0 0 8px red;
+  color: black;
+}
 .mightyprotectors.sheet.item .sheet-header {
   flex: 0;
   margin-bottom: 5px;
@@ -142,6 +149,38 @@
 .mightyprotectors.sheet.item .sheet-body .rules .ruletab .editor {
   height: 90%;
 }
+.mightyprotectors.sheet.item .sheet-body .move-body {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.mightyprotectors.sheet.item .sheet-body .move-body .move-subgrid {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  padding-top: 15px;
+  row-gap: 2px;
+}
+.mightyprotectors.sheet.item .sheet-body .move-body input[type="text"] {
+  width: 55px;
+}
+.mightyprotectors.sheet.item .sheet-body .move-body .hidden {
+  display: none;
+}
+.mightyprotectors.sheet.item .sheet-body .prot-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 5px;
+}
+.mightyprotectors.sheet.item .sheet-body .prot-grid .other-row {
+  padding-top: 10px;
+  grid-column: 1 / 5;
+}
+.mightyprotectors.sheet.item .sheet-body .prot-grid input[type="number"] {
+  width: 50px;
+}
+.mightyprotectors.sheet.item .sheet-body .prot-grid input[type="text"] {
+  width: 100px;
+}
 .mightyprotectors.sheet.character {
   /*  Sheet header */
   /* sheet navigation */
@@ -158,6 +197,12 @@
 .mightyprotectors.sheet.character .rollable:hover {
   text-shadow: 0 0 8px red;
   color: black;
+}
+.mightyprotectors.sheet.character .rollable img {
+  border-color: steelblue;
+}
+.mightyprotectors.sheet.character .rollable img:hover {
+  border-color: red;
 }
 .mightyprotectors.sheet.character .important-stat {
   font-weight: bold;

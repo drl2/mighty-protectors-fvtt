@@ -110,3 +110,7 @@ function registerSystemSettings() {
         default: true
     })
 }
+
+Handlebars.registerHelper('ismoveconstant', function (value) {
+    return value == "constant";
+});

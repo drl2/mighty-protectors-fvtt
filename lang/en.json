@@ -87,8 +87,20 @@
             "Other": "Other",
             "Bio": "Bio",
             "BaseHandToHand": "Base HtH",
-            "Pounds": "lbs"
+            "Pounds": "lbs",
+            "MultiInitiative": "Multi Init?"
         },
+        "MoveRateTypes": {
+            "Constant": "Constant",
+            "Acceleration": "Acceleration/Max"
+        },
+        "MovementFormulas": {
+            "Ground": "Ground",
+            "Leaping": "Leaping"
+        },
+        "MoveRateType": "Movement Rate Type",
+        "UseMovementFormulas": "Calc from formula",
+        "MultiInitiative": "Allow multiple initiative rolls?",
         "InventingPoints": "Inventing Points",
         "InventingPointsCost": "Cost in Inventing Points",
         "CharacterPoints": "Character Points",
@@ -184,7 +196,7 @@
         "Psychic": "Psychic",
         "OtherDesc": "Other Description",
         "IsConstant": "Is Constant?",
-        "MoveRate": "Movement Rate (Inches)",
+        "MoveRate": "Movement Rate",
         "Acceleration": "Acceleration",
         "TopSpeed": "Top Speed",
         "Push": "Push",
@@ -216,6 +228,7 @@
         "Always": "Always",
         "Never": "Never",
         "Choose": "Choose",
-        "Wealth": "Wealth"
+        "Wealth": "Wealth",
+        "Healing": "Healing"
     }
 }

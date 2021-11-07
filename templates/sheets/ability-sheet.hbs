@@ -118,10 +118,14 @@
                     <input name="data.mentdefbonus" type="number" value="{{data.mentdefbonus}}" data-dtype="Number" />
                 </div>
 
-                <div>{{ localize 'MP.Initiative'}}</div>
-                <div title="{{ localize 'MP.Initiative'}}">
-                    <input name="data.initbonus" type="number" value="{{data.initbonus}}" data-dtype="Number" />
+                <div>
+                    <label class="checkbox" title="{{ localize 'MP.MultiInitiative'}}">
+                        <input type="checkbox" name="data.multiinit" {{checked data.multiinit}}>
+                        {{ localize 'MP.Abbreviations.MultiInitiative'}}
+                    </label>
                 </div>
+                <div></div>
+
                 <!-- row end -->
 
                 <!-- row start -->
@@ -137,10 +141,12 @@
                     <input name="data.powerbonus" type="number" value="{{data.powerbonus}}" data-dtype="Number" />
                 </div>
 
-                <div>{{ localize 'MP.Luck'}}</div>
-                <div title="{{ localize 'MP.Luck'}}">
-                    <input name="data.luckbonus" type="number" value="{{data.luckbonus}}" data-dtype="Number" />
+                <div>{{ localize 'MP.Initiative'}}</div>
+                <div title="{{ localize 'MP.Initiative'}}">
+                    <input name="data.initbonus" type="number" value="{{data.initbonus}}" data-dtype="Number" />
                 </div>
+
+
                 <!-- row end -->
 
                 <!-- row start -->
@@ -156,8 +162,10 @@
                     <input name="data.hpbonus" type="number" value="{{data.hpbonus}}" data-dtype="Number" />
                 </div>
 
-                <div></div>
-                <div></div>           
+                <div>{{ localize 'MP.Luck'}}</div>
+                <div title="{{ localize 'MP.Luck'}}">
+                    <input name="data.luckbonus" type="number" value="{{data.luckbonus}}" data-dtype="Number" />
+                </div>
                 <!-- row end -->
             </div>
         </div>

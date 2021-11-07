@@ -1,41 +1,77 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
-        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64" />
 
         <div class="header-details">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'MP.Name'}}"/>
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'MP.Name'}}" />
             </h1>
             <div class="item-subtitle">
                 <h4 class="item-type">
                     {{itemType}}
                 </h4>
             </div>
-        </div>  
+        </div>
     </header>
 
     <section class="sheet-body">
-        <div>
-            <label class="checkbox" title="{{ localize 'MP.IsConstant'}}">
-                <input type="checkbox" name="data.isconstant" {{checked data.isconstant}}>
-                {{ localize 'MP.IsConstant'}}
-            </label>
-        </div>
-        
-        <div>
-            {{localize 'MP.MoveRate'}}
-            <input name="data.moverate" type="number" value="{{data.moverate}}" data-dtype="Number" title="{{ localize 'MP.MoveRate' }}" />
-        </div>
+        <div class="move-body">
 
-        <div>
-            {{localize 'MP.Acceleration'}}
-            <input name="data.accel" type="text" value="{{data.accel}}" title="{{ localize 'MP.Acceleration' }}" />
-        </div>
+            <div>
+                <div>{{localize 'MP.MoveRateType'}}</div>
+                <select name="data.moveratetype">
+                    {{#select data.moveratetype}}
+                    {{#each config.MoveRateTypes as |name type|}}
+                    <option value="{{type}}">{{localize name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+            <div class="move-subgrid {{#unless (ismoveconstant data.moveratetype)}}hidden{{/unless}}">
+                <div>
+                    {{localize 'MP.MoveRate'}}:
+                </div>
+                <div>
+                    <input name="data.moverate" type="text" value="{{data.moverate}}" data-dtype="Number"
+                        title="{{ localize 'MP.MoveRate' }}" />
+                    {{localize 'MP.Inches'}}
+                </div>
+                {{#if isowned}}
+                <div>&nbsp;</div>
+                <div></div>
+                <div>
+                    {{localize 'MP.UseMovementFormulas'}}:  
+                </div>
+                <div>
+                    <span class="rollable moveformula" data-formulatype="ground">{{localize
+                        'MP.MovementFormulas.Ground'}}</span>
+                </div>
+                <div></div>
+                <div>
+                    <span class="rollable moveformula" data-formulatype="leaping">{{localize
+                        'MP.MovementFormulas.Leaping'}}</span>
+                </div>
+                {{/if}}
+            </div>
+            <div class="move-subgrid {{#if (ismoveconstant data.moveratetype)}}hidden{{/if}}">
+                <div>
+                    {{localize 'MP.Acceleration'}}:
+                </div>
+                <div>
+                    <input name="data.accel" type="text" value="{{data.accel}}"
+                        title="{{ localize 'MP.Acceleration' }}" />
+                    {{localize 'MP.Inches'}}
+                </div>
+                <div>
+                    {{localize 'MP.TopSpeed'}}:
+                </div>
+                <div>
+                    <input name="data.top" type="text" value="{{data.top}}" title="{{ localize 'MP.TopSpeed' }}" />
+                    {{localize 'MP.Inches'}}
+                </div>
 
-        <div>
-            {{localize 'MP.TopSpeed'}}
-            <input name="data.top" type="text" value="{{data.top}}" title="{{ localize 'MP.TopSpeed' }}" />
-        </div>
 
+            </div>
+        </div>
     </section>
 </form>

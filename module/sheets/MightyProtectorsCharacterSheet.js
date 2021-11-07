@@ -334,7 +334,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
 
     async _onRollInitiative(event) {
         event.preventDefault();
-        return this.actor.rollInitiative({ createCombatants: true });
+        return await this.actor.rollInitiative({ createCombatants: true });
     }
 
     async _onRollGeneric(event) {

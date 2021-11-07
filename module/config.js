@@ -31,6 +31,11 @@ MP.DamageTypes = {
     other: "DAMAGE.Other"
 }
 
+MP.MoveRateTypes = {
+    constant: "MP.MoveRateTypes.Constant",
+    accelmax: "MP.MoveRateTypes.Acceleration"
+}
+
 MP.StatTable = [
     {min: 0, max: 0, carry: 8, hth_init: 'd2-1', save: 6, hits_st: -3, hits_en: -5, hits_ag: -2, hits_cl: -1, heal: .2},
     {min: 1, max: 1, carry: 10, hth_init: 'd2-1', save: 7, hits_st: -3, hits_en: -5, hits_ag: -2, hits_cl: -1, heal: .3},
