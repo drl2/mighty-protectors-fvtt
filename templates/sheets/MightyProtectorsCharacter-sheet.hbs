@@ -351,9 +351,8 @@
                         {{#each movements as |item id|}}
                         <li class="item flexrow" data-item-id="{{item._id}}">
                             <h4 class="item-name movementcol1">{{item.name}}</h4>
-                            <div class="item-name movementcol-middle">{{#if item.data.isconstant}}{{item.data.moverate}}{{/if}}</div>
-                            <div class="item-name movementcol-middle">{{#unless
-                                item.data.isconstant}}{{item.data.accel}}/{{item.data.top}}{{/unless}}</div>
+                            <div class="item-name movementcol-middle">{{#if (ismoveconstant data.moveratetype)}}{{item.data.calcmoverate}}{{/if}}</div>
+                            <div class="item-name movementcol-middle">{{#unless (ismoveconstant data.moveratetype)}}{{item.data.accel}}/{{item.data.top}}{{/unless}}</div>
                             <div class="item-controls movementcol-controls">
                                 <a class="item-control item-edit" title="{{localize 'MP.EditItem'}}"><i
                                         class="fas fa-edit"></i></a>

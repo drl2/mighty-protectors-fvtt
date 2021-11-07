@@ -32,6 +32,49 @@ export default class MPItem extends Item {
         }
     }
 
+    prepareDerivedData() {
+        super.prepareDerivedData();
+
+        if (this.data.type === 'movement') this._prepareDerivedMovementData();
+    }
+
+
+    async _prepareDerivedMovementData() {
+        const itemData = this.data;
+        const actorData = this.actor ? this.actor.data : null;
+        
+
+        // don't bother unless the move item is attached to a character, is set to constant rate type, and not set to manual entry
+        if (itemData.data.moverateformula == "manual") {
+            this.data.data.calcmoverate = this.data.data.moverate;
+        }
+        else if (actorData && (itemData.data.moveratetype === "constant")) {
+
+
+            let rate = 0;
+
+            if (itemData.data.moverateformula === "ground") {
+                rate = (
+                    (
+                        (actorData.data.basecharacteristics.st.value + actorData.data.basecharacteristics.ag.value + actorData.data.basecharacteristics.en.value)
+                        / 3
+                    ) - .5
+                );
+
+                rate = Math.round(rate);
+            }
+            else if (itemData.data.moverateformula === "leaping") {
+                if (actorData.data.weight > 0) {
+                    rate = actorData.data.carry / actorData.data.weight;
+                    rate = Math.round(rate * 100) / 100;
+                }
+            }
+
+            this.data.data.calcmoverate = rate;
+        }
+    }
+
+
 
     async roll() {
         const actor = this.actor;

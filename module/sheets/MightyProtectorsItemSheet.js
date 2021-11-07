@@ -29,44 +29,7 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
         return sheetData;
     }
 
-    activateListeners(html) {
-        super.activateListeners(html);
-
-        if (!this.options.editable) return;
 
 
-        // Rollable abilities.
-        html.find('.moveformula').click(this._onMoveFormula.bind(this));
-    }
-
-
-    async _onMoveFormula(event) {
-        event.preventDefault();
-        const element = event.currentTarget;
-        const dataset = element.dataset;
-        const actordata = this.actor.data.data;
-        
-        let rate = 0;
-
-        if (dataset.formulatype=="ground")
-        {
-            rate = (
-                (
-                    (actordata.basecharacteristics.st.value + actordata.basecharacteristics.ag.value + actordata.basecharacteristics.en.value)
-                    / 3
-                ) -.5
-            );
-            rate = Math.round(rate);
-        }
-        else if (dataset.formulatype=="leaping")
-        {
-            if (actordata.weight > 0){
-                rate = actordata.carry / actordata.weight;
-                rate = Math.round(rate*100)/100;
-            }
-        }
-
-        return this.item.update({ 'data.moverate': rate });
-    }
 
 }

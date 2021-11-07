@@ -28,30 +28,35 @@
                 </select>
             </div>
             <div class="move-subgrid {{#unless (ismoveconstant data.moveratetype)}}hidden{{/unless}}">
+
+                <div>
+                    {{localize 'MP.UseMovementFormulas'}}:
+                </div>
+                <div>
+                    <select name="data.moverateformula">
+                        {{#select data.moverateformula}}
+                        {{#each config.MoveRateFormulas as |name type|}}
+                        <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </div>
+
+
+
                 <div>
                     {{localize 'MP.MoveRate'}}:
                 </div>
                 <div>
-                    <input name="data.moverate" type="text" value="{{data.moverate}}" data-dtype="Number"
-                        title="{{ localize 'MP.MoveRate' }}" />
+                    {{#if (isformulamanual data.moverateformula)}}
+                        <input name="data.moverate" type="text" value="{{data.moverate}}" data-dtype="Number"
+                            title="{{ localize 'MP.MoveRate' }}" />
+                    {{else}}
+                        {{data.calcmoverate}}
+                    {{/if}}
                     {{localize 'MP.Inches'}}
                 </div>
-                {{#if isowned}}
-                <div>&nbsp;</div>
-                <div></div>
-                <div>
-                    {{localize 'MP.UseMovementFormulas'}}:  
-                </div>
-                <div>
-                    <span class="rollable moveformula" data-formulatype="ground">{{localize
-                        'MP.MovementFormulas.Ground'}}</span>
-                </div>
-                <div></div>
-                <div>
-                    <span class="rollable moveformula" data-formulatype="leaping">{{localize
-                        'MP.MovementFormulas.Leaping'}}</span>
-                </div>
-                {{/if}}
+
             </div>
             <div class="move-subgrid {{#if (ismoveconstant data.moveratetype)}}hidden{{/if}}">
                 <div>

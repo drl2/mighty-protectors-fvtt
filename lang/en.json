@@ -61,7 +61,7 @@
         },
         "Intelligence" : {
             "fullname": "Intelligence",
-            "abbr": "IL"
+            "abbr": "IN"
         },
         "Cool" : {
             "fullname": "Cool",
@@ -95,8 +95,9 @@
             "Acceleration": "Acceleration/Max"
         },
         "MovementFormulas": {
-            "Ground": "Ground",
-            "Leaping": "Leaping"
+            "Ground": "Ground Formula",
+            "Leaping": "Leaping Formula",
+            "Manual": "Manual Entry"
         },
         "MoveRateType": "Movement Rate Type",
         "UseMovementFormulas": "Calc from formula",

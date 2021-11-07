@@ -31,28 +31,19 @@
       "legalstatus": "",
       "basecharacteristics": {
         "st": {
-          "cp": 10,
-          "value": 10
+          "cp": 10
         },
         "en": {
-          "cp": 10,
-          "value": 10,
-          "save": 10
+          "cp": 10
         },
         "ag": {
-          "cp": 10,
-          "value": 10,
-          "save": 10
+          "cp": 10
         },
         "in": {
-          "cp": 10,
-          "value": 10,
-          "save": 10
+          "cp": 10
         },
         "cl": {
-          "cp": 10,
-          "value": 10,
-          "save": 10
+          "cp": 10
         }
       },
       "base_cp": 50,
@@ -136,8 +127,7 @@
       "moveratetype": "constant",
       "accel": 0,
       "top": 0,
-      "usegroundformula": false,
-      "useleapformula": false
+      "moverateformula": "manual"
     }
   }
 }

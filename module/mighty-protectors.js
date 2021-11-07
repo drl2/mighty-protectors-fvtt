@@ -114,3 +114,7 @@ function registerSystemSettings() {
 Handlebars.registerHelper('ismoveconstant', function (value) {
     return value == "constant";
 });
+
+Handlebars.registerHelper('isformulamanual', function (value) {
+    return value == "manual";
+});
