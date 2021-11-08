@@ -4,12 +4,10 @@
     "templates": {
       "base": {
         "hitpts": {
-          "value": 4,
-          "max": 4
+          "value": 4
         },
         "power": {
-          "value": 40,
-          "max": 40
+          "value": 40
         }
       }
     },
@@ -23,7 +21,6 @@
       "age": 0,
       "gender": "",
       "weight": 120,
-      "mass": "d4",
       "story": "",
       "motivation": "",
       "wealth": "d4",
@@ -48,30 +45,7 @@
       },
       "base_cp": 50,
       "earned_xp": 0,
-      "physicaldefense": 0,
-      "mentaldefense": 0,
-      "luck": 10,
-      "base_stats_cp": 50,
-      "abilities_cp": 0,
-      "total_cp": 50,
-      "spent_xp": 0,
-      "avail_ip": 0,
-      "used_ip": 0,
-      "healing": 1,
-      "initiative": "d4",
-      "carry": 0,
-      "hth": "d4",
-      "caps": {
-        "bcs": 0,
-        "ability": 0,
-        "dmg": 0
-      },
-      "gear": {
-        "break": 0,
-        "take": 0,
-        "disarm": 0,
-        "gbc": 0
-      }
+      "spent_xp": 0
     }
   },
   "Item": {
@@ -83,7 +57,7 @@
 	],
     "ability": {
       "description": "",
-      "cpcost": 10,
+      "cpcost": 0,
       "ipcost": 0,
       "rules": "",
       "stbonus": 0,
