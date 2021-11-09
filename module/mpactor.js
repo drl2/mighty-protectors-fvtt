@@ -48,8 +48,9 @@ export default class MPActor extends Actor {
 
         actorData.multiinit = abiltyBonuses.multiinit;
         actorData.carry = statData.st.carry;
+        this.updateMoveSpeeds(); // some move speeds may need updates from carry & stats
         actorData.hth = statData.st.hth_init;
-        actorData.mass = this.getMassRoll(actorData.weight);;
+        actorData.mass = this.getMassRoll(actorData.weight);
         actorData.user_cp = actorData.base_cp + actorData.spent_xp;
         actorData.stat_cp = 
             actorData.basecharacteristics.st.cp
@@ -58,7 +59,7 @@ export default class MPActor extends Actor {
             + actorData.basecharacteristics.in.cp
             + actorData.basecharacteristics.cl.cp;
         actorData.ability_cp = abiltyBonuses.cpcost;
-        actorData.total_cp = abiltyBonuses.cpcost + actorData.ability_cp;
+        actorData.total_cp = abiltyBonuses.cpcost + actorData.stat_cp;
         actorData.avail_ip = Math.ceil(actorData.basecharacteristics.in.value/2);
         actorData.used_ip = abiltyBonuses.ipcost;
 
@@ -81,7 +82,7 @@ export default class MPActor extends Actor {
         actorData.healing = statData.en.heal;
         actorData.physicaldefense = (actorData.basecharacteristics.ag.save -10) + abiltyBonuses.physdef;
         actorData.mentaldefense = (actorData.basecharacteristics.in.save -10) + abiltyBonuses.mentdef;
-
+        actorData.initiative = simplifyDice(statData.cl.hth_init + " + " + abiltyBonuses.init)
     }
 
     /**
@@ -139,7 +140,6 @@ export default class MPActor extends Actor {
         actorData.basecharacteristics.ag.value = actorData.basecharacteristics.ag.cp + bonuses.ag;
         actorData.basecharacteristics.in.value = actorData.basecharacteristics.in.cp + bonuses.in;
         actorData.basecharacteristics.cl.value = actorData.basecharacteristics.cl.cp + bonuses.cl;
-        this.updateMoveSpeeds();
     }
 
     /**

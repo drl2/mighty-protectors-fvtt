@@ -3,6 +3,7 @@ import MightyProtectorsItemSheet from "./sheets/MightyProtectorsItemSheet.js";
 import MightyProtectorsCharacterSheet from "./sheets/MightyProtectorsCharacterSheet.js";
 import MPItem from './mpitem.js';
 import MPActor from './mpactor.js';
+import { _getInitiativeFormula } from './combat.js';
 
 Hooks.once("init", function() {
     console.log("***** MP initializing   *********");
@@ -14,6 +15,8 @@ Hooks.once("init", function() {
 
     CONFIG.Item.documentClass = MPItem;
     CONFIG.Actor.documentClass = MPActor;
+
+    Combatant.prototype._getInitiativeFormula = _getInitiativeFormula;
 
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("mighty-protectors", MightyProtectorsItemSheet, {makeDefault: true });
