@@ -3,7 +3,10 @@ import MightyProtectorsItemSheet from "./sheets/MightyProtectorsItemSheet.js";
 import MightyProtectorsCharacterSheet from "./sheets/MightyProtectorsCharacterSheet.js";
 import MPItem from './mpitem.js';
 import MPActor from './mpactor.js';
-import { _getInitiativeFormula } from './combat.js';
+import MPCombat from './mpcombat.js';
+import MPCombatant from './mpcombatant.js';
+import MPCombatTracker from './mpcombattracker.js';
+import * as Macros from './macros.js';
 
 Hooks.once("init", function() {
     console.log("***** MP initializing   *********");
@@ -15,8 +18,14 @@ Hooks.once("init", function() {
 
     CONFIG.Item.documentClass = MPItem;
     CONFIG.Actor.documentClass = MPActor;
+    CONFIG.Combat.documentClass = MPCombat;
+    CONFIG.Combatant.documentClass = MPCombatant;
+    CONFIG.ui.combat = MPCombatTracker;
 
-    Combatant.prototype._getInitiativeFormula = _getInitiativeFormula;
+    game.mp = {
+        macros: Macros,
+        rollItemMacro: Macros.rollItemMacro
+    }
 
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("mighty-protectors", MightyProtectorsItemSheet, {makeDefault: true });
@@ -31,6 +40,9 @@ Hooks.once("ready", function() {
         game.settings.set("dice-so-nice","enabledSimultaneousRollForMessage",false);
         game.settings.set("mighty-protectors", "dsnSettingInit",true);
     }
+
+    Hooks.on("hotbarDrop", (bar, data, slot) => Macros.createRollItemMacro(data, slot));
+
 });
 
 

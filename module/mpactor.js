@@ -122,7 +122,7 @@ export default class MPActor extends Actor {
             abiltyBonuses.hp += ability.data.data.hpbonus || 0;
             abiltyBonuses.init += ability.data.data.initbonus || 0;
             abiltyBonuses.luck += ability.data.data.luckbonus || 0;
-            if (ability.data.multiinit) abiltyBonuses.multiinit = true;
+            if (ability.data.data.multiinit) abiltyBonuses.multiinit = true;
         }
 
         return abiltyBonuses;

@@ -79,7 +79,6 @@
       "multiinit": false
     },
     "attack": {
-      "tohit": 10,
       "dmgroll": "1d4",
       "dmgtype": "DAMAGE.BluntKinetic",
       "dmgsubtype": "",

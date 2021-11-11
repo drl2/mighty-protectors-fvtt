@@ -283,9 +283,10 @@
 
                         {{#each attacks as |item id|}}
                         <li class="item flexrow" data-item-id="{{item._id}}">
-                            <div class="item-image attackcol1">
+                            <div class="attackcol1">
                                 <span class="rollable attackroll" data-item-id="{{item._id}}">
-                                    <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
+                                    <div class="roll-image" role="button" aria-label="{{item.name}}" style="background-image: url('{{item.img}}')"></div>
+                                    
                                 </span>
                             </div>
                             <h4 class="item-name attackcol2">{{item.name}}</h4>
