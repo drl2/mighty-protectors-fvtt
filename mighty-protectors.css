@@ -183,7 +183,7 @@
 }
 .mightyprotectors.sheet.item .sheet-body .attack-grid {
   display: grid;
-  grid-template-columns: 60px 70px 110px 20px 60px 110px;
+  grid-template-columns: 70px 110px 40px 60px 110px;
   row-gap: 2px;
   align-items: center;
 }
@@ -192,6 +192,29 @@
 }
 .mightyprotectors.sheet.item .sheet-body .attack-grid input[type="text"] {
   width: 100px;
+}
+.mightyprotectors.sheet.item .sheet-body .bonus-list {
+  align-items: center;
+  border: solid;
+  border-radius: 5px;
+  padding: 2px 8px 2px 8px;
+  border-width: 1px;
+}
+.mightyprotectors.sheet.item .sheet-body .bonus-side-by-side {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.mightyprotectors.sheet.item .sheet-body .bonus-side-by-side .bonus-grid {
+  display: grid;
+  grid-template-columns: 65px 155px 55px;
+  row-gap: 2px;
+  align-items: center;
+}
+.mightyprotectors.sheet.item .sheet-body .bonus-side-by-side .bonus-grid .header-text {
+  text-decoration: underline;
+}
+.mightyprotectors.sheet.item .sheet-body .bonus-side-by-side .bonus-grid .item-header {
+  background-color: lightgray;
 }
 .mightyprotectors.sheet.character {
   /*  Sheet header */
@@ -210,17 +233,7 @@
   text-shadow: 0 0 8px red;
   color: black;
 }
-.mightyprotectors.sheet.character .rollable img {
-  border-color: steelblue;
-  height: 24px;
-  background-size: 24px;
-}
-.mightyprotectors.sheet.character .rollable img:hover {
-  border: 0px;
-  background-image: url("../../icons/svg/d20-black.svg") !important;
-}
 .mightyprotectors.sheet.character .roll-image {
-  border-color: steelblue;
   height: 24px;
   background-size: 24px;
   width: 24px;

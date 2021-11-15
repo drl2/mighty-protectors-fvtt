@@ -16,11 +16,17 @@
 
     <section class="sheet-body">
         <div class="attack-grid">
+
+            <div></div>
+            <div>{{localize 'MP.ToHit'}}</div>
+            <div></div>
+            <div></div>
+            <div>{{localize 'MP.Damage'}}</div>
+
+
+
             <div>
-                {{localize 'MP.ToHit'}}:
-            </div>
-            <div>
-                {{localize 'MP.Attribute'}}
+                {{localize 'MP.Attribute'}}:
             </div>
             <div>
                 <select name="data.attribute">
@@ -33,38 +39,19 @@
             </div>
             <div></div>
             <div>
-                {{#if mp.tohit}}{{localize 'MP.Target'}}{{/if}}
-            </div>
-            <div>
-                {{#if mp.tohit}}{{data.tohit}}{{/if}}
-            </div>
-
-            <div>&nbsp;</div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-
-            <div>
-                {{localize 'MP.Damage'}}:
-            </div>
-            <div>
                 {{localize 'MP.Formula'}}
             </div>
             <div>
-
                 <input name="data.dmgroll" type="text" value="{{data.dmgroll}}" />
             </div>
-            <div></div>
-            <div></div>
-            <div>
-                <label class="checkbox" title="{{ localize 'MP.KnockbackQ'}}">
-                    <input type="checkbox" name="data.knockback" {{checked data.knockback}}>
-                    {{ localize 'MP.KnockbackQ'}}
-                </label>
-            </div>
 
+
+            <div>
+                {{#if data.tohit}}{{localize 'MP.Target'}}:{{/if}}
+            </div>
+            <div>
+                {{#if data.tohit}}{{data.tohit}}-{{/if}}
+            </div>
             <div></div>
             <div>
                 {{localize 'MP.Type'}}
@@ -78,13 +65,23 @@
                     {{/select}}
                 </select>
             </div>
+
+            <div></div>
+            <div></div>
+            <div></div>
+            <div>{{localize 'MP.Subtype'}}</div>
+            <div><input name="data.dmgsubtype" type="text" value="{{data.dmgsubtype}}" /></div>
+
+
+            <div> {{localize 'MP.PowerCost'}}</div>
+            <div><input name="data.powercost" type="number" value="{{data.powercost}}" /></div>
+            <div></div>
             <div></div>
             <div>
-                {{localize 'MP.Subtype'}}
-            </div>
-            <div>
-
-                <input name="data.dmgsubtype" type="text" value="{{data.dmgsubtype}}" />
+                <label class="checkbox" title="{{ localize 'MP.KnockbackQ'}}">
+                    <input type="checkbox" name="data.knockback" {{checked data.knockback}}>
+                    {{ localize 'MP.KnockbackQ'}}
+                </label>
             </div>
 
             <div>&nbsp;</div>
@@ -92,21 +89,54 @@
             <div></div>
             <div></div>
             <div></div>
-            <div></div>
 
-
-            <div></div>
-            <div>
-                {{localize 'MP.PowerCost'}}
-            </div>
-            <div>
-
-                <input name="data.powercost" type="number" value="{{data.powercost}}" />
-            </div>
 
         </div>
-        <div class="bonus-grid">
-            list of related abilities w/bonuses goes here
+
+        {{#if isowned}}
+        {{localize 'MP.ToHitBonuses'}}
+        <div class="bonus-side-by-side">
+
+            <div>
+
+                <div class="bonus-list">
+                    <div class="bonus-grid">
+                        <div class="item-name item-header header-text background-col">{{localize 'MP.Applied'}}</div>
+                        <div class="item-name item-header header-text background-col">{{localize 'ITEM.TypeAbility'}}
+                        </div>
+                        <div class="item-name item-header header-text background-col">{{localize 'MP.Bonus'}}</div>
+
+                        {{#each appliedabilities as |item id|}}
+                        <h4 class="item-name background-col rollable remove-bonus" data-itemid="{{item.id}}">
+                            {{localize 'MP.Remove'}}
+                        </h4>
+                        <h4 class="item-name background-col">{{item.name}}</h4>
+                        <h4 class="item-name background-col">{{item.bonus}}</h4>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="bonus-list">
+                    <div class="bonus-grid">
+                        <div class="item-name item-header header-text background-col">{{localize 'MP.Available'}}</div>
+                        <div class="item-name item-header header-text background-col">{{localize 'ITEM.TypeAbility'}}
+                        </div>
+                        <div class="item-name item-header header-text background-col">{{localize 'MP.Bonus'}}</div>
+
+                        {{#each availabilities as |item id|}}
+                        <h4 class="item-name background-col rollable apply-bonus" data-itemid="{{item.id}}">
+                            {{localize 'MP.Apply'}}
+                        </h4>
+                        <h4 class="item-name background-col">{{item.name}}</h4>
+                        <h4 class="item-name background-col">{{item.bonus}}</h4>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
         </div>
+        {{/if}}
+
+
     </section>
 </form>

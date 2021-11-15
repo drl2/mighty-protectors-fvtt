@@ -36,20 +36,19 @@ export default class MPItem extends Item {
         super.prepareDerivedData();
 
         if (this.data.type === 'movement') this._prepareDerivedMovementData();
+        if (this.data.type === 'attack') this._prepareDerivedAttackData();
     }
 
 
     async _prepareDerivedMovementData() {
         const itemData = this.data;
         const actorData = this.actor ? this.actor.data : null;
-        
 
         // don't bother unless the move item is attached to a character, is set to constant rate type, and not set to manual entry
         if (itemData.data.moverateformula == "manual") {
             this.data.data.calcmoverate = this.data.data.moverate;
         }
         else if (actorData && (itemData.data.moveratetype === "constant")) {
-
 
             let rate = 0;
 
@@ -74,7 +73,44 @@ export default class MPItem extends Item {
         }
     }
 
+    _prepareDerivedAttackData() {
+        const itemData = this.data.data;
+        const actorData = this.actor ? this.actor.data : null;
 
+        if (actorData) {
+
+            // first get save for appropriate stat
+            let toHit = 3;
+            switch (itemData.attribute) {
+                case "AG":
+                    toHit += actorData.data.basecharacteristics.ag.save;
+                    break;
+                case "IN":
+                    toHit += actorData.data.basecharacteristics.in.save;
+                    break;
+                case "CL":
+                    toHit += actorData.data.basecharacteristics.cl.save;
+                    break;
+            }
+
+
+            // then calc selected bonuses from abilities
+            const items = actorData.items;
+            const bonusids = itemData.bonusids;
+            let totalbonus = 0;
+
+            if (bonusids) {
+                for (let i of items) {
+                    if (i.type === 'ability' && i.data.data.tohitbonus && bonusids.includes(i.id)) {
+                        totalbonus += i.data.data.tohitbonus
+                    }
+                }
+            }
+
+            toHit += totalbonus;
+            itemData.tohit = toHit;
+        }
+    }
 
     async roll() {
         const actor = this.actor;

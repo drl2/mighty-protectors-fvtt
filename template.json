@@ -84,7 +84,8 @@
       "dmgsubtype": "",
       "knockback": "Y",
       "attribute": "AG",
-      "powercost": 0
+      "powercost": 0,
+      "bonusids": []
     },
     "protection": {
       "kinetic": 0,

@@ -46,6 +46,7 @@ export default class MPActor extends Actor {
         actorData.basecharacteristics.in.save = statData.in.save;
         actorData.basecharacteristics.cl.save = statData.cl.save;
 
+        this.updateToHitValues();
         actorData.multiinit = abiltyBonuses.multiinit;
         actorData.carry = statData.st.carry;
         this.updateMoveSpeeds(); // some move speeds may need updates from carry & stats
@@ -150,6 +151,19 @@ export default class MPActor extends Actor {
         for (let i of this.items) {
             if (i.type === 'movement') {
                 i._prepareDerivedMovementData();
+            }
+        }
+    }
+
+    
+    /**
+     * Item updates happen before actor updates, not after
+     * So have to force these to update after base stat changes to reflect the new values
+     */
+     updateToHitValues() {
+        for (let i of this.items) {
+            if (i.type === 'attack') {
+                i._prepareDerivedAttackData();
             }
         }
     }

@@ -235,6 +235,11 @@
         "Formula": "Formula",
         "Type": "Type",
         "Subtype": "Sub-type",
-        "AddInititative": "Add another initiative entry for this character"
+        "AddInititative": "Add another initiative entry for this character",
+        "Apply": "Apply",
+        "ToHitBonuses": "To Hit Bonuses",
+        "Remove": "Remove",
+        "Applied": "Applied",
+        "Available": "Available"
     }
 }
