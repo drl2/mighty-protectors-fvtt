@@ -1,51 +1,58 @@
 {
   "Actor": {
-    "types": ["character","vehicle"],
+    "types": ["character","npc","vehicle"],
     "templates": {
       "base": {
         "hitpts": {
-          "value": 4
+          "value": 4,
+          "max": 4
         },
         "power": {
-          "value": 40
+          "value": 40,
+          "max": 40
         }
+      },
+      "char": {
+        "trueID": "",
+        "side": "",
+        "birthplace": "",
+        "species": "",
+        "culture": "",
+        "age": 0,
+        "gender": "",
+        "weight": 120,
+        "story": "",
+        "motivation": "",
+        "wealth": "d4",
+        "origintype": "",
+        "legalstatus": "",
+        "basecharacteristics": {
+          "st": {
+            "cp": 10
+          },
+          "en": {
+            "cp": 10
+          },
+          "ag": {
+            "cp": 10
+          },
+          "in": {
+            "cp": 10
+          },
+          "cl": {
+            "cp": 10
+          }
+        },
+        "base_cp": 50,
+        "earned_xp": 0,
+        "spent_xp": 0  
       }
     },
     "character": {
-      "templates": ["base"],
-      "trueID": "",
-      "side": "",
-      "birthplace": "",
-      "species": "",
-      "culture": "",
-      "age": 0,
-      "gender": "",
-      "weight": 120,
-      "story": "",
-      "motivation": "",
-      "wealth": "d4",
-      "origintype": "",
-      "legalstatus": "",
-      "basecharacteristics": {
-        "st": {
-          "cp": 10
-        },
-        "en": {
-          "cp": 10
-        },
-        "ag": {
-          "cp": 10
-        },
-        "in": {
-          "cp": 10
-        },
-        "cl": {
-          "cp": 10
-        }
-      },
-      "base_cp": 50,
-      "earned_xp": 0,
-      "spent_xp": 0
+      "templates": ["base", "char"]
+    },
+    "npc": {
+      "templates": ["base", "char"]
     }
   },
   "Item": {

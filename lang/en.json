@@ -28,6 +28,7 @@
 
     "ACTOR": {
         "TypeCharacter": "Character",
+        "TypeNPC": "NPC",
         "TypeVehicle": "Vehicle"    
     },
     "ITEM": {

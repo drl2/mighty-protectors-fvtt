@@ -21,13 +21,18 @@ export default class MPActor extends Actor {
             const img = MP.ActorTypeImages[data.type];
             if (img) await this.data.update({ img });
         }
+
+        // set some token defaults for player characters
+        if ( this.type === "character" ) {
+            this.data.token.update({vision: true, actorLink: true, disposition: 1});
+        }
     }
 
 
     prepareDerivedData() {
         super.prepareDerivedData();
 
-        if (this.data.type === 'character') this._prepareDerivedCharacterData();
+        if (this.data.type === 'character' || this.data.type === 'npc') this._prepareDerivedCharacterData();
     }
 
     _prepareDerivedCharacterData() {
@@ -78,12 +83,14 @@ export default class MPActor extends Actor {
 
         // need to add ability bonuses to these
         actorData.luck = 10 + abiltyBonuses.luck; 
-        actorData.hitpts.max = statData.st.hits_st + statData.ag.hits_ag + statData.en.hits_en + statData.cl.hits_cl + abiltyBonuses.hp;
-        actorData.power.max = actorData.basecharacteristics.st.value + actorData.basecharacteristics.ag.value + actorData.basecharacteristics.en.value + actorData.basecharacteristics.in.value + abiltyBonuses.power;
         actorData.healing = statData.en.heal;
         actorData.physicaldefense = (actorData.basecharacteristics.ag.save -10) + abiltyBonuses.physdef;
         actorData.mentaldefense = (actorData.basecharacteristics.in.save -10) + abiltyBonuses.mentdef;
-        actorData.initiative = simplifyDice(statData.cl.hth_init + " + " + abiltyBonuses.init)
+        actorData.initiative = simplifyDice(statData.cl.hth_init + " + " + abiltyBonuses.init)       
+        actorData.hitpts.max = statData.st.hits_st + statData.ag.hits_ag + statData.en.hits_en + statData.cl.hits_cl + abiltyBonuses.hp;
+        actorData.power.max = actorData.basecharacteristics.st.value + actorData.basecharacteristics.ag.value + actorData.basecharacteristics.en.value + actorData.basecharacteristics.in.value + abiltyBonuses.power;
+
+
     }
 
     /**

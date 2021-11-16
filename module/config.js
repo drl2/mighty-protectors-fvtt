@@ -16,6 +16,7 @@ MP.ItemTypeImages = {
 
 MP.ActorTypeImages = {
     character: "systems/mighty-protectors/assets/icons/character.webp",
+    npc: "systems/mighty-protectors/assets/icons/character.webp",
     vehicle: "systems/mighty-protectors/assets/icons/vehicle.webp",
 }
 
