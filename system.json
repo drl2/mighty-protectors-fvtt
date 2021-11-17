@@ -2,7 +2,7 @@
   "name": "mighty-protectors",
   "title": "Villains and Vigilantes 3 - Mighty Protectors",
   "description": "A FoundryVTT system implementation of Villains and Vigilantes 3 - Mighty Protectors!",
-  "version": "0.0.1",
+  "version": "0.5.0",
   "minimumCoreVersion": "0.8.0",
   "compatibleCoreVersion": "0.8.9",
   "templateVersion": 2,
