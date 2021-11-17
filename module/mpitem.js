@@ -163,11 +163,12 @@ export default class MPItem extends Item {
         async function rollAttackCallback(html) {
             let modToHit = Number.parseInt(itemData.data.tohit);
             let mod = "";
-            let push = html.find('[name="push"]')[0].value;
-            let spendPower = html.find('[name="autodeduct"]')[0].value;
+            let push = html.find('[name="push"]')[0].checked;
+            let spendPower = html.find('[name="autodeduct"]')[0].checked;
             let dmgFormula = itemData.data.dmgroll;
             let powerCost = itemData.data.powercost;
 
+            
             if (targetName) {
                 mod = html.find('[name="mod"]')[0].value.trim();
             }
@@ -203,7 +204,9 @@ export default class MPItem extends Item {
                 success: success,
                 attackRoll: attackRoll,
                 rollMinMax: rollMinMax(attackRoll.dice[0].total),
-                dmgRoll: dmgRoll
+                dmgRoll: dmgRoll,
+                isCrit: attackRoll.dice[0].total === 1,
+                isFumble: attackRoll.dice[0].total === 20
             };
 
             let cardContent = await renderTemplate("systems/mighty-protectors/templates/chatcards/attackroll.hbs", rollData);
@@ -218,9 +221,9 @@ export default class MPItem extends Item {
             ChatMessage.create(chatOptions);
 
             if (spendPower) {
-                actor.data.data.power.value -= powerCost;
+                let newPower = actor.data.data.power.value - powerCost;
+                await actor.update({ "data.power.value": newPower });
             }
-
         }
     }
 }

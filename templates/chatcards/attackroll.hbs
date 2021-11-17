@@ -23,6 +23,9 @@
     </div>
 </div>
 
+{{#if isCrit}}<div style="font-weight: bold">{{localize 'MP.PossibleCrit'}}!</div>{{/if}}
+{{#if isFumble}}<div style="font-weight: bold">{{localize 'MP.PossibleFumble'}}!</div>{{/if}}
+
 {{#if targetName}}
 {{#if success}}
 {{localize 'MP.AttackHits'}}

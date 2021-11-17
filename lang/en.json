@@ -25,10 +25,9 @@
             "label": "When a target is selected and an attack is successful, show an indicator of how much damage the target can potentiually 'roll' with.  This is a simple calculation based on the target's current Power and does not take other factors into account."
         }
     },
-
     "ACTOR": {
         "TypeCharacter": "Character",
-        "TypeNPC": "NPC",
+        "TypeNpc": "NPC",
         "TypeVehicle": "Vehicle"    
     },
     "ITEM": {
@@ -241,6 +240,8 @@
         "ToHitBonuses": "To Hit Bonuses",
         "Remove": "Remove",
         "Applied": "Applied",
-        "Available": "Available"
+        "Available": "Available",
+        "PossibleFumble": "Possible Fumble",
+        "PossibleCrit": "Possible Critical Hit"
     }
 }
