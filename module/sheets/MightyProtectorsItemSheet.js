@@ -60,7 +60,7 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
         // iterate through items & allocate to containers
         for (let i of items) {
             if (i.type === 'ability' && i.data.data.tohitbonus) {
-                if (bonusids.includes(i.id)) {
+                if (bonusids && bonusids.includes(i.id)) {
                     appliedabilities.push(
                         {
                             id: i.id,
@@ -114,6 +114,7 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
         const itemData = abilityItem.data.data;
         let bonusids = this.item.data.data.bonusids;
 
+        
         if (bonusids.includes(dataset.itemid)) {
             bonusids = bonusids.filter(function (value, index, arr) {
                 return value != dataset.itemid;

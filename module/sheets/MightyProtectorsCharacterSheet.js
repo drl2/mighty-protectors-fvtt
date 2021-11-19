@@ -241,7 +241,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
 
         switch (element.dataset.type) {
             case 'ability':
-                cardContent = item.data.data.rules;
+                cardContent = "<h3>" + item.name + "</h3><div>" + item.data.data.rules + "</div>";
                 break;
             default:
                 cardContent = "";
