@@ -1,71 +1,58 @@
 {
   "Actor": {
-    "types": ["character","vehicle"],
+    "types": ["character","npc","vehicle"],
     "templates": {
       "base": {
         "hitpts": {
-          "value": 10,
-          "max": 10
+          "value": 4,
+          "max": 4
         },
         "power": {
-          "value": 5,
-          "max": 5
+          "value": 40,
+          "max": 40
         }
+      },
+      "char": {
+        "trueID": "",
+        "side": "",
+        "birthplace": "",
+        "species": "",
+        "culture": "",
+        "age": 0,
+        "gender": "",
+        "weight": 120,
+        "story": "",
+        "motivation": "",
+        "wealth": "d4",
+        "origintype": "",
+        "legalstatus": "",
+        "basecharacteristics": {
+          "st": {
+            "cp": 10
+          },
+          "en": {
+            "cp": 10
+          },
+          "ag": {
+            "cp": 10
+          },
+          "in": {
+            "cp": 10
+          },
+          "cl": {
+            "cp": 10
+          }
+        },
+        "base_cp": 50,
+        "earned_xp": 0,
+        "spent_xp": 0  
       }
     },
     "character": {
-      "templates": ["base"],
-      "trueID": "",
-      "side": "",
-      "birthplace": "",
-      "species": "",
-      "culture": "",
-      "age": 0,
-      "gender": "",
-      "weight": 0,
-      "mass": "d4",
-      "story": "",
-      "motivation": "",
-      "wealth": "d4",
-      "origintype": "",
-      "legalstatus": "",
-      "basecharacteristics": {
-        "st": {
-          "cp": 10,
-          "value": 10
-        },
-        "en": {
-          "cp": 10,
-          "value": 10,
-          "save": 10
-        },
-        "ag": {
-          "cp": 10,
-          "value": 10,
-          "save": 10
-        },
-        "in": {
-          "cp": 10,
-          "value": 10,
-          "save": 10
-        },
-        "cl": {
-          "cp": 10,
-          "value": 10,
-          "save": 10
-        }
-      },
-      "base_cp": 50,
-      "earned_xp": 0,
-      "physicaldefense": 0,
-      "mentaldefense": 0,
-      "luck": 10,
-      "base_stats_cp": 50,
-      "abilities_cp": 0,
-      "total_cp": 50,
-      "spent_xp": 0,
-      "avail_ip": 0,
-      "used_ip": 0
+      "templates": ["base", "char"]
+    },
+    "npc": {
+      "templates": ["base", "char"]
     }
   },
   "Item": {
@@ -77,7 +64,7 @@
 	],
     "ability": {
       "description": "",
-      "cpcost": 10,
+      "cpcost": 0,
       "ipcost": 0,
       "rules": "",
       "stbonus": 0,
@@ -95,15 +82,17 @@
       "usescharges": false,
       "charges": 0,
       "chargesused": 0,
-      "isgear": false
+      "isgear": false,
+      "multiinit": false
     },
     "attack": {
-      "tohit": 10,
       "dmgroll": "1d4",
-      "dmgtype": "Blunt Kinetic",
+      "dmgtype": "DAMAGE.BluntKinetic",
+      "dmgsubtype": "",
       "knockback": "Y",
       "attribute": "AG",
-      "powercost": 0
+      "powercost": 0,
+      "bonusids": []
     },
     "protection": {
       "kinetic": 0,
@@ -116,9 +105,10 @@
     },
     "movement": {
       "moverate": 10,
-      "isconstant": true,
+      "moveratetype": "constant",
       "accel": 0,
-      "top": 0
+      "top": 0,
+      "moverateformula": "manual"
     }
   }
 }

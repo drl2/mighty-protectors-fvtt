@@ -27,10 +27,10 @@
         <div class="tab description" data-group="primary" data-tab="description">
             <div class="descgrid">
                 <div>
-                    {{localize 'MP.CharacterPointsAbbr'}}
+                    {{localize 'MP.Abbreviations.CharacterPoints'}}
                     <input name="data.cpcost" type="number" value="{{data.cpcost}}" data-dtype="Number" title="{{ localize 'MP.CharacterPointsCost' }}" />
 
-                    {{localize 'MP.InventingPointsAbbr'}}
+                    {{localize 'MP.Abbreviations.InventingPoints'}}
                     <input name="data.ipcost" type="number" value="{{data.ipcost}}" data-dtype="Number" title="{{ localize 'MP.InventingPointsCost' }}" />
                 </div>
                 <div class="desccolumn">
@@ -50,7 +50,7 @@
                 <div></div>
 
                 <div class="colheader1 separator">
-                    {{ localize 'MP.BaseCharacteristicsAbbr'}} {{ localize 'MP.Adjustments'}}
+                    {{ localize 'MP.Abbreviations.BaseCharacteristics'}} {{ localize 'MP.Adjustments'}}
                 </div>                
                 <div class="colheader2">
                     {{ localize 'MP.Other'}} {{ localize 'MP.Adjustments'}}
@@ -59,9 +59,9 @@
 
                 <!-- row start -->
                 <div>
-                    {{ localize 'MP.BCStatsStrengthAbbr'}}
+                    {{ localize 'BC.Strength.abbr'}}
                 </div>
-                <div title="{{ localize 'MP.BCStatsStrength'}}" class="separator">
+                <div title="{{ localize 'BC.Strength.fullname'}}" class="separator">
                     <input name="data.stbonus" type="number" value="{{data.stbonus}}" data-dtype="Number" />
                 </div>
                 <div>
@@ -83,14 +83,14 @@
 
                 <!-- row start -->
                 <div>
-                    {{ localize 'MP.BCStatsEnduranceAbbr'}}
+                    {{ localize 'BC.Endurance.abbr'}}
                 </div>
-                <div title="{{ localize 'MP.BCStatsEndurance'}}" class="separator">
+                <div title="{{ localize 'BC.Endurance.fullname'}}" class="separator">
                     <input name="data.enbonus" type="number" value="{{data.enbonus}}" data-dtype="Number" />
                 </div>
 
                 <div>
-                    {{ localize 'MP.PhysicalDefenseAbbr'}}
+                    {{ localize 'MP.Abbreviations.PhysicalDefense'}}
                 </div>
                 <div title="{{ localize 'MP.PhysicalDefense'}}">
                     <input name="data.physdefbonus" type="number" value="{{data.physdefbonus}}" data-dtype="Number" />
@@ -107,28 +107,32 @@
 
                 <!-- row start -->
                 <div>
-                    {{ localize 'MP.BCStatsAgilityAbbr'}}  
+                    {{ localize 'BC.Agility.abbr'}}  
                 </div>
-                <div title="{{ localize 'MP.BCStatsAgility'}}" class="separator">
+                <div title="{{ localize 'BC.Agility.fullname'}}" class="separator">
                     <input name="data.agbonus" type="number" value="{{data.agbonus}}" data-dtype="Number" />
                 </div>
 
-                <div>{{ localize 'MP.MentalDefenseAbbr'}}</div>
+                <div>{{ localize 'MP.Abbreviations.MentalDefense'}}</div>
                 <div title="{{ localize 'MP.MentalDefense'}}">
                     <input name="data.mentdefbonus" type="number" value="{{data.mentdefbonus}}" data-dtype="Number" />
                 </div>
 
-                <div>{{ localize 'MP.Initiative'}}</div>
-                <div title="{{ localize 'MP.Initiative'}}">
-                    <input name="data.initbonus" type="number" value="{{data.initbonus}}" data-dtype="Number" />
+                <div>
+                    <label class="checkbox" title="{{ localize 'MP.MultiInitiative'}}">
+                        <input type="checkbox" name="data.multiinit" {{checked data.multiinit}}>
+                        {{ localize 'MP.Abbreviations.MultiInitiative'}}
+                    </label>
                 </div>
+                <div></div>
+
                 <!-- row end -->
 
                 <!-- row start -->
                 <div>
-                    {{ localize 'MP.BCStatsIntelligenceAbbr'}}
+                    {{ localize 'BC.Intelligence.abbr'}}
                 </div>
-                <div title="{{ localize 'MP.BCStatsIntelligence'}}" class="separator">
+                <div title="{{ localize 'BC.Intelligence.fullname'}}" class="separator">
                     <input name="data.inbonus" type="number" value="{{data.inbonus}}" data-dtype="Number" />
                 </div>
 
@@ -137,17 +141,19 @@
                     <input name="data.powerbonus" type="number" value="{{data.powerbonus}}" data-dtype="Number" />
                 </div>
 
-                <div>{{ localize 'MP.Luck'}}</div>
-                <div title="{{ localize 'MP.Luck'}}">
-                    <input name="data.luckbonus" type="number" value="{{data.luckbonus}}" data-dtype="Number" />
+                <div>{{ localize 'MP.Initiative'}}</div>
+                <div title="{{ localize 'MP.Initiative'}}">
+                    <input name="data.initbonus" type="number" value="{{data.initbonus}}" data-dtype="Number" />
                 </div>
+
+
                 <!-- row end -->
 
                 <!-- row start -->
                 <div >
-                    {{ localize 'MP.BCStatsCoolAbbr'}}
+                    {{ localize 'BC.Cool.abbr'}}
                 </div>
-                <div title="{{ localize 'MP.BCStatsCool'}}" class="separator">
+                <div title="{{ localize 'BC.Cool.fullname'}}" class="separator">
                     <input name="data.clbonus" type="number" value="{{data.clbonus}}" data-dtype="Number" />
                 </div>
 
@@ -156,8 +162,10 @@
                     <input name="data.hpbonus" type="number" value="{{data.hpbonus}}" data-dtype="Number" />
                 </div>
 
-                <div></div>
-                <div></div>           
+                <div>{{ localize 'MP.Luck'}}</div>
+                <div title="{{ localize 'MP.Luck'}}">
+                    <input name="data.luckbonus" type="number" value="{{data.luckbonus}}" data-dtype="Number" />
+                </div>
                 <!-- row end -->
             </div>
         </div>

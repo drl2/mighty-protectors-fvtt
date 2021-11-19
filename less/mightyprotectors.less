@@ -5,14 +5,32 @@
         flex-direction: column;
       }
 
-      .rollable {
-          cursor: pointer;
-      }
+    .rollable {
+        cursor: pointer;
+        text-shadow: 0 0 4px steelblue;
+    }
 
-      .rollable:hover {
+    .rollable:hover {
         text-shadow: 0 0 8px red;
+        color:black;
+    }
+
+
+
+     .roll-image {
+        height: 24px;
+        background-size: 24px;
+        width: 24px;
+     }
+ 
+     .roll-image:hover {
+         border: 0px;
+         background-image: url("../../icons/svg/d20-black.svg") !important;
       }
 
+    .important-stat {
+        font-weight: bold;
+    }
     
     /*  Sheet header */
     .sheet-header {
@@ -35,17 +53,19 @@
 
         .header-stats {
             font-size: 14px;
-            text-transform: uppercase;
             margin-left: 12px;
             display: grid;
-            grid-template-columns: 140px 140px 20px 140px 140px;
-            
-
-
+            grid-template-columns: 110px 110px 70px 90px 100px 100px;
+            align-items: center;
+ 
             input[type="number"] {
                 width: 30px;
                 text-align: center;
               }
+
+            .init-text {
+                width: 60px;
+            }
         }
     }
 
@@ -95,6 +115,7 @@
                 display: grid;
                 grid-template-columns: 40px 30px 40px auto;
                 align-items: center;
+                row-gap: 1px;
 
                 input[type="number"] {
                     width: 30px;
@@ -106,6 +127,7 @@
                 display: grid;
                 grid-template-columns: 40px 110px;
                 align-items: center;
+                row-gap: 1px;
 
                 input[type="number"] {
                     width: 30px;
@@ -117,12 +139,51 @@
                     margin-top: 1px;
                     margin-bottom: 1px;
                 }
+
+                .totalcp {
+                    width: 28px;
+                    text-align: center;
+                    padding-left: 3px;
+                    padding-right: 3px;
+                }
+
+            }
+
+            .other-grid {
+                display: grid;
+                grid-template-columns: 70px 90px;
+                padding-top: 20px;
+                align-items: center;
+                row-gap: 1px;
+
+                input[type="text"] {
+                    width: 60px;
+                    text-align: center;
+                  }
+
+                input[type="number"] {
+                    width: 40px;
+                    text-align: center;
+                  }
+            }
+
+
+            .header-text {
+                text-decoration: underline;
             }
 
             .item-header {
                 background-color: lightgray;
             }
 
+
+            .item-list {
+                align-items: center;
+                border: solid;
+                border-radius: 5px;
+                padding: 2px 8px 2px 8px;
+                border-width: 1px;
+            }
 
             /* abilities */
             .abilitycol1 {
@@ -148,6 +209,7 @@
             .abilitycol5 {
                 flex: 0 0 auto;
                 align-items: center;
+                margin-left:auto;
             }
 
             /* attacks */
@@ -184,26 +246,115 @@
             .attackcol7 {
                 flex: 0 0 auto;
                 align-items: center;
+                margin-left:auto;
             }
 
+            /* protection */
+            .protectcol1 {
+                flex: 0 0 140px;
+                align-items: center;
+            }
 
+            .protectcol-middle {
+                flex: 0 0 55px;
+                align-items: center;
+            }
+
+            .protectcol-other {
+                flex: 0 0 140px;
+                align-items: center;
+            }
+
+            .protectcol-controls {
+                flex: 0 0 auto;
+                align-items: center;
+                margin-left:auto;
+            }
+
+            .movementcol-controls {
+                flex: 0 0 auto;
+                margin-left:auto;
+            }
 
             .divider-top {
                 border-top: 1px solid black;
                 margin-top: 1px;
                 margin-bottom: 1px;
             }
+        }
 
+        .caps-container {
+            display: flex;
+            justify-content: center;
+        
+            .caps {
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                /* position: absolute;
+                bottom: 0;    */            
+            }
         }
     }
 
 
     .bio {
-        
+        display: grid;
+        grid-template-columns: 430px 250px;
+        row-gap: 1px;
+        column-gap: 10px;
+
+
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 80px 120px 20px 80px 120px;
+            align-items: center;
+            row-gap: 1px;
+ 
+            input[type="number"] {
+                width: 80px;
+              }
+
+        }
+
+        .backgrounds-grid {
+            display: grid;
+            row-gap: 1px;
+
+            .item-list {
+                align-items: center;
+                border: solid;
+                border-radius: 5px;
+                padding: 2px 8px 2px 8px;
+                border-width: 1px;
+            }
+
+            .header-text {
+                text-decoration: underline;
+            }
+
+            .item-header {
+                background-color: lightgray;
+            }
+
+            .background-col {
+                flex: 0 0 180px;
+                align-items: center;
+            }
+
+            .background-col-controls {
+                flex: 0 0 auto;
+                align-items: center;
+
+            }
+        }
+
     }
 
-    .journal {
-        
+    .story {
+        .editor {
+            height: 90%;         
+          }    
     }
 
   }

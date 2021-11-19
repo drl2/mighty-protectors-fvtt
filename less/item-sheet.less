@@ -1,48 +1,58 @@
 @import "./variables.less";
+
 .mightyprotectors.sheet.item {
 
-  form{
-    display: flex;
+  form {
+    display       : flex;
     flex-direction: column;
   }
 
-  
+  .rollable {
+    cursor: pointer;
+  }
+
+  .rollable:hover {
+    text-shadow: 0 0 8px red;
+    color      : black;
+  }
+
+
   /*  Sheet header */
   .sheet-header {
-    flex: 0;
+    flex         : 0;
     margin-bottom: 5px;
 
     .item-subtitle {
       margin-left: 8px;
 
       .item-type {
-        font-size: 10px;
+        font-size  : 10px;
         line-height: 14px;
       }
 
     }
   }
-  
+
 
 
   /* sheet navigation */
   .sheet-navigation {
-    height: 20px;
-    flex: 0;
+    height       : 20px;
+    flex         : 0;
     margin-bottom: 10px;
 
     .item {
-      height: 20px;
+      height       : 20px;
       border-bottom: 3px solid #b5b3a4;
     }
 
     .item.active {
-      text-shadow: 0 0 10px #3a2aa6;
+      text-shadow  : 0 0 10px #3a2aa6;
       border-bottom: 3px solid #44191A;
     }
 
     a:hover {
-      text-shadow: 0 0 10px #3a2aa6;
+      text-shadow  : 0 0 10px #3a2aa6;
       border-bottom: 3px solid #44191A;
     }
 
@@ -54,9 +64,13 @@
 
   /* sheet body */
   .sheet-body {
-    height: 100%;
-    display: flex;
+    height        : 100%;
+    display       : flex;
     flex-direction: column;
+
+    .bgdesc {
+      min-height: 170px;
+    }
 
     .tab {
       height: 100%;
@@ -65,75 +79,164 @@
     .description {
 
       .descgrid {
-        display: grid;
+        display              : grid;
         grid-template-columns: 50px auto;
-        align-items: center;
-        
+        align-items          : center;
+
 
         .desccolumn {
           grid-column: 2;
-          grid-row: 1 / span 2;
-          height: 100%;
+          grid-row   : 1 / span 2;
+          height     : 100%;
         }
 
         .desctext {
           min-height: 150px;
-          height: 85%;
+          height    : 85%;
         }
 
         input[type="number"] {
           width: 40px;
         }
-
-
       }
-      
+
     }
 
 
     .details {
 
       .detailgrid {
-        display: grid;
+        display              : grid;
         grid-template-columns: 60px 60px 80px 70px 80px auto;
-        align-items: center;
-        
+        align-items          : center;
+
         .separator {
           margin-right: 8px;
           border-right: 2px solid silver;
         }
-            
+
         input[type="number"] {
-          width: 40px;font-size: 11px;
+          width    : 40px;
+          font-size: 11px;
         }
 
         .colheader1 {
-          grid-column: 1 / span 2;
-          align-items: center;
+          grid-column  : 1 / span 2;
+          align-items  : center;
           border-bottom: 1px solid gray;
           margin-bottom: 3px;
         }
 
         .colheader2 {
-          grid-column: 3 / span 4;
-          align-items: center;
+          grid-column  : 3 / span 4;
+          align-items  : center;
           border-bottom: 1px solid gray;
           margin-bottom: 3px;
         }
       }
-  
+
     }
 
     .rules {
-      
+
       .ruletab {
         height: 100%;
-          
+
         .editor {
-          height: 90%;         
-        }  
+          height: 90%;
+        }
       }
     }
+
+    .move-body {
+      display              : grid;
+      grid-template-columns: auto auto;
+
+      .move-subgrid {
+        display              : grid;
+        grid-template-columns: auto auto;
+        align-items          : center;
+        padding-top          : 15px;
+        row-gap              : 2px;
+
+      }
+
+
+      input[type="text"] {
+        width: 55px;
+      }
+
+      .hidden {
+        display: none;
+      }
+    }
+
+    .prot-grid {
+      display              : grid;
+      grid-template-columns: repeat(5, 1fr);
+      column-gap           : 5px;
+
+      .other-row {
+        padding-top: 10px;
+        grid-column: 1 / 5;
+      }
+
+      input[type="number"] {
+        width: 50px;
+      }
+
+      input[type="text"] {
+        width: 100px;
+      }
+    }
+
+    .attack-grid {
+      display              : grid;
+      grid-template-columns: 70px 110px 40px 60px 110px;
+      row-gap              : 2px;
+      align-items          : center;
+
+      input[type="number"] {
+        width: 30px;
+      }
+
+      input[type="text"] {
+        width: 100px;
+      }
+
+    }
+
+
+    .bonus-list {
+      align-items  : center;
+      border       : solid;
+      border-radius: 5px;
+      padding      : 2px 8px 2px 8px;
+      border-width : 1px;
+    }
+
+    .bonus-side-by-side {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      
+      .bonus-grid {
+        display              : grid;
+        grid-template-columns: 65px 155px 55px;
+        row-gap              : 2px;
+        align-items          : center;
+
+
+        .header-text {
+          text-decoration: underline;
+        }
+
+        .item-header {
+          background-color: lightgray;
+        }
+      }
+
+  }
+
   }
 
 }

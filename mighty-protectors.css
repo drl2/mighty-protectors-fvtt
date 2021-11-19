@@ -52,6 +52,13 @@
   display: flex;
   flex-direction: column;
 }
+.mightyprotectors.sheet.item .rollable {
+  cursor: pointer;
+}
+.mightyprotectors.sheet.item .rollable:hover {
+  text-shadow: 0 0 8px red;
+  color: black;
+}
 .mightyprotectors.sheet.item .sheet-header {
   flex: 0;
   margin-bottom: 5px;
@@ -87,6 +94,9 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+}
+.mightyprotectors.sheet.item .sheet-body .bgdesc {
+  min-height: 170px;
 }
 .mightyprotectors.sheet.item .sheet-body .tab {
   height: 100%;
@@ -139,6 +149,73 @@
 .mightyprotectors.sheet.item .sheet-body .rules .ruletab .editor {
   height: 90%;
 }
+.mightyprotectors.sheet.item .sheet-body .move-body {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.mightyprotectors.sheet.item .sheet-body .move-body .move-subgrid {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  padding-top: 15px;
+  row-gap: 2px;
+}
+.mightyprotectors.sheet.item .sheet-body .move-body input[type="text"] {
+  width: 55px;
+}
+.mightyprotectors.sheet.item .sheet-body .move-body .hidden {
+  display: none;
+}
+.mightyprotectors.sheet.item .sheet-body .prot-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 5px;
+}
+.mightyprotectors.sheet.item .sheet-body .prot-grid .other-row {
+  padding-top: 10px;
+  grid-column: 1 / 5;
+}
+.mightyprotectors.sheet.item .sheet-body .prot-grid input[type="number"] {
+  width: 50px;
+}
+.mightyprotectors.sheet.item .sheet-body .prot-grid input[type="text"] {
+  width: 100px;
+}
+.mightyprotectors.sheet.item .sheet-body .attack-grid {
+  display: grid;
+  grid-template-columns: 70px 110px 40px 60px 110px;
+  row-gap: 2px;
+  align-items: center;
+}
+.mightyprotectors.sheet.item .sheet-body .attack-grid input[type="number"] {
+  width: 30px;
+}
+.mightyprotectors.sheet.item .sheet-body .attack-grid input[type="text"] {
+  width: 100px;
+}
+.mightyprotectors.sheet.item .sheet-body .bonus-list {
+  align-items: center;
+  border: solid;
+  border-radius: 5px;
+  padding: 2px 8px 2px 8px;
+  border-width: 1px;
+}
+.mightyprotectors.sheet.item .sheet-body .bonus-side-by-side {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.mightyprotectors.sheet.item .sheet-body .bonus-side-by-side .bonus-grid {
+  display: grid;
+  grid-template-columns: 65px 155px 55px;
+  row-gap: 2px;
+  align-items: center;
+}
+.mightyprotectors.sheet.item .sheet-body .bonus-side-by-side .bonus-grid .header-text {
+  text-decoration: underline;
+}
+.mightyprotectors.sheet.item .sheet-body .bonus-side-by-side .bonus-grid .item-header {
+  background-color: lightgray;
+}
 .mightyprotectors.sheet.character {
   /*  Sheet header */
   /* sheet navigation */
@@ -150,9 +227,23 @@
 }
 .mightyprotectors.sheet.character .rollable {
   cursor: pointer;
+  text-shadow: 0 0 4px steelblue;
 }
 .mightyprotectors.sheet.character .rollable:hover {
   text-shadow: 0 0 8px red;
+  color: black;
+}
+.mightyprotectors.sheet.character .roll-image {
+  height: 24px;
+  background-size: 24px;
+  width: 24px;
+}
+.mightyprotectors.sheet.character .roll-image:hover {
+  border: 0px;
+  background-image: url("../../icons/svg/d20-black.svg") !important;
+}
+.mightyprotectors.sheet.character .important-stat {
+  font-weight: bold;
 }
 .mightyprotectors.sheet.character .sheet-header {
   flex: 0;
@@ -171,14 +262,17 @@
 }
 .mightyprotectors.sheet.character .sheet-header .header-stats {
   font-size: 14px;
-  text-transform: uppercase;
   margin-left: 12px;
   display: grid;
-  grid-template-columns: 140px 140px 20px 140px 140px;
+  grid-template-columns: 110px 110px 70px 90px 100px 100px;
+  align-items: center;
 }
 .mightyprotectors.sheet.character .sheet-header .header-stats input[type="number"] {
   width: 30px;
   text-align: center;
+}
+.mightyprotectors.sheet.character .sheet-header .header-stats .init-text {
+  width: 60px;
 }
 .mightyprotectors.sheet.character .sheet-navigation {
   height: 20px;
@@ -213,11 +307,13 @@
   grid-template-columns: 190px auto;
   /* abilities */
   /* attacks */
+  /* protection */
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .bc-grid {
   display: grid;
   grid-template-columns: 40px 30px 40px auto;
   align-items: center;
+  row-gap: 1px;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .bc-grid input[type="number"] {
   width: 30px;
@@ -227,6 +323,7 @@
   display: grid;
   grid-template-columns: 40px 110px;
   align-items: center;
+  row-gap: 1px;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .cp-grid input[type="number"] {
   width: 30px;
@@ -237,8 +334,39 @@
   margin-top: 1px;
   margin-bottom: 1px;
 }
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .cp-grid .totalcp {
+  width: 28px;
+  text-align: center;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .other-grid {
+  display: grid;
+  grid-template-columns: 70px 90px;
+  padding-top: 20px;
+  align-items: center;
+  row-gap: 1px;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .other-grid input[type="text"] {
+  width: 60px;
+  text-align: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .other-grid input[type="number"] {
+  width: 40px;
+  text-align: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .header-text {
+  text-decoration: underline;
+}
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .item-header {
   background-color: lightgray;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .item-list {
+  align-items: center;
+  border: solid;
+  border-radius: 5px;
+  padding: 2px 8px 2px 8px;
+  border-width: 1px;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .abilitycol1 {
   flex: 0 0 50px;
@@ -259,6 +387,7 @@
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .abilitycol5 {
   flex: 0 0 auto;
   align-items: center;
+  margin-left: auto;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .attackcol1 {
   flex: 0 0 35px;
@@ -287,9 +416,85 @@
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .attackcol7 {
   flex: 0 0 auto;
   align-items: center;
+  margin-left: auto;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .protectcol1 {
+  flex: 0 0 140px;
+  align-items: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .protectcol-middle {
+  flex: 0 0 55px;
+  align-items: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .protectcol-other {
+  flex: 0 0 140px;
+  align-items: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .protectcol-controls {
+  flex: 0 0 auto;
+  align-items: center;
+  margin-left: auto;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .movementcol-controls {
+  flex: 0 0 auto;
+  margin-left: auto;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .divider-top {
   border-top: 1px solid black;
   margin-top: 1px;
   margin-bottom: 1px;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .caps-container {
+  display: flex;
+  justify-content: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .caps-container .caps {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  /* position: absolute;
+                bottom: 0;    */
+}
+.mightyprotectors.sheet.character .sheet-body .bio {
+  display: grid;
+  grid-template-columns: 430px 250px;
+  row-gap: 1px;
+  column-gap: 10px;
+}
+.mightyprotectors.sheet.character .sheet-body .bio .bio-grid {
+  display: grid;
+  grid-template-columns: 80px 120px 20px 80px 120px;
+  align-items: center;
+  row-gap: 1px;
+}
+.mightyprotectors.sheet.character .sheet-body .bio .bio-grid input[type="number"] {
+  width: 80px;
+}
+.mightyprotectors.sheet.character .sheet-body .bio .backgrounds-grid {
+  display: grid;
+  row-gap: 1px;
+}
+.mightyprotectors.sheet.character .sheet-body .bio .backgrounds-grid .item-list {
+  align-items: center;
+  border: solid;
+  border-radius: 5px;
+  padding: 2px 8px 2px 8px;
+  border-width: 1px;
+}
+.mightyprotectors.sheet.character .sheet-body .bio .backgrounds-grid .header-text {
+  text-decoration: underline;
+}
+.mightyprotectors.sheet.character .sheet-body .bio .backgrounds-grid .item-header {
+  background-color: lightgray;
+}
+.mightyprotectors.sheet.character .sheet-body .bio .backgrounds-grid .background-col {
+  flex: 0 0 180px;
+  align-items: center;
+}
+.mightyprotectors.sheet.character .sheet-body .bio .backgrounds-grid .background-col-controls {
+  flex: 0 0 auto;
+  align-items: center;
+}
+.mightyprotectors.sheet.character .sheet-body .story .editor {
+  height: 90%;
 }
