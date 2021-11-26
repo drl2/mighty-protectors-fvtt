@@ -45,7 +45,6 @@ export default class MPActor extends Actor {
         
 
         // have to set 'em all anyway so might as well do the rest in one place
-        actorData.basecharacteristics.st.save = statData.st.save;
         actorData.basecharacteristics.en.save = statData.en.save;
         actorData.basecharacteristics.ag.save = statData.ag.save;
         actorData.basecharacteristics.in.save = statData.in.save;
@@ -79,6 +78,9 @@ export default class MPActor extends Actor {
         actorData.gear.disarm = Math.floor((actorData.total_cp/25)+3);
         actorData.gear.gbc = Math.floor((actorData.total_cp/15)+6);
         
+        actorData.clearance = actorData.basecharacteristics.in.save + actorData.basecharacteristics.cl.save + (actorData.earned_xp/5) - 20;
+        if (actorData.clearance < 1) actorData.clearance = 1
+        if (actorData.clearance > 20) actorData.clearance = 20
         
 
         // need to add ability bonuses to these

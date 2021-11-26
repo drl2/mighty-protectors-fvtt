@@ -309,6 +309,9 @@
   /* attacks */
   /* protection */
 }
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .test {
+  overflow: auto;
+}
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .bc-grid {
   display: grid;
   grid-template-columns: 40px 30px 40px auto;

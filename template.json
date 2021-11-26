@@ -26,6 +26,7 @@
         "wealth": "d4",
         "origintype": "",
         "legalstatus": "",
+        "hasclearance": false,
         "basecharacteristics": {
           "st": {
             "cp": 10

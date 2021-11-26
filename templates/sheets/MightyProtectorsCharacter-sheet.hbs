@@ -293,7 +293,7 @@
                                 </span>
                             </div>
                             <h4 class="item-name attackcol2">{{item.name}}</h4>
-                            <div class="item-roll attackcol3">{{item.data.tohit}}</div>
+                            <div class="item-roll attackcol3">{{item.data.tohit}}-</div>
                             <div class="item-formula attackcol4">{{item.data.dmgroll}}</div>
                             <div class="item-name attackcol5">{{localize item.data.dmgtype}}</div>
                             <div class="item-roll attackcol6">{{#if item.data.knockback}} Y {{else}} N {{/if}}</div>
@@ -487,6 +487,25 @@
                     <div>
 
                     </div>
+
+
+
+                    <!-- row  -->
+
+                    <div>
+                        {{localize 'MP.SecurityClearance'}}
+                    </div>
+                    <div>
+                        <input name="data.hasclearance" type="checkbox" {{checked data.hasclearance}} />{{#if data.hasclearance}}{{data.clearance}}{{/if}}
+                    </div>
+                    <div></div>
+                    <div>
+
+                    </div>
+                    <div>
+
+                    </div>
+
 
                 </div>
                 <div class="backgrounds-grid">

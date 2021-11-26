@@ -243,6 +243,7 @@
         "Applied": "Applied",
         "Available": "Available",
         "PossibleFumble": "Possible Fumble",
-        "PossibleCrit": "Possible Critical Hit"
+        "PossibleCrit": "Possible Critical Hit",
+        "SecurityClearance": "Security Clearance"
     }
 }
