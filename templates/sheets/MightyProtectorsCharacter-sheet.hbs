@@ -68,7 +68,10 @@
                         <!-- row start -->
                         <div><input name="data.basecharacteristics.st.cp" type="number"
                                 value="{{data.basecharacteristics.st.cp}}" /></div>
-                        <div>{{localize 'BC.Strength.abbr'}}</div>
+                        <div><span title="{{localize 'MP.Abbreviations.BaseHandToHand'}}" class="rollable genericroll" data-roll="{{data.hth}}" data-stat="{{localize 'MP.Abbreviations.BaseHandToHand'}}">
+                            {{localize 'BC.Strength.abbr'}}
+                            </span>
+                        </div>
                         <div>{{data.basecharacteristics.st.value}}</div>
                         <div></div>
                         <!-- row end -->
@@ -176,7 +179,7 @@
                         </div>
 
                         <div>
-                            <span class="rollable genericroll" data-roll="{{data.hth}}" data-stat="{{localize 'MP.Abbreviations.BaseHandToHand'}}">{{localize 'MP.Abbreviations.BaseHandToHand'}}<span class="rollable genericroll" data-roll="{{data.mass}}" data-stat="{{localize 'MP.Mass'}}"></span>
+                            <span class="rollable genericroll" data-roll="{{data.hth}}" data-stat="{{localize 'MP.Abbreviations.BaseHandToHand'}}">{{localize 'MP.Abbreviations.BaseHandToHand'}}</span>
                         </div>
                         <div>
                             {{data.hth}}
