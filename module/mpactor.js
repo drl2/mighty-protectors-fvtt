@@ -56,7 +56,6 @@ export default class MPActor extends Actor {
         this.updateMoveSpeeds(); // some move speeds may need updates from carry & stats
         actorData.hth = statData.st.hth_init;
         actorData.mass = this.getMassRoll(actorData.weight);
-        actorData.user_cp = actorData.base_cp + actorData.spent_xp;
         actorData.stat_cp = 
             actorData.basecharacteristics.st.cp
             + actorData.basecharacteristics.en.cp
@@ -67,6 +66,7 @@ export default class MPActor extends Actor {
         actorData.total_cp = abiltyBonuses.cpcost + actorData.stat_cp;
         actorData.avail_ip = Math.ceil(actorData.basecharacteristics.in.value/2);
         actorData.used_ip = abiltyBonuses.ipcost;
+        actorData.spent_xp = actorData.total_cp - actorData.base_cp;
 
         actorData.caps = {};
         actorData.caps.bcs = Math.floor((actorData.total_cp/5)+10);
