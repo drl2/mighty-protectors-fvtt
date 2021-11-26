@@ -71,6 +71,7 @@ function registerSystemSettings() {
         default: "choose"
     })
 
+    /*
     game.settings.register("mighty-protectors", "checkPowerOnAttack", {
         config: true,
         scope: "world",
@@ -88,15 +89,8 @@ function registerSystemSettings() {
         type: Boolean,
         default: true
     })
-
-    game.settings.register("mighty-protectors", "checkChargesOnAttack", {
-        config: true,
-        scope: "world",
-        name: "SETTINGS.checkChargesOnAttack.name",
-        hint: "SETTINGS.checkChargesOnAttack.label",
-        type: Boolean,
-        default: true
-    })
+    
+*/
 
     game.settings.register("mighty-protectors", "showSaveTargetNumbers", {
         config: true,
