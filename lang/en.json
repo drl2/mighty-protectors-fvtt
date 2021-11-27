@@ -22,7 +22,7 @@
         },
         "showCanRollWith": {
             "name": "Show 'Can roll with' numbers",
-            "label": "When a target is selected and an attack is successful, show an indicator of how much damage the target can potentiually 'roll' with.  This is a simple calculation based on the target's current Power and does not take other factors into account."
+            "label": "When a target is selected and an attack is successful, show an indicator of how much damage the target can potentiually 'roll' with.  This is a simple calculation based on the target's current Power and does not take other factors such as Fortitude, multipliers, etc. into account."
         }
     },
     "ACTOR": {
@@ -247,6 +247,9 @@
         "SecurityClearance": "Security Clearance",
         "NotEnoughPower": "Not enough power",
         "Need": "Need",
-        "Have": "Have"
+        "Have": "Have",
+        "TargetDefenses": "Target Defenses",
+        "CanRollWithUpTo": "can roll with up to",
+        "points": "points"
     }
 }

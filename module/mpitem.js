@@ -112,7 +112,7 @@ export default class MPItem extends Item {
         }
     }
 
-    async roll() {
+    async rollAttack() {
         const actor = this.actor;
         let itemData = this.data;
         let target = null;
@@ -120,6 +120,7 @@ export default class MPItem extends Item {
         let defense = 0;
         let autoPowerSetting = game.settings.get(game.system.id, "autoDecrementPowerOnAttack");
         let checkPower = game.settings.get(game.system.id, "checkPowerOnAttack");
+        let showCanRollWith = game.settings.get(game.system.id, "showCanRollWith");
 
         // get target info if selected
         if (game.user.targets.size > 0) {
@@ -219,6 +220,13 @@ export default class MPItem extends Item {
 
                 let success = attackRoll.total <= modToHit;
 
+                let showRollWith = false;
+                let rollWith = 0;
+                if (success && showCanRollWith && target) {
+                    showRollWith = true;
+                    rollWith = Math.floor(target.actor.data.data.power.value / 10);
+                }
+
                 let rollData = {
                     actorName: actor.name,
                     attackName: itemData.name,
@@ -233,7 +241,9 @@ export default class MPItem extends Item {
                     isCrit: attackRoll.dice[0].total === 1,
                     isFumble: attackRoll.dice[0].total === 20,
                     showTarget: showTarget,
-                    targetNum: modToHit
+                    targetNum: modToHit,
+                    showRollWith: showRollWith,
+                    rollWith: rollWith
                 };
 
                 let cardContent = await renderTemplate("systems/mighty-protectors/templates/chatcards/attackroll.hbs", rollData);

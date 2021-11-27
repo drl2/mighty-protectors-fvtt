@@ -268,7 +268,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         let itemId = event.currentTarget.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
 
-        item.roll();
+        item.rollAttack();
     }
 
     async _onRollInitiative(event) {
