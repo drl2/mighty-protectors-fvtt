@@ -59,3 +59,19 @@ export function rollMinMax(dieRoll) {
     if (dieRoll == 1) result = "max";
     return result;
 }
+
+
+
+/**
+ * Whisper a system message to the GM
+ * @param {*} speaker 
+ * @param {*} content 
+ */
+export function simpleGMWhisper(speaker, content) {
+    let gmChatOptions = {
+        content: content,
+        speaker: speaker,
+        whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id)
+    }
+    ChatMessage.create(gmChatOptions);
+}

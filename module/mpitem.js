@@ -1,5 +1,5 @@
 import { MP } from './config.js';
-import { rollMinMax } from './utility.js';
+import { rollMinMax, simpleGMWhisper } from './utility.js';
 
 /**
  * Override and extend the basic Item implementation.
@@ -125,8 +125,8 @@ export default class MPItem extends Item {
         if (game.user.targets.size > 0) {
             target = Array.from(game.user.targets)[0];
             targetName = target.name;
-            if (itemData.data.dmgtype == "Psychic") {
-                defense = target.data.data.mentaldefense;
+            if (itemData.data.dmgtype == "DAMAGE.Psychic") {
+                defense = target.actor.data.data.mentaldefense;
             }
             else {
                 defense = target.actor.data.data.physicaldefense;
@@ -169,8 +169,10 @@ export default class MPItem extends Item {
             let spendPower = (autoPowerSetting === 'choose' && html.find('[name="autodeduct"]')[0].checked) || autoPowerSetting === 'always';
             let dmgFormula = itemData.data.dmgroll;
             let powerCost = itemData.data.powercost;
+            let showTarget = game.settings.get(game.system.id, "showAttackTargetNumbers");
 
 
+            
             if (checkPower && (powerCost > actor.data.data.power.value)) {
                 ui.notifications.warn(game.i18n.localize("MP.NotEnoughPower") + ": " + game.i18n.localize("MP.Need") + " " + powerCost + ", " + game.i18n.localize("MP.Have") + " " + actor.data.data.power.value);
             }
@@ -183,6 +185,22 @@ export default class MPItem extends Item {
                 if (mod != "") {
                     modToHit += (Number.parseInt(mod) - defense);
                 }
+
+                if (!showTarget) {
+                    let html = itemData.name + ": " + game.i18n.localize("MP.Target") + " = " + modToHit + "-";
+                    if (target) {
+                        html += " (vs " + targetName + ", ";
+                        if (itemData.data.dmgtype == "DAMAGE.Psychic") {
+                            html += game.i18n.localize("MP.MentalDefense") + " " + target.actor.data.data.mentaldefense;
+                        }
+                        else {
+                            html += game.i18n.localize("MP.PhysicalDefense") + " " + target.actor.data.data.physicaldefense;
+                        }
+                        html += ")";
+                    }
+                    simpleGMWhisper(ChatMessage.getSpeaker({ actor: actor }), html);
+                }
+
 
                 if (push) {
                     dmgFormula += " + 2";
@@ -213,7 +231,9 @@ export default class MPItem extends Item {
                     rollMinMax: rollMinMax(attackRoll.dice[0].total),
                     dmgRoll: dmgRoll,
                     isCrit: attackRoll.dice[0].total === 1,
-                    isFumble: attackRoll.dice[0].total === 20
+                    isFumble: attackRoll.dice[0].total === 20,
+                    showTarget: showTarget,
+                    targetNum: modToHit
                 };
 
                 let cardContent = await renderTemplate("systems/mighty-protectors/templates/chatcards/attackroll.hbs", rollData);

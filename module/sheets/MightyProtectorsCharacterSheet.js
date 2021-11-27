@@ -1,6 +1,5 @@
 import MPItem from "../mpitem.js";
 import { MP } from "../config.js";
-import { rollMinMax } from "../utility.js";
 
 export default class MightyProtectorsCharacterSheet extends ActorSheet {
     static get defaultOptions() {
@@ -93,68 +92,8 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         event.preventDefault();
         const element = event.currentTarget;
         const dataset = element.dataset;
-        const actor = this.actor;
 
-        if (dataset.roll) {
-            let dlgContent = await renderTemplate("systems/mighty-protectors/templates/dialogs/modifiers.hbs", dataset);
-            let title = game.i18n.localize("MP.SavingThrow");
-            if (dataset.rolltype) title = dataset.rolltype;
-
-            let dlg = new Dialog({
-                title: title + ": " + dataset.stat,
-                content: dlgContent,
-                buttons: {
-                    rollSave: {
-                        icon: "<i class='fas fa-dice-d20'></i>",
-                        label: game.i18n.localize("MP.Roll"),
-                        callback: (html) => saveRollCallback(html)
-                    },
-                    cancel: {
-                        icon: "<i class='fas fa-times'></i>",
-                        label: game.i18n.localize("MP.Cancel")
-                    }
-                },
-                default: "rollSave"
-            })
-
-            dlg.render(true);
-
-
-            async function saveRollCallback(html) {
-                let modTarget = Number.parseInt(dataset.target);
-                let mod = html.find('[name="mod"]')[0].value.trim();
-
-                if (mod != "") {
-                    modTarget += Number.parseInt(mod);
-                }
-
-                let roll = await new Roll(dataset.roll).evaluate({ async: true });
-
-                let rollData = {
-                    stat: dataset.stat,
-                    formula: roll._formula,
-                    total: roll.total,
-                    target: modTarget,
-                    success: roll.total <= modTarget,
-                    // only one roll on a save so no need to for-each through rolls
-                    dieFormula: roll.dice[0].formula,
-                    dieRoll: roll.dice[0].total,
-                    rollMinMax: rollMinMax(roll.dice[0].total),
-                    rolltype: dataset.rolltype
-                };
-
-                let cardContent = await renderTemplate("systems/mighty-protectors/templates/chatcards/savingthrow.hbs", rollData);
-
-                let chatOptions = {
-                    type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-                    roll: roll,
-                    content: cardContent,
-                    speaker: ChatMessage.getSpeaker({ actor: actor })
-                }
-
-                ChatMessage.create(chatOptions);
-            }
-        };
+        await this.actor.rollSave(dataset);
     }
 
     /**

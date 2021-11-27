@@ -2,6 +2,10 @@
 <span style="font-weight: bold">{{targetName}}</span> {{localize 'MP.With'}}
 <span style="font-weight: bold">{{attackName}}</span>
 
+{{#if showTarget}}
+    ({{localize 'MP.Target'}}: <span style="font-weight: bold">{{targetNum}}-</span>)
+{{/if}}
+
 <div class="dice-roll">
     <div class="dice-result">
         <div class="dice-formula">{{attackRoll.formula}}</div>
