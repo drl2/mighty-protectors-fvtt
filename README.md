@@ -45,7 +45,7 @@ The project is free and open source, but if you'd like to contribute financially
 
 ## Change Log
 
-### [0.5.0] - 2021-11-17
+### [0.5.5] - 2021-11-27
 
 - System settings actually implemented
 - HtH roll added to ST
