@@ -6,6 +6,7 @@ This is the initial public release of this system, intended primarily for testin
 ## Documentation
 - [Creating powers/abilities for a compendium](ability-example.md)
 - [Character creation example](character-example.md)
+- [Macros](macro-helpers.md)
 
 ## The Game
 [Mighty Protectors](https://www.drivethrurpg.com/product/220501/VV-30-Mighty-Protectors?affiliate_id=1692486) is the property of [Monkey House Games](https://monkeyhousegames.com/).  This system is an independent project unaffiliated with Monkey House.
@@ -16,18 +17,17 @@ Targeted functionality for a version 1.0 release of this system includes:
 - Initiative management that includes per-round re-rolls and support for multiple initiative entries for characters with super speed.
 - Attack, Damage, and saving throw rolls based on stats & powers defined on the character/vehicle sheets.
 
-Future versions may incorporate features such as optional further autmation of combat actions.
+Future versions may incorporate features such as optional further automation of combat actions.
 
 ## Known issues
-- The System Settings entries are clickable/selectable on the configuration screen but their functionality is not yet implemented.
 - Creating a vehicle just adds a normal character sheet; the vehicle sheet has not been implemented yet.
 
 ## To Do, Short Term
+- Enable link from an attack item to an ability with charges, to auto-decrement charges on attack
 - Implement vehicles
-- Implement system-level settings options
-
 
 ## To Do... Maybe?
+- Token HUD conditions to be replaced or supplemented by MP-sepcific ones
 - Re-skinning/re-styling to look less like the generic Foundry character sheet?
 - Replace or supplement default token status effect with Mighty-Protectors-Specific ones?
 - More automation?  Potentially auto-apply damage on a hit when a target is selected; would require adding in some more intelligence around damage types, potential invulnerabilities, etc.
@@ -44,6 +44,15 @@ The project is free and open source, but if you'd like to contribute financially
 
 
 ## Change Log
+
+### [0.5.5] - 2021-11-27
+
+- System settings actually implemented
+- HtH roll added to ST
+- XP spent has turned into a calculated field, negating the need for a "Calculated" copy of the total xp
+- Blunt vs Sharp kinetic distinction removed, as the presence or absence of Knockback indicates this
+- Added Security Clearance to the character Bio tab, on the off chance anybody ever uses it
+- Added some macro shortcuts and documentation for them
 
 ### [0.5.0] - 2021-11-17
 

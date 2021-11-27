@@ -14,15 +14,15 @@
         },
         "showSaveTargetNumbers": {
             "name": "Show save target numbers",
-            "label": "When checked, saving throw roll will show a difficulty indicator to all players; otherwise only to the GM."
+            "label": "When checked, saving throw rolls will show a difficulty indicator to all players; otherwise only to the GM."
         },
         "showAttackTargetNumbers": {
             "name": "Show attack target numbers",
-            "label": "When checked, saving throw roll will show a difficulty indicator to all players; otherwise only to the GM."
+            "label": "When checked, attack rolls will show a difficulty indicator to all players; otherwise only to the GM."
         },
         "showCanRollWith": {
             "name": "Show 'Can roll with' numbers",
-            "label": "When a target is selected and an attack is successful, show an indicator of how much damage the target can potentiually 'roll' with.  This is a simple calculation based on the target's current Power and does not take other factors into account."
+            "label": "When a target is selected and an attack is successful, show an indicator of how much damage the target can potentiually 'roll' with.  This is a simple calculation based on the target's current Power and does not take other factors such as Fortitude, multipliers, etc. into account."
         }
     },
     "ACTOR": {
@@ -42,6 +42,7 @@
         "Entropy": "Entropy",
         "SharpKinetic": "Sharp Kinetic",
         "BluntKinetic": "Blunt Kinetic",
+        "Kinetic": "Kinetic",
         "Bio": "Bio",
         "Psychic": "Psychic",
         "Other": "Other"
@@ -69,6 +70,14 @@
         }
 
     },
+    "Warnings": {
+        "NoActorSelected": "No actor selected.",
+        "MultipleItems1": "Your controlled Actor ",
+        "MultipleItems2": " has more than one Item with name ",
+        "MultipleItems3": ". The first matched item will be chosen.",
+        "MultipleItems": "Your controlled Actor ${actor.name} has more than one Item with name ${itemName}. The first matched item will be chosen.",
+        "ItemNotExist": "Your controlled Actor does not have an item named "
+    },
     "MP": {
         "Abbreviations": {
             "InventingPoints": "IP",
@@ -87,6 +96,7 @@
             "Other": "Other",
             "Bio": "Bio",
             "BaseHandToHand": "Base HtH",
+            "HandToHand": "HtH",
             "Pounds": "lbs",
             "MultiInitiative": "Multi Init?"
         },
@@ -242,6 +252,13 @@
         "Applied": "Applied",
         "Available": "Available",
         "PossibleFumble": "Possible Fumble",
-        "PossibleCrit": "Possible Critical Hit"
+        "PossibleCrit": "Possible Critical Hit",
+        "SecurityClearance": "Security Clearance",
+        "NotEnoughPower": "Not enough power",
+        "Need": "Need",
+        "Have": "Have",
+        "TargetDefenses": "Target Defenses",
+        "CanRollWithUpTo": "can roll with up to",
+        "points": "points"
     }
 }

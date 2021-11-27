@@ -21,8 +21,7 @@ MP.ActorTypeImages = {
 }
 
 MP.DamageTypes = {
-    sharpkinetic: "DAMAGE.SharpKinetic",
-    bluntkinetic: "DAMAGE.BluntKinetic",
+    kinetic: "DAMAGE.Kinetic",
     bio: "DAMAGE.Bio",
     energy: "DAMAGE.Energy",
     entropy: "DAMAGE.Entropy",

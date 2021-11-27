@@ -26,6 +26,7 @@
         "wealth": "d4",
         "origintype": "",
         "legalstatus": "",
+        "hasclearance": false,
         "basecharacteristics": {
           "st": {
             "cp": 10
@@ -44,8 +45,7 @@
           }
         },
         "base_cp": 50,
-        "earned_xp": 0,
-        "spent_xp": 0  
+        "earned_xp": 0  
       }
     },
     "character": {

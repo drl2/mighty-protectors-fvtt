@@ -1,5 +1,5 @@
 import { MP } from './config.js';
-import {simplifyDice} from './utility.js'
+import {simplifyDice, simpleGMWhisper, rollMinMax} from './utility.js'
 
 /**
  * Override and extend the basic Item implementation.
@@ -45,7 +45,6 @@ export default class MPActor extends Actor {
         
 
         // have to set 'em all anyway so might as well do the rest in one place
-        actorData.basecharacteristics.st.save = statData.st.save;
         actorData.basecharacteristics.en.save = statData.en.save;
         actorData.basecharacteristics.ag.save = statData.ag.save;
         actorData.basecharacteristics.in.save = statData.in.save;
@@ -57,7 +56,6 @@ export default class MPActor extends Actor {
         this.updateMoveSpeeds(); // some move speeds may need updates from carry & stats
         actorData.hth = statData.st.hth_init;
         actorData.mass = this.getMassRoll(actorData.weight);
-        actorData.user_cp = actorData.base_cp + actorData.spent_xp;
         actorData.stat_cp = 
             actorData.basecharacteristics.st.cp
             + actorData.basecharacteristics.en.cp
@@ -68,6 +66,7 @@ export default class MPActor extends Actor {
         actorData.total_cp = abiltyBonuses.cpcost + actorData.stat_cp;
         actorData.avail_ip = Math.ceil(actorData.basecharacteristics.in.value/2);
         actorData.used_ip = abiltyBonuses.ipcost;
+        actorData.spent_xp = actorData.total_cp - actorData.base_cp;
 
         actorData.caps = {};
         actorData.caps.bcs = Math.floor((actorData.total_cp/5)+10);
@@ -79,6 +78,9 @@ export default class MPActor extends Actor {
         actorData.gear.disarm = Math.floor((actorData.total_cp/25)+3);
         actorData.gear.gbc = Math.floor((actorData.total_cp/15)+6);
         
+        actorData.clearance = actorData.basecharacteristics.in.save + actorData.basecharacteristics.cl.save + (actorData.earned_xp/5) - 20;
+        if (actorData.clearance < 1) actorData.clearance = 1
+        if (actorData.clearance > 20) actorData.clearance = 20
         
 
         // need to add ability bonuses to these
@@ -214,5 +216,93 @@ export default class MPActor extends Actor {
             massRoll = MP.StatTable[closestIndex].hth_init;
         }
         return massRoll;
+    }
+
+
+    /**
+     * Roll a saving throw
+     * @param {*} dataset 
+     */
+    async rollSave(dataset) {
+        if (dataset.roll) {
+            let dlgContent = await renderTemplate("systems/mighty-protectors/templates/dialogs/modifiers.hbs", dataset);
+            let title = game.i18n.localize("MP.SavingThrow");
+            if (dataset.rolltype) title = dataset.rolltype;
+
+            let dlg = new Dialog({
+                title: title + ": " + dataset.stat,
+                content: dlgContent,
+                buttons: {
+                    rollSave: {
+                        icon: "<i class='fas fa-dice-d20'></i>",
+                        label: game.i18n.localize("MP.Roll"),
+                        callback: (html) => saveRollCallback(html)
+                    },
+                    cancel: {
+                        icon: "<i class='fas fa-times'></i>",
+                        label: game.i18n.localize("MP.Cancel")
+                    }
+                },
+                default: "rollSave"
+            })
+
+            dlg.render(true);
+
+
+            async function saveRollCallback(html) {
+                let modTarget = Number.parseInt(dataset.target);
+                let mod = html.find('[name="mod"]')[0].value.trim();
+                let showTarget = game.settings.get(game.system.id, "showSaveTargetNumbers");
+
+                if (mod != "") {
+                    modTarget += Number.parseInt(mod);
+                }
+
+                if (!showTarget) {
+                    simpleGMWhisper(ChatMessage.getSpeaker({ actor: actor }),
+                        title + ": " + dataset.stat + ", " + game.i18n.localize("MP.Target") + " = " + modTarget + "-")
+                }
+
+
+                let roll = await new Roll(dataset.roll).evaluate({ async: true });
+
+                let rollData = {
+                    stat: dataset.stat,
+                    formula: roll._formula,
+                    total: roll.total,
+                    target: modTarget,
+                    showTarget: showTarget,
+                    success: roll.total <= modTarget,
+                    // only one roll on a save so no need to for-each through rolls
+                    dieFormula: roll.dice[0].formula,
+                    dieRoll: roll.dice[0].total,
+                    rollMinMax: rollMinMax(roll.dice[0].total),
+                    rolltype: dataset.rolltype
+                };
+
+                let cardContent = await renderTemplate("systems/mighty-protectors/templates/chatcards/savingthrow.hbs", rollData);
+
+                let chatOptions = {
+                    type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+                    roll: roll,
+                    content: cardContent,
+                    speaker: ChatMessage.getSpeaker({ actor: this })
+                }
+
+                ChatMessage.create(chatOptions);
+            }
+        };
+    }
+
+    async rollGeneric(dataset) {
+        if (dataset.roll) {
+            let roll = new Roll(dataset.roll, this.data.data);
+            let label = dataset.stat ? `Rolling ${dataset.stat}` : '';
+            await roll.toMessage({
+                speaker: ChatMessage.getSpeaker({ actor: this }),
+                flavor: label
+            });
+        }
+
     }
 }

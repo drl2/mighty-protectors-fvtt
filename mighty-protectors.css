@@ -309,6 +309,9 @@
   /* attacks */
   /* protection */
 }
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .test {
+  overflow: auto;
+}
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .bc-grid {
   display: grid;
   grid-template-columns: 40px 30px 40px auto;
@@ -427,7 +430,7 @@
   align-items: center;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .protectcol-other {
-  flex: 0 0 140px;
+  flex: 0 0 120px;
   align-items: center;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .protectcol-controls {

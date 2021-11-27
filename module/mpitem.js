@@ -1,5 +1,5 @@
 import { MP } from './config.js';
-import { rollMinMax } from './utility.js';
+import { rollMinMax, simpleGMWhisper } from './utility.js';
 
 /**
  * Override and extend the basic Item implementation.
@@ -112,20 +112,22 @@ export default class MPItem extends Item {
         }
     }
 
-    async roll() {
+    async rollAttack() {
         const actor = this.actor;
         let itemData = this.data;
         let target = null;
         let targetName = "";
         let defense = 0;
-
+        let autoPowerSetting = game.settings.get(game.system.id, "autoDecrementPowerOnAttack");
+        let checkPower = game.settings.get(game.system.id, "checkPowerOnAttack");
+        let showCanRollWith = game.settings.get(game.system.id, "showCanRollWith");
 
         // get target info if selected
         if (game.user.targets.size > 0) {
             target = Array.from(game.user.targets)[0];
             targetName = target.name;
-            if (itemData.data.dmgtype == "Psychic") {
-                defense = target.data.data.mentaldefense;
+            if (itemData.data.dmgtype == "DAMAGE.Psychic") {
+                defense = target.actor.data.data.mentaldefense;
             }
             else {
                 defense = target.actor.data.data.physicaldefense;
@@ -133,7 +135,8 @@ export default class MPItem extends Item {
         }
 
         let dlgData = {
-            targetName: targetName
+            targetName: targetName,
+            showDeductPower: autoPowerSetting === "choose"
         }
 
 
@@ -164,65 +167,101 @@ export default class MPItem extends Item {
             let modToHit = Number.parseInt(itemData.data.tohit);
             let mod = "";
             let push = html.find('[name="push"]')[0].checked;
-            let spendPower = html.find('[name="autodeduct"]')[0].checked;
+            let spendPower = (autoPowerSetting === 'choose' && html.find('[name="autodeduct"]')[0].checked) || autoPowerSetting === 'always';
             let dmgFormula = itemData.data.dmgroll;
             let powerCost = itemData.data.powercost;
+            let showTarget = game.settings.get(game.system.id, "showAttackTargetNumbers");
+
 
             
-            if (targetName) {
-                mod = html.find('[name="mod"]')[0].value.trim();
+            if (checkPower && (powerCost > actor.data.data.power.value)) {
+                ui.notifications.warn(game.i18n.localize("MP.NotEnoughPower") + ": " + game.i18n.localize("MP.Need") + " " + powerCost + ", " + game.i18n.localize("MP.Have") + " " + actor.data.data.power.value);
             }
+            else {
 
-            if (mod != "") {
-                modToHit += (Number.parseInt(mod) - defense);
-            }
+                if (targetName) {
+                    mod = html.find('[name="mod"]')[0].value.trim();
+                }
 
-            if (push) {
-                dmgFormula += " + 2";
-                powerCost += 2;
-            }
+                if (mod != "") {
+                    modToHit += (Number.parseInt(mod) - defense);
+                }
 
-            let attackRoll = await new Roll("1d20").evaluate({ async: true });
-            attackRoll.dice[0].options.rollOrder = 1;
+                if (!showTarget) {
+                    let html = itemData.name + ": " + game.i18n.localize("MP.Target") + " = " + modToHit + "-";
+                    if (target) {
+                        html += " (vs " + targetName + ", ";
+                        if (itemData.data.dmgtype == "DAMAGE.Psychic") {
+                            html += game.i18n.localize("MP.MentalDefense") + " " + target.actor.data.data.mentaldefense;
+                        }
+                        else {
+                            html += game.i18n.localize("MP.PhysicalDefense") + " " + target.actor.data.data.physicaldefense;
+                        }
+                        html += ")";
+                    }
+                    simpleGMWhisper(ChatMessage.getSpeaker({ actor: actor }), html);
+                }
 
-            let dmgRoll = await new Roll(dmgFormula).evaluate({ async: true });
-            dmgRoll.dice[0].options.rollOrder = 2;
 
-            const rolls = [attackRoll, dmgRoll];
-            const pool = PoolTerm.fromRolls(rolls);
-            let roll = Roll.fromTerms([pool]);
+                if (push) {
+                    dmgFormula += " + 2";
+                    powerCost += 2;
+                }
 
-            let success = attackRoll.total <= modToHit;
+                let attackRoll = await new Roll("1d20").evaluate({ async: true });
+                attackRoll.dice[0].options.rollOrder = 1;
 
-            let rollData = {
-                actorName: actor.name,
-                attackName: itemData.name,
-                dmgType: itemData.data.dmgtype,
-                dmgSubtype: itemData.data.dmgsubtype,
-                knockBack: itemData.data.knockback,
-                targetName: targetName,
-                success: success,
-                attackRoll: attackRoll,
-                rollMinMax: rollMinMax(attackRoll.dice[0].total),
-                dmgRoll: dmgRoll,
-                isCrit: attackRoll.dice[0].total === 1,
-                isFumble: attackRoll.dice[0].total === 20
-            };
+                let dmgRoll = await new Roll(dmgFormula).evaluate({ async: true });
+                dmgRoll.dice[0].options.rollOrder = 2;
 
-            let cardContent = await renderTemplate("systems/mighty-protectors/templates/chatcards/attackroll.hbs", rollData);
+                const rolls = [attackRoll, dmgRoll];
+                const pool = PoolTerm.fromRolls(rolls);
+                let roll = Roll.fromTerms([pool]);
 
-            let chatOptions = {
-                type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-                roll: roll,
-                content: cardContent,
-                speaker: ChatMessage.getSpeaker({ actor: actor })
-            }
+                let success = attackRoll.total <= modToHit;
 
-            ChatMessage.create(chatOptions);
+                let showRollWith = false;
+                let rollWith = 0;
+                if (success && showCanRollWith && target) {
+                    showRollWith = true;
+                    rollWith = Math.floor(target.actor.data.data.power.value / 10);
+                }
 
-            if (spendPower) {
-                let newPower = actor.data.data.power.value - powerCost;
-                await actor.update({ "data.power.value": newPower });
+                let rollData = {
+                    actorName: actor.name,
+                    attackName: itemData.name,
+                    dmgType: itemData.data.dmgtype,
+                    dmgSubtype: itemData.data.dmgsubtype,
+                    knockBack: itemData.data.knockback,
+                    targetName: targetName,
+                    success: success,
+                    attackRoll: attackRoll,
+                    rollMinMax: rollMinMax(attackRoll.dice[0].total),
+                    dmgRoll: dmgRoll,
+                    isCrit: attackRoll.dice[0].total === 1,
+                    isFumble: attackRoll.dice[0].total === 20,
+                    showTarget: showTarget,
+                    targetNum: modToHit,
+                    showRollWith: showRollWith,
+                    rollWith: rollWith
+                };
+
+                let cardContent = await renderTemplate("systems/mighty-protectors/templates/chatcards/attackroll.hbs", rollData);
+
+                let chatOptions = {
+                    type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+                    roll: roll,
+                    content: cardContent,
+                    speaker: ChatMessage.getSpeaker({ actor: actor })
+                }
+
+                ChatMessage.create(chatOptions);
+
+                if (spendPower && (powerCost > 0)) {
+                    let newPower = actor.data.data.power.value - powerCost;
+                    if (newPower < 0) newPower = 0;
+                    await actor.update({ "data.power.value": newPower });
+                }
             }
         }
     }

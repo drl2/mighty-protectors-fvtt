@@ -2,6 +2,10 @@
 <span style="font-weight: bold">{{targetName}}</span> {{localize 'MP.With'}}
 <span style="font-weight: bold">{{attackName}}</span>
 
+{{#if showTarget}}
+    ({{localize 'MP.Target'}}: <span style="font-weight: bold">{{targetNum}} - {{#if targetName}}{{else}}{{localize 'MP.TargetDefenses'}}{{/if}}</span>)
+{{/if}}
+
 <div class="dice-roll">
     <div class="dice-result">
         <div class="dice-formula">{{attackRoll.formula}}</div>
@@ -63,3 +67,6 @@
 {{ localize "MP.DamageType" }}: <span style="font-weight: bold">{{ localize dmgType }} {{#if dmgSubtype}}
     ({{dmgSubtype}}) {{/if}}</span>
 {{#if knockBack}} <br /><span style="font-weight: bold">{{localize 'MP.PossibleKnockback'}}</span>{{/if}}
+{{#if showRollWith}}
+<br />{{targetName}} {{localize "MP.CanRollWithUpTo"}} {{rollWith}} {{localize "MP.points"}}
+{{/if}}

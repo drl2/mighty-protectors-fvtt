@@ -68,7 +68,10 @@
                         <!-- row start -->
                         <div><input name="data.basecharacteristics.st.cp" type="number"
                                 value="{{data.basecharacteristics.st.cp}}" /></div>
-                        <div>{{localize 'BC.Strength.abbr'}}</div>
+                        <div><span title="{{localize 'MP.Abbreviations.BaseHandToHand'}}" class="rollable genericroll" data-roll="{{data.hth}}" data-stat="{{localize 'MP.Abbreviations.BaseHandToHand'}}">
+                            {{localize 'BC.Strength.abbr'}}
+                            </span>
+                        </div>
                         <div>{{data.basecharacteristics.st.value}}</div>
                         <div></div>
                         <!-- row end -->
@@ -134,7 +137,7 @@
                         <!-- row end -->
 
                         <!-- row start -->
-                        <div><input name="data.spent_xp" type="number" value="{{data.spent_xp}}" /></div>
+                        <div class="totalcp">{{data.spent_xp}}</div>
                         <div>{{localize 'MP.SpentXP'}}</div>
                         <!-- row end -->
 
@@ -149,14 +152,10 @@
                         <div class="divider-top"></div>
                         <div class="divider-top"></div>
 
-                        <!-- row start -->
-                        <div class="totalcp">{{data.user_cp}}</div>
-                        <div>{{localize 'MP.TotalCP'}}</div>
-                        <!-- row end -->
 
                         <!-- row start -->
                         <div class="totalcp">{{data.total_cp}}</div>
-                        <div>{{localize 'MP.Calculated'}}</div>
+                        <div>{{localize 'MP.TotalCP'}}</div>
                         <!-- row end -->
 
                     </div>
@@ -176,7 +175,7 @@
                         </div>
 
                         <div>
-                            <span class="rollable genericroll" data-roll="{{data.hth}}" data-stat="{{localize 'MP.Abbreviations.BaseHandToHand'}}">{{localize 'MP.Abbreviations.BaseHandToHand'}}<span class="rollable genericroll" data-roll="{{data.mass}}" data-stat="{{localize 'MP.Mass'}}"></span>
+                            <span class="rollable genericroll" data-roll="{{data.hth}}" data-stat="{{localize 'MP.Abbreviations.BaseHandToHand'}}">{{localize 'MP.Abbreviations.BaseHandToHand'}}</span>
                         </div>
                         <div>
                             {{data.hth}}
@@ -290,7 +289,7 @@
                                 </span>
                             </div>
                             <h4 class="item-name attackcol2">{{item.name}}</h4>
-                            <div class="item-roll attackcol3">{{item.data.tohit}}</div>
+                            <div class="item-roll attackcol3">{{item.data.tohit}}-</div>
                             <div class="item-formula attackcol4">{{item.data.dmgroll}}</div>
                             <div class="item-name attackcol5">{{localize item.data.dmgtype}}</div>
                             <div class="item-roll attackcol6">{{#if item.data.knockback}} Y {{else}} N {{/if}}</div>
@@ -312,6 +311,7 @@
                             <div class="item-name protectcol-middle header-text">{{localize 'MP.Abbreviations.Kinetic'}}</div>
                             <div class="item-name protectcol-middle header-text">{{localize 'MP.Abbreviations.Energy'}}</div>
                             <div class="item-name protectcol-middle header-text">{{localize 'MP.Abbreviations.Bio'}}</div>
+                            <div class="item-name protectcol-middle header-text">{{localize 'MP.Abbreviations.Entropy'}}</div>
                             <div class="item-name protectcol-middle header-text">{{localize 'MP.Abbreviations.Psychic'}}</div>
                             <div class="item-name protectcol-other header-text">{{localize 'MP.Abbreviations.Other'}}</div>
                             <div class="item-controls protectcol-controls">
@@ -326,6 +326,7 @@
                             <div class="item-name protectcol-middle">{{item.data.kinetic}}</div>
                             <div class="item-name protectcol-middle">{{item.data.energy}}</div>
                             <div class="item-name protectcol-middle">{{item.data.bio}}</div>
+                            <div class="item-name protectcol-middle">{{item.data.entropy}}</div>
                             <div class="item-name protectcol-middle">{{item.data.psychic}}</div>
                             <div class="item-name protectcol-other">
                                 {{item.data.other}}
@@ -482,6 +483,25 @@
                     <div>
 
                     </div>
+
+
+
+                    <!-- row  -->
+
+                    <div>
+                        {{localize 'MP.SecurityClearance'}}
+                    </div>
+                    <div>
+                        <input name="data.hasclearance" type="checkbox" {{checked data.hasclearance}} />{{#if data.hasclearance}}{{data.clearance}}{{/if}}
+                    </div>
+                    <div></div>
+                    <div>
+
+                    </div>
+                    <div>
+
+                    </div>
+
 
                 </div>
                 <div class="backgrounds-grid">
