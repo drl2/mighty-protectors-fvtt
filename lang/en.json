@@ -70,6 +70,14 @@
         }
 
     },
+    "Warnings": {
+        "NoActorSelected": "No actor selected.",
+        "MultipleItems1": "Your controlled Actor ",
+        "MultipleItems2": " has more than one Item with name ",
+        "MultipleItems3": ". The first matched item will be chosen.",
+        "MultipleItems": "Your controlled Actor ${actor.name} has more than one Item with name ${itemName}. The first matched item will be chosen.",
+        "ItemNotExist": "Your controlled Actor does not have an item named "
+    },
     "MP": {
         "Abbreviations": {
             "InventingPoints": "IP",
@@ -88,6 +96,7 @@
             "Other": "Other",
             "Bio": "Bio",
             "BaseHandToHand": "Base HtH",
+            "HandToHand": "HtH",
             "Pounds": "lbs",
             "MultiInitiative": "Multi Init?"
         },

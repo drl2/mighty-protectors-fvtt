@@ -293,4 +293,16 @@ export default class MPActor extends Actor {
             }
         };
     }
+
+    async rollGeneric(dataset) {
+        if (dataset.roll) {
+            let roll = new Roll(dataset.roll, this.data.data);
+            let label = dataset.stat ? `Rolling ${dataset.stat}` : '';
+            await roll.toMessage({
+                speaker: ChatMessage.getSpeaker({ actor: this }),
+                flavor: label
+            });
+        }
+
+    }
 }

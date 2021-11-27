@@ -282,15 +282,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         const element = event.currentTarget;
         const dataset = element.dataset;
 
-        if (dataset.roll) {
-            let roll = new Roll(dataset.roll, this.actor.data.data);
-            let label = dataset.stat ? `Rolling ${dataset.stat}` : '';
-            await roll.toMessage({
-                speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-                flavor: label
-            });
-        }
-
+        await this.actor.rollGeneric(dataset);
     }
 
 }

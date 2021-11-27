@@ -24,7 +24,9 @@ Hooks.once("init", function() {
 
     game.mp = {
         macros: Macros,
-        rollItemMacro: Macros.rollItemMacro
+        rollItemMacro: Macros.rollItemMacro,
+        rollSaveMacro: Macros.rollSaveMacro,
+        rollOtherStat: Macros.rollOtherMacro
     }
 
     Items.unregisterSheet("core", ItemSheet);
