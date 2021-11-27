@@ -13,10 +13,12 @@
         </label>
     </div>
 
+    {{#if showDeductPower}}
     <div class="form-group">
         <label class="checkbox" title="{{ localize 'MP.AutoDeductPower'}}">
             <input type="checkbox" name="autodeduct" checked />
             {{ localize 'MP.AutoDeductPower'}}
         </label>
     </div>
+    {{/if}}
 </form>

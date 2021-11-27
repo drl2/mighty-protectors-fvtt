@@ -28,17 +28,17 @@ Hooks.once("init", function() {
     }
 
     Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet("mighty-protectors", MightyProtectorsItemSheet, {makeDefault: true });
+    Items.registerSheet(game.system.id, MightyProtectorsItemSheet, {makeDefault: true });
 
     Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet("mighty-protectors", MightyProtectorsCharacterSheet, {makeDefault: true });
+    Actors.registerSheet(game.system.id, MightyProtectorsCharacterSheet, {makeDefault: true });
 });
 
 Hooks.once("ready", function() {
     // one-time-only - set recommended setting for multi-rolling if Dice So Nice is in use
-    if(!game.settings.get("mighty-protectors", "dsnSettingInit")){
+    if(!game.settings.get(game.system.id, "dsnSettingInit")){
         game.settings.set("dice-so-nice","enabledSimultaneousRollForMessage",false);
-        game.settings.set("mighty-protectors", "dsnSettingInit",true);
+        game.settings.set(game.system.id, "dsnSettingInit",true);
     }
 
     Hooks.on("hotbarDrop", (bar, data, slot) => Macros.createRollItemMacro(data, slot));
@@ -47,7 +47,7 @@ Hooks.once("ready", function() {
 
 
 function checkDsNSetting() {
-    game.settings.register("mighty-protectors", "dsnSettingInit", {
+    game.settings.register(game.system.id, "dsnSettingInit", {
         name: "Flag for Dice So Nice settings init",
         scope: "world",
         config: false,
@@ -57,7 +57,7 @@ function checkDsNSetting() {
 }
 
 function registerSystemSettings() {
-    game.settings.register("mighty-protectors", "autoDecrementPowerOnAttack", {
+    game.settings.register(game.system.id, "autoDecrementPowerOnAttack", {
         config: true,
         scope: "world",
         name: "SETTINGS.autoDecrementPowerOnAttack.name",
@@ -71,8 +71,8 @@ function registerSystemSettings() {
         default: "choose"
     })
 
-    /*
-    game.settings.register("mighty-protectors", "checkPowerOnAttack", {
+    
+    game.settings.register(game.system.id, "checkPowerOnAttack", {
         config: true,
         scope: "world",
         name: "SETTINGS.checkPowerOnAttack.name",
@@ -81,7 +81,8 @@ function registerSystemSettings() {
         default: true
     })
 
-    game.settings.register("mighty-protectors", "checkChargesOnAttack", {
+    /*
+    game.settings.register(game.system.id, "checkChargesOnAttack", {
         config: true,
         scope: "world",
         name: "SETTINGS.checkChargesOnAttack.name",
@@ -92,7 +93,7 @@ function registerSystemSettings() {
     
 */
 
-    game.settings.register("mighty-protectors", "showSaveTargetNumbers", {
+    game.settings.register(game.system.id, "showSaveTargetNumbers", {
         config: true,
         scope: "world",
         name: "SETTINGS.showSaveTargetNumbers.name",
@@ -101,7 +102,7 @@ function registerSystemSettings() {
         default: true
     })
     
-    game.settings.register("mighty-protectors", "showAttackTargetNumbers", {
+    game.settings.register(game.system.id, "showAttackTargetNumbers", {
         config: true,
         scope: "world",
         name: "SETTINGS.showAttackTargetNumbers.name",
@@ -110,7 +111,7 @@ function registerSystemSettings() {
         default: true
     })
 
-    game.settings.register("mighty-protectors", "showCanRollWith", {
+    game.settings.register(game.system.id, "showCanRollWith", {
         config: true,
         scope: "world",
         name: "SETTINGS.showCanRollWith.name",

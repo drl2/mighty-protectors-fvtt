@@ -14,11 +14,11 @@
         },
         "showSaveTargetNumbers": {
             "name": "Show save target numbers",
-            "label": "When checked, saving throw roll will show a difficulty indicator to all players; otherwise only to the GM."
+            "label": "When checked, saving throw rolls will show a difficulty indicator to all players; otherwise only to the GM."
         },
         "showAttackTargetNumbers": {
             "name": "Show attack target numbers",
-            "label": "When checked, saving throw roll will show a difficulty indicator to all players; otherwise only to the GM."
+            "label": "When checked, attack rolls will show a difficulty indicator to all players; otherwise only to the GM."
         },
         "showCanRollWith": {
             "name": "Show 'Can roll with' numbers",
@@ -244,6 +244,9 @@
         "Available": "Available",
         "PossibleFumble": "Possible Fumble",
         "PossibleCrit": "Possible Critical Hit",
-        "SecurityClearance": "Security Clearance"
+        "SecurityClearance": "Security Clearance",
+        "NotEnoughPower": "Not enough power",
+        "Need": "Need",
+        "Have": "Have"
     }
 }
