@@ -45,6 +45,13 @@ The project is free and open source, but if you'd like to contribute financially
 
 ## Change Log
 
+
+### [0.?.?] - 2021-??-??
+
+- GM might prefer to hide the relative strength of NPCs from players, so separated "Show roll with" option into separate ones for characters and NPCs; NPC one has option to show only to GM
+- Added display on character sheet to differentiate between NPC & Char actors
+
+
 ### [0.5.5] - 2021-11-27
 
 - System settings actually implemented

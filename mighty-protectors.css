@@ -264,7 +264,7 @@
   font-size: 14px;
   margin-left: 12px;
   display: grid;
-  grid-template-columns: 110px 110px 70px 90px 100px 100px;
+  grid-template-columns: 70px 110px 110px 70px 85px 95px 100px;
   align-items: center;
 }
 .mightyprotectors.sheet.character .sheet-header .header-stats input[type="number"] {
@@ -273,6 +273,9 @@
 }
 .mightyprotectors.sheet.character .sheet-header .header-stats .init-text {
   width: 60px;
+}
+.mightyprotectors.sheet.character .sheet-header .header-stats .type-indicator {
+  font-size: 11px;
 }
 .mightyprotectors.sheet.character .sheet-navigation {
   height: 20px;
@@ -308,9 +311,6 @@
   /* abilities */
   /* attacks */
   /* protection */
-}
-.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .test {
-  overflow: auto;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .bc-grid {
   display: grid;

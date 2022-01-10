@@ -16,6 +16,17 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         sheetData.actor = actorData;
         sheetData.data = actorData.data;
 
+        switch(this.actor.type) {
+            case "npc":
+                sheetData.typeAbbr = game.i18n.localize("ACTOR.TypeNpc");
+                break;
+            case "vehicle":
+                sheetData.typeAbbr = game.i18n.localize("ACTOR.TypeVehicle");
+                break;
+            default:
+                sheetData.typeAbbr = game.i18n.localize("ACTOR.TypeCharacter");
+        }
+
         this._prepareItems(sheetData);
 
         return sheetData;

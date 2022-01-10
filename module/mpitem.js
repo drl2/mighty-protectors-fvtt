@@ -120,7 +120,9 @@ export default class MPItem extends Item {
         let defense = 0;
         let autoPowerSetting = game.settings.get(game.system.id, "autoDecrementPowerOnAttack");
         let checkPower = game.settings.get(game.system.id, "checkPowerOnAttack");
-        let showCanRollWith = game.settings.get(game.system.id, "showCanRollWith");
+        let showCanRollWithChar = game.settings.get(game.system.id, "showCanRollWithChar");
+        let showCanRollWithNPC = game.settings.get(game.system.id, "showCanRollWithNPC");
+       
 
         // get target info if selected
         if (game.user.targets.size > 0) {
@@ -171,9 +173,18 @@ export default class MPItem extends Item {
             let dmgFormula = itemData.data.dmgroll;
             let powerCost = itemData.data.powercost;
             let showTarget = game.settings.get(game.system.id, "showAttackTargetNumbers");
+            let showCanRollWith = false;
+            let showCanRollWithToGM = false;
+
+            if (target && (target.actor.type === "character")) {
+                showCanRollWith = showCanRollWithChar;
+            }
+            else {
+                showCanRollWith = (showCanRollWithNPC == "always");
+                showCanRollWithToGM = (showCanRollWithNPC == "gmonly");
+            }
 
 
-            
             if (checkPower && (powerCost > actor.data.data.power.value)) {
                 ui.notifications.warn(game.i18n.localize("MP.NotEnoughPower") + ": " + game.i18n.localize("MP.Need") + " " + powerCost + ", " + game.i18n.localize("MP.Have") + " " + actor.data.data.power.value);
             }
@@ -222,9 +233,13 @@ export default class MPItem extends Item {
 
                 let showRollWith = false;
                 let rollWith = 0;
-                if (success && showCanRollWith && target) {
-                    showRollWith = true;
+                if (success && target) {
                     rollWith = Math.floor(target.actor.data.data.power.value / 10);
+                    showRollWith = showCanRollWith;
+                    if (showCanRollWithToGM) {
+                        let html = itemData.name + ": " + target.name + " " + game.i18n.localize("MP.CanRollWithUpTo") + " " + rollWith + " " + game.i18n.localize("MP.points");
+                        simpleGMWhisper(ChatMessage.getSpeaker({ actor: actor }), html);
+                    }
                 }
 
                 let rollData = {

@@ -45,6 +45,8 @@ Hooks.once("ready", function() {
 
     Hooks.on("hotbarDrop", (bar, data, slot) => Macros.createRollItemMacro(data, slot));
 
+    checkRollTables();
+
 });
 
 
@@ -56,6 +58,25 @@ function checkDsNSetting() {
         type: Boolean,
         default: false
     });
+}
+
+async function checkRollTables() {
+    // crit & fumble rolltables need to be imported for auto crit rolls to work
+    // so auto-import them at startup if not already present
+
+    let pack = await game.packs.get("mighty-protectors.mighty-protectors-rolltables");
+
+    console.warn(game.tables);
+    console.warn(pack);
+    
+    for (let tbl of pack.index)
+    {
+        console.warn(tbl._id);
+        if (!game.tables.find(t => t.name === tbl.name)) {
+            console.warn("not found");
+            game.tables.importFromCompendium(pack, tbl._id, {options: {keepId: true}});
+        }
+    }
 }
 
 function registerSystemSettings() {
@@ -83,17 +104,6 @@ function registerSystemSettings() {
         default: true
     })
 
-    /*
-    game.settings.register(game.system.id, "checkChargesOnAttack", {
-        config: true,
-        scope: "world",
-        name: "SETTINGS.checkChargesOnAttack.name",
-        hint: "SETTINGS.checkChargesOnAttack.label",
-        type: Boolean,
-        default: true
-    })
-    
-*/
 
     game.settings.register(game.system.id, "showSaveTargetNumbers", {
         config: true,
@@ -113,14 +123,30 @@ function registerSystemSettings() {
         default: true
     })
 
-    game.settings.register(game.system.id, "showCanRollWith", {
+    game.settings.register(game.system.id, "showCanRollWithChar", {
         config: true,
         scope: "world",
-        name: "SETTINGS.showCanRollWith.name",
-        hint: "SETTINGS.showCanRollWith.label",
+        name: "SETTINGS.showCanRollWithChar.name",
+        hint: "SETTINGS.showCanRollWithChar.label",
         type: Boolean,
         default: true
     })
+
+    game.settings.register(game.system.id, "showCanRollWithNPC", {
+        config: true,
+        scope: "world",
+        name: "SETTINGS.showCanRollWithNPC.name",
+        hint: "SETTINGS.showCanRollWithNPC.label",
+        type: String,
+        choices: {
+            "always": "MP.Always",
+            "gmonly": "MP.GMOnly",
+            "never": "MP.Never"
+        },
+        default: "always"
+    })
+
+
 }
 
 Handlebars.registerHelper('ismoveconstant', function (value) {

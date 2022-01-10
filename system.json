@@ -4,13 +4,22 @@
   "description": "A FoundryVTT system implementation of Villains and Vigilantes 3 - Mighty Protectors!",
   "version": "0.5.5",
   "minimumCoreVersion": "0.8.0",
-  "compatibleCoreVersion": "0.8.9",
+  "compatibleCoreVersion": "9",
   "templateVersion": 2,
   "author": "Don Lloyd",
   "esmodules": ["module/mighty-protectors.js"],
   "styles": ["mighty-protectors.css"],
   "scripts": [],
-  "packs": [],
+  "packs": [
+    {
+      "name": "mighty-protectors-rolltables",
+      "label": "Mighty Protectors Rolltables",
+      "system": "mighty-protectors",
+      "module": "mighty-protectors",
+      "path": "./packs/mighty-protectors-rolltables.db",
+      "entity": "RollTable"
+    }
+  ],
   "languages": [
     {
       "lang": "en",

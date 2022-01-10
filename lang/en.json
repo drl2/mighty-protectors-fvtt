@@ -20,9 +20,13 @@
             "name": "Show attack target numbers",
             "label": "When checked, attack rolls will show a difficulty indicator to all players; otherwise only to the GM."
         },
-        "showCanRollWith": {
-            "name": "Show 'Can roll with' numbers",
-            "label": "When a target is selected and an attack is successful, show an indicator of how much damage the target can potentiually 'roll' with.  This is a simple calculation based on the target's current Power and does not take other factors such as Fortitude, multipliers, etc. into account."
+        "showCanRollWithChar": {
+            "name": "Show 'Can roll with' numbers for characters",
+            "label": "When a character target is selected and an attack is successful, show an indicator of how much damage the target can potentiually 'roll' with.  This is a simple calculation based on the target's current Power and does not take other factors such as Fortitude, multipliers, etc. into account."
+        },
+        "showCanRollWithNPC": {
+            "name": "Show 'Can roll with' numbers for NPCs",
+            "label": "When an NPC target is selected and an attack is successful, show an indicator of how much damage the target can potentiually 'roll' with.  This is a simple calculation based on the target's current Power and does not take other factors such as Fortitude, multipliers, etc. into account."
         }
     },
     "ACTOR": {
@@ -259,6 +263,7 @@
         "Have": "Have",
         "TargetDefenses": "Target Defenses",
         "CanRollWithUpTo": "can roll with up to",
-        "points": "points"
+        "points": "points",
+        "GMOnly": "GM Only"
     }
 }
