@@ -29,6 +29,12 @@ MP.DamageTypes = {
     other: "DAMAGE.Other"
 }
 
+MP.HealTimes = {
+    days: "MP.HealTimes.Days",
+    hours: "MP.HealTimes.Hours",
+    minutes: "MP.HealTimes.Minutes"
+}
+
 MP.MoveRateTypes = {
     constant: "MP.MoveRateTypes.Constant",
     accelmax: "MP.MoveRateTypes.Acceleration"

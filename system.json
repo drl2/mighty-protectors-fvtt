@@ -2,23 +2,20 @@
   "name": "mighty-protectors",
   "title": "Villains and Vigilantes 3 - Mighty Protectors",
   "description": "A FoundryVTT system implementation of Villains and Vigilantes 3 - Mighty Protectors!",
+  "author": "Don Lloyd",
+  "authors": [],
+  "url": "https://github.com/drl2/mighty-protectors-fvtt",
+  "license": "LICENSE.txt",
+  "flags": {},
   "version": "0.5.5",
   "minimumCoreVersion": "0.8.0",
-  "compatibleCoreVersion": "9",
-  "templateVersion": 2,
-  "author": "Don Lloyd",
-  "esmodules": ["module/mighty-protectors.js"],
-  "styles": ["mighty-protectors.css"],
+  "compatibleCoreVersion": "0.8.9",
   "scripts": [],
-  "packs": [
-    {
-      "name": "mighty-protectors-rolltables",
-      "label": "Mighty Protectors Rolltables",
-      "system": "mighty-protectors",
-      "module": "mighty-protectors",
-      "path": "./packs/mighty-protectors-rolltables.db",
-      "entity": "RollTable"
-    }
+  "esmodules": [
+    "module/mighty-protectors.js"
+  ],
+  "styles": [
+    "mighty-protectors.css"
   ],
   "languages": [
     {
@@ -27,12 +24,26 @@
       "path": "lang/en.json"
     }
   ],
+  "packs": [
+    {
+      "name": "mighty-protectors-rolltables",
+      "label": "Mighty Protectors Rolltables",
+      "system": "mighty-protectors",
+      "module": "mighty-protectors",
+      "path": "./packs/mighty-protectors-rolltables.db",
+      "entity": "RollTable",
+      "type": "RollTable",
+      "private": false
+    }
+  ],
+  "system": [],
+  "dependencies": [],
+  "socket": false,
+  "manifest": "https://github.com/drl2/mighty-protectors-fvtt/releases/latest/download/system.json",
+  "download": "https://github.com/drl2/mighty-protectors-fvtt/releases/latest/download/system.zip",
+  "protected": false,
   "gridDistance": 5,
   "gridUnits": "ft",
   "primaryTokenAttribute": "health",
-  "secondaryTokenAttribute": "power",
-  "url": "https://github.com/drl2/mighty-protectors-fvtt",
-  "manifest": "https://github.com/drl2/mighty-protectors-fvtt/releases/latest/download/system.json",
-  "download": "https://github.com/drl2/mighty-protectors-fvtt/releases/latest/download/system.zip",
-  "license": "LICENSE.txt"
+  "secondaryTokenAttribute": "power"
 }

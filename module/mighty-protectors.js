@@ -50,6 +50,7 @@ Hooks.once("ready", function() {
 });
 
 
+
 function checkDsNSetting() {
     game.settings.register(game.system.id, "dsnSettingInit", {
         name: "Flag for Dice So Nice settings init",
@@ -65,15 +66,10 @@ async function checkRollTables() {
     // so auto-import them at startup if not already present
 
     let pack = await game.packs.get("mighty-protectors.mighty-protectors-rolltables");
-
-    console.warn(game.tables);
-    console.warn(pack);
     
     for (let tbl of pack.index)
     {
-        console.warn(tbl._id);
         if (!game.tables.find(t => t.name === tbl.name)) {
-            console.warn("not found");
             game.tables.importFromCompendium(pack, tbl._id, {options: {keepId: true}});
         }
     }

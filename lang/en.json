@@ -113,6 +113,11 @@
             "Leaping": "Leaping Formula",
             "Manual": "Manual Entry"
         },
+        "HealTimes": {
+            "Days": "Days",
+            "Hours": "Hours",
+            "Minutes": "Minutes"
+        },
         "MoveRateType": "Movement Rate Type",
         "UseMovementFormulas": "Calc from formula",
         "MultiInitiative": "Allow multiple initiative rolls?",
@@ -264,6 +269,9 @@
         "TargetDefenses": "Target Defenses",
         "CanRollWithUpTo": "can roll with up to",
         "points": "points",
-        "GMOnly": "GM Only"
+        "GMOnly": "GM Only",
+        "Rest": "Rest",
+        "RecoverAll": "Recover All",
+        "TimedRest": "Timed Rest"
     }
 }

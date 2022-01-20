@@ -50,7 +50,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         html.find('.attackroll').click(this._onRollAttack.bind(this));
         html.find('.initroll').click(this._onRollInitiative.bind(this));
         html.find('.genericroll').click(this._onRollGeneric.bind(this));
-
+        html.find('.timed-rest').click(this._onRest.bind(this));
     }
 
 
@@ -296,6 +296,43 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         await this.actor.rollGeneric(dataset);
     }
 
+    async _onRest(event) {
+        event.preventDefault();
+
+        let dlgContent = await renderTemplate("systems/mighty-protectors/templates/dialogs/rest.hbs");
+
+        let dlg = new Dialog({
+            title: game.i18n.localize("MP.Rest"),
+            content: dlgContent,
+            buttons: {
+                recoverAll: {
+                    icon: "<i class='fas fa-first-aid'></i>",
+                    label: game.i18n.localize("MP.RecoverAll"),
+                    callback: (html) => rollRecoverCallback(html)
+                },
+                timedRest: {
+                    icon: "<i class='fas fa-bed'></i>",
+                    label: game.i18n.localize("MP.TimedRest"),
+                    callback: (html) => timedRestCallback(html)
+                },
+                cancel: {
+                    icon: "<i class='fas fa-times'></i>",
+                    label: game.i18n.localize("MP.Cancel")
+                }
+            },
+            default: "recoverAll"
+        })
+        dlg.render(true);
+
+        async function rollRecoverCallback(html) {
+            console.warn("recover all");
+        }
+
+        async function timedRestCallback(html) {
+            console.warn("timedRestCallback");
+        }
+
+    }
 }
 
 

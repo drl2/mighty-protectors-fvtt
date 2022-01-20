@@ -5,16 +5,29 @@ export default class MPCombatant extends Combatant {
     _onCreate(data, options, userId) {
         super._onCreate(data, options, userId);
         let multiInit = false;
+        let actor = null;
 
          if (data.actorId) {
-             const actor = game.actors.find(x => x.id == data.actorId);
-             multiInit = actor.data.data.multiinit;
+             actor = game.actors.find(x => x.id == data.actorId);
+         }
+         else if (data.tokenId) {
+             let token = canvas.tokens.get(data.tokenId);
+             actor = token.actor;
          }
 
+         multiInit = actor.data.data.multiinit;
          this.setFlag("mighty-protectors", "hasMulti", multiInit);   
     }
 
-
+    // async _onUpdate(changed, options, userId) {
+    //     super._onUpdate(changed, options, userId);
+    //     const resetTurn = hasProperty(changed,'initiative');
+    //     // if (resetTurn) {
+    //     //     console.warn(this.combat);
+    //     //     await game.combat.update({turn: 0});
+    //     //     console.warn(this.combat);
+    //     // }
+    // }
 
     /**
      * Override the default Initiative formula based on calculated initiative roll
