@@ -18,13 +18,7 @@ export default class MPCombatTracker extends CombatTracker {
             return data;
         }
 
-        //console.warn(data.combat.turns);
         for (let [i, combatant] of data.combat.turns.entries()) {
-            //console.warn(data.turns[i]);
-            // console.warn(i);
-            // console.warn(combatant.getFlag("mighty-protectors","hasMulti"));
-            // console.warn(combatant);
-            // console.warn(data.turns[i]);
             data.turns[i].hasMulti = combatant.getFlag("mighty-protectors","hasMulti");
         }
         return data;

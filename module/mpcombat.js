@@ -9,5 +9,11 @@ export default class MPCombat extends Combat {
         this.resetAll();
     }
 
-
+    async rollInitiative(ids, options) {
+        if (!options) {
+            options = {};
+        }
+        setProperty(options, "updateTurn", false);
+        await super.rollInitiative(ids, options);
+    }
 }

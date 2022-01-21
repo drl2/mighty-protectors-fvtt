@@ -21,6 +21,7 @@ Future versions may incorporate features such as optional further automation of 
 
 ## Known issues
 - Creating a vehicle just adds a normal character sheet; the vehicle sheet has not been implemented yet.
+- Adding a turn for a super-speed character to an in-progress combat will throw an error if Monk's Little Details is activated.  Doesn't seem to cause any actual problems though.
 
 ## To Do, Short Term
 - Enable link from an attack item to an ability with charges, to auto-decrement charges on attack
