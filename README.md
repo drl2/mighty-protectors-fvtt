@@ -21,6 +21,7 @@ Future versions may incorporate features such as optional further automation of 
 
 ## Known issues
 - Creating a vehicle just adds a normal character sheet; the vehicle sheet has not been implemented yet.
+- Adding a turn for a super-speed character to an in-progress combat will throw an error if Monk's Little Details is activated.  Doesn't seem to cause any actual problems though.
 
 ## To Do, Short Term
 - Enable link from an attack item to an ability with charges, to auto-decrement charges on attack
@@ -44,6 +45,18 @@ The project is free and open source, but if you'd like to contribute financially
 
 
 ## Change Log
+
+
+### [0.7.0] - 2022-03-07
+
+- GM might prefer to hide the relative strength of NPCs from players, so separated "Show roll with" option into separate ones for characters and NPCs; NPC one has option to show only to GM
+- Added display on character sheet to differentiate between NPC & Char actors
+- Added inventing point bonus to ability sheet (for the "Inventing" power)
+- Clicking "Healing" now pops up a dialog for healing over time as laid out in section 4.13 of the rules
+- Did a lot of prep work for implementing vehicle sheets, including entering in the Big Giant Table of vehicle properties (rules p. 78)
+- Still haven't settled on how to implement vehicles, though - thinking of just a slight modification to the regular character sheet with a "vehicle systems" section in place of abilities but working more or less the same way
+- Added Crit & Fumble roll tables
+
 
 ### [0.5.5] - 2021-11-27
 

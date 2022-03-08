@@ -9,6 +9,10 @@
             </h1>
 
             <div class="header-stats">
+                <div class="type-indicator">
+                    {{typeAbbr}}
+                </div>
+
                 <div>
                     {{localize 'MP.HitPts'}}
                     <input name="data.hitpts.value" type="number" value="{{data.hitpts.value}}" />/
@@ -168,10 +172,10 @@
                         </div>
 
                         <div>
-                            {{localize 'MP.Healing'}}
+                            <span class="rollable timed-rest">{{localize 'MP.Healing'}}</span>
                         </div>
                         <div>
-                            {{data.healing}} 
+                            {{data.healing}}
                         </div>
 
                         <div>

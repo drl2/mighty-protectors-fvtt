@@ -20,9 +20,13 @@
             "name": "Show attack target numbers",
             "label": "When checked, attack rolls will show a difficulty indicator to all players; otherwise only to the GM."
         },
-        "showCanRollWith": {
-            "name": "Show 'Can roll with' numbers",
-            "label": "When a target is selected and an attack is successful, show an indicator of how much damage the target can potentiually 'roll' with.  This is a simple calculation based on the target's current Power and does not take other factors such as Fortitude, multipliers, etc. into account."
+        "showCanRollWithChar": {
+            "name": "Show 'Can roll with' numbers for characters",
+            "label": "When a character target is selected and an attack is successful, show an indicator of how much damage the target can potentiually 'roll' with.  This is a simple calculation based on the target's current Power and does not take other factors such as Fortitude, multipliers, etc. into account."
+        },
+        "showCanRollWithNPC": {
+            "name": "Show 'Can roll with' numbers for NPCs",
+            "label": "When an NPC target is selected and an attack is successful, show an indicator of how much damage the target can potentiually 'roll' with.  This is a simple calculation based on the target's current Power and does not take other factors such as Fortitude, multipliers, etc. into account."
         }
     },
     "ACTOR": {
@@ -76,7 +80,8 @@
         "MultipleItems2": " has more than one Item with name ",
         "MultipleItems3": ". The first matched item will be chosen.",
         "MultipleItems": "Your controlled Actor ${actor.name} has more than one Item with name ${itemName}. The first matched item will be chosen.",
-        "ItemNotExist": "Your controlled Actor does not have an item named "
+        "ItemNotExist": "Your controlled Actor does not have an item named ",
+        "BadHealNumber": "Healing time must be a number greater than zero."
     },
     "MP": {
         "Abbreviations": {
@@ -108,6 +113,11 @@
             "Ground": "Ground Formula",
             "Leaping": "Leaping Formula",
             "Manual": "Manual Entry"
+        },
+        "HealTimes": {
+            "Days": "Days",
+            "Hours": "Hours",
+            "Minutes": "Minutes"
         },
         "MoveRateType": "Movement Rate Type",
         "UseMovementFormulas": "Calc from formula",
@@ -218,6 +228,7 @@
         "damage": "damage",
         "Damage": "Damage",
         "power": "power",
+        "hitpoints": "hit points",
         "AttackHits": "Attack hits!",
         "AttackMisses": "Misses!",
         "PossibleKnockback": "Possible Knockback",
@@ -259,6 +270,18 @@
         "Have": "Have",
         "TargetDefenses": "Target Defenses",
         "CanRollWithUpTo": "can roll with up to",
-        "points": "points"
+        "points": "points",
+        "GMOnly": "GM Only",
+        "Rest": "Rest",
+        "RecoverAll": "Recover All",
+        "TimedRest": "Timed Rest",
+        "FullRest": "rests for full recovery",
+        "restsfor": "rests for",
+        "day(s)": "day(s)",
+        "hour(s)": "hour(s)",
+        "minute(s)": "minute(s)",
+        "recovered": "recovered",
+        "fractionalheal": "Daily rolls for extra healing",
+        "Inventing": "Inventing"
     }
 }

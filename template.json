@@ -10,6 +10,23 @@
         "power": {
           "value": 40,
           "max": 40
+        },
+        "basecharacteristics": {
+          "st": {
+            "cp": 10
+          },
+          "en": {
+            "cp": 10
+          },
+          "ag": {
+            "cp": 10
+          },
+          "in": {
+            "cp": 10
+          },
+          "cl": {
+            "cp": 10
+          }
         }
       },
       "char": {
@@ -27,23 +44,6 @@
         "origintype": "",
         "legalstatus": "",
         "hasclearance": false,
-        "basecharacteristics": {
-          "st": {
-            "cp": 10
-          },
-          "en": {
-            "cp": 10
-          },
-          "ag": {
-            "cp": 10
-          },
-          "in": {
-            "cp": 10
-          },
-          "cl": {
-            "cp": 10
-          }
-        },
         "base_cp": 50,
         "earned_xp": 0  
       }
@@ -53,6 +53,12 @@
     },
     "npc": {
       "templates": ["base", "char"]
+    },
+    "vehicle": {
+      "templates": ["base"],
+      "model": "",
+      "operator": "",
+      "basic_cost": 5
     }
   },
   "Item": {
@@ -83,7 +89,8 @@
       "charges": 0,
       "chargesused": 0,
       "isgear": false,
-      "multiinit": false
+      "multiinit": false,
+      "ipbonus": 0
     },
     "attack": {
       "dmgroll": "1d4",

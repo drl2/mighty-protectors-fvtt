@@ -16,6 +16,17 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         sheetData.actor = actorData;
         sheetData.data = actorData.data;
 
+        switch(this.actor.type) {
+            case "npc":
+                sheetData.typeAbbr = game.i18n.localize("ACTOR.TypeNpc");
+                break;
+            case "vehicle":
+                sheetData.typeAbbr = game.i18n.localize("ACTOR.TypeVehicle");
+                break;
+            default:
+                sheetData.typeAbbr = game.i18n.localize("ACTOR.TypeCharacter");
+        }
+
         this._prepareItems(sheetData);
 
         return sheetData;
@@ -39,7 +50,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         html.find('.attackroll').click(this._onRollAttack.bind(this));
         html.find('.initroll').click(this._onRollInitiative.bind(this));
         html.find('.genericroll').click(this._onRollGeneric.bind(this));
-
+        html.find('.timed-rest').click(this._onRest.bind(this));
     }
 
 
@@ -285,6 +296,49 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         await this.actor.rollGeneric(dataset);
     }
 
+    async _onRest(event) {
+        event.preventDefault();
+
+        let data = {
+            config: MP
+        }
+
+        let dlgContent = await renderTemplate("systems/mighty-protectors/templates/dialogs/rest.hbs", data);
+
+        let dlg = new Dialog({
+            title: game.i18n.localize("MP.Rest"),
+            content: dlgContent,
+            buttons: {
+                recoverAll: {
+                    icon: "<i class='fas fa-first-aid'></i>",
+                    label: game.i18n.localize("MP.RecoverAll"),
+                    callback: (html) => rollRecoverCallback(html, this.actor)
+                },
+                timedRest: {
+                    icon: "<i class='fas fa-bed'></i>",
+                    label: game.i18n.localize("MP.TimedRest"),
+                    callback: (html) => timedRestCallback(html, this.actor)
+                },
+                cancel: {
+                    icon: "<i class='fas fa-times'></i>",
+                    label: game.i18n.localize("MP.Cancel")
+                }
+            },
+            default: "recoverAll"
+        })
+        dlg.render(true);
+
+        async function rollRecoverCallback(html, actor) {
+            return await actor.recoverAll();            
+        }
+
+        async function timedRestCallback(html, actor) {
+            let healtime = html.find('[name="healtime"]')[0].value.trim();
+            let timeframe = html.find('[name="timeframe"]')[0].value.trim();
+            return await actor.timedRecovery(timeframe, healtime)
+        }
+
+    }
 }
 
 

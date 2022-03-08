@@ -1,0 +1,12 @@
+<form>
+	<div class="form-group">
+        <input name="healtime" type="number" data-dtype="Number" value="0">
+        <select name="timeframe">
+            {{#select healtime}}
+            {{#each config.HealTimes as |name type|}}
+                <option value="{{name}}">{{localize name}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+    </div>
+</form>
