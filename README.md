@@ -49,6 +49,7 @@ The project is free and open source, but if you'd like to contribute financially
 
 ### [0.7.0] - 2022-03-07
 
+- Fixed issue where current turn wasn't moving to top of the initiative list at the beginning of a round
 - GM might prefer to hide the relative strength of NPCs from players, so separated "Show roll with" option into separate ones for characters and NPCs; NPC one has option to show only to GM
 - Added display on character sheet to differentiate between NPC & Char actors
 - Added inventing point bonus to ability sheet (for the "Inventing" power)
