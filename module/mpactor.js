@@ -1,5 +1,5 @@
 import { MP } from './config.js';
-import {simplifyDice, simpleGMWhisper, rollMinMax} from './utility.js'
+import {simplifyDice, simpleGMWhisper, rollMinMax, timeBreakdown} from './utility.js'
 
 /**
  * Override and extend the basic Item implementation.
@@ -39,8 +39,8 @@ export default class MPActor extends Actor {
         const actorData = this.data.data;
 
         // let's do this in the right order
-        const abiltyBonuses = this.getAbilityBonuses();
-        this.prepareCharacterBaseAttributes(abiltyBonuses);       
+        const abilityBonuses = this.getAbilityBonuses();
+        this.prepareCharacterBaseAttributes(abilityBonuses);       
         const statData = this.getStatData();
         
 
@@ -51,7 +51,7 @@ export default class MPActor extends Actor {
         actorData.basecharacteristics.cl.save = statData.cl.save;
 
         this.updateToHitValues();
-        actorData.multiinit = abiltyBonuses.multiinit;
+        actorData.multiinit = abilityBonuses.multiinit;
         actorData.carry = statData.st.carry;
         this.updateMoveSpeeds(); // some move speeds may need updates from carry & stats
         actorData.hth = statData.st.hth_init;
@@ -62,10 +62,10 @@ export default class MPActor extends Actor {
             + actorData.basecharacteristics.ag.cp
             + actorData.basecharacteristics.in.cp
             + actorData.basecharacteristics.cl.cp;
-        actorData.ability_cp = abiltyBonuses.cpcost;
-        actorData.total_cp = abiltyBonuses.cpcost + actorData.stat_cp;
-        actorData.avail_ip = Math.ceil(actorData.basecharacteristics.in.value/2);
-        actorData.used_ip = abiltyBonuses.ipcost;
+        actorData.ability_cp = abilityBonuses.cpcost;
+        actorData.total_cp = abilityBonuses.cpcost + actorData.stat_cp;
+        actorData.avail_ip = Math.ceil(actorData.basecharacteristics.in.value/2) + abilityBonuses.ip;
+        actorData.used_ip = abilityBonuses.ipcost;
         actorData.spent_xp = actorData.total_cp - actorData.base_cp;
 
         actorData.caps = {};
@@ -84,13 +84,13 @@ export default class MPActor extends Actor {
         
 
         // need to add ability bonuses to these
-        actorData.luck = 10 + abiltyBonuses.luck; 
+        actorData.luck = 10 + abilityBonuses.luck; 
         actorData.healing = statData.en.heal;
-        actorData.physicaldefense = (actorData.basecharacteristics.ag.save -10) + abiltyBonuses.physdef;
-        actorData.mentaldefense = (actorData.basecharacteristics.in.save -10) + abiltyBonuses.mentdef;
-        actorData.initiative = simplifyDice(statData.cl.hth_init + " + " + abiltyBonuses.init)       
-        actorData.hitpts.max = statData.st.hits_st + statData.ag.hits_ag + statData.en.hits_en + statData.cl.hits_cl + abiltyBonuses.hp;
-        actorData.power.max = actorData.basecharacteristics.st.value + actorData.basecharacteristics.ag.value + actorData.basecharacteristics.en.value + actorData.basecharacteristics.in.value + abiltyBonuses.power;
+        actorData.physicaldefense = (actorData.basecharacteristics.ag.save -10) + abilityBonuses.physdef;
+        actorData.mentaldefense = (actorData.basecharacteristics.in.save -10) + abilityBonuses.mentdef;
+        actorData.initiative = simplifyDice(statData.cl.hth_init + " + " + abilityBonuses.init)       
+        actorData.hitpts.max = statData.st.hits_st + statData.ag.hits_ag + statData.en.hits_en + statData.cl.hits_cl + abilityBonuses.hp;
+        actorData.power.max = actorData.basecharacteristics.st.value + actorData.basecharacteristics.ag.value + actorData.basecharacteristics.en.value + actorData.basecharacteristics.in.value + abilityBonuses.power;
 
 
     }
@@ -99,7 +99,7 @@ export default class MPActor extends Actor {
      * total up stat changes caused by abilities
      */
     getAbilityBonuses() {
-        const abiltyBonuses = {
+        const abilityBonuses = {
             cpcost: 0,
             ipcost: 0,
             st: 0,
@@ -113,29 +113,31 @@ export default class MPActor extends Actor {
             hp: 0,
             init: 0,
             luck: 0,
-            multiinit: false
+            multiinit: false,
+            ip: 0
         }
 
         const abilities = this.items.filter(item => item.type=="ability" );
 
         for (const ability of abilities) {
-            abiltyBonuses.cpcost += ability.data.data.cpcost || 0;
-            abiltyBonuses.ipcost += ability.data.data.ipcost || 0;
-            abiltyBonuses.st += ability.data.data.stbonus || 0;
-            abiltyBonuses.ag += ability.data.data.agbonus || 0;
-            abiltyBonuses.en += ability.data.data.enbonus || 0;
-            abiltyBonuses.in += ability.data.data.inbonus || 0;
-            abiltyBonuses.cl += ability.data.data.clbonus || 0;
-            abiltyBonuses.physdef += ability.data.data.physdefbonus || 0;
-            abiltyBonuses.mentdef += ability.data.data.mentdefbonus || 0;
-            abiltyBonuses.power += ability.data.data.powerbonus || 0;
-            abiltyBonuses.hp += ability.data.data.hpbonus || 0;
-            abiltyBonuses.init += ability.data.data.initbonus || 0;
-            abiltyBonuses.luck += ability.data.data.luckbonus || 0;
-            if (ability.data.data.multiinit) abiltyBonuses.multiinit = true;
+            abilityBonuses.cpcost += ability.data.data.cpcost || 0;
+            abilityBonuses.ipcost += ability.data.data.ipcost || 0;
+            abilityBonuses.st += ability.data.data.stbonus || 0;
+            abilityBonuses.ag += ability.data.data.agbonus || 0;
+            abilityBonuses.en += ability.data.data.enbonus || 0;
+            abilityBonuses.in += ability.data.data.inbonus || 0;
+            abilityBonuses.cl += ability.data.data.clbonus || 0;
+            abilityBonuses.physdef += ability.data.data.physdefbonus || 0;
+            abilityBonuses.mentdef += ability.data.data.mentdefbonus || 0;
+            abilityBonuses.power += ability.data.data.powerbonus || 0;
+            abilityBonuses.hp += ability.data.data.hpbonus || 0;
+            abilityBonuses.init += ability.data.data.initbonus || 0;
+            abilityBonuses.luck += ability.data.data.luckbonus || 0;
+            abilityBonuses.ip += ability.data.data.ipbonus || 0;
+            if (ability.data.data.multiinit) abilityBonuses.multiinit = true;
         }
 
-        return abiltyBonuses;
+        return abilityBonuses;
     }
 
     /**
@@ -304,5 +306,115 @@ export default class MPActor extends Actor {
             });
         }
 
+    }
+
+    async recoverAll() {
+        let chatOptions = {
+            content: game.i18n.localize("MP.FullRest") + ".",
+            speaker: ChatMessage.getSpeaker({ actor: this.actor })
+        }
+
+        ChatMessage.create(chatOptions);
+        return await this.update({'data.hitpts.value': this.data.data.hitpts.max, 'data.power.value': this.data.data.power.max});
+    }
+
+    async timedRecovery(timeframe, healtime) {
+        if (healtime > 0) {
+            // turn everything into minutes for now
+            let minutes = healtime;  // default to minute
+            if (timeframe == 'MP.HealTimes.Hours') minutes = healtime * 60;
+            if (timeframe == 'MP.HealTimes.Days') minutes = healtime * 60 * 24;
+
+            
+            let breakdown = timeBreakdown(minutes);
+            let timeText = "";
+            if (breakdown.days > 0) timeText = `${breakdown.days} ${game.i18n.localize("MP.day(s)")}`;
+            if (breakdown.hours > 0 || (breakdown.days > 0 && breakdown.mins > 0)) {  // even if hours are 0, show if min & days are non-0
+                if (timeText.length > 0) timeText += ", "
+                timeText += `${breakdown.hours} ${game.i18n.localize("MP.hour(s)")}`;
+            }
+            if (breakdown.mins > 0) {  
+                if (timeText.length > 0) timeText += ", "
+                timeText += `${breakdown.mins} ${game.i18n.localize("MP.minute(s)")}`;
+            }
+
+            let msg = `<p>${this.name} ${game.i18n.localize("MP.restsfor")} ${timeText}</p>`;
+
+            // heal power first and subtract that time from total
+            let newPower = 0;
+            let powerRec = 0;
+            let diff = this.data.data.power.max - this.data.data.power.value;
+            if (diff >= minutes) {
+                newPower = this.data.data.power.value + minutes;
+                powerRec = minutes;
+                minutes = 0;
+            }
+            else {
+                newPower = this.data.data.power.max;
+                powerRec = diff;
+                minutes = minutes - diff;
+            }
+
+            if (powerRec > 0) {
+                msg += `<p>${powerRec} ${game.i18n.localize("MP.power")} ${game.i18n.localize("MP.recovered")}.</p>`
+            }
+            
+
+            // turn remaining time back into days for hp healing
+            let hpDays = Math.floor(minutes / (60 * 24));
+            let hpHealed = 0;
+            let newHP = this.data.data.hitpts.value;
+            let dec = 0;
+            var roll;
+            let hpRecovered = "";
+            diff = this.data.data.hitpts.max - this.data.data.hitpts.value;
+
+            if (hpDays > 0 && diff > 0) {
+                hpHealed = Math.floor(hpDays) * Math.floor(this.data.data.healing);
+
+                // handle fractional healing rolls for each day
+                dec = (this.data.data.healing + "").split(".")[1];
+
+                if (dec > 0) {
+                    let rollFormula = hpDays + "d10";
+                    roll = await new Roll(rollFormula).evaluate({ async: true });
+                    for (var i = 0; i < roll.dice[0].results.length; i++) {
+                        if (roll.dice[0].results[i].result <= dec) ++hpHealed;
+                    }
+                }
+                newHP = Math.min(newHP + hpHealed, this.data.data.hitpts.max);
+
+                hpRecovered = `<p>${Math.min(hpHealed, diff)} ${game.i18n.localize("MP.hitpoints")} ${game.i18n.localize("MP.recovered")}.</p>`
+            }
+
+            let chatOptions = {};
+
+            if (dec > 0 && hpHealed > 0) {
+                // if there were dice rolls for fractional heals, need to show them
+                msg += `<p>${game.i18n.localize("MP.fractionalheal")} (${game.i18n.localize("MP.Target")} <= ${dec}):</p>`
+                msg += await roll.render();
+                msg += hpRecovered;
+                chatOptions = {
+                    type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+                    roll: roll,
+                    content: msg,
+                    speaker: ChatMessage.getSpeaker({ actor: this.actor })
+                }
+            }
+            else {
+                // otherwise just a normal message
+                chatOptions = {
+                    content: msg + hpRecovered,
+                    speaker: ChatMessage.getSpeaker({ actor: this.actor })
+                }
+            }
+
+            ChatMessage.create(chatOptions);
+
+            return await this.update({'data.hitpts.value': newHP, 'data.power.value': newPower});
+        }
+        else {
+            ui.notifications.warn(game.i18n.localize("Warnings.BadHealNumber"));
+        }
     }
 }

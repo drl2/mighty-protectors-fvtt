@@ -89,7 +89,8 @@
       "charges": 0,
       "chargesused": 0,
       "isgear": false,
-      "multiinit": false
+      "multiinit": false,
+      "ipbonus": 0
     },
     "attack": {
       "dmgroll": "1d4",

@@ -80,7 +80,8 @@
         "MultipleItems2": " has more than one Item with name ",
         "MultipleItems3": ". The first matched item will be chosen.",
         "MultipleItems": "Your controlled Actor ${actor.name} has more than one Item with name ${itemName}. The first matched item will be chosen.",
-        "ItemNotExist": "Your controlled Actor does not have an item named "
+        "ItemNotExist": "Your controlled Actor does not have an item named ",
+        "BadHealNumber": "Healing time must be a number greater than zero."
     },
     "MP": {
         "Abbreviations": {
@@ -227,6 +228,7 @@
         "damage": "damage",
         "Damage": "Damage",
         "power": "power",
+        "hitpoints": "hit points",
         "AttackHits": "Attack hits!",
         "AttackMisses": "Misses!",
         "PossibleKnockback": "Possible Knockback",
@@ -272,6 +274,14 @@
         "GMOnly": "GM Only",
         "Rest": "Rest",
         "RecoverAll": "Recover All",
-        "TimedRest": "Timed Rest"
+        "TimedRest": "Timed Rest",
+        "FullRest": "rests for full recovery",
+        "restsfor": "rests for",
+        "day(s)": "day(s)",
+        "hour(s)": "hour(s)",
+        "minute(s)": "minute(s)",
+        "recovered": "recovered",
+        "fractionalheal": "Daily rolls for extra healing",
+        "Inventing": "Inventing"
     }
 }

@@ -75,3 +75,20 @@ export function simpleGMWhisper(speaker, content) {
     }
     ChatMessage.create(gmChatOptions);
 }
+
+
+/**
+ * Convert a length of time to days/hours/minutes
+ * @param {int} minutes
+ **/
+export function timeBreakdown(minutes) {
+    var d = Math.floor(minutes/24/60);
+    var h = Math.floor(minutes/60%24);
+    var m = Math.floor(minutes%60);
+
+    return {
+        days: d,
+        hours: h,
+        mins: m
+    }
+}

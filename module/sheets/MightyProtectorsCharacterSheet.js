@@ -299,7 +299,11 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
     async _onRest(event) {
         event.preventDefault();
 
-        let dlgContent = await renderTemplate("systems/mighty-protectors/templates/dialogs/rest.hbs");
+        let data = {
+            config: MP
+        }
+
+        let dlgContent = await renderTemplate("systems/mighty-protectors/templates/dialogs/rest.hbs", data);
 
         let dlg = new Dialog({
             title: game.i18n.localize("MP.Rest"),
@@ -308,12 +312,12 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
                 recoverAll: {
                     icon: "<i class='fas fa-first-aid'></i>",
                     label: game.i18n.localize("MP.RecoverAll"),
-                    callback: (html) => rollRecoverCallback(html)
+                    callback: (html) => rollRecoverCallback(html, this.actor)
                 },
                 timedRest: {
                     icon: "<i class='fas fa-bed'></i>",
                     label: game.i18n.localize("MP.TimedRest"),
-                    callback: (html) => timedRestCallback(html)
+                    callback: (html) => timedRestCallback(html, this.actor)
                 },
                 cancel: {
                     icon: "<i class='fas fa-times'></i>",
@@ -324,12 +328,14 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         })
         dlg.render(true);
 
-        async function rollRecoverCallback(html) {
-            console.warn("recover all");
+        async function rollRecoverCallback(html, actor) {
+            return await actor.recoverAll();            
         }
 
-        async function timedRestCallback(html) {
-            console.warn("timedRestCallback");
+        async function timedRestCallback(html, actor) {
+            let healtime = html.find('[name="healtime"]')[0].value.trim();
+            let timeframe = html.find('[name="timeframe"]')[0].value.trim();
+            return await actor.timedRecovery(timeframe, healtime)
         }
 
     }
