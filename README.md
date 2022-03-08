@@ -55,6 +55,7 @@ The project is free and open source, but if you'd like to contribute financially
 - Clicking "Healing" now pops up a dialog for healing over time as laid out in section 4.13 of the rules
 - Did a lot of prep work for implementing vehicle sheets, including entering in the Big Giant Table of vehicle properties (rules p. 78)
 - Still haven't settled on how to implement vehicles, though - thinking of just a slight modification to the regular character sheet with a "vehicle systems" section in place of abilities but working more or less the same way
+- Added Crit & Fumble roll tables
 
 
 ### [0.5.5] - 2021-11-27
