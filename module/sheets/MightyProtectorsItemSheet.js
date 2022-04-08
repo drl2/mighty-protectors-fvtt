@@ -7,7 +7,7 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
         // expand default size for attack item type
         if (this.object.data.type === 'attack') {
             this.options.width = this.position.width = 600;
-            this.options.height = this.position.height = 400;
+            this.options.height = this.position.height = 420;
         }
     }
 
@@ -55,6 +55,7 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
     _prepareItems(sheetData, items) {
         const appliedabilities = [];
         const availabilities = [];
+        const chargesources = []
         const bonusids = sheetData.item.data.data.bonusids;
 
         // iterate through items & allocate to containers
@@ -79,10 +80,21 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
                     );
                 }
             }
+
+
+            if (i.type === 'ability' && i.data.data.usescharges) {
+                chargesources.push(
+                    {
+                        id: i.id,
+                        name: i.name
+                    }
+                );
+            }
         }
 
         sheetData.availabilities = availabilities;
         sheetData.appliedabilities = appliedabilities;
+        sheetData.chargesources = chargesources;
     }
 
 

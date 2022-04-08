@@ -2,7 +2,11 @@
     "SETTINGS": {
         "autoDecrementPowerOnAttack": {
             "name": "Auto decrement power on attack",
-            "label": "When rolling an attack from an attack item, automatically remove the correct amount of power from the character's power stat"
+            "label": "When rolling an attack from an attack item, automatically remove the correct amount of power from the character's power stat."
+        },
+        "autoDecrementChargesOnAttack": {
+            "name": "Auto decrement charges on attack",
+            "label": "When rolling an attack from an attack item, automatically remove a charge from the appropriate ability's charges."
         },
         "checkPowerOnAttack": {
             "name": "Check power on attack",
@@ -149,6 +153,7 @@
         "Luck": "Luck",
         "UsesChargesShort": "Charges?",
         "UsesChargesDesc": "Uses charges instead of power",
+        "UseChargesFrom": "Use charges from",
         "Gear": "Gear",
         "IsGear": "Is Gear?",
         "IsGearDesc": "Is this ability linked to a piece of gear?",
@@ -223,6 +228,7 @@
         "Push": "Push",
         "PowerCost": "Power Cost",
         "AutoDeductPower": "Auto deduct power cost",
+        "AutoDeductCharges": "Auto deduct charges",
         "With": "with",
         "attacks": "attacks",
         "damage": "damage",
@@ -266,6 +272,7 @@
         "PossibleCrit": "Possible Critical Hit",
         "SecurityClearance": "Security Clearance",
         "NotEnoughPower": "Not enough power",
+        "OutOfCharges": "Out of charges",
         "Need": "Need",
         "Have": "Have",
         "TargetDefenses": "Target Defenses",

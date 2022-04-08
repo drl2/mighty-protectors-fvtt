@@ -21,4 +21,13 @@
         </label>
     </div>
     {{/if}}
+
+    {{#if showDeductCharges}}
+    <div class="form-group">
+        <label class="checkbox" title="{{ localize 'MP.AutoDeductCharges'}}">
+            <input type="checkbox" name="autodeductcharge" checked />
+            {{ localize 'MP.AutoDeductCharges'}}
+        </label>
+    </div>
+    {{/if}}
 </form>

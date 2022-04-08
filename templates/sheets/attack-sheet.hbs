@@ -22,6 +22,9 @@
             <div></div>
             <div></div>
             <div>{{localize 'MP.Damage'}}</div>
+            <div></div>
+            <div></div>
+            <div></div>
 
 
 
@@ -39,22 +42,14 @@
             </div>
             <div></div>
             <div>
-                {{localize 'MP.Formula'}}
+                {{localize 'MP.Formula'}}:
             </div>
             <div>
                 <input name="data.dmgroll" type="text" value="{{data.dmgroll}}" />
             </div>
-
-
-            <div>
-                {{#if data.tohit}}{{localize 'MP.Target'}}:{{/if}}
-            </div>
-            <div>
-                {{#if data.tohit}}{{data.tohit}}-{{/if}}
-            </div>
             <div></div>
             <div>
-                {{localize 'MP.Type'}}
+                {{localize 'MP.Type'}}:
             </div>
             <div>
                 <select name="data.dmgtype">
@@ -66,15 +61,14 @@
                 </select>
             </div>
 
-            <div></div>
-            <div></div>
-            <div></div>
-            <div>{{localize 'MP.Subtype'}}</div>
-            <div><input name="data.dmgsubtype" type="text" value="{{data.dmgsubtype}}" /></div>
 
 
-            <div> {{localize 'MP.PowerCost'}}</div>
-            <div><input name="data.powercost" type="number" value="{{data.powercost}}" /></div>
+            <div>
+                {{#if data.tohit}}{{localize 'MP.Target'}}:{{/if}}
+            </div>
+            <div>
+                {{#if data.tohit}}{{data.tohit}}-{{/if}}
+            </div>
             <div></div>
             <div></div>
             <div>
@@ -83,15 +77,37 @@
                     {{ localize 'MP.KnockbackQ'}}
                 </label>
             </div>
-
-            <div>&nbsp;</div>
             <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-
+            <div>{{localize 'MP.Subtype'}}:</div>
+            <div><input name="data.dmgsubtype" type="text" value="{{data.dmgsubtype}}" /></div>
 
         </div>
+
+        <br />
+
+        <div class="attack-cost-grid">
+            <div> {{localize 'MP.PowerCost'}}:</div>
+            <div><input name="data.powercost" type="number" value="{{data.powercost}}" /></div>
+            <div></div>
+            <div>
+                <label class="checkbox" title="{{ localize 'MP.UseChargesFrom'}}">
+                    <input type="checkbox" name="data.usecharges" {{checked data.usecharges}}>
+                    {{ localize 'MP.UseChargesFrom'}}:
+                </label>
+            </div>
+            <div>
+                <select name="data.chargesource">
+                    {{#select data.chargesource}}
+                    {{#each chargesources as |item id|}}
+                    <option value="{{item.id}}">{{item.name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+
+            </div>
+        </div>
+
+        <br />
 
         {{#if isowned}}
         {{localize 'MP.ToHitBonuses'}}

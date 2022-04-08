@@ -183,7 +183,7 @@
 }
 .mightyprotectors.sheet.item .sheet-body .attack-grid {
   display: grid;
-  grid-template-columns: 70px 110px 40px 60px 110px;
+  grid-template-columns: 70px 110px 20px 60px 110px 20px 60px 110px;
   row-gap: 2px;
   align-items: center;
 }
@@ -191,6 +191,18 @@
   width: 30px;
 }
 .mightyprotectors.sheet.item .sheet-body .attack-grid input[type="text"] {
+  width: 100px;
+}
+.mightyprotectors.sheet.item .sheet-body .attack-cost-grid {
+  display: grid;
+  grid-template-columns: 90px 40px 20px 120px 180px;
+  row-gap: 2px;
+  align-items: center;
+}
+.mightyprotectors.sheet.item .sheet-body .attack-cost-grid input[type="number"] {
+  width: 30px;
+}
+.mightyprotectors.sheet.item .sheet-body .attack-cost-grid input[type="text"] {
   width: 100px;
 }
 .mightyprotectors.sheet.item .sheet-body .bonus-list {

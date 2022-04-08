@@ -119,10 +119,11 @@ export default class MPItem extends Item {
         let targetName = "";
         let defense = 0;
         let autoPowerSetting = game.settings.get(game.system.id, "autoDecrementPowerOnAttack");
+        let autoChargesSetting = game.settings.get(game.system.id, "autoDecrementChargesOnAttack");
         let checkPower = game.settings.get(game.system.id, "checkPowerOnAttack");
         let showCanRollWithChar = game.settings.get(game.system.id, "showCanRollWithChar");
         let showCanRollWithNPC = game.settings.get(game.system.id, "showCanRollWithNPC");
-       
+        
 
         // get target info if selected
         if (game.user.targets.size > 0) {
@@ -138,7 +139,8 @@ export default class MPItem extends Item {
 
         let dlgData = {
             targetName: targetName,
-            showDeductPower: autoPowerSetting === "choose"
+            showDeductPower: autoPowerSetting === "choose",
+            showDeductCharges: autoChargesSetting === "choose"
         }
 
 
@@ -170,11 +172,18 @@ export default class MPItem extends Item {
             let mod = "";
             let push = html.find('[name="push"]')[0].checked;
             let spendPower = (autoPowerSetting === 'choose' && html.find('[name="autodeduct"]')[0].checked) || autoPowerSetting === 'always';
+            let spendCharges = itemData.data.usecharges && ((autoChargesSetting === 'choose' && html.find('[name="autodeductcharge"]')[0].checked) || autoChargesSetting === 'always' );
             let dmgFormula = itemData.data.dmgroll;
             let powerCost = itemData.data.powercost;
             let showTarget = game.settings.get(game.system.id, "showAttackTargetNumbers");
             let showCanRollWith = false;
             let showCanRollWithToGM = false;
+            let chargeSourceId = itemData.data.chargesource;
+            let chargeSource = null;
+
+            if (chargeSourceId !== "") {
+                chargeSource = actor.items.get(chargeSourceId);
+            }
 
             if (target && (target.actor.type === "character")) {
                 showCanRollWith = showCanRollWithChar;
@@ -184,9 +193,13 @@ export default class MPItem extends Item {
                 showCanRollWithToGM = (showCanRollWithNPC == "gmonly");
             }
 
+            
 
             if (checkPower && (powerCost > actor.data.data.power.value)) {
                 ui.notifications.warn(game.i18n.localize("MP.NotEnoughPower") + ": " + game.i18n.localize("MP.Need") + " " + powerCost + ", " + game.i18n.localize("MP.Have") + " " + actor.data.data.power.value);
+            }
+            else if (checkPower && (itemData.data.usecharges && (chargeSource.data.data.chargesused <= 0))) {
+                ui.notifications.warn(itemData.name + ": " + game.i18n.localize("MP.OutOfCharges"));
             }
             else {
 
@@ -276,6 +289,12 @@ export default class MPItem extends Item {
                     let newPower = actor.data.data.power.value - powerCost;
                     if (newPower < 0) newPower = 0;
                     await actor.update({ "data.power.value": newPower });
+                }
+
+                if (spendCharges && itemData.data.usecharges) {
+                    let newCharges = chargeSource.data.data.chargesused -1;
+                    if (newCharges < 0) newCharges = 0;
+                    await chargeSource.update({"data.chargesused": newCharges})
                 }
             }
         }

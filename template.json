@@ -99,6 +99,8 @@
       "knockback": "Y",
       "attribute": "AG",
       "powercost": 0,
+      "usecharges": false,
+      "chargesource": "",
       "bonusids": []
     },
     "protection": {

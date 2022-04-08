@@ -90,6 +90,19 @@ function registerSystemSettings() {
         default: "choose"
     })
 
+    game.settings.register(game.system.id, "autoDecrementChargesOnAttack", {
+        config: true,
+        scope: "world",
+        name: "SETTINGS.autoDecrementChargesOnAttack.name",
+        hint: "SETTINGS.autoDecrementChargesOnAttack.label",
+        type: String,
+        choices: {
+            "always": "MP.Always",
+            "choose": "MP.Choose",
+            "never": "MP.Never"
+        },
+        default: "choose"
+    })
     
     game.settings.register(game.system.id, "checkPowerOnAttack", {
         config: true,
