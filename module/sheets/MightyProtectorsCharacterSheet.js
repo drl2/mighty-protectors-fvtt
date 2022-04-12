@@ -4,10 +4,18 @@ import { MP } from "../config.js";
 export default class MightyProtectorsCharacterSheet extends ActorSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            template: "systems/mighty-protectors/templates/sheets/MightyProtectorsCharacter-sheet.hbs",
             classes: ["mightyprotectors", "sheet", "character"],
             tabs: [{ navSelector: ".sheet-navigation", contentSelector: ".sheet-body", initial: "stats" }]
         });
+    }
+
+    get template() {
+        if (this.actor.data.type === 'vehicle') {
+            return `systems/mighty-protectors/templates/sheets/vehicle-sheet.hbs`;
+        }
+        else {
+            return `systems/mighty-protectors/templates/sheets/MightyProtectorsCharacter-sheet.hbs`;
+        }
     }
 
     getData(options) {
@@ -51,6 +59,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         html.find('.initroll').click(this._onRollInitiative.bind(this));
         html.find('.genericroll').click(this._onRollGeneric.bind(this));
         html.find('.timed-rest').click(this._onRest.bind(this));
+        html.find('.dmg-edit').change(this._onDamageEdit.bind(this));
     }
 
 
@@ -60,6 +69,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         const protections = [];
         const movements = [];
         const backgrounds = [];
+        const vehiclesystems = [];
 
         // iterate through items & allocate to containers
         for (let i of sheetData.items) {
@@ -84,6 +94,10 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
             if (i.type === 'background') {
                 backgrounds.push(i);
             }
+
+            if (i.type === 'vehiclesystem') {
+                vehiclesystems.push(i);
+            }
         }
 
         sheetData.abilities = abilities;
@@ -91,7 +105,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         sheetData.protections = protections;
         sheetData.movements = movements;
         sheetData.backgrounds = backgrounds;
-
+        sheetData.vehiclesystems = vehiclesystems;
 
     }
 
@@ -132,6 +146,9 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
                 break;
             case 'background':
                 itemName = game.i18n.localize("MP.NewBackground");
+                break;
+            case 'vehiclesystem':
+                itemName = game.i18n.localize("MP.NewVehSystem");
                 break;
             default:
                 console.log('Add item with no item type defined')
@@ -337,6 +354,21 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
             let timeframe = html.find('[name="timeframe"]')[0].value.trim();
             return await actor.timedRecovery(timeframe, healtime)
         }
+
+    }
+
+
+    async _onDamageEdit(event) {
+        event.preventDefault();
+
+        console.warn(event.target);
+        let element = event.currentTarget;
+        let itemId = element.closest(".item").dataset.itemId;
+        let item = this.actor.items.get(itemId);
+        let field = element.dataset.field;
+        console.warn(element.value);
+        console.warn(element.dataset.field);
+        return item.update({ 'data.dmg': Number(element.value) });
 
     }
 }

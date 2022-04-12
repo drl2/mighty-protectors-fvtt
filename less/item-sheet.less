@@ -100,10 +100,46 @@
         }
       }
 
+      
+      .vsdescgrid {
+        display              : grid;
+        grid-template-columns: 70px auto;
+        align-items          : center;
+        
+        .desccolumn {
+          grid-column: 2;
+          grid-row   : 1 / span 2;
+          height     : 100%;
+        }
+       
+        .desctext {
+          min-height: 150px;
+          height    : 85%;
+        }
+
+        input[type="number"] {
+          width: 40px;
+        }
+      }
+
+
+
+
     }
 
 
     .details {
+
+      .vscalcgrid {
+        display              : grid;
+        grid-template-columns: 100px 110px 12px 55px 30px 8px 40px 30px 8px 40px 30px;
+        align-items          : center;
+        
+
+        input[type="number"] {
+          width: 40px;
+        }
+      }
 
       .detailgrid {
         display              : grid;

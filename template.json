@@ -58,16 +58,20 @@
       "templates": ["base"],
       "model": "",
       "operator": "",
-      "basic_cost": 5
+      "basic_cost": 5,
+      "is_base": 0,
+      "techcostadjustment": 0
     }
   },
   "Item": {
-    "types": ["ability",
-		"attack",
-    "protection",
-    "movement",
-    "background"
-	],
+    "types": [
+      "ability",
+      "vehiclesystem",
+      "attack",
+      "protection",
+      "movement",
+      "background"
+    ],
     "ability": {
       "description": "",
       "cpcost": 0,
@@ -91,6 +95,26 @@
       "isgear": false,
       "multiinit": false,
       "ipbonus": 0
+    },
+    "vehiclesystem": {
+      "description": "",
+      "dmg": 0,
+      "cost": 0,
+      "systemspaces": 0,
+      "integral": false,
+      "bulky": false,
+      "delicate": false,
+      "stbonus": 0,
+      "enbonus": 0,
+      "agbonus": 0,
+      "inbonus": 0,
+      "clbonus": 0,
+      "maneuverability": 0,
+      "usescharges": false,
+      "charges": 0,
+      "chargesused": 0,
+      "isgear": false,
+      "points": 0
     },
     "attack": {
       "dmgroll": "1d4",

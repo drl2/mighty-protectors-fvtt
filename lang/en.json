@@ -43,7 +43,8 @@
         "TypeAttack": "Attack",
         "TypeProtection": "Protection",
         "TypeMovement": "Movement",
-        "TypeBackground": "Background"
+        "TypeBackground": "Background",
+        "TypeVehiclesystem": "Vehicle System"
     },
     "DAMAGE": {
         "Energy": "Energy",
@@ -107,7 +108,9 @@
             "BaseHandToHand": "Base HtH",
             "HandToHand": "HtH",
             "Pounds": "lbs",
-            "MultiInitiative": "Multi Init?"
+            "MultiInitiative": "Multi Init?",
+            "SysSpaces": "Sys Spc",
+            "Points": "Pts"
         },
         "MoveRateTypes": {
             "Constant": "Constant",
@@ -199,6 +202,7 @@
         "NewMovement": "New Movement",
         "NewProtection": "New Protection",
         "NewBackground": "New Background",
+        "NewVehSystem": "New Vehicle System",
         "ShowDescription": "Show description in chat",
         "ShowRules": "Show rule detail in chat",
         "AddButton": "Add",
@@ -289,6 +293,26 @@
         "minute(s)": "minute(s)",
         "recovered": "recovered",
         "fractionalheal": "Daily rolls for extra healing",
-        "Inventing": "Inventing"
+        "Inventing": "Inventing",
+        "BasicCost": "Basic Cost",
+        "SystemSpaces": "System Spaces",
+        "Profile": "Profile",
+        "Explosion": "Explosion",
+        "Area": "Area",
+        "Model": "Model",
+        "Operator": "Operator",
+        "Handling": "Handling",
+        "TurnRate": "Turn Rate",
+        "TechCostAdj": "Tech Cost Adj",
+        "Base": "Base",
+        "BaseVehicleArmor": "Base Vehicle Armor",
+        "RemainingSpaces": "Remaining system spaces for rooms, storage, corridors etc",
+        "Hits": "Hits",
+        "VehicleSystemsMods": "Vehicle Systems & Modififers",
+        "CalcFromCost": "Calculate stats from CP Cost",
+        "CalcFromSpaces": "Calculate stats from System Spaces",
+        "Integral": "Integral",
+        "Bulky": "Bulky",
+        "Delicate": "Delicate"
     }
 }

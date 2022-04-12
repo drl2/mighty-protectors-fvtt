@@ -1,4 +1,6 @@
 @import "./item-sheet.less";
+
+
 .mightyprotectors.sheet.character {
     form {
         display: flex;
@@ -127,6 +129,24 @@
                   }
             }
 
+            .vehicle-detail-grid {
+                display: grid;
+                grid-template-columns: 60px 180px 20px 60px 180px 10px 60px;
+                align-items: center;
+                row-gap: 1px;
+
+                input[type="text"] {
+                    width: 170px;
+                  }
+            }
+
+            .bc-grid-vehicle {
+                display: grid;
+                grid-template-columns: 40px 40px auto;
+                align-items: center;
+                row-gap: 1px;
+            }
+
             .cp-grid {
                 display: grid;
                 grid-template-columns: 40px 110px;
@@ -171,6 +191,23 @@
                   }
             }
 
+            .veh-other-grid {
+                display: grid;
+                grid-template-columns: 100px 60px;
+                padding-top: 20px;
+                align-items: center;
+                row-gap: 1px;
+
+                input[type="text"] {
+                    width: 60px;
+                    text-align: center;
+                  }
+
+                input[type="number"] {
+                    width: 40px;
+                    text-align: center;
+                  }
+            }
 
             .header-text {
                 text-decoration: underline;
@@ -215,6 +252,65 @@
                 align-items: center;
                 margin-left:auto;
             }
+
+
+            /* vehcile systems */
+            .vehsyscol1 {
+                flex: 0 0 40px;
+                align-items: center;
+            }
+
+            .vehsyscol2 {
+                flex: 0 0 40px;
+                align-items: center;
+            }
+
+            .vehsyscol3 {
+                flex: 0 0 50px;
+                align-items: center;
+            }
+
+            .vehsyscol4 {
+                flex: 0 0 40px;
+                align-items: center;
+            }
+
+            .vehsyscol5 {
+                flex: 0 0 40px;
+                align-items: center;
+
+                .inline-editbox {
+                    border-width: 1px;
+                    height: 18px
+                  }
+            }
+
+            .vehsyscol6 {
+                flex: 0 0 40px;
+                align-items: center;
+            }
+
+            .vehsyscol7 {
+                flex: 0 0 230px;
+                align-items: center;
+            }
+
+            .vehsyscol8 {
+                flex: 0 0 40px;
+                align-items: center;
+            }
+
+            .vehsyscol9 {
+                flex: 0 0 auto;
+                align-items: center;
+                margin-left:auto;
+            }
+
+            .remaining {
+                font-style: italic;
+                font-size: smaller;
+            }
+
 
             /* attacks */
             .attackcol1 {

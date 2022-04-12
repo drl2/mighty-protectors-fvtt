@@ -9,6 +9,9 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
             this.options.width = this.position.width = 600;
             this.options.height = this.position.height = 420;
         }
+        else if (this.object.data.type === 'vehiclesystem') {
+            this.options.height = this.position.height = 420;
+        }
     }
 
 
