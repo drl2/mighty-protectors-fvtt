@@ -113,8 +113,6 @@ export default class MPActor extends Actor {
         actorData.initiative = simplifyDice(statData.cl.hth_init + " + " + abilityBonuses.init)       
         actorData.hitpts.max = statData.st.hits_st + statData.ag.hits_ag + statData.en.hits_en + statData.cl.hits_cl + abilityBonuses.hp;
         actorData.power.max = actorData.basecharacteristics.st.value + actorData.basecharacteristics.ag.value + actorData.basecharacteristics.en.value + actorData.basecharacteristics.in.value + abilityBonuses.power;
-
-
     }
 
     /**
@@ -237,11 +235,12 @@ export default class MPActor extends Actor {
         actorData.basecharacteristics.in.value = 0 + vehicleSystemBonuses.inbonus;
         actorData.basecharacteristics.cl.value = 9 + vehicleSystemBonuses.clbonus;
         actorData.turnrate = 3 + vehicleSystemBonuses.maneuverability;
-        actorData.hitpts.max = vehTableData.hits;
+        actorData.hitpts.max = vehTableData.hits + vehicleSystemBonuses.hpbonus;
         actorData.power.max = (actorData.basecharacteristics.st.value || 0) +
             (actorData.basecharacteristics.en.value || 0) +
             (actorData.basecharacteristics.ag.value || 0) +
-            (actorData.basecharacteristics.in.value || 0);
+            (actorData.basecharacteristics.in.value || 0) +
+            vehicleSystemBonuses.powerbonus;
         const exploD8s = 1 + Math.floor(adjustedCost/5);
         const exploD4s = (adjustedCost % 5) ? 1 : 0;
         actorData.explosion = exploD8s + "d8" + (exploD4s ? "+1d4" : "");
@@ -270,7 +269,9 @@ export default class MPActor extends Actor {
             "agbonus": 0,
             "inbonus": 0,
             "clbonus": 0,
-            "maneuverability": 0
+            "maneuverability": 0,
+            "powerbonus": 0,
+            "hpbonus": 0
         }
         const systems = this.items.filter(item => item.type=="vehiclesystem" );
 
@@ -283,6 +284,8 @@ export default class MPActor extends Actor {
             vehicleSystemBonuses.inbonus += system.data.data.inbonus || 0;
             vehicleSystemBonuses.clbonus += system.data.data.clbonus || 0;
             vehicleSystemBonuses.maneuverability += system.data.data.maneuverability || 0;
+            vehicleSystemBonuses.powerbonus += system.data.data.powerbonus || 0;
+            vehicleSystemBonuses.hpbonus += system.data.data.hpbonus || 0;
         }
 
         return vehicleSystemBonuses;

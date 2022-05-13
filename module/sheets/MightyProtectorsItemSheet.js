@@ -5,7 +5,7 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
         super(...args);
 
         // expand default size for attack item type
-        if (this.object.data.type === 'attack') {
+        if (this.object.data.type === 'attack' || this.object.data.type === 'vehicleattack') {
             this.options.width = this.position.width = 600;
             this.options.height = this.position.height = 420;
         }
@@ -59,6 +59,7 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
         const appliedabilities = [];
         const availabilities = [];
         const chargesources = []
+        const indpowersources = [];
         const bonusids = sheetData.item.data.data.bonusids;
 
         // iterate through items & allocate to containers
@@ -85,8 +86,17 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
             }
 
 
-            if (i.type === 'ability' && i.data.data.usescharges) {
+            if ((i.type === 'ability' || i.type === 'vehiclesystem') && i.data.data.usescharges) {
                 chargesources.push(
+                    {
+                        id: i.id,
+                        name: i.name
+                    }
+                );
+            }
+
+            if (i.type === 'vehiclesystem' && i.data.data.indpower) {
+                indpowersources.push(
                     {
                         id: i.id,
                         name: i.name
@@ -98,6 +108,7 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
         sheetData.availabilities = availabilities;
         sheetData.appliedabilities = appliedabilities;
         sheetData.chargesources = chargesources;
+        sheetData.indpowersources = indpowersources;
     }
 
 

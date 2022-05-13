@@ -44,14 +44,10 @@
                 <div>
                     {{localize 'MP.Cost'}}
                     <input name="data.cost" type="number" value="{{data.cost}}" data-dtype="Number" title="{{ localize 'MP.Cost' }}" />
-                    <a class="item-control item-info" title="{{localize 'MP.CalcFromCost'}}"
-                                    data-type="vehiclesystem"><i class="fas fa-calculator"></i></a>
                 </div>
                 <div>
                     {{localize 'MP.Abbreviations.SysSpaces'}}
                     <input name="data.systemspaces" type="number" value="{{data.systemspaces}}" data-dtype="Number" title="{{ localize 'MP.SystemSpaces' }}" />
-                    <a class="item-control item-info" title="{{localize 'MP.CalcFromSpaces'}}"
-                                    data-type="vehiclesystem"><i class="fas fa-calculator"></i></a>                
                 </div>
                 <div></div>
                 <div>{{localize 'MP.Profile'}}</div>
@@ -156,14 +152,15 @@
                     <input name="data.inbonus" type="number" value="{{data.inbonus}}" data-dtype="Number" />
                 </div>
 
-
-                <div></div>
-                <div></div>
+                <div>{{ localize 'MP.Abbreviations.Maneuverability'}}</div>
+                <div title="{{ localize 'MP.Maneuverability'}}">
+                    <input name="data.maneuverability" type="number" value="{{data.maneuverability}}" data-dtype="Number" />
+                </div>
 
                 <div>
-                    <label class="checkbox" title="{{ localize 'MP.Bulky'}}">
-                        <input type="checkbox" name="data.bulky" {{checked data.bulky}}>
-                        {{ localize 'MP.Bulky'}}?
+                    <label class="checkbox" title="{{ localize 'MP.Open'}}">
+                        <input type="checkbox" name="data.open" {{checked data.open}}>
+                        {{ localize 'MP.Open'}}?
                     </label>
                 </div>
                 <div></div>
@@ -178,16 +175,20 @@
                     <input name="data.clbonus" type="number" value="{{data.clbonus}}" data-dtype="Number" />
                 </div>
 
-                <div></div>
-                <div></div>
+                <div>{{ localize 'MP.Bulky'}}</div>
+                <div title="{{ localize 'MP.Bulky'}}">
+                    <input name="data.bulky" type="number" value="{{data.bulky}}" data-dtype="Number" />   
+                </div>
 
                 <div>
-                    <label class="checkbox" title="{{ localize 'MP.Delicate'}}">
-                        <input type="checkbox" name="data.delicate" {{checked data.delicate}}>
-                        {{ localize 'MP.Delicate'}}?
+                    <label class="checkbox" title="{{ localize 'MP.IndependentPower'}}">
+                        <input type="checkbox" name="data.indpower" {{checked data.indpower}}>
+                        {{ localize 'MP.Abbreviations.IndependentPower'}}?
                     </label>
                 </div>
-                <div></div>
+                <div>
+                    <input name="data.powervalue" type="number" value="{{data.powervalue}}" data-dtype="Number" placeholder="{{ localize 'MP.Used'}}" />/<input name="data.powermax" type="number" value="{{data.powermax}}" data-dtype="Number" placeholder="{{ localize 'MP.Max'}}" />
+                </div>                
                 <!-- row end -->
 
 
@@ -198,8 +199,11 @@
                 <div class="separator">
                 </div>
 
-                <div></div>
-                <div></div>
+                <div>{{ localize 'MP.Delicate'}}</div>
+                <div title="{{ localize 'MP.Delicate'}}">
+                    <input name="data.delicate" type="number" value="{{data.delicate}}" data-dtype="Number" />
+                </div>
+
 
                 <div></div>
                 <div></div>

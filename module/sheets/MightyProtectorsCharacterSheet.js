@@ -60,6 +60,8 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         html.find('.genericroll').click(this._onRollGeneric.bind(this));
         html.find('.timed-rest').click(this._onRest.bind(this));
         html.find('.dmg-edit').change(this._onDamageEdit.bind(this));
+        html.find('.item-useindpower').click(this._onItemUseIndPower.bind(this));
+        html.find('.item-resetindpower').click(this._onItemResetIndPower.bind(this));
     }
 
 
@@ -70,6 +72,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         const movements = [];
         const backgrounds = [];
         const vehiclesystems = [];
+        const vehicleattacks = [];
 
         // iterate through items & allocate to containers
         for (let i of sheetData.items) {
@@ -98,6 +101,10 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
             if (i.type === 'vehiclesystem') {
                 vehiclesystems.push(i);
             }
+
+            if (i.type === 'vehicleattack') {
+                vehicleattacks.push(i);
+            }
         }
 
         sheetData.abilities = abilities;
@@ -106,7 +113,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         sheetData.movements = movements;
         sheetData.backgrounds = backgrounds;
         sheetData.vehiclesystems = vehiclesystems;
-
+        sheetData.vehicleattacks = vehicleattacks;
     }
 
     /**
@@ -149,6 +156,9 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
                 break;
             case 'vehiclesystem':
                 itemName = game.i18n.localize("MP.NewVehSystem");
+                break;
+            case 'vehicleattack':
+                itemName = game.i18n.localize("MP.NewVehAttack");
                 break;
             default:
                 console.log('Add item with no item type defined')
@@ -284,6 +294,34 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         let item = this.actor.items.get(itemId);
         let itemData = item.data;
         return item.update({ 'data.chargesused': itemData.data.charges });
+    }
+
+
+    async _onItemUseIndPower(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let itemId = element.closest(".item").dataset.itemId;
+        let item = this.actor.items.get(itemId);
+        let itemData = item.data;
+
+        let used = itemData.data.powervalue;
+        if (used > 0) { used = used - 1; }
+        itemData.data.chargesused = used;
+        return item.update({ 'data.powervalue': used });
+    }
+
+    /**
+     * Reset charges on an item to full.  Reload!
+     * @param {*} event 
+     * @returns 
+     */
+    async _onItemResetIndPower(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let itemId = element.closest(".item").dataset.itemId;
+        let item = this.actor.items.get(itemId);
+        let itemData = item.data;
+        return item.update({ 'data.powervalue': itemData.data.powermax });
     }
 
     /**

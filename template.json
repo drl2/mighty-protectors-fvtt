@@ -70,7 +70,8 @@
       "attack",
       "protection",
       "movement",
-      "background"
+      "background",
+      "vehicleattack"
     ],
     "ability": {
       "description": "",
@@ -100,10 +101,11 @@
       "description": "",
       "dmg": 0,
       "cost": 0,
-      "systemspaces": 0,
+      "systemspaces": 5,
       "integral": false,
-      "bulky": false,
-      "delicate": false,
+      "bulky": 0,
+      "delicate": 0,
+      "open": false,
       "stbonus": 0,
       "enbonus": 0,
       "agbonus": 0,
@@ -114,7 +116,12 @@
       "charges": 0,
       "chargesused": 0,
       "isgear": false,
-      "points": 0
+      "tohitbonus": 0,
+      "hpbonus": 0,
+      "powerbonus": 0,
+      "indpower": false,
+      "powervalue": 0,
+      "powermax": 0
     },
     "attack": {
       "dmgroll": "1d4",
@@ -125,6 +132,17 @@
       "powercost": 0,
       "usecharges": false,
       "chargesource": "",
+      "bonusids": []
+    },
+    "vehicleattack": {
+      "dmgroll": "1d4",
+      "dmgtype": "DAMAGE.BluntKinetic",
+      "dmgsubtype": "",
+      "knockback": "Y",
+      "powercost": 0,
+      "usecharges": false,
+      "chargesource": "",
+      "indpowersource": null,
       "bonusids": []
     },
     "protection": {

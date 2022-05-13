@@ -44,7 +44,8 @@
         "TypeProtection": "Protection",
         "TypeMovement": "Movement",
         "TypeBackground": "Background",
-        "TypeVehiclesystem": "Vehicle System"
+        "TypeVehiclesystem": "Vehicle System",
+        "TypeVehicleattack": "Vehicle Attack"
     },
     "DAMAGE": {
         "Energy": "Energy",
@@ -110,7 +111,9 @@
             "Pounds": "lbs",
             "MultiInitiative": "Multi Init?",
             "SysSpaces": "Sys Spc",
-            "Points": "Pts"
+            "Points": "Pts",
+            "Maneuverability": "Maneuv",
+            "IndependentPower": "Ind Pwr"
         },
         "MoveRateTypes": {
             "Constant": "Constant",
@@ -203,6 +206,7 @@
         "NewProtection": "New Protection",
         "NewBackground": "New Background",
         "NewVehSystem": "New Vehicle System",
+        "NewVehAttack": "New Vehicle Attack",
         "ShowDescription": "Show description in chat",
         "ShowRules": "Show rule detail in chat",
         "AddButton": "Add",
@@ -276,6 +280,7 @@
         "PossibleCrit": "Possible Critical Hit",
         "SecurityClearance": "Security Clearance",
         "NotEnoughPower": "Not enough power",
+        "NotEnoughIndPower": "Not enough power in independent supply",
         "OutOfCharges": "Out of charges",
         "Need": "Need",
         "Have": "Have",
@@ -313,6 +318,14 @@
         "CalcFromSpaces": "Calculate stats from System Spaces",
         "Integral": "Integral",
         "Bulky": "Bulky",
-        "Delicate": "Delicate"
+        "Delicate": "Delicate",
+        "Open": "Open",
+        "Maneuverability": "Maneuverability",
+        "IndependentPower": "Independent Power Supply",
+        "Normal": "Normal",
+        "Source": "Source",
+        "UseIndPower": "Use power from independent supply",
+        "ResetIndPower": "Recharge independent power supply"
+
     }
 }

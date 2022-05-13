@@ -230,6 +230,18 @@
 .mightyprotectors.sheet.item .sheet-body .attack-cost-grid input[type="text"] {
   width: 100px;
 }
+.mightyprotectors.sheet.item .sheet-body .veh-attack-cost-grid {
+  display: grid;
+  grid-template-columns: 90px 40px 55px 150px 20px 120px 150px;
+  row-gap: 2px;
+  align-items: center;
+}
+.mightyprotectors.sheet.item .sheet-body .veh-attack-cost-grid input[type="number"] {
+  width: 30px;
+}
+.mightyprotectors.sheet.item .sheet-body .veh-attack-cost-grid input[type="text"] {
+  width: 100px;
+}
 .mightyprotectors.sheet.item .sheet-body .bonus-list {
   align-items: center;
   border: solid;
@@ -465,7 +477,7 @@
   align-items: center;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehsyscol2 {
-  flex: 0 0 40px;
+  flex: 0 0 35px;
   align-items: center;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehsyscol3 {
@@ -473,7 +485,7 @@
   align-items: center;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehsyscol4 {
-  flex: 0 0 40px;
+  flex: 0 0 35px;
   align-items: center;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehsyscol5 {
@@ -489,11 +501,11 @@
   align-items: center;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehsyscol7 {
-  flex: 0 0 230px;
+  flex: 0 0 210px;
   align-items: center;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehsyscol8 {
-  flex: 0 0 40px;
+  flex: 0 0 70px;
   align-items: center;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehsyscol9 {

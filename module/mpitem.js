@@ -37,6 +37,8 @@ export default class MPItem extends Item {
 
         if (this.data.type === 'movement') this._prepareDerivedMovementData();
         if (this.data.type === 'attack') this._prepareDerivedAttackData();
+        if (this.data.type === 'vehiclesystem') this._prepareDerivedVehicleSystemData();
+        if (this.data.type === 'vehicleattack') this._prepareDerivedVehicleAttackData();
     }
 
 
@@ -112,6 +114,56 @@ export default class MPItem extends Item {
         }
     }
 
+    _prepareDerivedVehicleAttackData() {
+        const itemData = this.data.data;
+        const actorData = this.actor ? this.actor.data : null;
+
+        if (actorData) {
+            // then calc selected bonuses from abilities
+            const items = actorData.items;
+            const bonusids = itemData.bonusids;
+            let totalbonus = 0;
+
+            if (bonusids) {
+                for (let i of items) {
+                    if (i.type === 'ability' && i.data.data.tohitbonus && bonusids.includes(i.id)) {
+                        totalbonus += i.data.data.tohitbonus
+                    }
+                }
+            }
+
+            if (totalbonus >= 0) { totalbonus = "+" + totalbonus.toString(); }            
+            itemData.tohitbonus = totalbonus;
+        }
+    }
+
+    async _prepareDerivedVehicleSystemData() {
+        const itemData = this.data.data;
+        const actorData = this.actor ? this.actor.data : null;
+
+        const vehSysList = MP.VehicleSystemsTable.filter(tableRow => (tableRow.spaces <= itemData.systemspaces));
+        const vehSysData = vehSysList[vehSysList.length -1];
+
+        let cps = vehSysData.cps;
+
+        if (itemData.open) {
+            const openSysList = MP.VehicleSystemsTable.filter(tableRow => (tableRow.spaces <= itemData.systemspaces/4));
+            const openSysData = openSysList[openSysList.length -1];
+            cps = openSysData.cps;
+        }
+
+        let hitsBonus = 0;
+        hitsBonus += itemData.bulky ? Math.ceil((itemData.bulky/2.5)*4.3) : 0;
+        hitsBonus -= itemData.delicate ? Math.ceil((itemData.delicate/2.5)*4.3) : 0;
+
+
+        itemData.profile = vehSysData.profile;
+        itemData.hits = vehSysData.hits + hitsBonus;
+        itemData.points = itemData.integral ? Math.ceil(cps/2) : cps;
+        
+
+    }
+
     async rollAttack() {
         const actor = this.actor;
         let itemData = this.data;
@@ -180,6 +232,12 @@ export default class MPItem extends Item {
             let showCanRollWithToGM = false;
             let chargeSourceId = itemData.data.chargesource;
             let chargeSource = null;
+            const sourceIsVehicle = (actor.type === "vehicle")
+            const targetIsVehicle = (target && target.actor.type === "vehicle")
+            const independentPower = (sourceIsVehicle && itemData.data.indpowersource)
+            const indPowerSource = actor.items.get(itemData.data.indpowersource);
+
+
 
             if (chargeSourceId !== "") {
                 chargeSource = actor.items.get(chargeSourceId);
@@ -188,6 +246,10 @@ export default class MPItem extends Item {
             if (target && (target.actor.type === "character")) {
                 showCanRollWith = showCanRollWithChar;
             }
+            else if (targetIsVehicle) {
+                showCanRollWith = false;
+                showCanRollWithToGM = false;
+            }
             else {
                 showCanRollWith = (showCanRollWithNPC == "always");
                 showCanRollWithToGM = (showCanRollWithNPC == "gmonly");
@@ -195,7 +257,11 @@ export default class MPItem extends Item {
 
             
 
-            if (checkPower && (powerCost > actor.data.data.power.value)) {
+            
+            if (checkPower && independentPower && (powerCost > indPowerSource.data.data.powervalue)) {
+                ui.notifications.warn(game.i18n.localize("MP.NotEnoughIndPower") + ": " + game.i18n.localize("MP.Need") + " " + powerCost + ", " + game.i18n.localize("MP.Have") + " " + indPowerSource.data.data.powervalue);
+            }
+            else if (checkPower && (powerCost > actor.data.data.power.value)) {
                 ui.notifications.warn(game.i18n.localize("MP.NotEnoughPower") + ": " + game.i18n.localize("MP.Need") + " " + powerCost + ", " + game.i18n.localize("MP.Have") + " " + actor.data.data.power.value);
             }
             else if (checkPower && (itemData.data.usecharges && (chargeSource.data.data.chargesused <= 0))) {
@@ -286,9 +352,16 @@ export default class MPItem extends Item {
                 ChatMessage.create(chatOptions);
 
                 if (spendPower && (powerCost > 0)) {
-                    let newPower = actor.data.data.power.value - powerCost;
-                    if (newPower < 0) newPower = 0;
-                    await actor.update({ "data.power.value": newPower });
+                    if (independentPower) {
+                        let newPower = indPowerSource.data.data.powervalue - powerCost;
+                        if (newPower < 0) newPower = 0;
+                        await indPowerSource.update({ "data.powervalue": newPower });
+                    }
+                    else {
+                        let newPower = actor.data.data.power.value - powerCost;
+                        if (newPower < 0) newPower = 0;
+                        await actor.update({ "data.power.value": newPower });
+                    }
                 }
 
                 if (spendCharges && itemData.data.usecharges) {

@@ -12,7 +12,8 @@ MP.ItemTypeImages = {
     protection: "systems/mighty-protectors/assets/icons/protection.webp",
     movement: "systems/mighty-protectors/assets/icons/movement.webp",
     background: "systems/mighty-protectors/assets/icons/background.webp",
-    vehiclesystem: "systems/mighty-protectors/assets/icons/gears.webp"
+    vehiclesystem: "systems/mighty-protectors/assets/icons/gears.webp",
+    vehicleattack: "systems/mighty-protectors/assets/icons/missile-pod.webp"
 }
 
 MP.ActorTypeImages = {
