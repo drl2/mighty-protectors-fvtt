@@ -6,6 +6,10 @@
     ({{localize 'MP.Target'}}: <span style="font-weight: bold">{{targetNum}} - {{#if targetName}}{{else}}{{localize 'MP.TargetDefenses'}}{{/if}}</span>)
 {{/if}}
 
+{{#if showBonus}}
+    ({{localize 'MP.ToHitBonus'}}: <span style="font-weight: bold">{{toHitBonus}} - {{localize 'MP.TargetDefenses'}}</span>)
+{{/if}}
+
 <div class="dice-roll">
     <div class="dice-result">
         <div class="dice-formula">{{attackRoll.formula}}</div>

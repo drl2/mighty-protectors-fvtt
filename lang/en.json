@@ -325,7 +325,7 @@
         "Normal": "Normal",
         "Source": "Source",
         "UseIndPower": "Use power from independent supply",
-        "ResetIndPower": "Recharge independent power supply"
-
+        "ResetIndPower": "Recharge independent power supply",
+        "ToHitBonus": "To Hit bonus"
     }
 }

@@ -236,7 +236,7 @@ export default class MPItem extends Item {
             const targetIsVehicle = (target && target.actor.type === "vehicle")
             const independentPower = (sourceIsVehicle && itemData.data.indpowersource)
             const indPowerSource = actor.items.get(itemData.data.indpowersource);
-
+            let toHitBonus = itemData.data.tohitbonus || 0; 
 
 
             if (chargeSourceId !== "") {
@@ -275,6 +275,7 @@ export default class MPItem extends Item {
 
                 if (mod != "") {
                     modToHit += (Number.parseInt(mod) - defense);
+                    toHitBonus += Number.parseInt(mod);
                 }
 
                 if (!showTarget) {
@@ -321,6 +322,8 @@ export default class MPItem extends Item {
                     }
                 }
 
+                if (sourceIsVehicle) { showTarget = false; }
+
                 let rollData = {
                     actorName: actor.name,
                     attackName: itemData.name,
@@ -337,8 +340,12 @@ export default class MPItem extends Item {
                     showTarget: showTarget,
                     targetNum: modToHit,
                     showRollWith: showRollWith,
-                    rollWith: rollWith
+                    rollWith: rollWith,
+                    showBonus: targetIsVehicle || sourceIsVehicle,
+                    toHitBonus: toHitBonus
                 };
+
+
 
                 let cardContent = await renderTemplate("systems/mighty-protectors/templates/chatcards/attackroll.hbs", rollData);
 
