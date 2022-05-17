@@ -1,4 +1,5 @@
 import { MP } from "./config.js";
+import * as Chat from "./chat.js";
 import MightyProtectorsItemSheet from "./sheets/MightyProtectorsItemSheet.js";
 import MightyProtectorsCharacterSheet from "./sheets/MightyProtectorsCharacterSheet.js";
 import MPItem from './mpitem.js';
@@ -49,6 +50,8 @@ Hooks.once("ready", function() {
 
 });
 
+Hooks.on("renderChatLog", (app, html, data) => Chat.addChatListeners(html));
+Hooks.on("renderChatMessage", (app, html, data) => Chat.hideCritFumble(app, html, data));
 
 
 function checkDsNSetting() {
@@ -153,6 +156,15 @@ function registerSystemSettings() {
             "never": "MP.Never"
         },
         default: "always"
+    })
+
+    game.settings.register(game.system.id, "showCritRollButtons", {
+        config: true,
+        scope: "world",
+        name: "SETTINGS.showCritRollButtons.name",
+        hint: "SETTINGS.showCritRollButtons.label",
+        type: Boolean,
+        default: true
     })
 
 

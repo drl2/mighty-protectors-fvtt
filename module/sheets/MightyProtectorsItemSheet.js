@@ -61,6 +61,8 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
         const chargesources = []
         const indpowersources = [];
         const bonusids = sheetData.item.data.data.bonusids;
+        const appliedsystems = [];
+        const availsystems = [];
 
         // iterate through items & allocate to containers
         for (let i of items) {
@@ -86,6 +88,29 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
             }
 
 
+            if (i.type === 'vehiclesystem' && i.data.data.tohitbonus) {
+                if (bonusids && bonusids.includes(i.id)) {
+                    appliedsystems.push(
+                        {
+                            id: i.id,
+                            name: i.name,
+                            bonus: i.data.data.tohitbonus
+                        }
+                    );
+                }
+                else {
+                    availsystems.push(
+                        {
+                            id: i.id,
+                            name: i.name,
+                            bonus: i.data.data.tohitbonus
+                        }
+                    );
+                }
+            }
+
+
+
             if ((i.type === 'ability' || i.type === 'vehiclesystem') && i.data.data.usescharges) {
                 chargesources.push(
                     {
@@ -109,6 +134,8 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
         sheetData.appliedabilities = appliedabilities;
         sheetData.chargesources = chargesources;
         sheetData.indpowersources = indpowersources;
+        sheetData.appliedsystems = appliedsystems;
+        sheetData.availsystems = availsystems;
     }
 
 

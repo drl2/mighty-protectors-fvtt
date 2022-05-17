@@ -258,6 +258,17 @@ export default class MPActor extends Actor {
 
         actorData.spacesLeft = vehTableData.spaces - vehicleSystemBonuses.systemspaces;
         actorData.total_cp = vehicleSystemBonuses.cpcost;
+
+        actorData.travelrates = {};
+        if (actorData.firstaccel > 0 && actorData.inchesperhex > 0) {
+            const baseRate = actorData.firstaccel / actorData.turnrate / actorData.inchesperhex;
+            actorData.travelrates.accel1 = Math.round(baseRate);
+            actorData.travelrates.accel2 = Math.round(baseRate * 2);
+            actorData.travelrates.speednormalmax = Math.round(baseRate * 4);
+            actorData.travelrates.speedpushedmax = Math.round(baseRate * 8);
+            actorData.travelrates.flightnormalmax = Math.round(baseRate * 16);
+            actorData.travelrates.flightpushedmax = Math.round(baseRate * 32);
+        }
     }
 
     getVehicleSystemBonuses() {

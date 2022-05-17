@@ -381,6 +381,20 @@
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehicle-detail-grid input[type="text"] {
   width: 170px;
 }
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehscale-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-items: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehscale-container input[type="number"] {
+  width: 40px;
+  text-align: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .travelrates-container {
+  display: grid;
+  grid-template-columns: 100px auto auto;
+  align-items: center;
+}
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .bc-grid-vehicle {
   display: grid;
   grid-template-columns: 40px 40px auto;

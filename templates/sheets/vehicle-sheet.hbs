@@ -31,7 +31,7 @@
                 </div>
 
                 <div></div>
-                
+
                 <div>
                     <span class="rollable initroll">{{localize 'MP.Initiative'}}</span>
                     <span class="important-stat">{{data.initiative}}</span>
@@ -42,7 +42,7 @@
 
 
     <section class="sheet-body">
-        <div class="tab stats" data-group="primary" >
+        <div class="tab stats" data-group="primary">
             <div class="stat-outer-grid">
                 <div>
                     <div class="veh-other-grid">
@@ -53,7 +53,8 @@
 
                         <!-- row start -->
                         <div>{{localize 'MP.TechCostAdj'}}</div>
-                        <div><input name="data.techcostadjustment" type="number" value="{{data.techcostadjustment}}" /></div>
+                        <div><input name="data.techcostadjustment" type="number" value="{{data.techcostadjustment}}" />
+                        </div>
                         <!-- row end -->
 
                         <!-- row start -->
@@ -73,8 +74,9 @@
                         <!-- row end -->
 
                         <!-- row start -->
-                        <div><span title="{{localize 'MP.Abbreviations.BaseHandToHand'}}" class="rollable genericroll" data-roll="{{data.hth}}" data-stat="{{localize 'MP.Abbreviations.BaseHandToHand'}}">
-                            {{localize 'BC.Strength.abbr'}}
+                        <div><span title="{{localize 'MP.Abbreviations.BaseHandToHand'}}" class="rollable genericroll"
+                                data-roll="{{data.hth}}" data-stat="{{localize 'MP.Abbreviations.BaseHandToHand'}}">
+                                {{localize 'BC.Strength.abbr'}}
                             </span>
                         </div>
                         <div>{{data.basecharacteristics.st.value}}</div>
@@ -127,19 +129,23 @@
                         <div>{{localize 'MP.Weight'}}</div>
                         <div>{{data.weight}}</div>
                         <div>
-                            <span class="rollable genericroll" data-roll="{{data.hth}}" data-stat="{{localize 'MP.Abbreviations.BaseHandToHand'}}">{{localize 'MP.Abbreviations.BaseHandToHand'}}</span>
+                            <span class="rollable genericroll" data-roll="{{data.hth}}"
+                                data-stat="{{localize 'MP.Abbreviations.BaseHandToHand'}}">{{localize
+                                'MP.Abbreviations.BaseHandToHand'}}</span>
                         </div>
                         <div>
                             {{data.hth}}
                         </div>
                         <div>
-                            <span class="rollable genericroll" data-roll="{{data.mass}}" data-stat="{{localize 'MP.Mass'}}">{{localize 'MP.Mass'}}</span>
+                            <span class="rollable genericroll" data-roll="{{data.mass}}"
+                                data-stat="{{localize 'MP.Mass'}}">{{localize 'MP.Mass'}}</span>
                         </div>
                         <div>
                             {{data.mass}}
                         </div>
                         <div>
-                            <span class="rollable genericroll" data-roll="{{data.explosion}}" data-stat="{{localize 'MP.Explosion'}}">{{localize 'MP.Explosion'}}</span>
+                            <span class="rollable genericroll" data-roll="{{data.explosion}}"
+                                data-stat="{{localize 'MP.Explosion'}}">{{localize 'MP.Explosion'}}</span>
                         </div>
                         <div>
                             {{data.explosion}}
@@ -157,18 +163,19 @@
                         <div><input name="data.operator" type="text" value="{{data.operator}}" /></div>
                         <div></div>
                         <div>
-                        <label class="checkbox" title="{{ localize 'MP.Base'}}">
-                            <input type="checkbox" name="data.is_base" {{checked data.is_base}}>
-                            {{ localize 'MP.Base'}}
-                        </label>   
-                    </div>      
+                            <label class="checkbox" title="{{ localize 'MP.Base'}}">
+                                <input type="checkbox" name="data.is_base" {{checked data.is_base}}>
+                                {{ localize 'MP.Base'}}
+                            </label>
+                        </div>
                     </div>
 
                     <!-- vehicle systems list -->
                     <ol class="item-list">
                         <li class="item flexrow item-header">
                             <div class="item-points vehsyscol1 header-text">{{localize 'MP.Cost'}}</div>
-                            <div class="item-name vehsyscol2 header-text">{{localize 'MP.Abbreviations.SysSpaces'}}</div>
+                            <div class="item-name vehsyscol2 header-text">{{localize 'MP.Abbreviations.SysSpaces'}}
+                            </div>
                             <div class="item-name vehsyscol3 header-text">{{localize 'MP.Profile'}}</div>
                             <div class="item-points vehsyscol4 header-text">{{localize 'MP.Hits'}}</div>
                             <div class="item-points vehsyscol5 header-text">{{localize 'MP.Abbreviations.Damage'}}</div>
@@ -177,7 +184,8 @@
                             <div class="item-points vehsyscol8 header-text"></div>
                             <div class="item-controls vehsyscol9">
                                 <a class="item-control item-create" title="{{localize 'MP.CreateItem'}}"
-                                    data-type="vehiclesystem"><i class="fas fa-plus"></i> {{localize 'MP.AddButton'}}</a>
+                                    data-type="vehiclesystem"><i class="fas fa-plus"></i> {{localize
+                                    'MP.AddButton'}}</a>
                             </div>
                         </li>
 
@@ -188,8 +196,8 @@
                             <div class="item-points vehsyscol3">{{item.data.profile}}</div>
                             <div class="item-points vehsyscol4">{{item.data.hits}}</div>
                             <div class="item-points vehsyscol5">
-                                <input name="item.data.dmg" class="inline-editbox dmg-edit" type="number" value="{{item.data.dmg}}" 
-                                    onClick="this.select();" data-field="data.dmg" />
+                                <input name="item.data.dmg" class="inline-editbox dmg-edit" type="number"
+                                    value="{{item.data.dmg}}" onClick="this.select();" data-field="data.dmg" />
                             </div>
                             <div class="item-points vehsyscol6">{{item.data.points}}</div>
                             <h4 class="item-name vehsyscol7">
@@ -267,12 +275,16 @@
                             <div class="item-image attackcol1 header-text"></div>
                             <div class="item-name attackcol2 header-text">{{localize 'ITEM.TypeAttack'}}</div>
                             <div class="item-roll attackcol3 header-text">{{localize 'MP.ToHit'}}</div>
-                            <div class="item-formula attackcol4 header-text">{{localize 'MP.Abbreviations.Damage'}}</div>
-                            <div class="item-name attackcol5 header-text">{{localize "MP.Abbreviations.DamageType"}}</div>
-                            <div class="item-roll attackcol6 header-text">{{localize "MP.Abbreviations.Knockback"}}</div>
+                            <div class="item-formula attackcol4 header-text">{{localize 'MP.Abbreviations.Damage'}}
+                            </div>
+                            <div class="item-name attackcol5 header-text">{{localize "MP.Abbreviations.DamageType"}}
+                            </div>
+                            <div class="item-roll attackcol6 header-text">{{localize "MP.Abbreviations.Knockback"}}
+                            </div>
                             <div class="item-controls attackcol7">
                                 <a class="item-control item-create" title="{{localize 'MP.CreateItem'}}"
-                                    data-type="vehicleattack"><i class="fas fa-plus"></i> {{localize 'MP.AddButton'}}</a>
+                                    data-type="vehicleattack"><i class="fas fa-plus"></i> {{localize
+                                    'MP.AddButton'}}</a>
                             </div>
                         </li>
 
@@ -280,8 +292,9 @@
                         <li class="item flexrow" data-item-id="{{item._id}}">
                             <div class="attackcol1">
                                 <span class="rollable attackroll" data-item-id="{{item._id}}">
-                                    <div class="roll-image" role="button" aria-label="{{item.name}}" style="background-image: url('{{item.img}}')"></div>
-                                    
+                                    <div class="roll-image" role="button" aria-label="{{item.name}}"
+                                        style="background-image: url('{{item.img}}')"></div>
+
                                 </span>
                             </div>
                             <h4 class="item-name attackcol2">{{item.name}}</h4>
@@ -304,12 +317,18 @@
                     <ol class="item-list">
                         <li class="item flexrow item-header">
                             <div class="item-name protectcol1 header-text">{{localize 'ITEM.TypeProtection'}}</div>
-                            <div class="item-name protectcol-middle header-text">{{localize 'MP.Abbreviations.Kinetic'}}</div>
-                            <div class="item-name protectcol-middle header-text">{{localize 'MP.Abbreviations.Energy'}}</div>
-                            <div class="item-name protectcol-middle header-text">{{localize 'MP.Abbreviations.Bio'}}</div>
-                            <div class="item-name protectcol-middle header-text">{{localize 'MP.Abbreviations.Entropy'}}</div>
-                            <div class="item-name protectcol-middle header-text">{{localize 'MP.Abbreviations.Psychic'}}</div>
-                            <div class="item-name protectcol-other header-text">{{localize 'MP.Abbreviations.Other'}}</div>
+                            <div class="item-name protectcol-middle header-text">{{localize 'MP.Abbreviations.Kinetic'}}
+                            </div>
+                            <div class="item-name protectcol-middle header-text">{{localize 'MP.Abbreviations.Energy'}}
+                            </div>
+                            <div class="item-name protectcol-middle header-text">{{localize 'MP.Abbreviations.Bio'}}
+                            </div>
+                            <div class="item-name protectcol-middle header-text">{{localize 'MP.Abbreviations.Entropy'}}
+                            </div>
+                            <div class="item-name protectcol-middle header-text">{{localize 'MP.Abbreviations.Psychic'}}
+                            </div>
+                            <div class="item-name protectcol-other header-text">{{localize 'MP.Abbreviations.Other'}}
+                            </div>
                             <div class="item-controls protectcol-controls">
                                 <a class="item-control item-create" title="{{localize 'MP.CreateItem'}}"
                                     data-type="protection"><i class="fas fa-plus"></i> {{localize 'MP.AddButton'}}</a>
@@ -345,7 +364,8 @@
                             <div class="item-name header-text movementcol1">{{localize 'ITEM.TypeMovement'}} ({{localize
                                 'MP.Inches'}})</div>
                             <div class="item-name header-text movementcol-middle">{{localize 'MP.Speed'}}</div>
-                            <div class="item-name header-text movementcol-middle">{{localize 'MP.Accel'}}/{{localize 'MP.Max'}}</div>
+                            <div class="item-name header-text movementcol-middle">{{localize 'MP.Accel'}}/{{localize
+                                'MP.Max'}}</div>
                             <div class="item-controls movementcol-controls">
                                 <a class="item-control item-create" title="{{localize 'MP.CreateItem'}}"
                                     data-type="movement"><i class="fas fa-plus"></i> {{localize 'MP.AddButton'}}</a>
@@ -355,8 +375,10 @@
                         {{#each movements as |item id|}}
                         <li class="item flexrow" data-item-id="{{item._id}}">
                             <h4 class="item-name movementcol1">{{item.name}}</h4>
-                            <div class="item-name movementcol-middle">{{#if (ismoveconstant data.moveratetype)}}{{item.data.calcmoverate}}{{/if}}</div>
-                            <div class="item-name movementcol-middle">{{#unless (ismoveconstant data.moveratetype)}}{{item.data.accel}}/{{item.data.top}}{{/unless}}</div>
+                            <div class="item-name movementcol-middle">{{#if (ismoveconstant
+                                data.moveratetype)}}{{item.data.calcmoverate}}{{/if}}</div>
+                            <div class="item-name movementcol-middle">{{#unless (ismoveconstant
+                                data.moveratetype)}}{{item.data.accel}}/{{item.data.top}}{{/unless}}</div>
                             <div class="item-controls movementcol-controls">
                                 <a class="item-control item-edit" title="{{localize 'MP.EditItem'}}"><i
                                         class="fas fa-edit"></i></a>
@@ -366,7 +388,34 @@
                         </li>
                         {{/each}}
                     </ol>
+
+                        <div class="vehscale-container">
+                                <div>{{localize 'MP.VehicleScaleTravel'}}:</div>
+                                <div>{{localize 'MP.1st'}} {{localize 'MP.Acceleration'}}: <input name="data.firstaccel"
+                                        type="number" value="{{data.firstaccel}}" /></div>
+                                <div>{{localize 'MP.MapInchesPerHex'}}: <input name="data.inchesperhex" type="number"
+                                        value="{{data.inchesperhex}}" /></div>
+                            
+                        </div>
+
+                        <div class="travelrates-container">
+                                <div>{{localize 'MP.TravelRates'}}:</div>
+                                <div>1 {{localize 'MP.Acceleration'}}: {{data.travelrates.accel1}}</div>
+                                <div>2 {{localize 'MP.Acceleration'}}: {{data.travelrates.accel2}}</div>
+                                <div></div>
+                                <div>{{localize 'MP.Speed'}} {{localize 'MP.Normal'}} {{localize 'MP.Max'}}:
+                                    {{data.travelrates.speednormalmax}} </div>
+                                <div>{{localize 'MP.Speed'}} {{localize 'MP.Pushed'}} {{localize 'MP.Max'}}:
+                                    {{data.travelrates.speedpushedmax}} </div>
+                                <div></div>
+                                <div>{{localize 'MP.Flight'}} {{localize 'MP.Normal'}} {{localize 'MP.Max'}}:
+                                    {{data.travelrates.flightnormalmax}} </div>
+                                <div>{{localize 'MP.Flight'}} {{localize 'MP.Pushed'}} {{localize 'MP.Max'}}:
+                                    {{data.travelrates.flightpushedmax}} </div>
+                        </div>
+
                 </div>
+
             </div>
 
         </div>

@@ -1,3 +1,4 @@
+
 <span style="font-weight: bold">{{actorName}}</span> {{localize 'MP.attacks'}}
 <span style="font-weight: bold">{{targetName}}</span> {{localize 'MP.With'}}
 <span style="font-weight: bold">{{attackName}}</span>
@@ -31,15 +32,17 @@
     </div>
 </div>
 
+{{#unless showCritRollButtons}}
 {{#if isCrit}}<div style="font-weight: bold">{{localize 'MP.PossibleCrit'}}!</div>{{/if}}
 {{#if isFumble}}<div style="font-weight: bold">{{localize 'MP.PossibleFumble'}}!</div>{{/if}}
+{{/unless}}
 
-{{#if targetName}}
-{{#if success}}
-{{localize 'MP.AttackHits'}}
-{{else}}
-{{localize 'MP.AttackMisses'}}
-{{/if}}
+{{#if showSuccess}}
+    {{#if success}}
+        {{localize 'MP.AttackHits'}}
+    {{else}}
+        {{localize 'MP.AttackMisses'}}
+    {{/if}}
 {{else}}
 {{localize 'MP.Damage'}}
 {{/if}}
@@ -74,3 +77,16 @@
 {{#if showRollWith}}
 <br />{{targetName}} {{localize "MP.CanRollWithUpTo"}} {{rollWith}} {{localize "MP.points"}}
 {{/if}}
+
+
+{{#if showCritRollButtons}}
+<div class="critroller" data-owner-id="{{owner}}" data-target-name="{{targetName}}" data-target-num="{{targetNum}}" 
+    data-roll-type="{{#if isCrit}}crit{{else}}fumble{{/if}}">
+    {{#if isCrit}}
+        <button class="rollforcritfumble">
+            {{#if isCrit}}{{localize "MP.IsCrit"}}{{else}}{{localize "MP.IsFumble"}}{{/if}}
+        </button>
+    {{/if}}
+</div>
+{{/if}}
+

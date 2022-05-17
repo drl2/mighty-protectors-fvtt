@@ -31,6 +31,10 @@
         "showCanRollWithNPC": {
             "name": "Show 'Can roll with' numbers for NPCs",
             "label": "When an NPC target is selected and an attack is successful, show an indicator of how much damage the target can potentiually 'roll' with.  This is a simple calculation based on the target's current Power and does not take other factors such as Fortitude, multipliers, etc. into account."
+        },
+        "showCritRollButtons": {
+            "name": "Show Roll buttons for crits and fumbles",
+            "label": "On a natural 1 or natural 20 on an attack, show buttons to roll to determine if the result is a critical hit or a fumble."
         }
     },
     "ACTOR": {
@@ -326,6 +330,19 @@
         "Source": "Source",
         "UseIndPower": "Use power from independent supply",
         "ResetIndPower": "Recharge independent power supply",
-        "ToHitBonus": "To Hit bonus"
+        "ToHitBonus": "To Hit bonus",
+        "TravelRates": "Travel Rates",
+        "Acclerations": "Accelerations",
+        "Pushed": "Pushed",
+        "Flight": "Flight",
+        "1st": "1st",
+        "MapInchesPerHex": "Map Inches per Hex",
+        "VehicleScaleTravel": "Vehicle Scale Travel",
+        "IsCrit": "Roll for Crit",
+        "IsFumble": "Roll for Fumble",
+        "RollCrit": "Roll Crit Effect",
+        "RollFumble": "Roll Fumble Effect",
+        "RollingForCrit": "Rolling for possible critical hit",
+        "RollingForFumble": "Rolling for possible fumble"
     }
 }

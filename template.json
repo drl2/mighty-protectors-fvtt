@@ -60,7 +60,9 @@
       "operator": "",
       "basic_cost": 5,
       "is_base": 0,
-      "techcostadjustment": 0
+      "techcostadjustment": 0,
+      "firstaccel": 0,
+      "inchesperhex": 0
     }
   },
   "Item": {
