@@ -1,5 +1,5 @@
 
-{{rollmessage}}
+{{rollmessage}}:
 
 <div class="dice-roll">
     <div class="dice-result">
@@ -7,3 +7,20 @@
         <h4 class="dice-total">{{total}}</h4>
     </div>
 </div>
+
+{{#if showsuccess}}
+    {{#if success}}
+        {{#if isCrit}}{{localize "MP.CriticalHit"}}{{else}}{{localize "MP.AttackFumbled"}}{{/if}}
+    {{else}}
+        {{#if isCrit}}{{localize "MP.NotACrit"}}{{else}}{{localize "MP.NotACrit"}}{{/if}}.
+    {{/if}}
+{{/if}}
+
+{{#if showbutton}}
+<div class="crittype critshowhide" data-owner-id="{{owner}}" data-roll-type="{{#if isCrit}}crit{{else}}fumble{{/if}}">
+        <button class="rollforcritfumbletype critshowhidebutton">
+            {{#if isCrit}}{{localize "MP.RollCrit"}}{{else}}{{localize "MP.RollFumble"}}{{/if}}
+        </button>
+</div>
+{{/if}}
+

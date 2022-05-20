@@ -347,7 +347,8 @@ export default class MPItem extends Item {
                     showBonus: targetIsVehicle || sourceIsVehicle,
                     toHitBonus: toHitBonus,
                     showSuccess: showSuccess,
-                    showCritRollButtons: showCritRollButtons,
+                    showCritRollButtons: true,
+                    //showCritRollButtons: showCritRollButtons && (attackRoll.dice[0].total === 1 || attackRoll.dice[0].total === 20),
                     owner: actor.id
                 };
 

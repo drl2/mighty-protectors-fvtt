@@ -80,13 +80,11 @@
 
 
 {{#if showCritRollButtons}}
-<div class="critroller" data-owner-id="{{owner}}" data-target-name="{{targetName}}" data-target-num="{{targetNum}}" 
-    data-roll-type="{{#if isCrit}}crit{{else}}fumble{{/if}}">
-    {{#if isCrit}}
-        <button class="rollforcritfumble">
+<div class="critroller critshowhide" data-owner-id="{{owner}}" data-target-name="{{targetName}}" data-target-num="{{targetNum}}" 
+    data-roll-type="{{#if isCrit}}crit{{else}}fumble{{/if}}" data-show-success="{{showSuccess}}">
+        <button class="rollforcritfumble critshowhidebutton">
             {{#if isCrit}}{{localize "MP.IsCrit"}}{{else}}{{localize "MP.IsFumble"}}{{/if}}
         </button>
-    {{/if}}
 </div>
 {{/if}}
 

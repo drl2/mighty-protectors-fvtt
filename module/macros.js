@@ -15,8 +15,7 @@ export async function createRollItemMacro(data, slot) {
     if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
     const item = data.data;
 
-    if (item.type == "attack") {
-
+    if (item.type == "attack" || item.type == "vehicleattack") {
         // Create the macro command
         const command = `game.mp.rollItemMacro("${item.name}");`;
         let macro = game.macros.find(m => (m.name === item.name) && (m.data.command === command));
@@ -50,7 +49,7 @@ export function rollItemMacro(itemName) {
 
     if (!actor) { return ui.notifications.warn(game.i18n.localize("Warnings.NoActorSelected")); }
     // Get matching items
-    const items = actor ? actor.items.filter(i => i.name === itemName && i.type === "attack") : [];
+    const items = actor ? actor.items.filter(i => (i.name === itemName && (i.type === "attack" || i.type === "vehicleattack"))) : [];
     if (items.length > 1) {
         ui.notifications.warn(game.i18n.localize("Warnings.MultipleItems1") + `${actor.name}` 
             + game.i18n.localize("Warnings.MultipleItems2") + `${itemName}` + game.i18n.localize("Warnings.MultipleItems3"));

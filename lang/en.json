@@ -343,6 +343,12 @@
         "RollCrit": "Roll Crit Effect",
         "RollFumble": "Roll Fumble Effect",
         "RollingForCrit": "Rolling for possible critical hit",
-        "RollingForFumble": "Rolling for possible fumble"
+        "RollingForFumble": "Rolling for possible fumble",
+        "CriticalHit": "Critical hit!",
+        "AttackFumbled": "Attack fumbled!",
+        "NotACrit": "Not a critical hit",
+        "NotAFumble": "Not a fumble",
+        "RollsCritSuccess": "rolls critical success",
+        "RollsCritFailure": "rolls critical failure"
     }
 }
