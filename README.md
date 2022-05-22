@@ -43,7 +43,7 @@ The project is free and open source, but if you'd like to contribute financially
 
 ## Change Log
 
-### [1.0.0] - 2022-05-15
+### [1.0.0] - 2022-05-21
 
 - Attacks that use charges can now be linked to powers that have them as long as both are owned by the same character - so now charges can be auto-deducted when the attack is rolled.
 - Added buttons to the attack results to roll for possible crits and fumbles.  If the first d20 roll indicates a crit or fumble, a second button will appear to roll for the specific effect.  If the included crit & fumble roll tables have not been renamed or deleted, the second button rolls against those.

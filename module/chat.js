@@ -12,7 +12,8 @@ function onRollForCrit(event) {
         targetName: card.dataset.targetName,
         targetNum: card.dataset.targetNum,
         rollType: card.dataset.rollType,
-        showSuccess: card.dataset.showSuccess
+        showSuccess: card.dataset.showSuccess,
+        targetVehicle: card.dataset.targetVehicle
     };
     Crit.RollForCritFumble(data);
 }
@@ -31,8 +32,6 @@ function onRollCritFumbleType(event) {
 
 export const hideCritFumble = function (app, html, data) {
     let chatCard = html.find(".critshowhide");   
-
-    console.warn(chatCard.attr("data-owner-id"));
 
     if (chatCard.length > 0) {
         let actor = game.actors.get(chatCard.attr("data-owner-id"));

@@ -336,8 +336,8 @@ export default class MPItem extends Item {
                     attackRoll: attackRoll,
                     rollMinMax: rollMinMax(attackRoll.dice[0].total),
                     dmgRoll: dmgRoll,
-                    isCrit: true,
-                    isFumble: false,
+                    isCrit: false,
+                    isFumble: true,
                     //isCrit: attackRoll.dice[0].total === 1,
                     //isFumble: attackRoll.dice[0].total === 20,
                     showTarget: showTarget,
@@ -349,7 +349,8 @@ export default class MPItem extends Item {
                     showSuccess: showSuccess,
                     showCritRollButtons: true,
                     //showCritRollButtons: showCritRollButtons && (attackRoll.dice[0].total === 1 || attackRoll.dice[0].total === 20),
-                    owner: actor.id
+                    owner: actor.id,
+                    targetIsVehicle: targetIsVehicle
                 };
 
 

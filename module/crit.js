@@ -2,7 +2,6 @@ import {rollMinMax} from './utility.js'
 
 export async function RollForCritFumble(data) {
     const messageTemplate = "systems/mighty-protectors/templates/chatcards/iscritfumble.hbs";
-    const showTarget = game.settings.get(game.system.id, "showAttackTargetNumbers");
     const rollFormula = "1d20";
     let success = false;
     let showButton = true;
@@ -10,7 +9,8 @@ export async function RollForCritFumble(data) {
     let roll = await new Roll(rollFormula).evaluate({ async: true });
     const total = roll.total;
 
-    if (data.targetName && data.targetNum) {
+
+    if (data.targetName && data.targetNum && !data.targetVehicle) {
         if (data.rollType === "crit") {
             success = roll.total <= data.targetNum;
         }
@@ -25,7 +25,7 @@ export async function RollForCritFumble(data) {
         total: total,
         rolltype: data.rollType,
         rollmessage: (data.rollType === 'crit') ? game.i18n.localize("MP.RollingForCrit") : game.i18n.localize("MP.RollingForFumble"),
-        showsuccess: data.showSuccess && success,
+        showsuccess: data.showSuccess && data.targetNum && data.targetName && !data.targetVehicle,
         success: success,
         showbutton: showButton,
         isCrit: (data.rollType === 'crit'),
@@ -48,6 +48,7 @@ export async function RollCritFumbleType(data) {
     const tableName = (data.rollType === "crit") ? "Critical Success" : "Critical Failure";
     const table = game.tables.getName(tableName);
 
+
     if (table) {
         table.draw();
     }
@@ -55,6 +56,7 @@ export async function RollCritFumbleType(data) {
         // just roll a d20
         const roll = new Roll("1d20");
         await roll.toMessage({
+            type: CONST.CHAT_MESSAGE_TYPES.ROLL,
             speaker: ChatMessage.getSpeaker(),
             flavor: ((data.rollType === "crit") ?  game.i18n.localize("MP.RollsCritSuccess") : game.i18n.localize("MP.RollsCritFailure")) + ":"
         });
