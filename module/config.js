@@ -11,7 +11,9 @@ MP.ItemTypeImages = {
     attack: "systems/mighty-protectors/assets/icons/attack.webp",
     protection: "systems/mighty-protectors/assets/icons/protection.webp",
     movement: "systems/mighty-protectors/assets/icons/movement.webp",
-    background: "systems/mighty-protectors/assets/icons/background.webp"
+    background: "systems/mighty-protectors/assets/icons/background.webp",
+    vehiclesystem: "systems/mighty-protectors/assets/icons/gears.webp",
+    vehicleattack: "systems/mighty-protectors/assets/icons/missile-pod.webp"
 }
 
 MP.ActorTypeImages = {
@@ -142,4 +144,45 @@ MP.VehicleTable = [
     {cps: 135, spaces: 268435456, weight: 48318382080, mass: '4d10+d12', profile: 16384, st: 96, en: 96, hits: 125},
     {cps: 137.5, spaces: 402653184, weight: 72477573120, mass: '3d10+2d12', profile: 20066.22, st: 97, en: 98, hits: 127},
     {cps: 140, spaces: 526870912, weight: 96636764160, mass: '3d10+2d12', profile: 23170.475, st: 99, en: 99, hits: 129}
-]
+];
+
+MP.VehicleSystemsTable = [
+    {spaces: 1, profile: 1, hits: 8, cps: 5},
+    {spaces: 2, profile: 1.41, hits: 13, cps: 10},
+    {spaces: 3, profile: 1.705, hits: 15, cps: 12.5},
+    {spaces: 4, profile: 2, hits: 16, cps: 15},
+    {spaces: 6, profile: 2.415, hits: 18, cps: 17.5},
+    {spaces: 8, profile: 2.83, hits: 20, cps: 20},
+    {spaces: 12, profile: 3.415, hits: 23, cps: 22.5},
+    {spaces: 16, profile: 4, hits: 25, cps: 25},
+    {spaces: 24, profile: 4.83, hits: 27, cps: 27.5},
+    {spaces: 32, profile: 5.66, hits: 29, cps: 30},
+    {spaces: 48, profile: 6.83, hits: 31, cps: 32.5},
+    {spaces: 64, profile: 8, hits: 33, cps: 35},
+    {spaces: 96, profile: 9.655, hits: 36, cps: 37.5},
+    {spaces: 128, profile: 11.31, hits: 38, cps: 40},
+    {spaces: 192, profile: 13.655, hits: 40, cps: 42.5},
+    {spaces: 256, profile: 16, hits: 41, cps: 45},
+    {spaces: 384, profile: 19.315, hits: 44, cps: 47.5},
+    {spaces: 512, profile: 22.63, hits: 46, cps: 505},
+    {spaces: 768, profile: 27.315, hits: 48, cps: 52.5},
+    {spaces: 1024, profile: 32, hits: 50, cps: 55},
+    {spaces: 1536, profile: 38.625, hits: 52, cps: 57.5},
+    {spaces: 2048, profile: 45.25, hits: 54, cps: 60},
+    {spaces: 3072, profile: 54.625, hits: 57, cps: 62.5},
+    {spaces: 4096, profile: 64, hits: 59, cps: 65},
+    {spaces: 6144, profile: 77.255, hits: 61, cps: 67.5},
+    {spaces: 8192, profile: 90.51, hits: 63, cps: 70},
+    {spaces: 12288, profile: 109.255, hits: 65, cps: 72.5},
+    {spaces: 16384, profile: 128, hits: 66, cps: 75},
+    {spaces: 24576, profile: 154.51, hits: 69, cps: 77.5},
+    {spaces: 32768, profile: 181.02, hits: 71, cps: 80},
+    {spaces: 49152, profile: 218.51, hits: 73, cps: 82.5},
+    {spaces: 65536, profile: 256, hits: 75, cps: 85},
+    {spaces: 98304, profile: 309.017, hits: 77, cps: 87.5},
+    {spaces: 131072, profile: 362.034, hits: 79, cps: 90},
+    {spaces: 196608, profile: 437.017, hits: 82, cps: 92.5},
+    {spaces: 262144, profile: 512, hits: 84, cps: 95},
+    {spaces: 393216, profile: 618.04, hits: 86, cps: 97.5},
+    {spaces: 524288, profile: 724.08, hits: 88, cps: 100}
+];

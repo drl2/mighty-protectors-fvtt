@@ -71,7 +71,7 @@ export function simpleGMWhisper(speaker, content) {
     let gmChatOptions = {
         content: content,
         speaker: speaker,
-        whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id)
+        whisper: ChatMessage.getWhisperRecipients("GM")
     }
     ChatMessage.create(gmChatOptions);
 }
@@ -91,4 +91,20 @@ export function timeBreakdown(minutes) {
         hours: h,
         mins: m
     }
+}
+
+
+export function getCharAblityToHitBonus(items, bonusids) {
+
+    let totalbonus = 0;
+
+    if (bonusids) {
+        for (let i of items) {
+            if (i.type === 'ability' && i.data.data.tohitbonus && bonusids.includes(i.id)) {
+                totalbonus += i.data.data.tohitbonus
+            }
+        }
+    }
+
+    return totalbonus;
 }

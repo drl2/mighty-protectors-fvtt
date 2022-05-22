@@ -8,7 +8,7 @@
   "license": "LICENSE.txt",
   "flags": {},
   "version": "0.7.0",
-  "minimumCoreVersion": "0.8.9",
+  "minimumCoreVersion": "0.8.0",
   "compatibleCoreVersion": "9",
   "scripts": [],
   "esmodules": [

@@ -1,9 +1,14 @@
+
 <span style="font-weight: bold">{{actorName}}</span> {{localize 'MP.attacks'}}
 <span style="font-weight: bold">{{targetName}}</span> {{localize 'MP.With'}}
 <span style="font-weight: bold">{{attackName}}</span>
 
 {{#if showTarget}}
     ({{localize 'MP.Target'}}: <span style="font-weight: bold">{{targetNum}} - {{#if targetName}}{{else}}{{localize 'MP.TargetDefenses'}}{{/if}}</span>)
+{{/if}}
+
+{{#if showBonus}}
+    ({{localize 'MP.ToHitBonus'}}: <span style="font-weight: bold">{{toHitBonus}} - {{localize 'MP.TargetDefenses'}}</span>)
 {{/if}}
 
 <div class="dice-roll">
@@ -27,15 +32,17 @@
     </div>
 </div>
 
+{{#unless showCritRollButtons}}
 {{#if isCrit}}<div style="font-weight: bold">{{localize 'MP.PossibleCrit'}}!</div>{{/if}}
 {{#if isFumble}}<div style="font-weight: bold">{{localize 'MP.PossibleFumble'}}!</div>{{/if}}
+{{/unless}}
 
-{{#if targetName}}
-{{#if success}}
-{{localize 'MP.AttackHits'}}
-{{else}}
-{{localize 'MP.AttackMisses'}}
-{{/if}}
+{{#if showSuccess}}
+    {{#if success}}
+        {{localize 'MP.AttackHits'}}
+    {{else}}
+        {{localize 'MP.AttackMisses'}}
+    {{/if}}
 {{else}}
 {{localize 'MP.Damage'}}
 {{/if}}
@@ -70,3 +77,15 @@
 {{#if showRollWith}}
 <br />{{targetName}} {{localize "MP.CanRollWithUpTo"}} {{rollWith}} {{localize "MP.points"}}
 {{/if}}
+
+
+{{#if showCritRollButtons}}
+<div class="critroller critshowhide" data-owner-id="{{owner}}" data-target-name="{{targetName}}" data-target-num="{{targetNum}}" 
+    data-roll-type="{{#if isCrit}}crit{{else}}fumble{{/if}}" data-show-success="{{showSuccess}}"
+        data-target-vehicle="{{targetIsVehicle}}">
+        <button class="rollforcritfumble critshowhidebutton">
+            {{#if isCrit}}{{localize "MP.IsCrit"}}{{else}}{{localize "MP.IsFumble"}}{{/if}}
+        </button>
+</div>
+{{/if}}
+

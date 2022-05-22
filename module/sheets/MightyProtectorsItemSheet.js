@@ -5,9 +5,12 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
         super(...args);
 
         // expand default size for attack item type
-        if (this.object.data.type === 'attack') {
+        if (this.object.data.type === 'attack' || this.object.data.type === 'vehicleattack') {
             this.options.width = this.position.width = 600;
-            this.options.height = this.position.height = 400;
+            this.options.height = this.position.height = 420;
+        }
+        else if (this.object.data.type === 'vehiclesystem') {
+            this.options.height = this.position.height = 420;
         }
     }
 
@@ -55,7 +58,11 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
     _prepareItems(sheetData, items) {
         const appliedabilities = [];
         const availabilities = [];
+        const chargesources = []
+        const indpowersources = [];
         const bonusids = sheetData.item.data.data.bonusids;
+        const appliedsystems = [];
+        const availsystems = [];
 
         // iterate through items & allocate to containers
         for (let i of items) {
@@ -79,10 +86,56 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
                     );
                 }
             }
+
+
+            if (i.type === 'vehiclesystem' && i.data.data.tohitbonus) {
+                if (bonusids && bonusids.includes(i.id)) {
+                    appliedsystems.push(
+                        {
+                            id: i.id,
+                            name: i.name,
+                            bonus: i.data.data.tohitbonus
+                        }
+                    );
+                }
+                else {
+                    availsystems.push(
+                        {
+                            id: i.id,
+                            name: i.name,
+                            bonus: i.data.data.tohitbonus
+                        }
+                    );
+                }
+            }
+
+
+
+            if ((i.type === 'ability' || i.type === 'vehiclesystem') && i.data.data.usescharges) {
+                chargesources.push(
+                    {
+                        id: i.id,
+                        name: i.name
+                    }
+                );
+            }
+
+            if (i.type === 'vehiclesystem' && i.data.data.indpower) {
+                indpowersources.push(
+                    {
+                        id: i.id,
+                        name: i.name
+                    }
+                );
+            }
         }
 
         sheetData.availabilities = availabilities;
         sheetData.appliedabilities = appliedabilities;
+        sheetData.chargesources = chargesources;
+        sheetData.indpowersources = indpowersources;
+        sheetData.appliedsystems = appliedsystems;
+        sheetData.availsystems = availsystems;
     }
 
 

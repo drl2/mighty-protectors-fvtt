@@ -1,4 +1,5 @@
 import { MP } from "./config.js";
+import * as Chat from "./chat.js";
 import MightyProtectorsItemSheet from "./sheets/MightyProtectorsItemSheet.js";
 import MightyProtectorsCharacterSheet from "./sheets/MightyProtectorsCharacterSheet.js";
 import MPItem from './mpitem.js';
@@ -49,6 +50,8 @@ Hooks.once("ready", function() {
 
 });
 
+Hooks.on("renderChatLog", (app, html, data) => Chat.addChatListeners(html));
+Hooks.on("renderChatMessage", (app, html, data) => Chat.hideCritFumble(app, html, data));
 
 
 function checkDsNSetting() {
@@ -90,6 +93,19 @@ function registerSystemSettings() {
         default: "choose"
     })
 
+    game.settings.register(game.system.id, "autoDecrementChargesOnAttack", {
+        config: true,
+        scope: "world",
+        name: "SETTINGS.autoDecrementChargesOnAttack.name",
+        hint: "SETTINGS.autoDecrementChargesOnAttack.label",
+        type: String,
+        choices: {
+            "always": "MP.Always",
+            "choose": "MP.Choose",
+            "never": "MP.Never"
+        },
+        default: "choose"
+    })
     
     game.settings.register(game.system.id, "checkPowerOnAttack", {
         config: true,
@@ -140,6 +156,15 @@ function registerSystemSettings() {
             "never": "MP.Never"
         },
         default: "always"
+    })
+
+    game.settings.register(game.system.id, "showCritRollButtons", {
+        config: true,
+        scope: "world",
+        name: "SETTINGS.showCritRollButtons.name",
+        hint: "SETTINGS.showCritRollButtons.label",
+        type: Boolean,
+        default: true
     })
 
 

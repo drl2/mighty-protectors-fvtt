@@ -2,7 +2,11 @@
     "SETTINGS": {
         "autoDecrementPowerOnAttack": {
             "name": "Auto decrement power on attack",
-            "label": "When rolling an attack from an attack item, automatically remove the correct amount of power from the character's power stat"
+            "label": "When rolling an attack from an attack item, automatically remove the correct amount of power from the character's power stat."
+        },
+        "autoDecrementChargesOnAttack": {
+            "name": "Auto decrement charges on attack",
+            "label": "When rolling an attack from an attack item, automatically remove a charge from the appropriate ability's charges."
         },
         "checkPowerOnAttack": {
             "name": "Check power on attack",
@@ -27,6 +31,10 @@
         "showCanRollWithNPC": {
             "name": "Show 'Can roll with' numbers for NPCs",
             "label": "When an NPC target is selected and an attack is successful, show an indicator of how much damage the target can potentiually 'roll' with.  This is a simple calculation based on the target's current Power and does not take other factors such as Fortitude, multipliers, etc. into account."
+        },
+        "showCritRollButtons": {
+            "name": "Show Roll buttons for crits and fumbles",
+            "label": "On a natural 1 or natural 20 on an attack, show buttons to roll to determine if the result is a critical hit or a fumble."
         }
     },
     "ACTOR": {
@@ -39,7 +47,9 @@
         "TypeAttack": "Attack",
         "TypeProtection": "Protection",
         "TypeMovement": "Movement",
-        "TypeBackground": "Background"
+        "TypeBackground": "Background",
+        "TypeVehiclesystem": "Vehicle System",
+        "TypeVehicleattack": "Vehicle Attack"
     },
     "DAMAGE": {
         "Energy": "Energy",
@@ -103,7 +113,11 @@
             "BaseHandToHand": "Base HtH",
             "HandToHand": "HtH",
             "Pounds": "lbs",
-            "MultiInitiative": "Multi Init?"
+            "MultiInitiative": "Multi Init?",
+            "SysSpaces": "Sys Spc",
+            "Points": "Pts",
+            "Maneuverability": "Maneuv",
+            "IndependentPower": "Ind Pwr"
         },
         "MoveRateTypes": {
             "Constant": "Constant",
@@ -149,6 +163,7 @@
         "Luck": "Luck",
         "UsesChargesShort": "Charges?",
         "UsesChargesDesc": "Uses charges instead of power",
+        "UseChargesFrom": "Use charges from",
         "Gear": "Gear",
         "IsGear": "Is Gear?",
         "IsGearDesc": "Is this ability linked to a piece of gear?",
@@ -194,6 +209,8 @@
         "NewMovement": "New Movement",
         "NewProtection": "New Protection",
         "NewBackground": "New Background",
+        "NewVehSystem": "New Vehicle System",
+        "NewVehAttack": "New Vehicle Attack",
         "ShowDescription": "Show description in chat",
         "ShowRules": "Show rule detail in chat",
         "AddButton": "Add",
@@ -223,6 +240,7 @@
         "Push": "Push",
         "PowerCost": "Power Cost",
         "AutoDeductPower": "Auto deduct power cost",
+        "AutoDeductCharges": "Auto deduct charges",
         "With": "with",
         "attacks": "attacks",
         "damage": "damage",
@@ -266,6 +284,8 @@
         "PossibleCrit": "Possible Critical Hit",
         "SecurityClearance": "Security Clearance",
         "NotEnoughPower": "Not enough power",
+        "NotEnoughIndPower": "Not enough power in independent supply",
+        "OutOfCharges": "Out of charges",
         "Need": "Need",
         "Have": "Have",
         "TargetDefenses": "Target Defenses",
@@ -282,6 +302,53 @@
         "minute(s)": "minute(s)",
         "recovered": "recovered",
         "fractionalheal": "Daily rolls for extra healing",
-        "Inventing": "Inventing"
+        "Inventing": "Inventing",
+        "BasicCost": "Basic Cost",
+        "SystemSpaces": "System Spaces",
+        "Profile": "Profile",
+        "Explosion": "Explosion",
+        "Area": "Area",
+        "Model": "Model",
+        "Operator": "Operator",
+        "Handling": "Handling",
+        "TurnRate": "Turn Rate",
+        "TechCostAdj": "Tech Cost Adj",
+        "Base": "Base",
+        "BaseVehicleArmor": "Base Vehicle Armor",
+        "RemainingSpaces": "Remaining system spaces for rooms, storage, corridors etc",
+        "Hits": "Hits",
+        "VehicleSystemsMods": "Vehicle Systems & Modififers",
+        "CalcFromCost": "Calculate stats from CP Cost",
+        "CalcFromSpaces": "Calculate stats from System Spaces",
+        "Integral": "Integral",
+        "Bulky": "Bulky",
+        "Delicate": "Delicate",
+        "Open": "Open",
+        "Maneuverability": "Maneuverability",
+        "IndependentPower": "Independent Power Supply",
+        "Normal": "Normal",
+        "Source": "Source",
+        "UseIndPower": "Use power from independent supply",
+        "ResetIndPower": "Recharge independent power supply",
+        "ToHitBonus": "To Hit bonus",
+        "TravelRates": "Travel Rates",
+        "Acclerations": "Accelerations",
+        "Pushed": "Pushed",
+        "Flight": "Flight",
+        "1st": "1st",
+        "MapInchesPerHex": "Map Inches per Hex",
+        "VehicleScaleTravel": "Vehicle Scale Travel",
+        "IsCrit": "Roll for Crit",
+        "IsFumble": "Roll for Fumble",
+        "RollCrit": "Roll Crit Effect",
+        "RollFumble": "Roll Fumble Effect",
+        "RollingForCrit": "Rolling for possible critical hit",
+        "RollingForFumble": "Rolling for possible fumble",
+        "CriticalHit": "Critical hit!",
+        "AttackFumbled": "Attack fumbled!",
+        "NotACrit": "Not a critical hit",
+        "NotAFumble": "Not a fumble",
+        "RollsCritSuccess": "rolls critical success",
+        "RollsCritFailure": "rolls critical failure"
     }
 }

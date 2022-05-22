@@ -28,11 +28,33 @@ export default class MPActor extends Actor {
         }
     }
 
+    async _onCreate (data, options, userId) {
+        if (this.type === 'vehicle') {
+            // add an item for default armor
+            const protItemData = {
+                name: game.i18n.localize("MP.BaseVehicleArmor"),
+                type: "protection"
+            }
+
+
+            const protIitem = new Item(protItemData);
+
+            const newItem = await this.createEmbeddedDocuments("Item", [protIitem.toObject()]);
+
+            await newItem[0].update({ 'data.kinetic': 3,
+                'data.energy': 3,
+                'data.bio': 3,
+                'data.entropy': 3
+            });
+        }
+    }
+
 
     prepareDerivedData() {
         super.prepareDerivedData();
 
         if (this.data.type === 'character' || this.data.type === 'npc') this._prepareDerivedCharacterData();
+        if (this.data.type === 'vehicle') this._prepareDerivedVehicleData();
     }
 
     _prepareDerivedCharacterData() {
@@ -91,8 +113,6 @@ export default class MPActor extends Actor {
         actorData.initiative = simplifyDice(statData.cl.hth_init + " + " + abilityBonuses.init)       
         actorData.hitpts.max = statData.st.hits_st + statData.ag.hits_ag + statData.en.hits_en + statData.cl.hits_cl + abilityBonuses.hp;
         actorData.power.max = actorData.basecharacteristics.st.value + actorData.basecharacteristics.ag.value + actorData.basecharacteristics.en.value + actorData.basecharacteristics.in.value + abilityBonuses.power;
-
-
     }
 
     /**
@@ -195,6 +215,93 @@ export default class MPActor extends Actor {
         }  
     }
 
+
+    _prepareDerivedVehicleData() {
+        const actorData = this.data.data;
+        
+        const adjustedCost = actorData.basic_cost + (actorData.is_base ? 15 : 0);
+
+        const vehList = MP.VehicleTable.filter(tableRow => (tableRow.cps <= adjustedCost));
+        const vehTableData = vehList[vehList.length -1];
+        const vehicleSystemBonuses = this.getVehicleSystemBonuses();
+
+        actorData.spaces = vehTableData.spaces;
+        actorData.weight = vehTableData.weight;
+        actorData.mass = vehTableData.mass;
+        actorData.profile = vehTableData.profile;
+        actorData.basecharacteristics.st.value = vehTableData.st + vehicleSystemBonuses.stbonus;
+        actorData.basecharacteristics.en.value = vehTableData.en + vehicleSystemBonuses.enbonus;
+        actorData.basecharacteristics.ag.value = 9 + vehicleSystemBonuses.agbonus;
+        actorData.basecharacteristics.in.value = 0 + vehicleSystemBonuses.inbonus;
+        actorData.basecharacteristics.cl.value = 9 + vehicleSystemBonuses.clbonus;
+        actorData.turnrate = 3 + vehicleSystemBonuses.maneuverability;
+        actorData.hitpts.max = vehTableData.hits + vehicleSystemBonuses.hpbonus;
+        actorData.power.max = (actorData.basecharacteristics.st.value || 0) +
+            (actorData.basecharacteristics.en.value || 0) +
+            (actorData.basecharacteristics.ag.value || 0) +
+            (actorData.basecharacteristics.in.value || 0) +
+            vehicleSystemBonuses.powerbonus;
+        const exploD8s = 1 + Math.floor(adjustedCost/5);
+        const exploD4s = (adjustedCost % 5) ? 1 : 0;
+        actorData.explosion = exploD8s + "d8" + (exploD4s ? "+1d4" : "");
+        actorData.explosionarea = (2*Math.floor(vehTableData.profile/2)) + 1;
+
+        const statData = this.getStatData();
+        actorData.basecharacteristics.en.save = statData.en.save;
+        actorData.basecharacteristics.ag.save = statData.ag.save;
+        actorData.handling = statData.ag.save - 10;
+        actorData.basecharacteristics.in.save = statData.in.save;
+        actorData.basecharacteristics.cl.save = statData.cl.save;
+
+        actorData.hth = statData.st.hth_init;
+        actorData.initiative = statData.cl.hth_init
+
+        actorData.spacesLeft = vehTableData.spaces - vehicleSystemBonuses.systemspaces;
+        actorData.total_cp = vehicleSystemBonuses.cpcost;
+
+        actorData.travelrates = {};
+        if (actorData.firstaccel > 0 && actorData.inchesperhex > 0) {
+            const baseRate = actorData.firstaccel / actorData.turnrate / actorData.inchesperhex;
+            actorData.travelrates.accel1 = Math.round(baseRate);
+            actorData.travelrates.accel2 = Math.round(baseRate * 2);
+            actorData.travelrates.speednormalmax = Math.round(baseRate * 4);
+            actorData.travelrates.speedpushedmax = Math.round(baseRate * 8);
+            actorData.travelrates.flightnormalmax = Math.round(baseRate * 16);
+            actorData.travelrates.flightpushedmax = Math.round(baseRate * 32);
+        }
+    }
+
+    getVehicleSystemBonuses() {
+        const vehicleSystemBonuses = {
+            "cpcost": 5,
+            "systemspaces": 0,
+            "stbonus": 0,
+            "enbonus": 0,
+            "agbonus": 0,
+            "inbonus": 0,
+            "clbonus": 0,
+            "maneuverability": 0,
+            "powerbonus": 0,
+            "hpbonus": 0
+        }
+        const systems = this.items.filter(item => item.type=="vehiclesystem" );
+
+        for (const system of systems) {
+            vehicleSystemBonuses.cpcost += system.data.data.cost || 0;
+            vehicleSystemBonuses.systemspaces += system.data.data.systemspaces || 0;
+            vehicleSystemBonuses.stbonus += system.data.data.stbonus || 0;
+            vehicleSystemBonuses.enbonus += system.data.data.enbonus || 0;
+            vehicleSystemBonuses.agbonus += system.data.data.agbonus || 0;
+            vehicleSystemBonuses.inbonus += system.data.data.inbonus || 0;
+            vehicleSystemBonuses.clbonus += system.data.data.clbonus || 0;
+            vehicleSystemBonuses.maneuverability += system.data.data.maneuverability || 0;
+            vehicleSystemBonuses.powerbonus += system.data.data.powerbonus || 0;
+            vehicleSystemBonuses.hpbonus += system.data.data.hpbonus || 0;
+        }
+
+        return vehicleSystemBonuses;
+    }
+    
     /**
      * 
      * @param {int} weight 

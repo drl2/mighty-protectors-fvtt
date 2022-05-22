@@ -118,6 +118,31 @@
 .mightyprotectors.sheet.item .sheet-body .description .descgrid input[type="number"] {
   width: 40px;
 }
+.mightyprotectors.sheet.item .sheet-body .description .vsdescgrid {
+  display: grid;
+  grid-template-columns: 70px auto;
+  align-items: center;
+}
+.mightyprotectors.sheet.item .sheet-body .description .vsdescgrid .desccolumn {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  height: 100%;
+}
+.mightyprotectors.sheet.item .sheet-body .description .vsdescgrid .desctext {
+  min-height: 150px;
+  height: 85%;
+}
+.mightyprotectors.sheet.item .sheet-body .description .vsdescgrid input[type="number"] {
+  width: 40px;
+}
+.mightyprotectors.sheet.item .sheet-body .details .vscalcgrid {
+  display: grid;
+  grid-template-columns: 100px 110px 12px 55px 30px 8px 40px 30px 8px 40px 30px;
+  align-items: center;
+}
+.mightyprotectors.sheet.item .sheet-body .details .vscalcgrid input[type="number"] {
+  width: 40px;
+}
 .mightyprotectors.sheet.item .sheet-body .details .detailgrid {
   display: grid;
   grid-template-columns: 60px 60px 80px 70px 80px auto;
@@ -183,7 +208,7 @@
 }
 .mightyprotectors.sheet.item .sheet-body .attack-grid {
   display: grid;
-  grid-template-columns: 70px 110px 40px 60px 110px;
+  grid-template-columns: 70px 110px 20px 60px 110px 20px 60px 110px;
   row-gap: 2px;
   align-items: center;
 }
@@ -191,6 +216,30 @@
   width: 30px;
 }
 .mightyprotectors.sheet.item .sheet-body .attack-grid input[type="text"] {
+  width: 100px;
+}
+.mightyprotectors.sheet.item .sheet-body .attack-cost-grid {
+  display: grid;
+  grid-template-columns: 90px 40px 20px 120px 200px;
+  row-gap: 2px;
+  align-items: center;
+}
+.mightyprotectors.sheet.item .sheet-body .attack-cost-grid input[type="number"] {
+  width: 30px;
+}
+.mightyprotectors.sheet.item .sheet-body .attack-cost-grid input[type="text"] {
+  width: 100px;
+}
+.mightyprotectors.sheet.item .sheet-body .veh-attack-cost-grid {
+  display: grid;
+  grid-template-columns: 90px 40px 55px 150px 20px 120px 150px;
+  row-gap: 2px;
+  align-items: center;
+}
+.mightyprotectors.sheet.item .sheet-body .veh-attack-cost-grid input[type="number"] {
+  width: 30px;
+}
+.mightyprotectors.sheet.item .sheet-body .veh-attack-cost-grid input[type="text"] {
   width: 100px;
 }
 .mightyprotectors.sheet.item .sheet-body .bonus-list {
@@ -309,6 +358,7 @@
   display: grid;
   grid-template-columns: 190px auto;
   /* abilities */
+  /* vehcile systems */
   /* attacks */
   /* protection */
 }
@@ -321,6 +371,35 @@
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .bc-grid input[type="number"] {
   width: 30px;
   text-align: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehicle-detail-grid {
+  display: grid;
+  grid-template-columns: 60px 180px 20px 60px 180px 10px 60px;
+  align-items: center;
+  row-gap: 1px;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehicle-detail-grid input[type="text"] {
+  width: 170px;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehscale-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-items: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehscale-container input[type="number"] {
+  width: 40px;
+  text-align: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .travelrates-container {
+  display: grid;
+  grid-template-columns: 100px auto auto;
+  align-items: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .bc-grid-vehicle {
+  display: grid;
+  grid-template-columns: 40px 40px auto;
+  align-items: center;
+  row-gap: 1px;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .cp-grid {
   display: grid;
@@ -358,6 +437,21 @@
   width: 40px;
   text-align: center;
 }
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .veh-other-grid {
+  display: grid;
+  grid-template-columns: 100px 60px;
+  padding-top: 20px;
+  align-items: center;
+  row-gap: 1px;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .veh-other-grid input[type="text"] {
+  width: 60px;
+  text-align: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .veh-other-grid input[type="number"] {
+  width: 40px;
+  text-align: center;
+}
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .header-text {
   text-decoration: underline;
 }
@@ -391,6 +485,51 @@
   flex: 0 0 auto;
   align-items: center;
   margin-left: auto;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehsyscol1 {
+  flex: 0 0 40px;
+  align-items: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehsyscol2 {
+  flex: 0 0 35px;
+  align-items: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehsyscol3 {
+  flex: 0 0 50px;
+  align-items: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehsyscol4 {
+  flex: 0 0 35px;
+  align-items: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehsyscol5 {
+  flex: 0 0 40px;
+  align-items: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehsyscol5 .inline-editbox {
+  border-width: 1px;
+  height: 18px;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehsyscol6 {
+  flex: 0 0 40px;
+  align-items: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehsyscol7 {
+  flex: 0 0 210px;
+  align-items: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehsyscol8 {
+  flex: 0 0 70px;
+  align-items: center;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .vehsyscol9 {
+  flex: 0 0 auto;
+  align-items: center;
+  margin-left: auto;
+}
+.mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .remaining {
+  font-style: italic;
+  font-size: smaller;
 }
 .mightyprotectors.sheet.character .sheet-body .stats .stat-outer-grid .attackcol1 {
   flex: 0 0 35px;

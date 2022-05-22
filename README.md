@@ -1,7 +1,9 @@
 # Mighty Protectors System for FoundryVTT
 A Villains and Vigilantes 3:  Mighty Protectors system implementation for Foundry VTT
 
-This is the initial public release of this system, intended primarily for testing.  Near-future updates might change the underlying data model in ways that will break characters or items created under this version, so use at your own risk.
+This is the "Version 1.0" release of this system, meaning it has reached the point where the initial goals listed below have been achieved.  Minor updates will be issued to fix bugs, maintain compatibility with Foundry versions, etc.
+
+More significant changes may happen based on time/inclination/inspiration.  Suggestions and bug reports can be submitted via the support links below.
 
 ## Documentation
 - [Creating powers/abilities for a compendium](ability-example.md)
@@ -20,21 +22,16 @@ Targeted functionality for a version 1.0 release of this system includes:
 Future versions may incorporate features such as optional further automation of combat actions.
 
 ## Known issues
-- Creating a vehicle just adds a normal character sheet; the vehicle sheet has not been implemented yet.
 - Adding a turn for a super-speed character to an in-progress combat will throw an error if Monk's Little Details is activated.  Doesn't seem to cause any actual problems though.
 
-## To Do, Short Term
-- Enable link from an attack item to an ability with charges, to auto-decrement charges on attack
-- Implement vehicles
-
 ## To Do... Maybe?
-- Token HUD conditions to be replaced or supplemented by MP-sepcific ones
+- Token HUD conditions to be replaced or supplemented by MP-sepcific ones (this can be achieved now with the Combat Utility Belt module)
 - Re-skinning/re-styling to look less like the generic Foundry character sheet?
-- Replace or supplement default token status effect with Mighty-Protectors-Specific ones?
 - More automation?  Potentially auto-apply damage on a hit when a target is selected; would require adding in some more intelligence around damage types, potential invulnerabilities, etc.
 
 ## Support
-(Sigh) Well, since Discord seems to be the way to do things these days.... [Foundry Protectors Discord Server](https://discord.gg/VU98efBCuP)
+(Sigh) Well, since Discord seems to be the way to do things these days.... [Foundry Protectors Discord Server](https://discord.gg/VU98efBCuP).  In addition, while Monkey House Games does not offer official support for this product, I frequently check their [official Discord server](https://discord.gg/aC8v35gAPP).  In addition I try to visit the forum on their [official web site](https://monkeyhousegames.com/) a few times a month, though it seems to be allergic to my IP address and I spend more time blocked than not.
+
 
 ## Contributing
 Not currently in search of help with functional development, but would be interested in collaborating with someone with design skills and strong modern CSS knowledge on layout improvements.
@@ -46,6 +43,13 @@ The project is free and open source, but if you'd like to contribute financially
 
 ## Change Log
 
+### [1.0.0] - 2022-05-21
+
+- Attacks that use charges can now be linked to powers that have them as long as both are owned by the same character - so now charges can be auto-deducted when the attack is rolled.
+- Added buttons to the attack results to roll for possible crits and fumbles.  If the first d20 roll indicates a crit or fumble, a second button will appear to roll for the specific effect.  If the included crit & fumble roll tables have not been renamed or deleted, the second button rolls against those.
+- Vehicle sheets!
+    - I haven't used the vehicle rules much myself so it's very likely there are some bugs to discover and tweaks to be made.  Please share feedback on the support Discord server.
+    - Because vehicles' attacks and defenses are almost always at least partly based on the stats of pilots, gunners, etc., target numbers and automatic hit detection are not available for attacks by or against vehicles.  You'll have to do it the old fashioned way.
 
 ### [0.7.0] - 2022-03-07
 
