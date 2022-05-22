@@ -38,7 +38,7 @@ Not currently in search of help with functional development, but would be intere
 
 The system is set up for multi-language support but is currently only in English; multi-lingual folks willing to translate lists of keywords are also welcome.
 
-The project is free and open source, but if you'd like to contribute financially, feel free to make purchases through the [DriveThruRPG](https://www.drivethrurpg.com/?affiliate_id=1692486) affiliate links above or this [Amazon link](https://amzn.to/3kGDqgc).
+The project is free and open source, but if you'd like to contribute financially, feel free to donate via [ko-fi](https://ko-fi.com/drl2461951) or make purchases through the [DriveThruRPG](https://www.drivethrurpg.com/?affiliate_id=1692486) affiliate links above or this [Amazon link](https://amzn.to/3kGDqgc).
 
 
 ## Change Log
