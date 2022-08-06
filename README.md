@@ -43,6 +43,15 @@ The project is free and open source, but if you'd like to contribute financially
 
 ## Change Log
 
+### [1.0.2] - 2022-08-05
+
+- Fixed an issue where players were seeing permission errors at start of combat
+- Should now correctly reset the current active turn after initiative rolls at the top of a new round.
+
+### [1.0.1] - 2022-05-23
+
+- Fixed an issue with fumble rolls
+
 ### [1.0.0] - 2022-05-21
 
 - Attacks that use charges can now be linked to powers that have them as long as both are owned by the same character - so now charges can be auto-deducted when the attack is rolled.
