@@ -27,11 +27,9 @@ Examples:
 
 
 ## RollOtherMacro
-A miscellaneous catch-all for other common types of rolls.  (Note that luck has been included here as well, since it's not really a save.  Calling Luck from this function )
+A miscellaneous catch-all for other common types of rolls.
 
 Examples:
-
-`game.mp.rollOtherMacro("Luck");`
 
 `game.mp.rollOtherMacro("Mass");`
 

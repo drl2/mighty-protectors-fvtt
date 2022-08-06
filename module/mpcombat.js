@@ -11,9 +11,25 @@ export default class MPCombat extends Combat {
 
     async rollInitiative(ids, options) {
         if (!options) {
-            options = {};
+            options = {updateTurn: false};
         }
-        setProperty(options, "updateTurn", false);
+        
         await super.rollInitiative(ids, options);
+        return this.update({ turn: 0 });
     }
+
+    setupTurns() {
+        console.warn(this.combatants);
+        const turns = this.combatants.contents.sort(this._sortCombatants);
+
+        console.warn(turns);
+   
+        this.current = {
+          round: this.data.round,
+          turn: 0,
+        }
+    
+        return this.turns = turns;
+      }
+
 }

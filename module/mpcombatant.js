@@ -13,8 +13,10 @@ export default class MPCombatant extends Combatant {
              actor = token.actor;
          }
 
-         multiInit = actor.data.data.multiinit;
-         this.setFlag("mighty-protectors", "hasMulti", multiInit);   
+         if (this.isOwner) {
+            multiInit = actor.data.data.multiinit;
+            this.setFlag("mighty-protectors", "hasMulti", multiInit);
+         }   
     }
 
 
