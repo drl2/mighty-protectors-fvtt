@@ -35,7 +35,7 @@ export default class MPCombatTracker extends CombatTracker {
         const c = this.viewed.combatants.get(li.dataset.combatantId);
         const toCreate = [];
 
-        toCreate.push({tokenId: c.data.tokenId, hidden: false});
+        toCreate.push({tokenId: c.tokenId, hidden: false});
         
         const newCombatant = await this.viewed.createEmbeddedDocuments("Combatant", toCreate)[0];
     }

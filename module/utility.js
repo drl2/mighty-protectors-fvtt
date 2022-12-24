@@ -100,8 +100,8 @@ export function getCharAblityToHitBonus(items, bonusids) {
 
     if (bonusids) {
         for (let i of items) {
-            if (i.type === 'ability' && i.data.data.tohitbonus && bonusids.includes(i.id)) {
-                totalbonus += i.data.data.tohitbonus
+            if (i.type === 'ability' && i.system.tohitbonus && bonusids.includes(i.id)) {
+                totalbonus += i.system.tohitbonus
             }
         }
     }

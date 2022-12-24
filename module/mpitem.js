@@ -35,49 +35,49 @@ export default class MPItem extends Item {
     prepareDerivedData() {
         super.prepareDerivedData();
 
-        if (this.data.type === 'movement') this._prepareDerivedMovementData();
-        if (this.data.type === 'attack') this._prepareDerivedAttackData();
-        if (this.data.type === 'vehiclesystem') this._prepareDerivedVehicleSystemData();
-        if (this.data.type === 'vehicleattack') this._prepareDerivedVehicleAttackData();
+        if (this.type === 'movement') this._prepareDerivedMovementData();
+        if (this.type === 'attack') this._prepareDerivedAttackData();
+        if (this.type === 'vehiclesystem') this._prepareDerivedVehicleSystemData();
+        if (this.type === 'vehicleattack') this._prepareDerivedVehicleAttackData();
     }
 
 
     async _prepareDerivedMovementData() {
-        const itemData = this.data;
-        const actorData = this.actor ? this.actor.data : null;
+        const itemData = this.system;
+        const actorData = this.actor ? this.actor.system : null;
 
         // don't bother unless the move item is attached to a character, is set to constant rate type, and not set to manual entry
-        if (itemData.data.moverateformula == "manual") {
-            this.data.data.calcmoverate = this.data.data.moverate;
+        if (itemData.moverateformula == "manual") {
+            this.system.calcmoverate = this.system.moverate;
         }
-        else if (actorData && (itemData.data.moveratetype === "constant")) {
+        else if (actorData && (itemData.moveratetype === "constant")) {
 
             let rate = 0;
 
-            if (itemData.data.moverateformula === "ground") {
+            if (itemData.moverateformula === "ground") {
                 rate = (
                     (
-                        (actorData.data.basecharacteristics.st.value + actorData.data.basecharacteristics.ag.value + actorData.data.basecharacteristics.en.value)
+                        (actorData.basecharacteristics.st.value + actorData.basecharacteristics.ag.value + actorData.basecharacteristics.en.value)
                         / 3
                     ) - .5
                 );
 
                 rate = Math.round(rate);
             }
-            else if (itemData.data.moverateformula === "leaping") {
-                if (actorData.data.weight > 0) {
-                    rate = actorData.data.carry / actorData.data.weight;
+            else if (itemData.moverateformula === "leaping") {
+                if (actorData.weight > 0) {
+                    rate = actorData.carry / actorData.weight;
                     rate = Math.round(rate * 100) / 100;
                 }
             }
 
-            this.data.data.calcmoverate = rate;
+            this.system.calcmoverate = rate;
         }
     }
 
     _prepareDerivedAttackData() {
-        const itemData = this.data.data;
-        const actorData = this.actor ? this.actor.data : null;
+        const itemData = this.system;
+        const actorData = this.actor ? this.actor.system : null;
 
         if (actorData) {
 
@@ -85,36 +85,36 @@ export default class MPItem extends Item {
             let toHit = 3;
             switch (itemData.attribute) {
                 case "AG":
-                    toHit += actorData.data.basecharacteristics.ag.save;
+                    toHit += actorData.basecharacteristics.ag.save;
                     break;
                 case "IN":
-                    toHit += actorData.data.basecharacteristics.in.save;
+                    toHit += actorData.basecharacteristics.in.save;
                     break;
                 case "CL":
-                    toHit += actorData.data.basecharacteristics.cl.save;
+                    toHit += actorData.basecharacteristics.cl.save;
                     break;
             }
 
-            toHit += getCharAblityToHitBonus(actorData.items, itemData.bonusids);
+            toHit += getCharAblityToHitBonus(this.actor.items, itemData.bonusids);
             itemData.tohit = toHit;
         }
     }
 
 
     _prepareDerivedVehicleAttackData() {
-        const itemData = this.data.data;
-        const actorData = this.actor ? this.actor.data : null;
+        const itemData = this.system;
+        const actorData = this.actor ? this.actor.system : null;
 
         if (actorData) {
             // then calc selected bonuses from abilities
-            const items = actorData.items;
+            const items = this.actor.items;
             const bonusids = itemData.bonusids;
             let totalbonus = 0;
 
             if (bonusids) {
                 for (let i of items) {
-                    if (i.type === 'vehiclesystem' && i.data.data.tohitbonus && bonusids.includes(i.id)) {
-                        totalbonus += i.data.data.tohitbonus
+                    if (i.type === 'vehiclesystem' && i.system.tohitbonus && bonusids.includes(i.id)) {
+                        totalbonus += i.system.tohitbonus
                     }
                 }
             }
@@ -124,9 +124,8 @@ export default class MPItem extends Item {
     }
 
     async _prepareDerivedVehicleSystemData() {
-        const itemData = this.data.data;
-        const actorData = this.actor ? this.actor.data : null;
-
+        const itemData = this.system;
+        
         const vehSysList = MP.VehicleSystemsTable.filter(tableRow => (tableRow.spaces <= itemData.systemspaces));
         const vehSysData = vehSysList[vehSysList.length -1];
 
@@ -142,12 +141,9 @@ export default class MPItem extends Item {
         hitsBonus += itemData.bulky ? Math.ceil((itemData.bulky/2.5)*4.3) : 0;
         hitsBonus -= itemData.delicate ? Math.ceil((itemData.delicate/2.5)*4.3) : 0;
 
-
         itemData.profile = vehSysData.profile;
         itemData.hits = vehSysData.hits + hitsBonus;
         itemData.points = itemData.integral ? Math.ceil(cps/2) : cps;
-        
-
     }
 
     async rollAttack() {

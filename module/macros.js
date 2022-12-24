@@ -10,15 +10,21 @@
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
  */
-export async function createRollItemMacro(data, slot) {
-    if (data.type !== "Item") return;
-    if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
-    const item = data.data;
+export function createRollItemMacro(data, slot) {
+    if (data.type === "Item") {
+        addRollItemMacro(data, slot);
+        return false;
+    }
+}
+
+async function addRollItemMacro(data, slot) {
+    const item = await fromUuid(data.uuid, "Item");
 
     if (item.type == "attack" || item.type == "vehicleattack") {
         // Create the macro command
         const command = `game.mp.rollItemMacro("${item.name}");`;
-        let macro = game.macros.find(m => (m.name === item.name) && (m.data.command === command));
+        let macro = game.macros.find(m => (m.name === item.name) && (m.command === command));
+
         if (!macro) {
             macro = await Macro.create({
                 name: item.name,

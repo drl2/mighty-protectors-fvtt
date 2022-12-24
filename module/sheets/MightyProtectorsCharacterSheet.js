@@ -10,7 +10,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
     }
 
     get template() {
-        if (this.actor.data.type === 'vehicle') {
+        if (this.actor.type === 'vehicle') {
             return `systems/mighty-protectors/templates/sheets/vehicle-sheet.hbs`;
         }
         else {
@@ -18,11 +18,12 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         }
     }
 
-    getData(options) {
+    async getData(options) {
         const sheetData = super.getData(options);
-        const actorData = this.actor.data.toObject(false);
+        const actorData = this.actor.toObject(false);
         sheetData.actor = actorData;
-        sheetData.data = actorData.data;
+        sheetData.system = actorData.system;
+        sheetData.enrichedStory = await TextEditor.enrichHTML(actorData.system.story, {async: true});
 
         switch(this.actor.type) {
             case "npc":
@@ -161,7 +162,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
                 itemName = game.i18n.localize("MP.NewVehAttack");
                 break;
             default:
-                console.log('Add item with no item type defined')
+                console.warn('Add item with no item type defined')
                 break;
         }
 
@@ -399,15 +400,11 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
     async _onDamageEdit(event) {
         event.preventDefault();
 
-        console.warn(event.target);
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
         let field = element.dataset.field;
-        console.warn(element.value);
-        console.warn(element.dataset.field);
         return item.update({ 'data.dmg': Number(element.value) });
-
     }
 }
 

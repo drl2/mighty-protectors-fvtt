@@ -14,7 +14,7 @@ export default class MPCombatant extends Combatant {
          }
 
          if (this.isOwner) {
-            multiInit = actor.data.data.multiinit;
+            multiInit = actor.system.multiinit;
             this.setFlag("mighty-protectors", "hasMulti", multiInit);
          }   
     }
@@ -32,9 +32,9 @@ export default class MPCombatant extends Combatant {
         if ( !actor ) return "1d4";
 
         // if character can have multiple initiatives, need to check if some have already been rolled and add them to the result
-        if (actor.data.data.multiinit) { previousInit = this.getPreviousInit(this.token.id); }
+        if (actor.system.multiinit) { previousInit = this.getPreviousInit(this.token.id); }
 
-        const actorData = actor.data.data;
+        const actorData = actor.system;
 
         let init = actorData.initiative;
         if (previousInit) { init += ' + ' + previousInit}
@@ -52,10 +52,10 @@ export default class MPCombatant extends Combatant {
         const combat = this.parent;
         let highest = null;
 
-        const entries = combat.combatants.filter(entry => (entry.data.tokenId == tokenId) && entry.data.initiative && entry.id != this.id);
+        const entries = combat.combatants.filter(entry => (entry.tokenId == tokenId) && entry.initiative && entry.id != this.id);
 
         if (entries.length) {
-            highest = Math.max.apply(Math, entries.map(function(entry) { return entry.data.initiative; }))
+            highest = Math.max.apply(Math, entries.map(function(entry) { return entry.initiative; }))
         }
         
         return Math.floor(highest);

@@ -15,26 +15,26 @@
 
                 <div>
                     {{localize 'MP.HitPts'}}
-                    <input name="data.hitpts.value" type="number" value="{{data.hitpts.value}}" />/
-                    <span class="important-stat">{{data.hitpts.max}}</span>
+                    <input name="system.hitpts.value" type="number" value="{{system.hitpts.value}}" />/
+                    <span class="important-stat">{{system.hitpts.max}}</span>
                 </div>
 
                 <div>
                     {{localize 'MP.Power'}}
-                    <input name="data.power.value" type="number" value="{{data.power.value}}" />/
-                    <span class="important-stat">{{data.power.max}}</span>
+                    <input name="system.power.value" type="number" value="{{system.power.value}}" />/
+                    <span class="important-stat">{{system.power.max}}</span>
                 </div>
 
                 <div>
                     {{localize 'MP.TurnRate'}}
-                    <span class="important-stat">{{data.turnrate}}</span>
+                    <span class="important-stat">{{system.turnrate}}</span>
                 </div>
 
                 <div></div>
 
                 <div>
                     <span class="rollable initroll">{{localize 'MP.Initiative'}}</span>
-                    <span class="important-stat">{{data.initiative}}</span>
+                    <span class="important-stat">{{system.initiative}}</span>
                 </div>
             </div>
         </div>
@@ -48,18 +48,18 @@
                     <div class="veh-other-grid">
                         <!-- row start -->
                         <div>{{localize 'MP.BasicCost'}}</div>
-                        <div><input name="data.basic_cost" type="number" value="{{data.basic_cost}}" /></div>
+                        <div><input name="system.basic_cost" type="number" value="{{system.basic_cost}}" /></div>
                         <!-- row end -->
 
                         <!-- row start -->
                         <div>{{localize 'MP.TechCostAdj'}}</div>
-                        <div><input name="data.techcostadjustment" type="number" value="{{data.techcostadjustment}}" />
+                        <div><input name="system.techcostadjustment" type="number" value="{{system.techcostadjustment}}" />
                         </div>
                         <!-- row end -->
 
                         <!-- row start -->
                         <div>{{localize 'MP.SystemSpaces'}}</div>
-                        <div>{{data.spaces}}</div>
+                        <div>{{system.spaces}}</div>
                         <!-- row end -->
 
 
@@ -75,96 +75,96 @@
 
                         <!-- row start -->
                         <div><span title="{{localize 'MP.Abbreviations.BaseHandToHand'}}" class="rollable genericroll"
-                                data-roll="{{data.hth}}" data-stat="{{localize 'MP.Abbreviations.BaseHandToHand'}}">
+                                data-roll="{{system.hth}}" data-stat="{{localize 'MP.Abbreviations.BaseHandToHand'}}">
                                 {{localize 'BC.Strength.abbr'}}
                             </span>
                         </div>
-                        <div>{{data.basecharacteristics.st.value}}</div>
+                        <div>{{system.basecharacteristics.st.value}}</div>
                         <div></div>
                         <!-- row end -->
 
                         <!-- row start -->
                         <div><span title="{{ localize 'MP.RollSave'}}" class="rollable saveroll" data-roll="d20"
                                 data-stat="{{localize 'BC.Endurance.fullname'}}"
-                                data-target="{{data.basecharacteristics.en.save}}">{{localize
+                                data-target="{{system.basecharacteristics.en.save}}">{{localize
                                 'BC.Endurance.abbr'}}</span></div>
-                        <div>{{data.basecharacteristics.en.value}}</div>
-                        <div>{{data.basecharacteristics.en.save}}-</div>
+                        <div>{{system.basecharacteristics.en.value}}</div>
+                        <div>{{system.basecharacteristics.en.save}}-</div>
                         <!-- row end -->
 
                         <!-- row start -->
                         <div><span title="{{ localize 'MP.RollSave'}}" class="rollable saveroll" data-roll="d20"
                                 data-stat="{{localize 'BC.Agility.fullname'}}"
-                                data-target="{{data.basecharacteristics.ag.save}}">{{localize
+                                data-target="{{system.basecharacteristics.ag.save}}">{{localize
                                 'BC.Agility.abbr'}}</span></div>
-                        <div>{{data.basecharacteristics.ag.value}}</div>
-                        <div>{{data.basecharacteristics.ag.save}}-</div>
+                        <div>{{system.basecharacteristics.ag.value}}</div>
+                        <div>{{system.basecharacteristics.ag.save}}-</div>
                         <!-- row end -->
 
                         <!-- row start -->
                         <div><span title="{{ localize 'MP.RollSave'}}" class="rollable saveroll" data-roll="d20"
                                 data-stat="{{localize 'BC.Intelligence.fullname'}}"
-                                data-target="{{data.basecharacteristics.in.save}}">{{localize
+                                data-target="{{system.basecharacteristics.in.save}}">{{localize
                                 'BC.Intelligence.abbr'}}</span></div>
-                        <div>{{data.basecharacteristics.in.value}}</div>
-                        <div>{{data.basecharacteristics.in.save}}-</div>
+                        <div>{{system.basecharacteristics.in.value}}</div>
+                        <div>{{system.basecharacteristics.in.save}}-</div>
                         <!-- row end -->
 
                         <!-- row start -->
                         <div><span title="{{ localize 'MP.RollSave'}}" class="rollable saveroll" data-roll="d20"
                                 data-stat="{{localize 'BC.Cool.fullname'}}"
-                                data-target="{{data.basecharacteristics.cl.save}}">{{localize
+                                data-target="{{system.basecharacteristics.cl.save}}">{{localize
                                 'BC.Cool.abbr'}}</span></div>
-                        <div>{{data.basecharacteristics.cl.value}}</div>
-                        <div>{{data.basecharacteristics.cl.save}}-</div>
+                        <div>{{system.basecharacteristics.cl.value}}</div>
+                        <div>{{system.basecharacteristics.cl.save}}-</div>
                         <!-- row end -->
                     </div>
                     <div class="veh-other-grid">
                         <div>&nbsp;</div>
                         <div>&nbsp;</div>
                         <div>{{localize 'MP.Handling'}}</div>
-                        <div>{{data.handling}}</div>
+                        <div>{{system.handling}}</div>
                         <div>{{localize 'MP.Profile'}}</div>
-                        <div>{{data.profile}}</div>
+                        <div>{{system.profile}}</div>
                         <div>{{localize 'MP.Weight'}}</div>
-                        <div>{{data.weight}}</div>
+                        <div>{{system.weight}}</div>
                         <div>
-                            <span class="rollable genericroll" data-roll="{{data.hth}}"
+                            <span class="rollable genericroll" data-roll="{{system.hth}}"
                                 data-stat="{{localize 'MP.Abbreviations.BaseHandToHand'}}">{{localize
                                 'MP.Abbreviations.BaseHandToHand'}}</span>
                         </div>
                         <div>
-                            {{data.hth}}
+                            {{system.hth}}
                         </div>
                         <div>
-                            <span class="rollable genericroll" data-roll="{{data.mass}}"
+                            <span class="rollable genericroll" data-roll="{{system.mass}}"
                                 data-stat="{{localize 'MP.Mass'}}">{{localize 'MP.Mass'}}</span>
                         </div>
                         <div>
-                            {{data.mass}}
+                            {{system.mass}}
                         </div>
                         <div>
-                            <span class="rollable genericroll" data-roll="{{data.explosion}}"
+                            <span class="rollable genericroll" data-roll="{{system.explosion}}"
                                 data-stat="{{localize 'MP.Explosion'}}">{{localize 'MP.Explosion'}}</span>
                         </div>
                         <div>
-                            {{data.explosion}}
+                            {{system.explosion}}
                         </div>
                         <div>{{localize 'MP.Area'}}</div>
-                        <div>{{data.explosionarea}}</div>
+                        <div>{{system.explosionarea}}</div>
                     </div>
                 </div>
                 <div>
                     <div class="vehicle-detail-grid">
                         <div>{{localize 'MP.Model'}}:</div>
-                        <div><input name="data.model" type="text" value="{{data.model}}" /></div>
+                        <div><input name="system.model" type="text" value="{{system.model}}" /></div>
                         <div></div>
                         <div>{{localize 'MP.Operator'}}:</div>
-                        <div><input name="data.operator" type="text" value="{{data.operator}}" /></div>
+                        <div><input name="system.operator" type="text" value="{{system.operator}}" /></div>
                         <div></div>
                         <div>
                             <label class="checkbox" title="{{ localize 'MP.Base'}}">
-                                <input type="checkbox" name="data.is_base" {{checked data.is_base}}>
+                                <input type="checkbox" name="system.is_base" {{checked system.is_base}}>
                                 {{ localize 'MP.Base'}}
                             </label>
                         </div>
@@ -191,15 +191,15 @@
 
                         {{#each vehiclesystems as |item id|}}
                         <li class="item flexrow" data-item-id="{{item._id}}">
-                            <div class="item-points vehsyscol1">{{item.data.cost}}</div>
-                            <div class="item-points vehsyscol2">{{item.data.systemspaces}}</div>
-                            <div class="item-points vehsyscol3">{{item.data.profile}}</div>
-                            <div class="item-points vehsyscol4">{{item.data.hits}}</div>
+                            <div class="item-points vehsyscol1">{{item.system.cost}}</div>
+                            <div class="item-points vehsyscol2">{{item.system.systemspaces}}</div>
+                            <div class="item-points vehsyscol3">{{item.system.profile}}</div>
+                            <div class="item-points vehsyscol4">{{item.system.hits}}</div>
                             <div class="item-points vehsyscol5">
-                                <input name="item.data.dmg" class="inline-editbox dmg-edit" type="number"
-                                    value="{{item.data.dmg}}" onClick="this.select();" data-field="data.dmg" />
+                                <input name="item.system.dmg" class="inline-editbox dmg-edit" type="number"
+                                    value="{{item.system.dmg}}" onClick="this.select();" data-field="system.dmg" />
                             </div>
-                            <div class="item-points vehsyscol6">{{item.data.points}}</div>
+                            <div class="item-points vehsyscol6">{{item.system.points}}</div>
                             <h4 class="item-name vehsyscol7">
                                 <a class="item-control item-chat" data-type="ability"
                                     title="{{localize 'MP.ShowDescription'}}">
@@ -207,19 +207,19 @@
                                 </a>
                             </h4>
                             <div class="item-name vehsyscol8">
-                                {{#if item.data.usescharges}}
-                                {{item.data.chargesused}}/{{item.data.charges}}
+                                {{#if item.system.usescharges}}
+                                {{item.system.chargesused}}/{{item.system.charges}}
                                 <a class="item-control item-usecharge" title="{{localize 'MP.UseCharge'}}"><i
                                         class="fas fa-minus"></i></a>
                                 <a class="item-control item-resetcharges" title="{{localize 'MP.ResetCharges'}}"><i
                                         class="fas fa-sync"></i></a>
-                                {{else if item.data.indpower}}
-                                {{item.data.powervalue}}/{{item.data.powermax}}
+                                {{else if item.system.indpower}}
+                                {{item.system.powervalue}}/{{item.system.powermax}}
                                 <a class="item-control item-useindpower" title="{{localize 'MP.UseIndPower'}}"><i
                                         class="fas fa-minus"></i></a>
                                 <a class="item-control item-resetindpower" title="{{localize 'MP.ResetIndPower'}}"><i
                                         class="fas fa-sync"></i></a>
-                                {{else if item.data.indpower}}
+                                {{else if item.system.indpower}}
 
                                 {{/if}}
 
@@ -236,7 +236,7 @@
                         {{/each}}
                         <li class="item flexrow">
                             <div class="vehsyscol1">0</div>
-                            <div class="vehsyscol2">{{data.spacesLeft}}</div>
+                            <div class="vehsyscol2">{{system.spacesLeft}}</div>
                             <div class="vehsyscol3"></div>
                             <div class="vehsyscol4"></div>
                             <div class="vehsyscol5"></div>
@@ -257,7 +257,7 @@
                             <div class="divider-top"></div>
                         </li>
                         <li class="item flexrow">
-                            <div class="vehsyscol1">{{data.total_cp}}</div>
+                            <div class="vehsyscol1">{{system.total_cp}}</div>
                             <div class="vehsyscol2"></div>
                             <div class="vehsyscol3"></div>
                             <div class="vehsyscol4"></div>
@@ -298,10 +298,10 @@
                                 </span>
                             </div>
                             <h4 class="item-name attackcol2">{{item.name}}</h4>
-                            <div class="item-roll attackcol3">{{item.data.tohitbonus}}</div>
-                            <div class="item-formula attackcol4">{{item.data.dmgroll}}</div>
-                            <div class="item-name attackcol5">{{localize item.data.dmgtype}}</div>
-                            <div class="item-roll attackcol6">{{#if item.data.knockback}} Y {{else}} N {{/if}}</div>
+                            <div class="item-roll attackcol3">{{item.system.tohitbonus}}</div>
+                            <div class="item-formula attackcol4">{{item.system.dmgroll}}</div>
+                            <div class="item-name attackcol5">{{localize item.system.dmgtype}}</div>
+                            <div class="item-roll attackcol6">{{#if item.system.knockback}} Y {{else}} N {{/if}}</div>
                             <div class="item-controls attackcol7">
                                 <a class="item-control item-edit" title="{{localize 'MP.EditItem'}}"><i
                                         class="fas fa-edit"></i></a>
@@ -338,14 +338,14 @@
                         {{#each protections as |item id|}}
                         <li class="item flexrow" data-item-id="{{item._id}}">
                             <h4 class="item-name protectcol1">{{item.name}}</h4>
-                            <div class="item-name protectcol-middle">{{item.data.kinetic}}</div>
-                            <div class="item-name protectcol-middle">{{item.data.energy}}</div>
-                            <div class="item-name protectcol-middle">{{item.data.bio}}</div>
-                            <div class="item-name protectcol-middle">{{item.data.entropy}}</div>
-                            <div class="item-name protectcol-middle">{{item.data.psychic}}</div>
+                            <div class="item-name protectcol-middle">{{item.system.kinetic}}</div>
+                            <div class="item-name protectcol-middle">{{item.system.energy}}</div>
+                            <div class="item-name protectcol-middle">{{item.system.bio}}</div>
+                            <div class="item-name protectcol-middle">{{item.system.entropy}}</div>
+                            <div class="item-name protectcol-middle">{{item.system.psychic}}</div>
                             <div class="item-name protectcol-other">
-                                {{item.data.other}}
-                                {{#if item.data.otherdesc}} ({{item.data.otherdesc}}) {{/if}}
+                                {{item.system.other}}
+                                {{#if item.system.otherdesc}} ({{item.system.otherdesc}}) {{/if}}
                             </div>
                             <div class="item-controls protectcol-controls">
                                 <a class="item-control item-edit" title="{{localize 'MP.EditItem'}}"><i
@@ -376,9 +376,9 @@
                         <li class="item flexrow" data-item-id="{{item._id}}">
                             <h4 class="item-name movementcol1">{{item.name}}</h4>
                             <div class="item-name movementcol-middle">{{#if (ismoveconstant
-                                data.moveratetype)}}{{item.data.calcmoverate}}{{/if}}</div>
+                                system.moveratetype)}}{{item.system.calcmoverate}}{{/if}}</div>
                             <div class="item-name movementcol-middle">{{#unless (ismoveconstant
-                                data.moveratetype)}}{{item.data.accel}}/{{item.data.top}}{{/unless}}</div>
+                                system.moveratetype)}}{{item.system.accel}}/{{item.system.top}}{{/unless}}</div>
                             <div class="item-controls movementcol-controls">
                                 <a class="item-control item-edit" title="{{localize 'MP.EditItem'}}"><i
                                         class="fas fa-edit"></i></a>
@@ -391,27 +391,27 @@
 
                         <div class="vehscale-container">
                                 <div>{{localize 'MP.VehicleScaleTravel'}}:</div>
-                                <div>{{localize 'MP.1st'}} {{localize 'MP.Acceleration'}}: <input name="data.firstaccel"
-                                        type="number" value="{{data.firstaccel}}" /></div>
-                                <div>{{localize 'MP.MapInchesPerHex'}}: <input name="data.inchesperhex" type="number"
-                                        value="{{data.inchesperhex}}" /></div>
+                                <div>{{localize 'MP.1st'}} {{localize 'MP.Acceleration'}}: <input name="system.firstaccel"
+                                        type="number" value="{{system.firstaccel}}" /></div>
+                                <div>{{localize 'MP.MapInchesPerHex'}}: <input name="system.inchesperhex" type="number"
+                                        value="{{system.inchesperhex}}" /></div>
                             
                         </div>
 
                         <div class="travelrates-container">
                                 <div>{{localize 'MP.TravelRates'}}:</div>
-                                <div>1 {{localize 'MP.Acceleration'}}: {{data.travelrates.accel1}}</div>
-                                <div>2 {{localize 'MP.Acceleration'}}: {{data.travelrates.accel2}}</div>
+                                <div>1 {{localize 'MP.Acceleration'}}: {{system.travelrates.accel1}}</div>
+                                <div>2 {{localize 'MP.Acceleration'}}: {{system.travelrates.accel2}}</div>
                                 <div></div>
                                 <div>{{localize 'MP.Speed'}} {{localize 'MP.Normal'}} {{localize 'MP.Max'}}:
-                                    {{data.travelrates.speednormalmax}} </div>
+                                    {{system.travelrates.speednormalmax}} </div>
                                 <div>{{localize 'MP.Speed'}} {{localize 'MP.Pushed'}} {{localize 'MP.Max'}}:
-                                    {{data.travelrates.speedpushedmax}} </div>
+                                    {{system.travelrates.speedpushedmax}} </div>
                                 <div></div>
                                 <div>{{localize 'MP.Flight'}} {{localize 'MP.Normal'}} {{localize 'MP.Max'}}:
-                                    {{data.travelrates.flightnormalmax}} </div>
+                                    {{system.travelrates.flightnormalmax}} </div>
                                 <div>{{localize 'MP.Flight'}} {{localize 'MP.Pushed'}} {{localize 'MP.Max'}}:
-                                    {{data.travelrates.flightpushedmax}} </div>
+                                    {{system.travelrates.flightpushedmax}} </div>
                         </div>
 
                 </div>

@@ -43,6 +43,13 @@ The project is free and open source, but if you'd like to contribute financially
 
 ## Change Log
 
+### [1.1.0]
+
+- Cleaned up deprecation warning messages caused under Foundry V10.  This version is for Foundry 10 or higher only - stick with 1.0.1 for v9.
+- Drag & drop macro creation was messing up under v10 by creating the macro we wanted & then replacing it with one we didn't.  Fixed.
+- Combat tracker display went wonky under v10 due to some changes to the underlying layout.  Updated to work with the new style.
+- Added physical defense to the vehicle sheet so vehicles and be part of the to-hit calculation process.
+
 ### [1.0.2] - 2022-08-05
 
 - Fixed an issue where players were seeing permission errors at start of combat
