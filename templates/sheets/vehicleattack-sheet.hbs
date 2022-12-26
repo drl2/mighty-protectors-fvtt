@@ -32,8 +32,8 @@
                 {{localize 'MP.Attribute'}}:
             </div>
             <div>
-                <select name="data.attribute">
-                    {{#select data.attribute}}
+                <select name="system.attribute">
+                    {{#select system.attribute}}
                     {{#each config.AttributeTypes as |name type|}}
                     <option value="{{type}}">{{localize name}}</option>
                     {{/each}}
@@ -45,15 +45,15 @@
                 {{localize 'MP.Formula'}}:
             </div>
             <div>
-                <input name="data.dmgroll" type="text" value="{{data.dmgroll}}" />
+                <input name="system.dmgroll" type="text" value="{{system.dmgroll}}" />
             </div>
             <div></div>
             <div>
                 {{localize 'MP.Type'}}:
             </div>
             <div>
-                <select name="data.dmgtype">
-                    {{#select data.dmgtype}}
+                <select name="system.dmgtype">
+                    {{#select system.dmgtype}}
                     {{#each config.DamageTypes as |name type|}}
                     <option value="{{name}}">{{localize name}}</option>
                     {{/each}}
@@ -64,22 +64,22 @@
 
 
             <div>
-                {{#if data.tohit}}{{localize 'MP.Target'}}:{{/if}}
+                {{#if system.tohit}}{{localize 'MP.Target'}}:{{/if}}
             </div>
             <div>
-                {{#if data.tohit}}{{data.tohit}}-{{/if}}
+                {{#if system.tohit}}{{system.tohit}}-{{/if}}
             </div>
             <div></div>
             <div></div>
             <div>
                 <label class="checkbox" title="{{ localize 'MP.KnockbackQ'}}">
-                    <input type="checkbox" name="data.knockback" {{checked data.knockback}}>
+                    <input type="checkbox" name="system.knockback" {{checked system.knockback}}>
                     {{ localize 'MP.KnockbackQ'}}
                 </label>
             </div>
             <div></div>
             <div>{{localize 'MP.Subtype'}}:</div>
-            <div><input name="data.dmgsubtype" type="text" value="{{data.dmgsubtype}}" /></div>
+            <div><input name="system.dmgsubtype" type="text" value="{{system.dmgsubtype}}" /></div>
 
         </div>
 
@@ -87,12 +87,12 @@
 
         <div class="veh-attack-cost-grid">
             <div> {{localize 'MP.PowerCost'}}:</div>
-            <div><input name="data.powercost" type="number" value="{{data.powercost}}" /></div>
+            <div><input name="system.powercost" type="number" value="{{system.powercost}}" /></div>
             <div>{{ localize 'MP.Source'}}:</div>
             <div>
-                <select name="data.indpowersource">
+                <select name="system.indpowersource">
                     <option value="">{{localize 'MP.Normal'}}</option>
-                    {{#select data.indpowersource}}
+                    {{#select system.indpowersource}}
                     {{#each indpowersources as |item id|}}
                     <option value="{{item.id}}">{{item.name}}</option>
                     {{/each}}
@@ -103,13 +103,13 @@
             <div></div>
             <div>
                 <label class="checkbox" title="{{ localize 'MP.UseChargesFrom'}}">
-                    <input type="checkbox" name="data.usecharges" {{checked data.usecharges}}>
+                    <input type="checkbox" name="system.usecharges" {{checked system.usecharges}}>
                     {{ localize 'MP.UseChargesFrom'}}:
                 </label>
             </div>
             <div>
-                <select name="data.chargesource">
-                    {{#select data.chargesource}}
+                <select name="system.chargesource">
+                    {{#select system.chargesource}}
                     {{#each chargesources as |item id|}}
                     <option value="{{item.id}}">{{item.name}}</option>
                     {{/each}}

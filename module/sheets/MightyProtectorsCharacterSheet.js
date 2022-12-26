@@ -162,7 +162,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
                 itemName = game.i18n.localize("MP.NewVehAttack");
                 break;
             default:
-                console.warn('Add item with no item type defined')
+                ui.notifications.warn('Add item with no item type defined')
                 break;
         }
 
@@ -171,10 +171,6 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
             type: element.dataset.type,
             img: MP.ItemTypeImages[element.dataset.type]
         }];
-
-        // let newItem = 
-        // const img = MP.ItemTypeImages[itemdata.type];
-        // if (img) await newItem.data.update({ img });
 
         return await MPItem.create(itemData, { parent: this.actor });
     }
@@ -219,7 +215,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
 
         switch (element.dataset.type) {
             case 'ability':
-                cardContent = "<h3>" + item.name + "</h3><div>" + item.data.data.rules + "</div>";
+                cardContent = "<h3>" + item.name + "</h3><div>" + item.system.rules + "</div>";
                 break;
             default:
                 cardContent = "";
@@ -249,7 +245,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
 
         switch (element.dataset.type) {
             case 'ability':
-                cardContent = "<h3>" + item.name + "</h3><div>" + item.data.data.description + "</div>";
+                cardContent = "<h3>" + item.name + "</h3><div>" + item.system.description + "</div>";
                 break;
             default:
                 cardContent = "";
@@ -275,12 +271,12 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        let itemData = item.data;
+        let itemData = item.system;
 
-        let used = itemData.data.chargesused;
+        let used = itemData.chargesused;
         if (used > 0) { used = used - 1; }
-        itemData.data.chargesused = used;
-        return item.update({ 'data.chargesused': used });
+        itemData.chargesused = used;
+        return item.update({ 'system.chargesused': used });
     }
 
     /**
@@ -293,8 +289,8 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        let itemData = item.data;
-        return item.update({ 'data.chargesused': itemData.data.charges });
+        let itemData = item.system;
+        return item.update({ 'system.chargesused': itemData.charges });
     }
 
 
@@ -303,12 +299,12 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        let itemData = item.data;
+        let itemData = item.system;
 
-        let used = itemData.data.powervalue;
+        let used = itemData.powervalue;
         if (used > 0) { used = used - 1; }
-        itemData.data.chargesused = used;
-        return item.update({ 'data.powervalue': used });
+        itemData.chargesused = used;
+        return item.update({ 'system.powervalue': used });
     }
 
     /**
@@ -321,8 +317,9 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        let itemData = item.data;
-        return item.update({ 'data.powervalue': itemData.data.powermax });
+        let itemData = item.system;
+
+        return item.update({ 'system.powervalue': itemData.powermax });
     }
 
     /**

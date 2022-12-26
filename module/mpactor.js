@@ -19,12 +19,16 @@ export default class MPActor extends Actor {
         // assign a default image based on item type
         if (!data.img) {
             const img = MP.ActorTypeImages[data.type];
-            if (img) await this.data.update({ img });
+            if (img) await this.updateSource({ img });
         }
 
         // set some token defaults for player characters
         if ( this.type === "character" ) {
-            this.data.token.update({vision: true, actorLink: true, disposition: 1});
+            this.updateSource({prototypeToken:{
+                actorLink: true, 
+                disposition: 1,
+                sight: {enabled: true}
+            }});
         }
     }
 
@@ -404,7 +408,7 @@ export default class MPActor extends Actor {
 
     async rollGeneric(dataset) {
         if (dataset.roll) {
-            let roll = new Roll(dataset.roll, this.data);
+            let roll = new Roll(dataset.roll, this.system);
             let label = dataset.stat ? `Rolling ${dataset.stat}` : '';
             await roll.toMessage({
                 speaker: ChatMessage.getSpeaker({ actor: this }),
@@ -421,7 +425,8 @@ export default class MPActor extends Actor {
         }
 
         ChatMessage.create(chatOptions);
-        return await this.update({'data.hitpts.value': this.data.hitpts.max, 'data.power.value': this.data.power.max});
+
+        return await this.update({'system.hitpts.value': this.system.hitpts.max, 'system.power.value': this.system.power.max});
     }
 
     async timedRecovery(timeframe, healtime) {
@@ -449,14 +454,14 @@ export default class MPActor extends Actor {
             // heal power first and subtract that time from total
             let newPower = 0;
             let powerRec = 0;
-            let diff = this.data.power.max - this.data.power.value;
+            let diff = this.system.power.max - this.system.power.value;
             if (diff >= minutes) {
-                newPower = this.data.power.value + minutes;
+                newPower = this.system.power.value + minutes;
                 powerRec = minutes;
                 minutes = 0;
             }
             else {
-                newPower = this.data.power.max;
+                newPower = this.system.power.max;
                 powerRec = diff;
                 minutes = minutes - diff;
             }
@@ -469,17 +474,17 @@ export default class MPActor extends Actor {
             // turn remaining time back into days for hp healing
             let hpDays = Math.floor(minutes / (60 * 24));
             let hpHealed = 0;
-            let newHP = this.data.hitpts.value;
+            let newHP = this.system.hitpts.value;
             let dec = 0;
             var roll;
             let hpRecovered = "";
-            diff = this.data.hitpts.max - this.data.hitpts.value;
+            diff = this.system.hitpts.max - this.system.hitpts.value;
 
             if (hpDays > 0 && diff > 0) {
-                hpHealed = Math.floor(hpDays) * Math.floor(this.data.healing);
+                hpHealed = Math.floor(hpDays) * Math.floor(this.system.healing);
 
                 // handle fractional healing rolls for each day
-                dec = (this.data.healing + "").split(".")[1];
+                dec = (this.system.healing + "").split(".")[1];
 
                 if (dec > 0) {
                     let rollFormula = hpDays + "d10";
@@ -488,7 +493,7 @@ export default class MPActor extends Actor {
                         if (roll.dice[0].results[i].result <= dec) ++hpHealed;
                     }
                 }
-                newHP = Math.min(newHP + hpHealed, this.data.hitpts.max);
+                newHP = Math.min(newHP + hpHealed, this.system.hitpts.max);
 
                 hpRecovered = `<p>${Math.min(hpHealed, diff)} ${game.i18n.localize("MP.hitpoints")} ${game.i18n.localize("MP.recovered")}.</p>`
             }
@@ -517,7 +522,7 @@ export default class MPActor extends Actor {
 
             ChatMessage.create(chatOptions);
 
-            return await this.update({'data.hitpts.value': newHP, 'data.power.value': newPower});
+            return await this.update({'system.hitpts.value': newHP, 'system.power.value': newPower});
         }
         else {
             ui.notifications.warn(game.i18n.localize("Warnings.BadHealNumber"));

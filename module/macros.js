@@ -84,26 +84,26 @@ export function rollSaveMacro(stat) {
         case game.i18n.localize("BC.Agility.fullname"):
         case game.i18n.localize("BC.Agility.abbr"):
             rollStat = game.i18n.localize("BC.Agility.fullname");
-            rollTarget = actor.data.data.basecharacteristics.ag.save;
+            rollTarget = actor.system.basecharacteristics.ag.save;
             break;
         case game.i18n.localize("BC.Endurance.fullname"):
         case game.i18n.localize("BC.Endurance.abbr"):
             rollStat = game.i18n.localize("BC.Endurance.fullname");
-            rollTarget = actor.data.data.basecharacteristics.en.save;
+            rollTarget = actor.system.basecharacteristics.en.save;
             break;
         case game.i18n.localize("BC.Intelligence.fullname"):
         case game.i18n.localize("BC.Intelligence.abbr"):
             rollStat = game.i18n.localize("BC.Intelligence.fullname");
-            rollTarget = actor.data.data.basecharacteristics.in.save;
+            rollTarget = actor.system.basecharacteristics.in.save;
             break;
         case game.i18n.localize("BC.Cool.fullname"):
         case game.i18n.localize("BC.Cool.abbr"):
             rollStat = game.i18n.localize("BC.Cool.fullname");
-            rollTarget = actor.data.data.basecharacteristics.cl.save;
+            rollTarget = actor.system.basecharacteristics.cl.save;
             break;
         case game.i18n.localize("MP.Luck"):
             rollStat = game.i18n.localize("MP.Luck");
-            rollTarget = actor.data.data.luck;
+            rollTarget = actor.system.luck;
             break;
         default:
             return ui.notifications.warn(`Invalid stat ${stat}`);              
@@ -133,16 +133,16 @@ export function rollOtherMacro(stat) {
 
     switch(stat) {
         case game.i18n.localize("MP.Abbreviations.HandToHand"):
-            roll = actor.data.data.hth;
+            roll = actor.system.hth;
             break;
         case game.i18n.localize("MP.Mass"):
-            roll = actor.data.data.mass;
+            roll = actor.system.mass;
             break;
         case game.i18n.localize("MP.Luck"):
             return rollSaveMacro("Luck");
             break;
         case game.i18n.localize("MP.Wealth"):
-            roll = actor.data.data.wealth;
+            roll = actor.system.wealth;
             break;
         default:
             return ui.notifications.warn(`Invalid stat ${stat}`);              

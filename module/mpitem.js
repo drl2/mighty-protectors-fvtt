@@ -28,7 +28,8 @@ export default class MPItem extends Item {
         // assign a default image based on item type
         if (!data.img) {
             const img = MP.ItemTypeImages[data.type];
-            if (img) await this.data.update({ img });
+    
+            if (img) await this.updateSource({ img: img });
         }
     }
 
@@ -125,30 +126,32 @@ export default class MPItem extends Item {
 
     async _prepareDerivedVehicleSystemData() {
         const itemData = this.system;
-        
-        const vehSysList = MP.VehicleSystemsTable.filter(tableRow => (tableRow.spaces <= itemData.systemspaces));
-        const vehSysData = vehSysList[vehSysList.length -1];
 
-        let cps = vehSysData.cps;
+        if (itemData.systemspaces) {
+            const vehSysList = MP.VehicleSystemsTable.filter(tableRow => (tableRow.spaces <= itemData.systemspaces));
+            const vehSysData = vehSysList[vehSysList.length -1];
 
-        if (itemData.open) {
-            const openSysList = MP.VehicleSystemsTable.filter(tableRow => (tableRow.spaces <= itemData.systemspaces/4));
-            const openSysData = openSysList[openSysList.length -1];
-            cps = openSysData.cps;
+            let cps = vehSysData.cps;
+
+            if (itemData.open) {
+                const openSysList = MP.VehicleSystemsTable.filter(tableRow => (tableRow.spaces <= itemData.systemspaces/4));
+                const openSysData = openSysList[openSysList.length -1];
+                cps = openSysData.cps;
+            }
+
+            let hitsBonus = 0;
+            hitsBonus += itemData.bulky ? Math.ceil((itemData.bulky/2.5)*4.3) : 0;
+            hitsBonus -= itemData.delicate ? Math.ceil((itemData.delicate/2.5)*4.3) : 0;
+
+            itemData.profile = vehSysData.profile;
+            itemData.hits = vehSysData.hits + hitsBonus;
+            itemData.points = itemData.integral ? Math.ceil(cps/2) : cps;
         }
-
-        let hitsBonus = 0;
-        hitsBonus += itemData.bulky ? Math.ceil((itemData.bulky/2.5)*4.3) : 0;
-        hitsBonus -= itemData.delicate ? Math.ceil((itemData.delicate/2.5)*4.3) : 0;
-
-        itemData.profile = vehSysData.profile;
-        itemData.hits = vehSysData.hits + hitsBonus;
-        itemData.points = itemData.integral ? Math.ceil(cps/2) : cps;
     }
 
     async rollAttack() {
         const actor = this.actor;
-        let itemData = this.data;
+        let itemData = this.system;
         let target = null;
         let targetName = "";
         let defense = 0;
@@ -163,11 +166,11 @@ export default class MPItem extends Item {
         if (game.user.targets.size > 0) {
             target = Array.from(game.user.targets)[0];
             targetName = target.name;
-            if (itemData.data.dmgtype == "DAMAGE.Psychic") {
-                defense = target.actor.data.data.mentaldefense;
+            if (itemData.dmgtype == "DAMAGE.Psychic") {
+                defense = target.actor.system.mentaldefense;
             }
             else {
-                defense = target.actor.data.data.physicaldefense;
+                defense = target.actor.system.physicaldefense;
             }
         }
 
@@ -204,30 +207,30 @@ export default class MPItem extends Item {
         async function rollAttackCallback(html) {
             const sourceIsVehicle = (actor.type === "vehicle")
             const targetIsVehicle = (target && target.actor.type === "vehicle")
-            const independentPower = (sourceIsVehicle && itemData.data.indpowersource)
-            const indPowerSource = actor.items.get(itemData.data.indpowersource);
+            const independentPower = (sourceIsVehicle && itemData.indpowersource)
+            const indPowerSource = actor.items.get(itemData.indpowersource);
             const showCritRollButtons = game.settings.get(game.system.id, "showCritRollButtons");
 
-            let modToHit = Number.parseInt(itemData.data.tohit);
+            let modToHit = Number.parseInt(itemData.tohit);
             let mod = "";
             let push = html.find('[name="push"]')[0].checked;
             let spendPower = (autoPowerSetting === 'choose' && html.find('[name="autodeduct"]')[0].checked) || autoPowerSetting === 'always';
-            let spendCharges = itemData.data.usecharges && ((autoChargesSetting === 'choose' && html.find('[name="autodeductcharge"]')[0].checked) || autoChargesSetting === 'always' );
-            let dmgFormula = itemData.data.dmgroll;
-            let powerCost = itemData.data.powercost;
+            let spendCharges = itemData.usecharges && ((autoChargesSetting === 'choose' && html.find('[name="autodeductcharge"]')[0].checked) || autoChargesSetting === 'always' );
+            let dmgFormula = itemData.dmgroll;
+            let powerCost = itemData.powercost;
             let showTarget = game.settings.get(game.system.id, "showAttackTargetNumbers");
             let showCanRollWith = false;
             let showCanRollWithToGM = false;
-            let chargeSourceId = itemData.data.chargesource;
+            let chargeSourceId = itemData.chargesource;
             let chargeSource = null;
             let toHitBonus = 0; 
 
             if (sourceIsVehicle) {
-                toHitBonus = itemData.data.tohitbonus;
+                toHitBonus = itemData.tohitbonus;
             }
             else
             {
-                toHitBonus = getCharAblityToHitBonus(actor.items, itemData.data.bonusids);
+                toHitBonus = getCharAblityToHitBonus(actor.items, itemData.bonusids);
             }
 
 
@@ -249,13 +252,13 @@ export default class MPItem extends Item {
 
         
             
-            if (checkPower && independentPower && (powerCost > indPowerSource.data.data.powervalue)) {
-                ui.notifications.warn(game.i18n.localize("MP.NotEnoughIndPower") + ": " + game.i18n.localize("MP.Need") + " " + powerCost + ", " + game.i18n.localize("MP.Have") + " " + indPowerSource.data.data.powervalue);
+            if (checkPower && independentPower && (powerCost > indPowerSource.system.powervalue)) {
+                ui.notifications.warn(game.i18n.localize("MP.NotEnoughIndPower") + ": " + game.i18n.localize("MP.Need") + " " + powerCost + ", " + game.i18n.localize("MP.Have") + " " + indPowerSource.system.powervalue);
             }
-            else if (checkPower && (powerCost > actor.data.data.power.value)) {
-                ui.notifications.warn(game.i18n.localize("MP.NotEnoughPower") + ": " + game.i18n.localize("MP.Need") + " " + powerCost + ", " + game.i18n.localize("MP.Have") + " " + actor.data.data.power.value);
+            else if (checkPower && (powerCost > actor.system.power.value)) {
+                ui.notifications.warn(game.i18n.localize("MP.NotEnoughPower") + ": " + game.i18n.localize("MP.Need") + " " + powerCost + ", " + game.i18n.localize("MP.Have") + " " + actor.system.power.value);
             }
-            else if (checkPower && (itemData.data.usecharges && (chargeSource.data.data.chargesused <= 0))) {
+            else if (checkPower && (itemData.usecharges && (chargeSource.system.chargesused <= 0))) {
                 ui.notifications.warn(itemData.name + ": " + game.i18n.localize("MP.OutOfCharges"));
             }
             else {
@@ -273,11 +276,11 @@ export default class MPItem extends Item {
                     let html = itemData.name + ": " + game.i18n.localize("MP.Target") + " = " + modToHit + "-";
                     if (target) {
                         html += " (vs " + targetName + ", ";
-                        if (itemData.data.dmgtype == "DAMAGE.Psychic") {
-                            html += game.i18n.localize("MP.MentalDefense") + " " + target.actor.data.data.mentaldefense;
+                        if (itemData.dmgtype == "DAMAGE.Psychic") {
+                            html += game.i18n.localize("MP.MentalDefense") + " " + target.actor.system.mentaldefense;
                         }
                         else {
-                            html += game.i18n.localize("MP.PhysicalDefense") + " " + target.actor.data.data.physicaldefense;
+                            html += game.i18n.localize("MP.PhysicalDefense") + " " + target.actor.system.physicaldefense;
                         }
                         html += ")";
                     }
@@ -305,7 +308,7 @@ export default class MPItem extends Item {
                 let showRollWith = false;
                 let rollWith = 0;
                 if (target) {
-                    rollWith = Math.floor(target.actor.data.data.power.value / 10);
+                    rollWith = Math.floor(target.actor.system.power.value / 10);
                     showRollWith = showCanRollWith && (success || (sourceIsVehicle && !targetIsVehicle)); // go ahead & show roll with for attacks by vehicles since hit/miss isn't calculated
                     if (showCanRollWithToGM && (success || (sourceIsVehicle && !targetIsVehicle))) {
                         let html = itemData.name + ": " + target.name + " " + game.i18n.localize("MP.CanRollWithUpTo") + " " + rollWith + " " + game.i18n.localize("MP.points");
@@ -324,9 +327,9 @@ export default class MPItem extends Item {
                 let rollData = {
                     actorName: actor.name,
                     attackName: itemData.name,
-                    dmgType: itemData.data.dmgtype,
-                    dmgSubtype: itemData.data.dmgsubtype,
-                    knockBack: itemData.data.knockback,
+                    dmgType: itemData.dmgtype,
+                    dmgSubtype: itemData.dmgsubtype,
+                    knockBack: itemData.knockback,
                     targetName: targetName,
                     success: success,
                     attackRoll: attackRoll,
@@ -361,21 +364,21 @@ export default class MPItem extends Item {
 
                 if (spendPower && (powerCost > 0)) {
                     if (independentPower) {
-                        let newPower = indPowerSource.data.data.powervalue - powerCost;
+                        let newPower = indPowerSource.system.powervalue - powerCost;
                         if (newPower < 0) newPower = 0;
-                        await indPowerSource.update({ "data.powervalue": newPower });
+                        await indPowerSource.update({ "system.powervalue": newPower });
                     }
                     else {
-                        let newPower = actor.data.data.power.value - powerCost;
+                        let newPower = actor.system.power.value - powerCost;
                         if (newPower < 0) newPower = 0;
-                        await actor.update({ "data.power.value": newPower });
+                        await actor.update({ "system.power.value": newPower });
                     }
                 }
 
-                if (spendCharges && itemData.data.usecharges) {
-                    let newCharges = chargeSource.data.data.chargesused -1;
+                if (spendCharges && itemData.system.usecharges) {
+                    let newCharges = chargeSource.system.chargesused -1;
                     if (newCharges < 0) newCharges = 0;
-                    await chargeSource.update({"data.chargesused": newCharges})
+                    await chargeSource.update({"system.chargesused": newCharges})
                 }
             }
         }
