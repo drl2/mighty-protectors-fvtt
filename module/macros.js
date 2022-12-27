@@ -114,7 +114,7 @@ export function rollSaveMacro(stat) {
         roll: "d20",
         stat: rollStat,
         target: rollTarget
-    }
+    };
 
     actor.rollSave(dataset);
     return;
@@ -140,7 +140,6 @@ export function rollOtherMacro(stat) {
             break;
         case game.i18n.localize("MP.Luck"):
             return rollSaveMacro("Luck");
-            break;
         case game.i18n.localize("MP.Wealth"):
             roll = actor.system.wealth;
             break;
@@ -152,7 +151,7 @@ export function rollOtherMacro(stat) {
     const dataset = {
         roll: roll,
         stat: rollStat
-    }
+    };
 
     actor.rollGeneric(dataset);
     return;

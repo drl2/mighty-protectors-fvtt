@@ -115,7 +115,7 @@ export default class MPItem extends Item {
             if (bonusids) {
                 for (let i of items) {
                     if (i.type === 'vehiclesystem' && i.system.tohitbonus && bonusids.includes(i.id)) {
-                        totalbonus += i.system.tohitbonus
+                        totalbonus += i.system.tohitbonus;
                     }
                 }
             }
@@ -151,6 +151,7 @@ export default class MPItem extends Item {
 
     async rollAttack() {
         const actor = this.actor;
+        const itemName = this.name;
         let itemData = this.system;
         let target = null;
         let targetName = "";
@@ -170,7 +171,13 @@ export default class MPItem extends Item {
                 defense = target.actor.system.mentaldefense;
             }
             else {
-                defense = target.actor.system.physicaldefense;
+                if (target.actor.type === 'vehicle') {
+                    defense = target.actor.system.defense;
+                }
+                else
+                {
+                    defense = target.actor.system.physicaldefense;
+                }
             }
         }
 
@@ -178,14 +185,12 @@ export default class MPItem extends Item {
             targetName: targetName,
             showDeductPower: autoPowerSetting === "choose",
             showDeductCharges: autoChargesSetting === "choose"
-        }
-
-
+        };
 
         let dlgContent = await renderTemplate("systems/mighty-protectors/templates/dialogs/attackmods.hbs", dlgData);
 
         let dlg = new Dialog({
-            title: game.i18n.localize("ITEM.TypeAttack") + ": " + itemData.name,
+            title: game.i18n.localize("ITEM.TypeAttack") + ": " + itemName,
             content: dlgContent,
             buttons: {
                 rollAttack: {
@@ -199,19 +204,21 @@ export default class MPItem extends Item {
                 }
             },
             default: "rollAttack"
-        })
+        });
 
         dlg.render(true);
 
 
         async function rollAttackCallback(html) {
-            const sourceIsVehicle = (actor.type === "vehicle")
-            const targetIsVehicle = (target && target.actor.type === "vehicle")
-            const independentPower = (sourceIsVehicle && itemData.indpowersource)
+            const sourceIsVehicle = (actor.type === "vehicle"); 
+            const targetIsVehicle = (target && target.actor.type === "vehicle");
+            const sourceVehicleToHit = sourceIsVehicle ? actor.system.basetohit : null;
+            const targetVehicleHasDef = (targetIsVehicle && (target.actor.system.defense !== null));
+            const independentPower = (sourceIsVehicle && itemData.indpowersource);
             const indPowerSource = actor.items.get(itemData.indpowersource);
             const showCritRollButtons = game.settings.get(game.system.id, "showCritRollButtons");
-
-            let modToHit = Number.parseInt(itemData.tohit);
+            
+            let modToHit = itemData.tohit ? Number.parseInt(itemData.tohit) : sourceVehicleToHit;
             let mod = "";
             let push = html.find('[name="push"]')[0].checked;
             let spendPower = (autoPowerSetting === 'choose' && html.find('[name="autodeduct"]')[0].checked) || autoPowerSetting === 'always';
@@ -224,6 +231,8 @@ export default class MPItem extends Item {
             let chargeSourceId = itemData.chargesource;
             let chargeSource = null;
             let toHitBonus = 0; 
+            let showBonus = false;
+            let targetHasDef = target !== null;
 
             if (sourceIsVehicle) {
                 toHitBonus = itemData.tohitbonus;
@@ -232,7 +241,6 @@ export default class MPItem extends Item {
             {
                 toHitBonus = getCharAblityToHitBonus(actor.items, itemData.bonusids);
             }
-
 
             if (chargeSourceId !== "") {
                 chargeSource = actor.items.get(chargeSourceId);
@@ -262,7 +270,6 @@ export default class MPItem extends Item {
                 ui.notifications.warn(itemData.name + ": " + game.i18n.localize("MP.OutOfCharges"));
             }
             else {
-
                 if (targetName) {
                     mod = html.find('[name="mod"]')[0].value.trim();
                 }
@@ -271,22 +278,23 @@ export default class MPItem extends Item {
                     modToHit += (Number.parseInt(mod) - defense);
                     toHitBonus += Number.parseInt(mod);
                 }
-       
+                
+                if (sourceIsVehicle && (sourceVehicleToHit !== null)) { modToHit += toHitBonus; }
+
                 if (!showTarget) {
                     let html = itemData.name + ": " + game.i18n.localize("MP.Target") + " = " + modToHit + "-";
                     if (target) {
                         html += " (vs " + targetName + ", ";
                         if (itemData.dmgtype == "DAMAGE.Psychic") {
-                            html += game.i18n.localize("MP.MentalDefense") + " " + target.actor.system.mentaldefense;
+                            html += game.i18n.localize("MP.MentalDefense");
                         }
                         else {
-                            html += game.i18n.localize("MP.PhysicalDefense") + " " + target.actor.system.physicaldefense;
+                            html += game.i18n.localize("MP.PhysicalDefense");
                         }
-                        html += ")";
+                        html += " " + defense + ")";
                     }
                     simpleGMWhisper(ChatMessage.getSpeaker({ actor: actor }), html);
                 }
-
 
                 if (push) {
                     dmgFormula += " + 2";
@@ -311,22 +319,23 @@ export default class MPItem extends Item {
                     rollWith = Math.floor(target.actor.system.power.value / 10);
                     showRollWith = showCanRollWith && (success || (sourceIsVehicle && !targetIsVehicle)); // go ahead & show roll with for attacks by vehicles since hit/miss isn't calculated
                     if (showCanRollWithToGM && (success || (sourceIsVehicle && !targetIsVehicle))) {
-                        let html = itemData.name + ": " + target.name + " " + game.i18n.localize("MP.CanRollWithUpTo") + " " + rollWith + " " + game.i18n.localize("MP.points");
+                        let html = itemName + ": " + target.name + " " + game.i18n.localize("MP.CanRollWithUpTo") + " " + rollWith + " " + game.i18n.localize("MP.points");
                         simpleGMWhisper(ChatMessage.getSpeaker({ actor: actor }), html);
                     }
                 }
 
                 let showSuccess = !!targetName;
 
-                if (sourceIsVehicle || targetIsVehicle) { 
-                    showTarget = false; 
-                    showSuccess = false;
+                if ((sourceIsVehicle) || (targetIsVehicle && !targetVehicleHasDef)) { 
+                    showTarget = (sourceVehicleToHit !== null); 
+                    showBonus = !showTarget;
+                    showSuccess = (sourceVehicleToHit !== null) && targetVehicleHasDef;
+                    targetHasDef = targetIsVehicle ? targetVehicleHasDef : targetHasDef;
                 }
-
 
                 let rollData = {
                     actorName: actor.name,
-                    attackName: itemData.name,
+                    attackName: itemName,
                     dmgType: itemData.dmgtype,
                     dmgSubtype: itemData.dmgsubtype,
                     knockBack: itemData.knockback,
@@ -341,12 +350,13 @@ export default class MPItem extends Item {
                     targetNum: modToHit,
                     showRollWith: showRollWith,
                     rollWith: rollWith,
-                    showBonus: targetIsVehicle || sourceIsVehicle,
+                    showBonus: showBonus,
                     toHitBonus: toHitBonus,
                     showSuccess: showSuccess,
                     showCritRollButtons: showCritRollButtons && (attackRoll.dice[0].total === 1 || attackRoll.dice[0].total === 20),
                     owner: actor.id,
-                    targetIsVehicle: targetIsVehicle
+                    targetIsVehicle: targetIsVehicle,
+                    targetHasDef: targetHasDef
                 };
 
 
@@ -358,7 +368,7 @@ export default class MPItem extends Item {
                     roll: roll,
                     content: cardContent,
                     speaker: ChatMessage.getSpeaker({ actor: actor })
-                }
+                };
 
                 ChatMessage.create(chatOptions);
 
@@ -378,7 +388,7 @@ export default class MPItem extends Item {
                 if (spendCharges && itemData.system.usecharges) {
                     let newCharges = chargeSource.system.chargesused -1;
                     if (newCharges < 0) newCharges = 0;
-                    await chargeSource.update({"system.chargesused": newCharges})
+                    await chargeSource.update({"system.chargesused": newCharges});
                 }
             }
         }

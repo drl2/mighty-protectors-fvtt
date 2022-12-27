@@ -91,7 +91,7 @@ function registerSystemSettings() {
             "never": "MP.Never"
         },
         default: "choose"
-    })
+    });
 
     game.settings.register(game.system.id, "autoDecrementChargesOnAttack", {
         config: true,
@@ -105,7 +105,7 @@ function registerSystemSettings() {
             "never": "MP.Never"
         },
         default: "choose"
-    })
+    });
     
     game.settings.register(game.system.id, "checkPowerOnAttack", {
         config: true,
@@ -114,7 +114,7 @@ function registerSystemSettings() {
         hint: "SETTINGS.checkPowerOnAttack.label",
         type: Boolean,
         default: true
-    })
+    });
 
 
     game.settings.register(game.system.id, "showSaveTargetNumbers", {
@@ -124,7 +124,7 @@ function registerSystemSettings() {
         hint: "SETTINGS.showSaveTargetNumbers.label",
         type: Boolean,
         default: true
-    })
+    });
     
     game.settings.register(game.system.id, "showAttackTargetNumbers", {
         config: true,
@@ -133,7 +133,7 @@ function registerSystemSettings() {
         hint: "SETTINGS.showAttackTargetNumbers.label",
         type: Boolean,
         default: true
-    })
+    });
 
     game.settings.register(game.system.id, "showCanRollWithChar", {
         config: true,
@@ -142,7 +142,7 @@ function registerSystemSettings() {
         hint: "SETTINGS.showCanRollWithChar.label",
         type: Boolean,
         default: true
-    })
+    });
 
     game.settings.register(game.system.id, "showCanRollWithNPC", {
         config: true,
@@ -156,7 +156,7 @@ function registerSystemSettings() {
             "never": "MP.Never"
         },
         default: "always"
-    })
+    });
 
     game.settings.register(game.system.id, "showCritRollButtons", {
         config: true,
@@ -165,8 +165,7 @@ function registerSystemSettings() {
         hint: "SETTINGS.showCritRollButtons.label",
         type: Boolean,
         default: true
-    })
-
+    });
 
 }
 

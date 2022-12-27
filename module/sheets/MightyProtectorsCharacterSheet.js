@@ -162,7 +162,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
                 itemName = game.i18n.localize("MP.NewVehAttack");
                 break;
             default:
-                ui.notifications.warn('Add item with no item type defined')
+                ui.notifications.warn('Add item with no item type defined');
                 break;
         }
 
@@ -225,7 +225,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         let chatOptions = {
             content: cardContent,
             speaker: ChatMessage.getSpeaker({ actor: this.actor })
-        }
+        };
 
         ChatMessage.create(chatOptions);
     }
@@ -354,7 +354,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
 
         let data = {
             config: MP
-        }
+        };
 
         let dlgContent = await renderTemplate("systems/mighty-protectors/templates/dialogs/rest.hbs", data);
 
@@ -388,7 +388,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         async function timedRestCallback(html, actor) {
             let healtime = html.find('[name="healtime"]')[0].value.trim();
             let timeframe = html.find('[name="timeframe"]')[0].value.trim();
-            return await actor.timedRecovery(timeframe, healtime)
+            return await actor.timedRecovery(timeframe, healtime);
         }
 
     }
@@ -400,7 +400,6 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        let field = element.dataset.field;
         return item.update({ 'data.dmg': Number(element.value) });
     }
 }

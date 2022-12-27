@@ -153,6 +153,19 @@
                         <div>{{localize 'MP.Area'}}</div>
                         <div>{{system.explosionarea}}</div>
                     </div>
+                    <div class="veh-other-grid">
+                        <!-- row start -->
+                        <div>{{localize 'MP.Defense'}}</div>
+                        <div><input name="system.defense" type="number" value="{{system.defense}}" /></div>
+                        <!-- row end -->
+
+                        <!-- row start -->
+                        <div>{{localize 'MP.BaseToHit'}}</div>
+                        <div><input name="system.basetohit" type="number" value="{{system.basetohit}}" />
+                        </div>
+                        <!-- row end -->
+
+                    </div>
                 </div>
                 <div>
                     <div class="vehicle-detail-grid">
@@ -274,7 +287,7 @@
                         <li class="item flexrow item-header">
                             <div class="item-image attackcol1 header-text"></div>
                             <div class="item-name attackcol2 header-text">{{localize 'ITEM.TypeAttack'}}</div>
-                            <div class="item-roll attackcol3 header-text">{{localize 'MP.ToHit'}}</div>
+                            <div class="item-roll attackcol3 header-text">{{localize 'MP.ToHitBonus'}}</div>
                             <div class="item-formula attackcol4 header-text">{{localize 'MP.Abbreviations.Damage'}}
                             </div>
                             <div class="item-name attackcol5 header-text">{{localize "MP.Abbreviations.DamageType"}}

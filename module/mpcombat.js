@@ -24,7 +24,7 @@ export default class MPCombat extends Combat {
         this.current = {
           round: this.round,
           turn: 0,
-        }
+        };
     
         return this.turns = turns;
       }

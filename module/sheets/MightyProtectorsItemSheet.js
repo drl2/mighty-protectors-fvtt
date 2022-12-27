@@ -20,7 +20,7 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
             height: 350,
             classes: ["mightyprotectors", "sheet", "item"],
             tabs: [{ navSelector: ".sheet-navigation", contentSelector: ".sheet-body", initial: "description" }]
-        })
+        });
     }
 
     get template() {
@@ -29,7 +29,7 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
 
     async getData(options) {
         const baseData = super.getData();
-        const isOwned = (baseData.item.actor !== null)
+        const isOwned = (baseData.item.actor !== null);
         let sheetData = {
             owner: this.item.isOwner,
             editable: this.isEditable,
@@ -37,8 +37,8 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
             system: baseData.item.system,
             isowned: isOwned,
             config: CONFIG.MP
-        }
-        sheetData.itemType = game.i18n.localize(`ITEM.Type${sheetData.item.type.titleCase()}`)
+        };
+        sheetData.itemType = game.i18n.localize(`ITEM.Type${sheetData.item.type.titleCase()}`);
         sheetData.enrichedRules = await TextEditor.enrichHTML(this.item.system.rules, {async: true});
 
 
@@ -59,7 +59,7 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
     _prepareItems(sheetData, items) {
         const appliedabilities = [];
         const availabilities = [];
-        const chargesources = []
+        const chargesources = [];
         const indpowersources = [];
         const bonusids = sheetData.item.system.bonusids;
         const appliedsystems = [];
@@ -145,13 +145,10 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
         const dataset = element.dataset;
         const actor = this.item.actor;
         const abilityItem = actor.items.find(i => i.id === dataset.itemid);
-        const itemData = abilityItem.system;
         let bonusids = this.item.system.bonusids;
-
-
         
         if (!bonusids.includes(dataset.itemid)) {
-            bonusids.push(dataset.itemid)
+            bonusids.push(dataset.itemid);
 
             await this.item.update({ 'data.bonusids': bonusids });
             this.item._prepareDerivedAttackData();
@@ -165,9 +162,7 @@ export default class MightyProtectorsItemSheet extends ItemSheet {
         const dataset = element.dataset;
         const actor = this.item.actor;
         const abilityItem = actor.items.find(i => i.id === dataset.itemid);
-        const itemData = abilityItem.system;
         let bonusids = this.item.system.bonusids;
-
         
         if (bonusids.includes(dataset.itemid)) {
             bonusids = bonusids.filter(function (value, index, arr) {

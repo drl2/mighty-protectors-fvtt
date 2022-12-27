@@ -49,7 +49,8 @@ The project is free and open source, but if you'd like to contribute financially
     - Drag & drop macro creation was messing up  by creating the macro we wanted & then replacing it with one we didn't.  Fixed.
     - Combat tracker display went wonky under v10 due to some changes to the underlying layout of the tracker.  Updated to work with the new style.
     - Deprecation warnings (for those of you who hit F12 and look at the console output) are addressed, meaning the transition to future Foundry versions should be easier.
-- Added physical defense and base to-hit to the vehicle sheet.  These values aren't on the pen-and-paper sheet because they're usually calculated based on the stats of the driver/pilot/gunner/whatever, but are convenient here because they can be used in to-hit calculations.  NEED TO DOUBLE CHECK HOW ATTACKS VS AND BY VEHICLES ARE CALCULATED
+- Added physical defense and base to-hit to the vehicle sheet.  These values aren't on the pen-and-paper sheet because they're usually calculated based on the stats of the driver/pilot/gunner/whatever, but are convenient here because they can be used in to-hit calculations.
+- Semi-colons.  My Javascript nemesis.  Had a bunch of missing ones and a couple of unnecessary ones throughout the code.  This had no impact at all on functionality, but they've been bothering me for a while.
 
 
 ### [1.0.2] - 2022-08-05

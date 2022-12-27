@@ -1,5 +1,5 @@
 import { MP } from './config.js';
-import {simplifyDice, simpleGMWhisper, rollMinMax, timeBreakdown} from './utility.js'
+import {simplifyDice, simpleGMWhisper, rollMinMax, timeBreakdown} from './utility.js';
 
 /**
  * Override and extend the basic Item implementation.
@@ -105,8 +105,8 @@ export default class MPActor extends Actor {
         actorData.gear.gbc = Math.floor((actorData.total_cp/15)+6);
         
         actorData.clearance = actorData.basecharacteristics.in.save + actorData.basecharacteristics.cl.save + (actorData.earned_xp/5) - 20;
-        if (actorData.clearance < 1) actorData.clearance = 1
-        if (actorData.clearance > 20) actorData.clearance = 20
+        if (actorData.clearance < 1) actorData.clearance = 1;
+        if (actorData.clearance > 20) actorData.clearance = 20;
         
 
         // need to add ability bonuses to these
@@ -114,7 +114,7 @@ export default class MPActor extends Actor {
         actorData.healing = statData.en.heal;
         actorData.physicaldefense = (actorData.basecharacteristics.ag.save -10) + abilityBonuses.physdef;
         actorData.mentaldefense = (actorData.basecharacteristics.in.save -10) + abilityBonuses.mentdef;
-        actorData.initiative = simplifyDice(statData.cl.hth_init + " + " + abilityBonuses.init)       
+        actorData.initiative = simplifyDice(statData.cl.hth_init + " + " + abilityBonuses.init)     ;  
         actorData.hitpts.max = statData.st.hits_st + statData.ag.hits_ag + statData.en.hits_en + statData.cl.hits_cl + abilityBonuses.hp;
         actorData.power.max = actorData.basecharacteristics.st.value + actorData.basecharacteristics.ag.value + actorData.basecharacteristics.en.value + actorData.basecharacteristics.in.value + abilityBonuses.power;
     }
@@ -139,7 +139,7 @@ export default class MPActor extends Actor {
             luck: 0,
             multiinit: false,
             ip: 0
-        }
+        };
 
         const abilities = this.items.filter(item => item.type=="ability" );
 
@@ -215,7 +215,7 @@ export default class MPActor extends Actor {
             ag: MP.StatTable.filter(tableRow => (tableRow.min <= actorData.basecharacteristics.ag.value && tableRow.max >= actorData.basecharacteristics.ag.value))[0],
             in: MP.StatTable.filter(tableRow => (tableRow.min <= actorData.basecharacteristics.in.value && tableRow.max >= actorData.basecharacteristics.in.value))[0],
             cl: MP.StatTable.filter(tableRow => (tableRow.min <= actorData.basecharacteristics.cl.value && tableRow.max >= actorData.basecharacteristics.cl.value))[0]
-        }  
+        };
     }
 
 
@@ -257,7 +257,7 @@ export default class MPActor extends Actor {
         actorData.basecharacteristics.cl.save = statData.cl.save;
 
         actorData.hth = statData.st.hth_init;
-        actorData.initiative = statData.cl.hth_init
+        actorData.initiative = statData.cl.hth_init;
 
         actorData.spacesLeft = vehTableData.spaces - vehicleSystemBonuses.systemspaces;
         actorData.total_cp = vehicleSystemBonuses.cpcost;
@@ -286,7 +286,7 @@ export default class MPActor extends Actor {
             "maneuverability": 0,
             "powerbonus": 0,
             "hpbonus": 0
-        }
+        };
         const systems = this.items.filter(item => item.type=="vehiclesystem" );
 
         for (const vsystem of systems) {
@@ -356,7 +356,7 @@ export default class MPActor extends Actor {
                     }
                 },
                 default: "rollSave"
-            })
+            });
 
             dlg.render(true);
 
@@ -399,11 +399,11 @@ export default class MPActor extends Actor {
                     roll: roll,
                     content: cardContent,
                     speaker: ChatMessage.getSpeaker({ actor: this })
-                }
+                };
 
                 ChatMessage.create(chatOptions);
             }
-        };
+        }
     }
 
     async rollGeneric(dataset) {
@@ -422,7 +422,7 @@ export default class MPActor extends Actor {
         let chatOptions = {
             content: game.i18n.localize("MP.FullRest") + ".",
             speaker: ChatMessage.getSpeaker({ actor: this.actor })
-        }
+        };
 
         ChatMessage.create(chatOptions);
 
@@ -441,11 +441,11 @@ export default class MPActor extends Actor {
             let timeText = "";
             if (breakdown.days > 0) timeText = `${breakdown.days} ${game.i18n.localize("MP.day(s)")}`;
             if (breakdown.hours > 0 || (breakdown.days > 0 && breakdown.mins > 0)) {  // even if hours are 0, show if min & days are non-0
-                if (timeText.length > 0) timeText += ", "
+                if (timeText.length > 0) timeText += ", ";
                 timeText += `${breakdown.hours} ${game.i18n.localize("MP.hour(s)")}`;
             }
             if (breakdown.mins > 0) {  
-                if (timeText.length > 0) timeText += ", "
+                if (timeText.length > 0) timeText += ", ";
                 timeText += `${breakdown.mins} ${game.i18n.localize("MP.minute(s)")}`;
             }
 
@@ -467,7 +467,7 @@ export default class MPActor extends Actor {
             }
 
             if (powerRec > 0) {
-                msg += `<p>${powerRec} ${game.i18n.localize("MP.power")} ${game.i18n.localize("MP.recovered")}.</p>`
+                msg += `<p>${powerRec} ${game.i18n.localize("MP.power")} ${game.i18n.localize("MP.recovered")}.</p>`;
             }
             
 
@@ -495,14 +495,14 @@ export default class MPActor extends Actor {
                 }
                 newHP = Math.min(newHP + hpHealed, this.system.hitpts.max);
 
-                hpRecovered = `<p>${Math.min(hpHealed, diff)} ${game.i18n.localize("MP.hitpoints")} ${game.i18n.localize("MP.recovered")}.</p>`
+                hpRecovered = `<p>${Math.min(hpHealed, diff)} ${game.i18n.localize("MP.hitpoints")} ${game.i18n.localize("MP.recovered")}.</p>`;
             }
 
             let chatOptions = {};
 
             if (dec > 0 && hpHealed > 0) {
                 // if there were dice rolls for fractional heals, need to show them
-                msg += `<p>${game.i18n.localize("MP.fractionalheal")} (${game.i18n.localize("MP.Target")} <= ${dec}):</p>`
+                msg += `<p>${game.i18n.localize("MP.fractionalheal")} (${game.i18n.localize("MP.Target")} <= ${dec}):</p>`;
                 msg += await roll.render();
                 msg += hpRecovered;
                 chatOptions = {
@@ -510,14 +510,14 @@ export default class MPActor extends Actor {
                     roll: roll,
                     content: msg,
                     speaker: ChatMessage.getSpeaker({ actor: this.actor })
-                }
+                };
             }
             else {
                 // otherwise just a normal message
                 chatOptions = {
                     content: msg + hpRecovered,
                     speaker: ChatMessage.getSpeaker({ actor: this.actor })
-                }
+                };
             }
 
             ChatMessage.create(chatOptions);

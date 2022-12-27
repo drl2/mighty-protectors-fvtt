@@ -37,11 +37,11 @@ export default class MPCombatant extends Combatant {
         const actorData = actor.system;
 
         let init = actorData.initiative;
-        if (previousInit) { init += ' + ' + previousInit}
+        if (previousInit) { init += ' + ' + previousInit};
         init += ' + ' + (actorData.basecharacteristics.ag.value/100);
 
         return init;
-    };
+    }
 
     /**
      * Check for other initiative rolls for this token; if they exist, return the highest so far
@@ -55,7 +55,7 @@ export default class MPCombatant extends Combatant {
         const entries = combat.combatants.filter(entry => (entry.tokenId == tokenId) && entry.initiative && entry.id != this.id);
 
         if (entries.length) {
-            highest = Math.max.apply(Math, entries.map(function(entry) { return entry.initiative; }))
+            highest = Math.max.apply(Math, entries.map(function(entry) { return entry.initiative; }));
         }
         
         return Math.floor(highest);
