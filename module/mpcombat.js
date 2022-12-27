@@ -19,15 +19,12 @@ export default class MPCombat extends Combat {
     }
 
     setupTurns() {
-        console.warn(this.combatants);
         const turns = this.combatants.contents.sort(this._sortCombatants);
 
-        console.warn(turns);
-   
         this.current = {
-          round: this.data.round,
+          round: this.round,
           turn: 0,
-        }
+        };
     
         return this.turns = turns;
       }

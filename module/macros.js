@@ -10,15 +10,21 @@
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
  */
-export async function createRollItemMacro(data, slot) {
-    if (data.type !== "Item") return;
-    if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
-    const item = data.data;
+export function createRollItemMacro(data, slot) {
+    if (data.type === "Item") {
+        addRollItemMacro(data, slot);
+        return false;
+    }
+}
+
+async function addRollItemMacro(data, slot) {
+    const item = await fromUuid(data.uuid, "Item");
 
     if (item.type == "attack" || item.type == "vehicleattack") {
         // Create the macro command
         const command = `game.mp.rollItemMacro("${item.name}");`;
-        let macro = game.macros.find(m => (m.name === item.name) && (m.data.command === command));
+        let macro = game.macros.find(m => (m.name === item.name) && (m.command === command));
+
         if (!macro) {
             macro = await Macro.create({
                 name: item.name,
@@ -78,26 +84,26 @@ export function rollSaveMacro(stat) {
         case game.i18n.localize("BC.Agility.fullname"):
         case game.i18n.localize("BC.Agility.abbr"):
             rollStat = game.i18n.localize("BC.Agility.fullname");
-            rollTarget = actor.data.data.basecharacteristics.ag.save;
+            rollTarget = actor.system.basecharacteristics.ag.save;
             break;
         case game.i18n.localize("BC.Endurance.fullname"):
         case game.i18n.localize("BC.Endurance.abbr"):
             rollStat = game.i18n.localize("BC.Endurance.fullname");
-            rollTarget = actor.data.data.basecharacteristics.en.save;
+            rollTarget = actor.system.basecharacteristics.en.save;
             break;
         case game.i18n.localize("BC.Intelligence.fullname"):
         case game.i18n.localize("BC.Intelligence.abbr"):
             rollStat = game.i18n.localize("BC.Intelligence.fullname");
-            rollTarget = actor.data.data.basecharacteristics.in.save;
+            rollTarget = actor.system.basecharacteristics.in.save;
             break;
         case game.i18n.localize("BC.Cool.fullname"):
         case game.i18n.localize("BC.Cool.abbr"):
             rollStat = game.i18n.localize("BC.Cool.fullname");
-            rollTarget = actor.data.data.basecharacteristics.cl.save;
+            rollTarget = actor.system.basecharacteristics.cl.save;
             break;
         case game.i18n.localize("MP.Luck"):
             rollStat = game.i18n.localize("MP.Luck");
-            rollTarget = actor.data.data.luck;
+            rollTarget = actor.system.luck;
             break;
         default:
             return ui.notifications.warn(`Invalid stat ${stat}`);              
@@ -108,7 +114,7 @@ export function rollSaveMacro(stat) {
         roll: "d20",
         stat: rollStat,
         target: rollTarget
-    }
+    };
 
     actor.rollSave(dataset);
     return;
@@ -127,16 +133,15 @@ export function rollOtherMacro(stat) {
 
     switch(stat) {
         case game.i18n.localize("MP.Abbreviations.HandToHand"):
-            roll = actor.data.data.hth;
+            roll = actor.system.hth;
             break;
         case game.i18n.localize("MP.Mass"):
-            roll = actor.data.data.mass;
+            roll = actor.system.mass;
             break;
         case game.i18n.localize("MP.Luck"):
             return rollSaveMacro("Luck");
-            break;
         case game.i18n.localize("MP.Wealth"):
-            roll = actor.data.data.wealth;
+            roll = actor.system.wealth;
             break;
         default:
             return ui.notifications.warn(`Invalid stat ${stat}`);              
@@ -146,7 +151,7 @@ export function rollOtherMacro(stat) {
     const dataset = {
         roll: roll,
         stat: rollStat
-    }
+    };
 
     actor.rollGeneric(dataset);
     return;

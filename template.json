@@ -62,7 +62,9 @@
       "is_base": 0,
       "techcostadjustment": 0,
       "firstaccel": 0,
-      "inchesperhex": 0
+      "inchesperhex": 0,
+      "defense": null,
+      "basetohit": null
     }
   },
   "Item": {

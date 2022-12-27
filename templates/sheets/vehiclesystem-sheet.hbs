@@ -28,11 +28,11 @@
            <div class="vsdescgrid">
                 <div>
                     {{localize 'MP.Damage'}}
-                    <input name="data.dmg" type="number" value="{{data.dmg}}" data-dtype="Number" title="{{ localize 'MP.Damage' }}" />
+                    <input name="system.dmg" type="number" value="{{system.dmg}}" data-dtype="Number" title="{{ localize 'MP.Damage' }}" />
                 </div>
                 <div class="desccolumn">
                     {{localize 'MP.Description'}}
-                    <textarea class="desctext" name="data.description">{{data.description}}</textarea>
+                    <textarea class="desctext" name="system.description">{{system.description}}</textarea>
                 </div>
             </div>
         </div>
@@ -43,21 +43,21 @@
             <div class="vscalcgrid">
                 <div>
                     {{localize 'MP.Cost'}}
-                    <input name="data.cost" type="number" value="{{data.cost}}" data-dtype="Number" title="{{ localize 'MP.Cost' }}" />
+                    <input name="system.cost" type="number" value="{{system.cost}}" data-dtype="Number" title="{{ localize 'MP.Cost' }}" />
                 </div>
                 <div>
                     {{localize 'MP.Abbreviations.SysSpaces'}}
-                    <input name="data.systemspaces" type="number" value="{{data.systemspaces}}" data-dtype="Number" title="{{ localize 'MP.SystemSpaces' }}" />
+                    <input name="system.systemspaces" type="number" value="{{system.systemspaces}}" data-dtype="Number" title="{{ localize 'MP.SystemSpaces' }}" />
                 </div>
                 <div></div>
                 <div>{{localize 'MP.Profile'}}</div>
-                <div>{{data.profile}}</div>
+                <div>{{system.profile}}</div>
                 <div></div>
                 <div>{{localize 'MP.Hits'}}</div>
-                <div>{{data.hits}}</div>
+                <div>{{system.hits}}</div>
                 <div></div>
                 <div>{{localize 'MP.Abbreviations.Points'}}</div>
-                <div>{{data.points}}</div>
+                <div>{{system.points}}</div>
             </div>
             <br/>
             <div class="detailgrid">
@@ -78,22 +78,22 @@
                     {{ localize 'BC.Strength.abbr'}}
                 </div>
                 <div title="{{ localize 'BC.Strength.fullname'}}" class="separator">
-                    <input name="data.stbonus" type="number" value="{{data.stbonus}}" data-dtype="Number" />
+                    <input name="system.stbonus" type="number" value="{{system.stbonus}}" data-dtype="Number" />
                 </div>
                 <div>
                     {{ localize 'MP.ToHit'}}
                 </div>
                 <div title="{{ localize 'MP.ToHitDesc'}}">
-                    <input name="data.tohitbonus" type="number" value="{{data.tohitbonus}}" data-dtype="Number" />
+                    <input name="system.tohitbonus" type="number" value="{{system.tohitbonus}}" data-dtype="Number" />
                 </div>
                 <div>
                     <label class="checkbox" title="{{ localize 'MP.UsesChargesDesc'}}">
-                        <input type="checkbox" name="data.usescharges" {{checked data.usescharges}}>
+                        <input type="checkbox" name="system.usescharges" {{checked system.usescharges}}>
                         {{ localize 'MP.UsesChargesShort'}}
                     </label>
                 </div>
                 <div>
-                    <input name="data.chargesused" type="number" value="{{data.chargesused}}" data-dtype="Number" placeholder="{{ localize 'MP.Used'}}" />/<input name="data.charges" type="number" value="{{data.charges}}" data-dtype="Number" placeholder="{{ localize 'MP.Max'}}" />
+                    <input name="system.chargesused" type="number" value="{{system.chargesused}}" data-dtype="Number" placeholder="{{ localize 'MP.Used'}}" />/<input name="system.charges" type="number" value="{{system.charges}}" data-dtype="Number" placeholder="{{ localize 'MP.Max'}}" />
                 </div>
                 <!-- row end -->
 
@@ -102,17 +102,17 @@
                     {{ localize 'BC.Endurance.abbr'}}
                 </div>
                 <div title="{{ localize 'BC.Endurance.fullname'}}" class="separator">
-                    <input name="data.enbonus" type="number" value="{{data.enbonus}}" data-dtype="Number" />
+                    <input name="system.enbonus" type="number" value="{{system.enbonus}}" data-dtype="Number" />
                 </div>
 
                 <div>{{ localize 'MP.Power'}}</div>
                 <div title="{{ localize 'MP.Power'}}">
-                    <input name="data.powerbonus" type="number" value="{{data.powerbonus}}" data-dtype="Number" />
+                    <input name="system.powerbonus" type="number" value="{{system.powerbonus}}" data-dtype="Number" />
                 </div>
 
                 <div>
                     <label class="checkbox" title="{{ localize 'MP.IsGearDesc'}}">
-                        <input type="checkbox" name="data.isgear" {{checked data.isgear}}>
+                        <input type="checkbox" name="system.isgear" {{checked system.isgear}}>
                         {{ localize 'MP.IsGear'}}
                     </label>
                 </div>
@@ -124,19 +124,19 @@
                     {{ localize 'BC.Agility.abbr'}}  
                 </div>
                 <div title="{{ localize 'BC.Agility.fullname'}}" class="separator">
-                    <input name="data.agbonus" type="number" value="{{data.agbonus}}" data-dtype="Number" />
+                    <input name="system.agbonus" type="number" value="{{system.agbonus}}" data-dtype="Number" />
                 </div>
 
 
                 <div>{{ localize 'MP.HitPoints'}}</div>
                 <div title="{{ localize 'MP.HitPoints'}}">
-                    <input name="data.hpbonus" type="number" value="{{data.hpbonus}}" data-dtype="Number" />
+                    <input name="system.hpbonus" type="number" value="{{system.hpbonus}}" data-dtype="Number" />
                 </div>
 
 
                 <div>
                     <label class="checkbox" title="{{ localize 'MP.Integral'}}">
-                        <input type="checkbox" name="data.integral" {{checked data.integral}}>
+                        <input type="checkbox" name="system.integral" {{checked system.integral}}>
                         {{ localize 'MP.Integral'}}?
                     </label>
                 </div>
@@ -149,17 +149,17 @@
                     {{ localize 'BC.Intelligence.abbr'}}
                 </div>
                 <div title="{{ localize 'BC.Intelligence.fullname'}}" class="separator">
-                    <input name="data.inbonus" type="number" value="{{data.inbonus}}" data-dtype="Number" />
+                    <input name="system.inbonus" type="number" value="{{system.inbonus}}" data-dtype="Number" />
                 </div>
 
                 <div>{{ localize 'MP.Abbreviations.Maneuverability'}}</div>
                 <div title="{{ localize 'MP.Maneuverability'}}">
-                    <input name="data.maneuverability" type="number" value="{{data.maneuverability}}" data-dtype="Number" />
+                    <input name="system.maneuverability" type="number" value="{{system.maneuverability}}" data-dtype="Number" />
                 </div>
 
                 <div>
                     <label class="checkbox" title="{{ localize 'MP.Open'}}">
-                        <input type="checkbox" name="data.open" {{checked data.open}}>
+                        <input type="checkbox" name="system.open" {{checked system.open}}>
                         {{ localize 'MP.Open'}}?
                     </label>
                 </div>
@@ -172,22 +172,22 @@
                     {{ localize 'BC.Cool.abbr'}}
                 </div>
                 <div title="{{ localize 'BC.Cool.fullname'}}" class="separator">
-                    <input name="data.clbonus" type="number" value="{{data.clbonus}}" data-dtype="Number" />
+                    <input name="system.clbonus" type="number" value="{{system.clbonus}}" data-dtype="Number" />
                 </div>
 
                 <div>{{ localize 'MP.Bulky'}}</div>
                 <div title="{{ localize 'MP.Bulky'}}">
-                    <input name="data.bulky" type="number" value="{{data.bulky}}" data-dtype="Number" />   
+                    <input name="system.bulky" type="number" value="{{system.bulky}}" data-dtype="Number" />   
                 </div>
 
                 <div>
                     <label class="checkbox" title="{{ localize 'MP.IndependentPower'}}">
-                        <input type="checkbox" name="data.indpower" {{checked data.indpower}}>
+                        <input type="checkbox" name="system.indpower" {{checked system.indpower}}>
                         {{ localize 'MP.Abbreviations.IndependentPower'}}?
                     </label>
                 </div>
                 <div>
-                    <input name="data.powervalue" type="number" value="{{data.powervalue}}" data-dtype="Number" placeholder="{{ localize 'MP.Used'}}" />/<input name="data.powermax" type="number" value="{{data.powermax}}" data-dtype="Number" placeholder="{{ localize 'MP.Max'}}" />
+                    <input name="system.powervalue" type="number" value="{{system.powervalue}}" data-dtype="Number" placeholder="{{ localize 'MP.Used'}}" />/<input name="system.powermax" type="number" value="{{system.powermax}}" data-dtype="Number" placeholder="{{ localize 'MP.Max'}}" />
                 </div>                
                 <!-- row end -->
 
@@ -201,7 +201,7 @@
 
                 <div>{{ localize 'MP.Delicate'}}</div>
                 <div title="{{ localize 'MP.Delicate'}}">
-                    <input name="data.delicate" type="number" value="{{data.delicate}}" data-dtype="Number" />
+                    <input name="system.delicate" type="number" value="{{system.delicate}}" data-dtype="Number" />
                 </div>
 
 
@@ -216,7 +216,7 @@
         <div class="tab rules" data-group="primary" data-tab="rules">
             <div class="ruletab">
                 <!-- {{localize 'MP.Rules'}} -->
-                {{editor content=data.rules target="data.rules" owner=owner editable=editable button=true}}
+                {{editor enrichedRules target="system.rules" editable=editable button=true}}
             </div>
         </div>
 

@@ -19,22 +19,22 @@
 
             <div>
                 <div>{{localize 'MP.MoveRateType'}}</div>
-                <select name="data.moveratetype">
-                    {{#select data.moveratetype}}
+                <select name="system.moveratetype">
+                    {{#select system.moveratetype}}
                     {{#each config.MoveRateTypes as |name type|}}
                     <option value="{{type}}">{{localize name}}</option>
                     {{/each}}
                     {{/select}}
                 </select>
             </div>
-            <div class="move-subgrid {{#unless (ismoveconstant data.moveratetype)}}hidden{{/unless}}">
+            <div class="move-subgrid {{#unless (ismoveconstant system.moveratetype)}}hidden{{/unless}}">
 
                 <div>
                     {{localize 'MP.UseMovementFormulas'}}:
                 </div>
                 <div>
-                    <select name="data.moverateformula">
-                        {{#select data.moverateformula}}
+                    <select name="system.moverateformula">
+                        {{#select system.moverateformula}}
                         {{#each config.MoveRateFormulas as |name type|}}
                         <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
@@ -48,22 +48,22 @@
                     {{localize 'MP.MoveRate'}}:
                 </div>
                 <div>
-                    {{#if (isformulamanual data.moverateformula)}}
-                        <input name="data.moverate" type="text" value="{{data.moverate}}" data-dtype="Number"
+                    {{#if (isformulamanual system.moverateformula)}}
+                        <input name="system.moverate" type="text" value="{{system.moverate}}" data-dtype="Number"
                             title="{{ localize 'MP.MoveRate' }}" />
                     {{else}}
-                        {{data.calcmoverate}}
+                        {{system.calcmoverate}}
                     {{/if}}
                     {{localize 'MP.Inches'}}
                 </div>
 
             </div>
-            <div class="move-subgrid {{#if (ismoveconstant data.moveratetype)}}hidden{{/if}}">
+            <div class="move-subgrid {{#if (ismoveconstant system.moveratetype)}}hidden{{/if}}">
                 <div>
                     {{localize 'MP.Acceleration'}}:
                 </div>
                 <div>
-                    <input name="data.accel" type="text" value="{{data.accel}}"
+                    <input name="system.accel" type="text" value="{{system.accel}}"
                         title="{{ localize 'MP.Acceleration' }}" />
                     {{localize 'MP.Inches'}}
                 </div>
@@ -71,7 +71,7 @@
                     {{localize 'MP.TopSpeed'}}:
                 </div>
                 <div>
-                    <input name="data.top" type="text" value="{{data.top}}" title="{{ localize 'MP.TopSpeed' }}" />
+                    <input name="system.top" type="text" value="{{system.top}}" title="{{ localize 'MP.TopSpeed' }}" />
                     {{localize 'MP.Inches'}}
                 </div>
 

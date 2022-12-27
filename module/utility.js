@@ -7,7 +7,7 @@
  * @returns 
  */
 export function simplifyDice(rollText) {
-    const diceRE = /(?=[+-])/
+    const diceRE = /(?=[+-])/;
     let finalAdj = 0;
     let dice = '';
     let rollsByDie = [];
@@ -33,13 +33,13 @@ export function simplifyDice(rollText) {
     // sort it by die size
     rollsByDie.sort(function (a, b) {
         return parseInt(a.dieSize, 10) - parseInt(b.dieSize, 10);
-    })
+    });
 
     rollsByDie.forEach(dieRoll => {
         if (dieRoll.dieCount != 0) {
             simplifiedRoll += ((simplifiedRoll.length > 0 && dieRoll.dieCount > 0) ? '+' : '') + dieRoll.dieCount + 'd' + dieRoll.dieSize;
         }
-    })
+    });
     if (finalAdj != 0) {
         simplifiedRoll += ((finalAdj > 0) ? '+' : '') + finalAdj;
     }
@@ -72,7 +72,7 @@ export function simpleGMWhisper(speaker, content) {
         content: content,
         speaker: speaker,
         whisper: ChatMessage.getWhisperRecipients("GM")
-    }
+    };
     ChatMessage.create(gmChatOptions);
 }
 
@@ -90,7 +90,7 @@ export function timeBreakdown(minutes) {
         days: d,
         hours: h,
         mins: m
-    }
+    };
 }
 
 
@@ -100,8 +100,8 @@ export function getCharAblityToHitBonus(items, bonusids) {
 
     if (bonusids) {
         for (let i of items) {
-            if (i.type === 'ability' && i.data.data.tohitbonus && bonusids.includes(i.id)) {
-                totalbonus += i.data.data.tohitbonus
+            if (i.type === 'ability' && i.system.tohitbonus && bonusids.includes(i.id)) {
+                totalbonus += i.system.tohitbonus;
             }
         }
     }

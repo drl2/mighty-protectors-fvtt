@@ -13,7 +13,7 @@ function onRollForCrit(event) {
         targetNum: card.dataset.targetNum,
         rollType: card.dataset.rollType,
         showSuccess: card.dataset.showSuccess,
-        targetVehicle: card.dataset.targetVehicle
+        targetHasDef: card.dataset.targetHasDef
     };
     Crit.RollForCritFumble(data);
 }

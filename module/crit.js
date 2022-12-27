@@ -1,4 +1,4 @@
-import {rollMinMax} from './utility.js'
+import {rollMinMax} from './utility.js';
 
 export async function RollForCritFumble(data) {
     const messageTemplate = "systems/mighty-protectors/templates/chatcards/iscritfumble.hbs";
@@ -9,8 +9,7 @@ export async function RollForCritFumble(data) {
     let roll = await new Roll(rollFormula).evaluate({ async: true });
     const total = roll.total;
 
-
-    if (data.targetName && data.targetNum && !data.targetVehicle) {
+    if (data.targetName && data.targetNum && (data.targetHasDef == "true")) {
         if (data.rollType === "crit") {
             success = roll.total <= data.targetNum;
         }
@@ -25,7 +24,7 @@ export async function RollForCritFumble(data) {
         total: total,
         rolltype: data.rollType,
         rollmessage: (data.rollType === 'crit') ? game.i18n.localize("MP.RollingForCrit") : game.i18n.localize("MP.RollingForFumble"),
-        showsuccess: data.showSuccess && data.targetNum && data.targetName && !data.targetVehicle,
+        showsuccess: data.showSuccess && data.targetNum && data.targetName && (data.targetHasDef == "true"),
         success: success,
         showbutton: showButton,
         isCrit: (data.rollType === 'crit'),
@@ -39,7 +38,7 @@ export async function RollForCritFumble(data) {
         roll: roll,
         speaker: ChatMessage.getSpeaker(),
         content: cardContent
-    }
+    };
 
     ChatMessage.create(messageData);
 }

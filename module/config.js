@@ -4,7 +4,7 @@ MP.AttributeTypes = {
     AG: "BC.Agility.fullname",
     IN: "BC.Intelligence.fullname",
     CL: "BC.Cool.fullname"
-}
+};
 
 MP.ItemTypeImages = {
     ability: "systems/mighty-protectors/assets/icons/ability.webp",
@@ -14,13 +14,13 @@ MP.ItemTypeImages = {
     background: "systems/mighty-protectors/assets/icons/background.webp",
     vehiclesystem: "systems/mighty-protectors/assets/icons/gears.webp",
     vehicleattack: "systems/mighty-protectors/assets/icons/missile-pod.webp"
-}
+};
 
 MP.ActorTypeImages = {
     character: "systems/mighty-protectors/assets/icons/character.webp",
     npc: "systems/mighty-protectors/assets/icons/character.webp",
     vehicle: "systems/mighty-protectors/assets/icons/vehicle.webp",
-}
+};
 
 MP.DamageTypes = {
     kinetic: "DAMAGE.Kinetic",
@@ -29,24 +29,24 @@ MP.DamageTypes = {
     entropy: "DAMAGE.Entropy",
     psychic: "DAMAGE.Psychic",
     other: "DAMAGE.Other"
-}
+};
 
 MP.HealTimes = {
     days: "MP.HealTimes.Days",
     hours: "MP.HealTimes.Hours",
     minutes: "MP.HealTimes.Minutes"
-}
+};
 
 MP.MoveRateTypes = {
     constant: "MP.MoveRateTypes.Constant",
     accelmax: "MP.MoveRateTypes.Acceleration"
-}
+};
 
 MP.MoveRateFormulas = {
     manual: "MP.MovementFormulas.Manual",
     ground: "MP.MovementFormulas.Ground",
     leaping: "MP.MovementFormulas.Leaping"
-}
+};
 
 MP.StatTable = [
     {min: 0, max: 0, carry: 8, hth_init: 'd2-1', save: 6, hits_st: -3, hits_en: -5, hits_ag: -2, hits_cl: -1, heal: .2},

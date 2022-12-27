@@ -10,7 +10,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
     }
 
     get template() {
-        if (this.actor.data.type === 'vehicle') {
+        if (this.actor.type === 'vehicle') {
             return `systems/mighty-protectors/templates/sheets/vehicle-sheet.hbs`;
         }
         else {
@@ -18,11 +18,12 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         }
     }
 
-    getData(options) {
+    async getData(options) {
         const sheetData = super.getData(options);
-        const actorData = this.actor.data.toObject(false);
+        const actorData = this.actor.toObject(false);
         sheetData.actor = actorData;
-        sheetData.data = actorData.data;
+        sheetData.system = actorData.system;
+        sheetData.enrichedStory = await TextEditor.enrichHTML(actorData.system.story, {async: true});
 
         switch(this.actor.type) {
             case "npc":
@@ -161,7 +162,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
                 itemName = game.i18n.localize("MP.NewVehAttack");
                 break;
             default:
-                console.log('Add item with no item type defined')
+                ui.notifications.warn('Add item with no item type defined');
                 break;
         }
 
@@ -170,10 +171,6 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
             type: element.dataset.type,
             img: MP.ItemTypeImages[element.dataset.type]
         }];
-
-        // let newItem = 
-        // const img = MP.ItemTypeImages[itemdata.type];
-        // if (img) await newItem.data.update({ img });
 
         return await MPItem.create(itemData, { parent: this.actor });
     }
@@ -218,7 +215,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
 
         switch (element.dataset.type) {
             case 'ability':
-                cardContent = "<h3>" + item.name + "</h3><div>" + item.data.data.rules + "</div>";
+                cardContent = "<h3>" + item.name + "</h3><div>" + item.system.rules + "</div>";
                 break;
             default:
                 cardContent = "";
@@ -228,7 +225,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         let chatOptions = {
             content: cardContent,
             speaker: ChatMessage.getSpeaker({ actor: this.actor })
-        }
+        };
 
         ChatMessage.create(chatOptions);
     }
@@ -248,7 +245,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
 
         switch (element.dataset.type) {
             case 'ability':
-                cardContent = "<h3>" + item.name + "</h3><div>" + item.data.data.description + "</div>";
+                cardContent = "<h3>" + item.name + "</h3><div>" + item.system.description + "</div>";
                 break;
             default:
                 cardContent = "";
@@ -274,12 +271,12 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        let itemData = item.data;
+        let itemData = item.system;
 
-        let used = itemData.data.chargesused;
+        let used = itemData.chargesused;
         if (used > 0) { used = used - 1; }
-        itemData.data.chargesused = used;
-        return item.update({ 'data.chargesused': used });
+        itemData.chargesused = used;
+        return item.update({ 'system.chargesused': used });
     }
 
     /**
@@ -292,8 +289,8 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        let itemData = item.data;
-        return item.update({ 'data.chargesused': itemData.data.charges });
+        let itemData = item.system;
+        return item.update({ 'system.chargesused': itemData.charges });
     }
 
 
@@ -302,12 +299,12 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        let itemData = item.data;
+        let itemData = item.system;
 
-        let used = itemData.data.powervalue;
+        let used = itemData.powervalue;
         if (used > 0) { used = used - 1; }
-        itemData.data.chargesused = used;
-        return item.update({ 'data.powervalue': used });
+        itemData.chargesused = used;
+        return item.update({ 'system.powervalue': used });
     }
 
     /**
@@ -320,8 +317,9 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        let itemData = item.data;
-        return item.update({ 'data.powervalue': itemData.data.powermax });
+        let itemData = item.system;
+
+        return item.update({ 'system.powervalue': itemData.powermax });
     }
 
     /**
@@ -356,7 +354,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
 
         let data = {
             config: MP
-        }
+        };
 
         let dlgContent = await renderTemplate("systems/mighty-protectors/templates/dialogs/rest.hbs", data);
 
@@ -390,7 +388,7 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
         async function timedRestCallback(html, actor) {
             let healtime = html.find('[name="healtime"]')[0].value.trim();
             let timeframe = html.find('[name="timeframe"]')[0].value.trim();
-            return await actor.timedRecovery(timeframe, healtime)
+            return await actor.timedRecovery(timeframe, healtime);
         }
 
     }
@@ -399,15 +397,10 @@ export default class MightyProtectorsCharacterSheet extends ActorSheet {
     async _onDamageEdit(event) {
         event.preventDefault();
 
-        console.warn(event.target);
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        let field = element.dataset.field;
-        console.warn(element.value);
-        console.warn(element.dataset.field);
         return item.update({ 'data.dmg': Number(element.value) });
-
     }
 }
 
