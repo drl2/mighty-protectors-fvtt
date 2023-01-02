@@ -43,14 +43,18 @@ The project is free and open source, but if you'd like to contribute financially
 
 ## Change Log
 
-### [1.1.0]
+### [1.1.1] - 2023-01-01
 
-- The previous version more or less worked in Founndry version 10 but with a few glitches and throwing a while bunch of warnings about code that's going to stop working in future versions.  Did a first pass of v10-ification, meaning ***this version will no longer work with Foundry versions before 10 - stick with 1.0.2 for Foundry v9***.  Changes related to v10 include:
+- Fixed a typo in the character sheet code that was stopping IN stat changes from updating correctly.
+
+### [1.1.0] - 2022-12-27
+
+- The previous version more or less worked in Founndry version 10 but with a few glitches and throwing a whole bunch of warnings about code that's going to stop working in future versions.  Did a first pass of v10-ification, meaning ***this version will no longer work with Foundry versions before 10 - stick with 1.0.2 for Foundry v9***.  Changes related to v10 include:
     - Drag & drop macro creation was messing up  by creating the macro we wanted & then replacing it with one we didn't.  Fixed.
     - Combat tracker display went wonky under v10 due to some changes to the underlying layout of the tracker.  Updated to work with the new style.
     - Deprecation warnings (for those of you who hit F12 and look at the console output) are addressed, meaning the transition to future Foundry versions should be easier.
 - Added physical defense and base to-hit to the vehicle sheet.  These values aren't on the pen-and-paper sheet because they're usually calculated based on the stats of the driver/pilot/gunner/whatever, but are convenient here because they can be used in to-hit calculations.
-- Semi-colons.  My Javascript nemesis.  Had a bunch of missing ones and a couple of unnecessary ones throughout the code.  This had no impact at all on functionality, but they've been bothering me for a while.
+- Semi-colons.  My Javascript nemesis.  Had a bunch of missing ones and a couple of unnecessary ones throughout the code.  This had no impact at all on functionality, but they've been bothering me for a while.  Eventually I might even make my use of single vs double quotes consistent rather than based on what language I was coding in at work on a given day.
 
 ### [1.0.2] - 2022-08-05
 
