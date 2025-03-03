@@ -43,6 +43,10 @@ The project is free and open source, but if you'd like to contribute financially
 
 ## Change Log
 
+### [1.1.2] - 2025-03-03
+
+Change to the configuration info to mark it as Foundry v12 compatible and get it out of Archived status.
+
 ### [1.1.1] - 2023-01-01
 
 - Fixed a typo in the character sheet code that was stopping IN stat changes from updating correctly.
